@@ -1,12 +1,4 @@
-.content {
-    display: block;
-    width: 100%;
-    height: 100%;
-    background-color: #242c37;
-}
-
 .ui {
-    padding-top: 30px;
     display: grid;
     grid-template-columns: 235px 640px 325px;
     column-gap: 60px;
@@ -15,16 +7,22 @@
     transform: translateX(-50%);
 }
 
-.left {
-    display: inline-grid;
+.sticky {
+    position: sticky;
 }
 
-.feed {
-    display: inline-grid;
+.left {
+    height: 100vh;
+    padding-top: 30px;
 }
 
 .right {
-    display: inline-grid;
+    height: 100vh;
+    padding-top: 30px;
+}
+
+.feed{
+    padding-top: 30px;
 }
 
 .logo {

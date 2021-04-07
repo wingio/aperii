@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = [{
     id: 'gwdtfwtyf56wsdt76',
     content: 'This is a dummy post',
     author: {
@@ -11,4 +11,4 @@ module.exports = {
     likes: 100,
     reposts: 5,
     replies: []
-}
+}]

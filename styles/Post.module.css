@@ -51,10 +51,12 @@
     height: 15px;
     width: 15px;
     margin-bottom: -1.5px;
-    margin-left: 2px;
+    margin-left: 3px;
     background-image: url(/badge.svg);
     background-size: 15px 15px;
     display: inline-block;
+    transition: box-shadow .5s;
+    border-radius: 50%;
 }
 
 .username {
@@ -67,4 +69,12 @@
 .content {
     margin-left: var(--post-gap);
     padding: 0;
+}
+
+.tooltip {
+    visibility: hidden;
+}
+
+.badge:hover{
+    box-shadow: 0 0 20px 2px rgb(255 255 255 / 60%);
 }
