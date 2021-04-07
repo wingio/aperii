@@ -1,0 +1,72 @@
+.post {
+    --post-gap: 10px;
+}
+
+.post {
+    color: black;
+    max-width: 500px;
+    max-height: 500px;
+    margin: 10px;
+    padding: 7px;
+    display: grid;
+    grid-template-columns: 48px 500px;
+    grid-template-rows: max-content;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    border-radius: 5px;
+    border: 1px solid rgb(136, 136, 136);
+}
+
+.avcontainer {
+    display: inline-grid;
+    
+}
+
+.bodycontainer {
+    display: inline-grid;
+    
+}
+
+.av {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    align-self: flex-start;
+}
+
+.author {
+    font-size: 15px;
+    font-weight: 700;
+    align-self: baseline;
+    margin: 0;
+    position: relative;
+    top: 2px;
+    left: var(--post-gap);
+}
+
+.displayName {
+    color: black;
+}
+
+.badge {
+    color: rgb(52, 94, 211);
+    height: 15px;
+    width: 15px;
+    margin-bottom: -1.5px;
+    margin-left: 2px;
+    background-image: url(/badge.svg);
+    background-size: 15px 15px;
+    display: inline-block;
+}
+
+.username {
+    font-weight: 600;
+    align-self: baseline;
+    color: rgb(136, 136, 136);
+    margin-left: 4px;
+}
+
+.content {
+    margin-left: var(--post-gap);
+    padding: 0;
+}
