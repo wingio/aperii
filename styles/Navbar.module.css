@@ -1,0 +1,35 @@
+.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.item {
+    display: inline;
+    float: left;
+}
+
+.item a {
+    display: block;
+    padding: 8px;
+    display: block;
+}
+
+.item a {
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.item a:hover {
+    background-color: #111;
+}
+
+.logo {
+    background-image: url('/logo.svg');
+    height: 30px;
+    width: 30px;
+}
