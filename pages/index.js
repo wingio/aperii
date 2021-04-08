@@ -14,6 +14,9 @@ export default function Home() {
   }
   return (
     <div>
+      <Head>
+      <meta property="og:title" content="Home" />
+      </Head>
       <div className={styles.signup}>
         <form onSubmit={signup}>
           <input id='username' type='text'></input>

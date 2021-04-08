@@ -10,6 +10,9 @@ export default function Demo() {
   const classesL = `${styles.sticky} ${styles.left}`
   return (
     <div className={styles.ui}>
+      <Head>
+      <meta property="og:title" content="Demo" />
+      </Head>
       <div className={classesL}>
         <span className={styles.logo}></span>
       </div>
