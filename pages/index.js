@@ -14,7 +14,6 @@ export default function Home() {
   }
   return (
     <div>
-      
       <div className={styles.signup}>
         <form onSubmit={signup}>
           <input id='username' type='text'></input>
