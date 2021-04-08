@@ -15,7 +15,7 @@ export default function User({data}) {
   return (
     <div className={styles.ui}>
       <Head>
-        <meta property="og:title" content={`@${user.username}`} />
+        <meta property="og:title" content={`${user.displayName} (@${user.username})`} />
         <meta property="og:description" content={user.bio} />
         <meta property="og:image" content={user.avatar} />
       </Head>
