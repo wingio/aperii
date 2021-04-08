@@ -14,11 +14,7 @@ export default function Home() {
   }
   return (
     <div>
-      <Head>
-        <meta property="og:title" content="OpenTwitter" />
-        <meta property="og:description" content="Open source replacement for Twitter" />
-        <meta property="og:url" content="https://opentwitter.wingio.xyz/" />
-      </Head>
+      
       <div className={styles.signup}>
         <form onSubmit={signup}>
           <input id='username' type='text'></input>
