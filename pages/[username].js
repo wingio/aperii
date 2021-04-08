@@ -6,7 +6,7 @@ import * as PostEx from '../Users'
 import { useRouter } from 'next/router'
 import * as users from '../Users'
 
-export default function User() {
+export default function User({data}) {
   const classesR = `${styles.sticky} ${styles.right}`
   const classesL = `${styles.sticky} ${styles.left}`
   const router = useRouter()
@@ -26,4 +26,14 @@ export default function User() {
       <div className={classesR}><img className={styles.av} src={'https://avatars.githubusercontent.com/u/44992537?v=1'}></img></div>
     </div>
   )
+}
+
+
+export async function getServerSideProps() {
+  var data = {
+    hello: 'world'
+  }
+
+  // Pass data to the page via props
+  return { props: { data } }
 }
