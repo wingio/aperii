@@ -15,7 +15,8 @@ export default function Home() {
   return (
     <div>
       <Head>
-      <meta property="og:title" content="Home" />
+        <meta property="og:title" content="Home" />
+        <title>Home | OpenTwitter</title>
       </Head>
       <div className={styles.signup}>
         <form onSubmit={signup}>

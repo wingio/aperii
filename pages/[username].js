@@ -14,7 +14,12 @@ export default function User({data}) {
   var user = users.filter(u => u.username == username)[0]
   return (
     <div>
-      <p>Hello, {username}</p>
+      <Head>
+        <meta property="og:title" content={`${user.displayName} (@${user.username})`} />
+        <meta property="og:description" content={user.bio} />
+        <meta property="og:image" content={user.avatar} />
+        <title>{`${user.displayName} (@${user.username})`} | OpenTwitter</title>
+      </Head><p>Hello, {username}</p>
     </div>
   )
 }
