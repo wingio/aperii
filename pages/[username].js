@@ -13,17 +13,8 @@ export default function User({data}) {
   const { username } = router.query
   var user = users.filter(u => u.username == username)[0]
   return (
-    <div className={styles.ui}>
-      <Head>
-        <meta property="og:title" content={`${user.displayName} (@${user.username})`} />
-        <meta property="og:description" content={user.bio} />
-        <meta property="og:image" content={user.avatar} />
-      </Head>
-      <div className={classesL}>
-        <span className={styles.logo}></span>
-      </div>
-      <div className={styles.feed}><Search></Search><p>Hello, {username}</p></div>
-      <div className={classesR}><img className={styles.av} src={'https://avatars.githubusercontent.com/u/44992537?v=1'}></img></div>
+    <div>
+      <p>Hello, {username}</p>
     </div>
   )
 }

@@ -14,3 +14,47 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.ui {
+  display: grid;
+  grid-template-columns: 235px 640px 325px;
+  column-gap: 60px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.sticky {
+  position: sticky;
+}
+
+.left {
+  height: 100vh;
+  padding-top: 30px;
+}
+
+.right {
+  height: 100vh;
+  padding-top: 30px;
+}
+
+.feed{
+  padding-top: 30px;
+}
+
+.logo {
+  width: 168px;
+  height: 40px;
+  margin-bottom: -1.5px;
+  margin-left: 2px;
+  background-image: url('/logo_temp.svg');
+  background-size: cover;
+  display: inline-block;
+}
+
+.av {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  align-self: flex-start;
+}
