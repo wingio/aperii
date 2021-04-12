@@ -7,8 +7,8 @@ function MyApp({ Component, pageProps }) {
   const classesL = `${styles.sticky} ${styles.left}`
   return <div className={`ui`}>
     <Head>
-  <meta property="og:site_name" content ="OpenTwitter" />
-  <meta property="og:url" content="https://opentwitter.wingio.xyz/" />
+  <meta property="og:site_name" content ="aperii" />
+  <meta property="og:url" content="https://aperii.wingio.xyz/" />
 </Head> 
       <div className={`sticky left`}>
         <span className={`logo`}></span>

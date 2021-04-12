@@ -10,7 +10,7 @@ export default function Demo() {
     <div>
       <Head>
         <meta property="og:title" content="Demo" />
-        <title>Demo | OpenTwitter</title>
+        <title>Demo | aperii</title>
       </Head>
       <Post id={'gwdtfwtyf56wsdt76'}></Post>
     </div>
