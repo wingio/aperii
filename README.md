@@ -1,3 +1,2 @@
-Open-Twitter
----
-Open-Twitter is an open-source version of twitter intended to fix many of the problems the site has.
+# Aperii
+Aperii is an open-source social media network that is intended to function like Twitter, but aims to fix many of its problems. The API of Aperii is written using Flask, a micro-framework for Python, with the frontend in ReactJS and Next.js.
