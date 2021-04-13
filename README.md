@@ -1,3 +1,4 @@
+![Aperii Logo](/public/logo.png)
 # Aperii
 ![Discord](https://img.shields.io/discord/829171056811311119?label=Discord&logo=discord&logoColor=%23FFF)
 ![GitHub deployments](https://img.shields.io/github/deployments/wingio/aperii/production?logo=vercel&label=build%20status)
