@@ -4,9 +4,12 @@ from flask_httpauth import HTTPBasicAuth
 from mongoengine import Document, StringField
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import abort, request, jsonify, url_for
+from flask_cors import CORS
 import base64, json
 
 app = Flask(__name__)
+CORS(app)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 with open('config.json') as configFile:
     config = json.load(configFile)
 
@@ -58,7 +61,7 @@ def new_user():
         return jsonify({'username': user.username}), 201, {'Location': url_for('get_user', id=user.id, _external=True)}
 
 
-@app.route('/api/users/<id>')
+@app.route('/api/users/<id>', methods=['GET'])
 def get_user(id):
     user = User.objects.get(id)
     if not user:
