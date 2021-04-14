@@ -7,7 +7,9 @@ body {
 }
 
 * {
-  --rust-blood: #9D4D4D
+  --rust-blood: hsl(0, 34%, 46%);
+  --rust-blood-hl: hsl(0, 34%, 36%);
+  --rust-blood-disabled: hsl(0, 34%, 26%);
 }
 
 a {
@@ -61,4 +63,53 @@ a {
   height: 40px;
   border-radius: 50%;
   align-self: flex-start;
+}
+
+/* Forms */
+
+.forms {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  padding: 15px;
+  border-radius: 10px;
+  background: var(--rust-blood);
+  border: none;
+  transition: all .5s ease;
+  color: white;
+  width: 100%;
+  margin: 12px 0 9px 0;
+}
+
+.btn:hover {
+  background: var(--rust-blood-hl);
+}
+
+.btn:disabled {
+  background: var(--rust-blood-disabled);
+  color: var(--rust-blood-hl);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 40px;
+  color: white;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+}
+
+.form-control-material {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 10px;
+}
+
+.form-control-material:focus {
+  outline: none;
 }
