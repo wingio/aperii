@@ -81,7 +81,7 @@ client.connect(function (err) {
             }, (err, result) => {
                 res.status(200).send({username: username, token: token})
             })
-        })
+        }) 
     })
 
     app.post('/auth/login', async (req, res) => {
