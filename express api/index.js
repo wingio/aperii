@@ -1,6 +1,10 @@
 const MongoClient = require('mongodb').MongoClient;
 const bcrypt = require('bcrypt')
-
+const cors = require('cors')
+const corsOpts = {
+  origin: '*',
+  optionsSuccessStatus: 200
+}
 // Connection URL
 const url = 'mongodb://localhost:27017';
 
@@ -17,6 +21,7 @@ client.connect(function (err) {
     const express = require('express')
     const app = express()
     app.use(express.json())
+    app.use(cors(corsOpts))
 
     async function genToken(chars, length){
         var token = ''
@@ -50,7 +55,7 @@ client.connect(function (err) {
         }
     }
 
-    app.post('/auth/signup', async (req, res) => {
+    app.post('/auth/signup', cors(corsOpts), async (req, res) => {
         const {
             email,
             displayName,
@@ -63,16 +68,17 @@ client.connect(function (err) {
         })
         if (user) {res.status(400).send({status: 400,error: 'Username already taken'}); return}
 
-        var usernameRegex = /[A-Za-z_0-9]+/g
+        var usernameRegex = /^(?=.*[a-z])?(?=.*[A-Z])?(?=.*\d)?(?!.*[ ])[A-Za-z\d_]{4,32}$/g
         var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/g
         if(username.length < 4 || username.length > 32) {res.status(400).send({status: 400, error: 'Username must be between 4 and 32 characters long'}); return}
         if(displayName.length < 4 || displayName.length > 64) {res.status(400).send({status: 400, error: 'Display name must be between 4 and 32 characters long'}); return}
         if(!usernameRegex.test(username)) {res.status(400).send({status: 400, error: 'Username must only contain "A-Z", "a-z", "0-9" and "_"'}); return}
         if(!passwordRegex.test(password)) {res.status(400).send({status: 400, error: 'Password must be at least 8 characters, contain at least 1 lowercase letter, 1 uppercase letter, a number, and a special character'}); return}
         var token = await genToken('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890_-', 64)
-        bcrypt.hash(password, 100, async (err, hash) => {
+        bcrypt.hash(password, 10, async (err, hash) => {
             collection.insertOne({
                 id: await genId(20),
+                joinedTimestamp: Date.now(),
                 email: email,
                 displayName: displayName,
                 username: username,
@@ -84,7 +90,7 @@ client.connect(function (err) {
         }) 
     })
 
-    app.post('/auth/login', async (req, res) => {
+    app.post('/auth/login', cors(corsOpts), async (req, res) => {
         const {
             username,
             password
@@ -92,7 +98,7 @@ client.connect(function (err) {
         var user = await collection.findOne({
             username: username
         } )
-        if(!user) {res.status(400).send({status: 400, error: 'No user found with that username'})}
+        if(!user) {res.status(400).send({status: 400, error: 'No user found with that username'}); return}
         bcrypt.compare(password, user.password,
             function (err, result) {
                 if (result == true) {
@@ -103,5 +109,15 @@ client.connect(function (err) {
             })
     })
 
+    app.post('/auth/validate', cors(corsOpts), async (req, res) => {
+        var tok = req.headers.authentication
+        if(!tok) {res.status(401).send({status: 401, error: 'Unauthorized'})}
+        var user = await collection.findOne({
+            token: tok
+        })
+        if(!user) {res.status(401).send({status: 401, error: 'Unauthorized'})}
+        res.status(200).send({username: username, token: token})
+    })
     app.listen(5000)
 });
+

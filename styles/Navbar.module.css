@@ -2,19 +2,29 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    background-color: #333;
+    position: relative;
 }
 
 .item {
     display: inline;
-    float: left;
+    float: right;
+}
+
+.item a[href="/signup"]{
+    background: #9d4d4d;
+}
+
+.item a[href="/login"]{
+    background: #00000000;
 }
 
 .item a {
     display: block;
     padding: 8px;
     display: block;
+    
+    border-radius: 20em;
+    margin: 20px 20px 0 0;
 }
 
 .item a {
@@ -22,10 +32,15 @@
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    transition: all ease .5s;
 }
 
-.item a:hover {
-    background-color: #111;
+.item a[href="/signup"]:hover {
+    background: hsl(0, 34%, 36%);
+}
+
+.item a[href="/login"]:hover {
+    color: darkgrey;
 }
 
 .logo {

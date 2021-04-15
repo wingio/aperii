@@ -17,6 +17,7 @@ export default function User({user}) {
         <meta property="og:image" content={user.avatar} />
         <title>{`${user.displayName} (@${user.username})`} | aperii</title>
       </Head>
+      
       <div className={styles.banner}><img className={styles.avatar} src={user.avatar}></img></div>
       <p>Hello, {user.username}</p>
     </div>

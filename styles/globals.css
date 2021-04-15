@@ -101,15 +101,54 @@ a {
   color: white;
   background: rgba(0, 0, 0, 0.8);
   border-radius: 10px;
+  width: 300px;
 }
 
 .form-control-material {
   width: 100%;
   padding: 8px;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
+  background: #2f2935;
+  color: white;
 }
 
 .form-control-material:focus {
   outline: none;
+}
+
+.errorText {
+  padding: 10px;
+  background: rgba(255, 0, 0, 0.288);
+  border: 2px solid red;
+  font-size: .8rem;
+  width: 100%;
+  text-align: center;
+}
+
+.input-error {
+  border: 1px solid red;
+}
+
+/* Homepage */
+
+.blob {
+  width: 40vw;
+  height: 40vw;
+  background: url('/blob.svg');
+  background-size: 40vw 40vw;
+  display: inline-block;
+}
+
+.logo-br {
+  width: 400px;
+  height: 96px;
+  margin-bottom: -1.5px;
+  margin-left: 2px;
+  background-image: url('/logo_temp.svg');
+  background-size: cover;
+  display: inline-block;
+  position: absolute;
+  bottom: 50px;
+  right: 40px
 }
