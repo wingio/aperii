@@ -28,9 +28,9 @@ export default function Home() {
         <meta property="og:title" content="Home" />
         <title>Home | aperii</title>
       </Head>
-      <Navbar></Navbar>
-      <div className="blob" />
-      <div className="logo-br" />
+        <Navbar></Navbar>
+        <div className="blob" />
+        <div className="logo-br" />
     </div>
   )
 }

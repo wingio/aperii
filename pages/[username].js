@@ -17,9 +17,20 @@ export default function User({user}) {
         <meta property="og:image" content={user.avatar} />
         <title>{`${user.displayName} (@${user.username})`} | aperii</title>
       </Head>
-      
-      <div className={styles.banner}><img className={styles.avatar} src={user.avatar}></img></div>
+      <div className={`ui`}>
+          <div className={`sticky left`}>
+            <span className={`logo`}></span>
+          </div>
+          <div className={`feed`}>
+            <Search></Search>
+            <div className={styles.banner}><img className={styles.avatar} src={user.avatar}></img></div>
       <p>Hello, {user.username}</p>
+          </div>
+          <div className={`sticky right`}>
+            <img className={`av`} src={'https://avatars.githubusercontent.com/u/44992537?v=1'}></img>
+          </div>
+        </div>
+      
     </div>
   )
 }
