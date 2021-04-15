@@ -70,7 +70,7 @@ client.connect(function (err) {
         if(!usernameRegex.test(username)) {res.status(400).send({status: 400, error: 'Username must only contain "A-Z", "a-z", "0-9" and "_"'}); return}
         if(!passwordRegex.test(password)) {res.status(400).send({status: 400, error: 'Password must be at least 8 characters, contain at least 1 lowercase letter, 1 uppercase letter, a number, and a special character'}); return}
         var token = await genToken('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890_-', 64)
-        bcrypt.hash(password, 10, async (err, hash) => {
+        bcrypt.hash(password, 100, async (err, hash) => {
             collection.insertOne({
                 id: await genId(20),
                 email: email,
