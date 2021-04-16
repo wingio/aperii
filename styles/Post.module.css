@@ -9,7 +9,7 @@
     max-height: 500px;
     padding: 12px;
     display: grid;
-    grid-template-columns: 48px 500px;
+    grid-template-columns: 48px auto;
     grid-template-rows: max-content;
     grid-column-gap: 0px;
     grid-row-gap: 0px;

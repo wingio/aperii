@@ -4,34 +4,25 @@ import Search from '../components/Search'
 import Post from '../components/Post'
 import * as PostEx from '../Users'
 import * as users from '../Users'
+import Layout from '../components/Layout'
 
 export default function User({user}) {
   const classesR = `${styles.sticky} ${styles.right}`
   const classesL = `${styles.sticky} ${styles.left}`
   
   return (
-    <div className={styles.user}>
+    <Layout>
       <Head>
         <meta property="og:title" content={`${user.displayName} (@${user.username})`} />
         <meta property="og:description" content={user.bio} />
         <meta property="og:image" content={user.avatar} />
         <title>{`${user.displayName} (@${user.username})`} | aperii</title>
       </Head>
-      <div className={`ui`}>
-          <div className={`sticky left`}>
-            <span className={`logo`}></span>
-          </div>
-          <div className={`feed`}>
-            <Search></Search>
-            <div className={styles.banner}><img className={styles.avatar} src={user.avatar}></img></div>
+      <div className={styles.user}>
+      <div className={styles.banner}><img className={styles.avatar} src={user.avatar}></img></div>
       <p>Hello, {user.username}</p>
-          </div>
-          <div className={`sticky right`}>
-            <img className={`av`} src={'https://avatars.githubusercontent.com/u/44992537?v=1'}></img>
-          </div>
-        </div>
-      
-    </div>
+      </div>
+    </Layout>
   )
 }
 

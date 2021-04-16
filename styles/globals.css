@@ -21,13 +21,27 @@ a {
   box-sizing: border-box;
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 .ui {
   display: grid;
-  grid-template-columns: 235px 640px 325px;
   column-gap: 60px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+}
+
+.ui.full {
+  grid-template-columns: 235px 640px 325px;
+}
+
+.ui.partial {
+  grid-template-columns: 640px 325px;
+}
+
+.ui.mobile {
+  grid-template-columns: 100vw;
 }
 
 .sticky {
