@@ -3,7 +3,7 @@ import styles from '../styles/Home.module.css'
 import {useState} from 'react'
 import Link from 'next/link'
 import Navbar from '../components/Navbar'
-var prod = true
+var prod = false
 export default function Home() {
   if (typeof window !== "undefined") {
     var token = localStorage.getItem('token')

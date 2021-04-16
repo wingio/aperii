@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import {useState} from 'react'
-var prod = true
+var prod = false
 export default function Home() {
   if (typeof window !== "undefined") {
   var token = localStorage.getItem('token')
