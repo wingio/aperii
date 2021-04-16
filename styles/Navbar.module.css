@@ -2,7 +2,8 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    position: relative;
+    position: absolute;
+    right: 0;
 }
 
 .item {
@@ -27,6 +28,12 @@
     margin: 20px 20px 0 0;
 }
 
+.item svg {
+    margin: 36px 10px 0 0;
+    width: 1.5em!important;
+    height: 1.3em;
+}
+
 .item a {
     color: white;
     text-align: center;
@@ -35,12 +42,24 @@
     transition: all ease .5s;
 }
 
+.item svg {
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    transition: all ease .5s;
+}
+
 .item a[href="/signup"]:hover {
     background: hsl(0, 34%, 36%);
 }
 
-.item a[href="/login"]:hover {
+.item a:not([href="/signup"]):hover {
     color: darkgrey;
+}
+
+.item svg:hover {
+    color: darkgrey;
+    cursor: pointer;
 }
 
 .logo {

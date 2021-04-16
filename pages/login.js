@@ -13,7 +13,7 @@ export default function Home() {
       }
     }).then(async res => {
       var result = await res.json()
-      if (result.status) {
+      if (!result.status) {
         window.location = '/home'
       }
     })
