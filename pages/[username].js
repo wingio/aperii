@@ -19,8 +19,10 @@ export default function User({user}) {
         <title>{`${user.displayName} (@${user.username})`} | aperii</title>
       </Head>
       <div className={styles.user}>
-      <div className={styles.banner}><img className={styles.avatar} src={user.avatar}></img></div>
-      <p>Hello, {user.username}</p>
+        <div className={styles.banner}>
+          <img className={styles.avatar} src={user.avatar}></img>
+        </div>
+        <p>Hello, {user.username}</p>
       </div>
     </Layout>
   )

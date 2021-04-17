@@ -6,7 +6,7 @@ function MobileLayout(props) {
   const {width, height} = useWindowSize()
   return (
     <div className="container">
-      <div className={`ui`} style={{gridTemplateColumns: width > 640? '640px' : '100%'}}>
+      <div className={`ui`} style={{gridTemplateColumns: width >= 640? '640px' : '100%'}}>
         <div className={`feed`}>
           <Search></Search>
           {props.children}

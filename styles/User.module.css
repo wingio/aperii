@@ -2,43 +2,6 @@
     --rust-blood: #9D4D4D
 }
 
-.ui {
-    display: grid;
-    grid-template-columns: 235px 640px 325px;
-    column-gap: 60px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.sticky {
-    position: sticky;
-}
-
-.left {
-    height: 100vh;
-    padding-top: 30px;
-}
-
-.right {
-    height: 100vh;
-    padding-top: 30px;
-}
-
-.feed{
-    padding-top: 30px;
-}
-
-.logo {
-    width: 168px;
-    height: 40px;
-    margin-bottom: -1.5px;
-    margin-left: 2px;
-    background-image: url('/logo_temp.svg');
-    background-size: cover;
-    display: inline-block;
-}
-
 .av {
     width: 40px;
     height: 40px;
@@ -51,7 +14,7 @@
     display: flex;
     width: 100%;
     height: 150px;
-    background-color: var(--rust-blood);;
+    background-color: var(--rust-blood);
     border-radius: 10px 10px 0 0;
 }
 

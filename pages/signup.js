@@ -62,22 +62,22 @@ export default function Home() {
   
   
   return (
-    <div>
+    <div className="form-container">
       <Head>
         <meta property="og:title" content="Home" />
         <title>Sign Up | aperii</title>
       </Head>
-      <div className={`${styles.signup} forms`}>
+      <div className={`forms`}>
         {prod ? <form className="login-form" onSubmit={signup}>
           <h1>Sign Up</h1>
-          <label htmlFor="displayname">Display Name</label>
-          <input type="text" name="displayname" id="displayname" placeholder=" " autoComplete="off" className={`form-control-material ${errorInput == 'displayname' ? 'input-error' : ''}`} required />
-          <label htmlFor="username">Username</label>
-          <input type="text" name="username" id="username" placeholder=" " autoComplete="off" className={`form-control-material ${errorInput == 'username' ? 'input-error' : ''}`} required />
-          <label htmlFor="email">Email</label>
-          <input type="text" name="email" id="email" placeholder=" " autoComplete="off" className={`form-control-material ${errorInput == 'email' ? 'input-error' : ''}`} required />
-          <label htmlFor="password">Password</label>
-          <input type="password" name="password" id="password" placeholder=" " autoComplete="off" className={`form-control-material ${errorInput == 'password' ? 'input-error' : ''}`} required />
+          
+          <input type="text" name="displayname" id="displayname" placeholder="Display Name" autoComplete="off" className={`form-control-material ${errorInput == 'displayname' ? 'input-error' : ''}`} required />
+          
+          <input type="text" name="username" id="username" placeholder="Username" autoComplete="off" className={`form-control-material ${errorInput == 'username' ? 'input-error' : ''}`} required />
+          
+          <input type="text" name="email" id="email" placeholder="Email" autoComplete="off" className={`form-control-material ${errorInput == 'email' ? 'input-error' : ''}`} required />
+          
+          <input type="password" name="password" id="password" placeholder="Password" autoComplete="off" className={`form-control-material ${errorInput == 'password' ? 'input-error' : ''}`} required />
           <button type="submit" className="btn btn-primary btn-ghost" onClick={signup}>Sign Up</button>
           {hasError ? <p className="errorText">{errorMsg}</p> : ''}
         </form> : ''}

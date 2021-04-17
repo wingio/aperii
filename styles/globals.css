@@ -113,7 +113,7 @@ a {
   align-items: center;
   padding: 50px 40px;
   color: white;
-  background: rgba(0, 0, 0, 0.8);
+  background: #131a21;
   border-radius: 10px;
   width: 300px;
 }
@@ -125,6 +125,15 @@ a {
   border-radius: 5px;
   background: #2f2935;
   color: white;
+  margin: 10px 0 10px 0;
+}
+
+.form-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .form-control-material:focus {
