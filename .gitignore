@@ -36,3 +36,4 @@ yarn-error.log*
 # -----Django Backend Ignored-----
 venv/
 flaskAPI/config.json
+express api/.env
