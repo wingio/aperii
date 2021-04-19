@@ -6,7 +6,7 @@ export default function Home() {
   if (typeof window !== "undefined") {
   var token = localStorage.getItem('token')
   if (token && prod == true) {
-    fetch('http://98.24.125.170:5000/auth/validate', {
+    fetch('https://98.24.125.170:5000/auth/validate', {
       method: 'POST',
       headers: {
         authorization: token
@@ -32,7 +32,7 @@ export default function Home() {
       password: e.target.form[1].value
     }
     e.target.form[2].disabled = true
-    var res = await fetch('http://98.24.125.170:5000/auth/login', {
+    var res = await fetch('https://98.24.125.170:5000/auth/login', {
       method: 'POST',
       headers: {
         "content-type": 'application/json'
