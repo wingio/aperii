@@ -9,6 +9,7 @@
 .item {
     display: inline;
     float: right;
+    margin: 20px 20px 0 0;
 }
 
 .item a[href="/signup"]{
@@ -25,11 +26,13 @@
     display: block;
     
     border-radius: 20em;
-    margin: 20px 20px 0 0;
+}
+
+.item.icon {
+    margin: 36px 0 0 0;
 }
 
 .item svg {
-    margin: 36px 10px 0 0;
     width: 1.5em!important;
     height: 1.3em;
 }
@@ -40,6 +43,10 @@
     padding: 14px 16px;
     text-decoration: none;
     transition: all ease .5s;
+}
+
+.icon a{
+    padding: 0 10px 0 0;
 }
 
 .item svg {
