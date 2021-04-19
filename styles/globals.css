@@ -161,11 +161,11 @@ a {
 /* Homepage */
 
 .blob {
-  width: 40vw;
-  height: 40vw;
+  width: 40vmax;
+  height: 40vmax;
   background: url('/blob.svg');
-  background-size: 40vw 40vw;
   display: inline-block;
+  background-size: cover;
 }
 
 .logo-br {
