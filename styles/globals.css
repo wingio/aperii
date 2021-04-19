@@ -67,7 +67,7 @@ a {
   height: 50px;
   margin-bottom: -1.5px;
   margin-left: 2px;
-  background-image: url('/logo_temp.svg');
+  background-image: url('/logo_full.svg');
   background-size: cover;
   display: inline-block;
 }
@@ -173,7 +173,7 @@ a {
   height: 120px;
   margin-bottom: -1.5px;
   margin-left: 2px;
-  background-image: url('/logo_temp.svg');
+  background-image: url('/logo_full.svg');
   background-size: cover;
   display: inline-block;
   position: absolute;
