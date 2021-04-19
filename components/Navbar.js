@@ -7,9 +7,9 @@ const Navbar = () => {
         <ul className={navbarStyle.navbar}>
             <li className={navbarStyle.item}><Link href='/signup'>Sign Up</Link></li>
             <li className={navbarStyle.item}><Link href='/login'>Log In</Link></li>
-            <li className={navbarStyle.item}><Link href='https://discord.gg/Mryxr7zVtc'><FontAwesomeIcon icon={faDiscord} color="#fff"></FontAwesomeIcon></Link></li>
-            <li className={navbarStyle.item}><Link href='https://instagram.com/aperiiapp'><FontAwesomeIcon icon={faInstagram} color="#fff"></FontAwesomeIcon></Link></li>
-            <li className={navbarStyle.item}><Link href='https://twitter.com/aperiiapp'><FontAwesomeIcon icon={faTwitter} color="#fff"></FontAwesomeIcon></Link></li>
+            <li className={navbarStyle.item}><Link href='https://discord.gg/Mryxr7zVtc' replace={false}><FontAwesomeIcon icon={faDiscord} color="#fff"></FontAwesomeIcon></Link></li>
+            <li className={navbarStyle.item}><Link href='https://instagram.com/aperiiapp' replace={false}><FontAwesomeIcon icon={faInstagram} color="#fff"></FontAwesomeIcon></Link></li>
+            <li className={navbarStyle.item}><Link href='https://twitter.com/aperiiapp' replace={false}><FontAwesomeIcon icon={faTwitter} color="#fff"></FontAwesomeIcon></Link></li>
         </ul>
     </div>)
 }
