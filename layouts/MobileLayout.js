@@ -1,19 +1,18 @@
 import React, {useState, useEffect} from 'react';
-import Search from './Search'
+import Search from '../components/Search'
 
 
-function NoLeftLayout(props) {
+function MobileLayout(props) {
   const {width, height} = useWindowSize()
   return (
     <div className="container">
-      <div className={`ui`} style={{gridTemplateColumns: width > 965 + 60 ? '640px 325px' : '640px 50px'}}>
+      <div className={`ui`} style={{gridTemplateColumns: width >= 640? '640px' : '100%'}}>
         <div className={`feed`}>
           <Search></Search>
           {props.children}
-        </div>
-        <div className={`sticky right`}>
-          <img className={`av`} src={'https://avatars.githubusercontent.com/u/44992537?v=1'}></img> </div> </div>
-            </div>
+        </div> 
+      </div>
+    </div>
   );
 
 
@@ -51,4 +50,4 @@ function NoLeftLayout(props) {
   }
 }
 
-export default NoLeftLayout;
+export default MobileLayout;

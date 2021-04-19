@@ -1,18 +1,29 @@
 import React, {useState, useEffect} from 'react';
-import Search from './Search'
+import Search from '../components/Search'
+import Dropdown from '../components/Dropdown'
+import DropdownItem from '../components/DropdownItem'
 
-
-function MobileLayout(props) {
+function NoLeftLayout(props) {
   const {width, height} = useWindowSize()
+  const [open, setOpen] = useState(false)
+
+  function toggleDropdown(e) {
+    setOpen(!open)
+    e.target.className = `av ${open ? '' : 'clicked'}`
+  }
   return (
     <div className="container">
-      <div className={`ui`} style={{gridTemplateColumns: width >= 640? '640px' : '100%'}}>
+      <div className={`ui`} style={{gridTemplateColumns: width > 965 + 60 ? '640px 325px' : '640px 50px'}}>
         <div className={`feed`}>
           <Search></Search>
           {props.children}
-        </div> 
-      </div>
-    </div>
+        </div>
+        <div className={`sticky right`}>
+        <div className="av-container">
+      <img className={`av`} src={'https://avatars.githubusercontent.com/u/44992537?v=1'} onClick={toggleDropdown}></img>
+      {open ? <Dropdown><DropdownItem  loc="/" label="Profile" icon='user'></DropdownItem><DropdownItem label="Report a bug" icon='bug' loc="https://github.com/wingio/aperii/issues/new/choose"></DropdownItem></Dropdown> : ''}
+    </div> </div> </div>
+            </div>
   );
 
 
@@ -50,4 +61,4 @@ function MobileLayout(props) {
   }
 }
 
-export default MobileLayout;
+export default NoLeftLayout;

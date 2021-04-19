@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import FullLayout from '../components/FullLayout'
-import NoLeftLayout from '../components/NoLeftLayout'
-import MobileLayout from '../components/MobileLayout'
+import FullLayout from './FullLayout'
+import NoLeftLayout from './NoLeftLayout'
+import MobileLayout from './MobileLayout'
 
 function Layout(props) {
     const {width, height} = useWindowSize()

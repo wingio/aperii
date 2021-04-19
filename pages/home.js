@@ -3,10 +3,7 @@ import styles from '../styles/Demo.module.css'
 import Search from '../components/Search'
 import Post from '../components/Post'
 import * as PostEx from '../Post'
-import FullLayout from '../components/FullLayout'
-import NoLeftLayout from '../components/NoLeftLayout'
-import MobileLayout from '../components/MobileLayout'
-import Layout from '../components/Layout'
+import Layout from '../layouts/Layout'
 
 
 export default function Demo() {

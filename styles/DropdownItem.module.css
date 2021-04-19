@@ -1,0 +1,15 @@
+
+.dropdownitem {
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
+    padding: 0;
+    width: 100%;
+    align-items: center;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.dropdownitem:hover {
+    background: rgba(0, 0, 0, 0.363);
+}

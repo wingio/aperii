@@ -1,21 +1,21 @@
 import postStyle from '../styles/Post.module.css'
 import * as Posts from '../Post'
 import Tooltip from './Tooltip'
-
+import {useState} from 'react'
 
 
 const Post = ({id}) => {
-    function show(e){
-        if(e.target.children[0]) {
-            e.target.children[0].style.display = 'block'
-        }
-    }
-    function hide(e){
-        if(e.target.children[0]) {
-            e.target.children[0].style.display = 'none'
-        }
-    }
+    const [visible, setVisible] = useState(false)
     const Post = Posts.filter(p => p.id == id)[0]
+
+    function showTooltip() {
+        setVisible(true)
+    }
+
+    function hideTooltip() {
+        setVisible(false)
+    }
+
     return (<div className={postStyle.post}>
         <div className={postStyle.avcontainer}>
             <img className={postStyle.av} src={Post.author.avatar}></img>
@@ -23,7 +23,7 @@ const Post = ({id}) => {
         <div className={postStyle.bodycontainer}>
         <div className={postStyle.author}>
             <span className={postStyle.displayName}>{Post.author.displayName}</span>
-            {Post.author.verified ? <span onMouseOver={show} onMouseLeave={hide} className={postStyle.badge}><Tooltip text="Verified"></Tooltip></span>: ''}
+            {Post.author.verified ? <span onMouseOver={showTooltip} onMouseLeave={hideTooltip} className={postStyle.badge}>{visible ? <Tooltip text="Verified"></Tooltip> : ''}</span>: ''}
             <span className={postStyle.username}>@{Post.author.username}</span>
         </div>
             <span className={postStyle.content}>{Post.content}</span>

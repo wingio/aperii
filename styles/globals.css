@@ -77,6 +77,11 @@ a {
   height: 40px;
   border-radius: 50%;
   align-self: flex-start;
+  cursor: pointer;
+}
+
+.av.clicked{
+  box-shadow: 0 0 20px 0px rgb(255 255 255 / 60%);
 }
 
 /* Forms */
@@ -174,4 +179,16 @@ a {
   position: absolute;
   bottom: 50px;
   right: 40px
+}
+
+/* Dropdown */
+
+.dropdown {
+  position: relative;
+  left: -120px;
+  width: 160px;
+  padding: 4px;
+  background: hsl(210deg 21% 15%);
+  border-radius: 10px;
+  color: white;
 }

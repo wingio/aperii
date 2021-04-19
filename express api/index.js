@@ -1,10 +1,17 @@
 const MongoClient = require('mongodb').MongoClient;
 const bcrypt = require('bcrypt')
 const cors = require('cors')
+const cookieparser = require('cookie-parser')
 const corsOpts = {
     origin: '*',
     optionsSuccessStatus: 200
 }
+
+
+const { sign, verify } =  require('jsonwebtoken')
+
+require('dotenv').config()
+
 // Connection URL
 const url = 'mongodb://localhost:27017';
 
@@ -20,8 +27,35 @@ client.connect(function (err) {
 
     const express = require('express')
     const app = express()
+
+    var auth = function (req, res, next) {
+        var unauth = {
+            status: 401,
+            error: 'Unauthorized'
+        }
+        const tok = req.headers.authorization
+        if (!tok) {
+            res.status(401).send(unauth)
+            return
+        }
+
+        collection.findOne({
+            token: tok
+        }).then(u => {
+            if (!u) {
+                res.status(401).send(unauth)
+                return
+            }
+    
+            req.user = u
+            
+            next()
+        })
+    }
+
     app.use(express.json())
     app.use(cors(corsOpts))
+    app.use(cookieparser())
 
     async function genToken(chars, length) {
         var token = ''
@@ -56,6 +90,7 @@ client.connect(function (err) {
     }
 
     app.post('/auth/signup', cors(corsOpts), async (req, res) => {
+        console.log(process.env.ACCESS_TOKEN_SECRET)
         const {
             email,
             displayName,
@@ -125,10 +160,11 @@ client.connect(function (err) {
                 });
                 return
             }
-            var token = await genToken('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890_-', 64)
+            var userid = await genId(20)
+            var token = await sign({id: userid}, process.env.ACCESS_TOKEN_SECRET)
             bcrypt.hash(password, 10, async (err, hash) => {
                 collection.insertOne({
-                    id: await genId(20),
+                    id: userid,
                     joinedTimestamp: Date.now(),
                     email: email,
                     displayName: displayName,
@@ -137,6 +173,7 @@ client.connect(function (err) {
                     verifiedEmail: false,
                     token: token
                 }, (err, result) => {
+
                     res.status(200).send({
                         username: username,
                         token: token
@@ -168,8 +205,9 @@ client.connect(function (err) {
             return
         }
         bcrypt.compare(password, user.password,
-            function (err, result) {
+            async function (err, result) {
                 if (result == true) {
+                    
                     res.send({
                         username: user.username,
                         token: user.token
@@ -204,6 +242,30 @@ client.connect(function (err) {
             username: user.username,
             token: user.token
         })
+    })
+
+    app.get('/me', auth, async (req, res) => {
+        delete req.user.token
+        delete req.user.password
+        delete req.user['_id']
+
+        res.send(req.user)
+    })
+    app.get('/users/:id', auth, async (req, res) => {
+        const { id } = req.params
+        var u = await collection.findOne({id : id})
+        if(!u) {
+            res.status(404).send({
+                status: 404,
+                error: 'User not found'
+            });
+            return
+        }
+        delete u.token
+        delete u.password
+        delete u['_id']
+
+        res.send(u)
     })
     app.listen(5000)
 });
