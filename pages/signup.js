@@ -1,12 +1,12 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import {useState} from 'react'
-var prod = false
+var prod = true
 export default function Home() {
   if (typeof window !== "undefined") {
   var token = localStorage.getItem('token')
   if (token && prod == true) {
-    fetch('http://localhost:5000/auth/validate', {
+    fetch('http://98.24.125.170:5000/auth/validate', {
       method: 'POST',
       headers: {
         authorization: token
@@ -34,7 +34,7 @@ export default function Home() {
       password: e.target.form[3].value
     }
     e.target.form[4].disabled = true
-    var res = await fetch('http://localhost:5000/auth/signup', {
+    var res = await fetch('http://98.24.125.170:5000/auth/signup', {
       method: 'POST',
       headers: {
         "content-type": 'application/json'

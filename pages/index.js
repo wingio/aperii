@@ -3,12 +3,12 @@ import styles from '../styles/Home.module.css'
 import {useState} from 'react'
 import Link from 'next/link'
 import Navbar from '../components/Navbar'
-var prod = false
+var prod = true
 export default function Home() {
   if (typeof window !== "undefined") {
     var token = localStorage.getItem('token')
     if (token && prod) {
-      fetch('http://localhost:5000/auth/validate', {
+      fetch('http://98.24.125.170:5000/auth/validate', {
         method: 'POST',
         headers: {
           authorization: token
