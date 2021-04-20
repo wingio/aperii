@@ -6,6 +6,12 @@ const corsOpts = {
     origin: '*',
     optionsSuccessStatus: 200
 }
+const fs = require('fs')
+
+var privateKey  = fs.readFileSync('key.pem', 'utf8');
+var certificate = fs.readFileSync('cert.pem', 'utf8');
+const httpsconfig = {cert: certificate, key: privateKey}
+const https = require('https')
 
 
 const { sign, verify } =  require('jsonwebtoken')
@@ -267,5 +273,9 @@ client.connect(function (err) {
 
         res.send(u)
     })
-    app.listen(5000)
+    app.get('/hello', async (req, res) => {
+        res.send('world')
+    })
+    //app.listen(5000)
+    https.createServer(httpsconfig ,app).listen(443)
 });
