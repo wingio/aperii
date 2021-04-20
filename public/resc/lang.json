@@ -1,0 +1,26 @@
+{
+    "en-US": {
+        "displayName": "Display Name",
+        "username": "Username",
+        "email": "Email",
+        "password": "Password",
+        "signup": "Sign Up",
+        "login": "Log In"
+    },
+    "en-UWU": {
+        "displayName": "Dispway Name",
+        "username": "Uwusername",
+        "email": "Emaiw",
+        "password": "Password",
+        "signup": "Sign Up",
+        "login": "Wog In"
+    },
+    "es": {
+        "displayName": "Nombre para mostrar",
+        "username": "Nombre de usuario",
+        "email": "Correo electrónico",
+        "password": "Contraseña",
+        "signup": "Unirse",
+        "login": "Iniciar sesión"
+    }
+}

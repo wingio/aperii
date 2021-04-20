@@ -8,7 +8,7 @@ export default function Home() {
   if (typeof window !== "undefined") {
     var token = localStorage.getItem('token')
     if (token && prod) {
-      fetch('https://98.24.125.170:5000/auth/validate', {
+      fetch('https://98.24.125.170:443/auth/validate', {
         method: 'POST',
         headers: {
           authorization: token

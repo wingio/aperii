@@ -23,7 +23,13 @@ function FullLayout(props) {
   <div className={`sticky right`}>
     <div className="av-container">
       <img className={`av`} src={'https://avatars.githubusercontent.com/u/44992537?v=1'} onClick={toggleDropdown}></img>
-      {open ? <Dropdown><DropdownItem  loc="/" label="Profile" icon='user'></DropdownItem><DropdownItem label="Report a bug" icon='bug' loc="https://github.com/wingio/aperii/issues/new/choose"></DropdownItem></Dropdown> : ''}
+      {open ? <Dropdown>
+          <DropdownItem  loc="/" label="Profile" icon='user'></DropdownItem>
+          <DropdownItem label="Language" icon='bug' loc="https://github.com/wingio/aperii/issues/new/choose"></DropdownItem>
+          <DropdownItem label="Discord" icon='bug' loc="https://github.com/wingio/aperii/issues/new/choose"></DropdownItem>
+          <DropdownItem label="Settings" icon='bug' loc="https://github.com/wingio/aperii/issues/new/choose"></DropdownItem>
+          <DropdownItem label="Shhhhh" icon='bug' loc="https://github.com/wingio/aperii/issues/new/choose"></DropdownItem>
+        </Dropdown> : ''}
     </div>
   </div>
 </div>
