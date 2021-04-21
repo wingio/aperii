@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDiscord, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import lang from '../public/resc/lang.json'
-const names = lang['es']
+const names = lang['en-US']
 const Navbar = () => {
     return (<div>
         <ul className={navbarStyle.navbar}>
