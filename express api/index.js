@@ -14,13 +14,14 @@ const { sign, verify } =  require('jsonwebtoken')
 require('dotenv').config()
 
 // Connection URL
-const url = 'mongodb://aperii-14615:mcacct22JW@db-aperii-14615.nodechef.com:5386';
+const url = 'mongodb://localhost:27107/aperii';
 
 // Database Name
 const dbName = 'aperii';
-const client = new MongoClient(url);
+const client = new MongoClient(url, {useUnifiedTopology: true});
 // Use connect method to connect to the server
 client.connect(function (err) {
+    //console.log(err)
     console.log('Connected successfully to server');
 
     const db = client.db(dbName);
