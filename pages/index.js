@@ -3,6 +3,7 @@ import styles from '../styles/Home.module.css'
 import {useState} from 'react'
 import Link from 'next/link'
 import Navbar from '../components/Navbar'
+import HomeFooter from '../components/HomeFooter'
 var prod = true
 export default function Home() {
   if (typeof window !== "undefined") {
@@ -31,6 +32,7 @@ export default function Home() {
         <Navbar></Navbar>
         <div className="blob" />
         <div className="logo-br" />
+        <HomeFooter />
     </div>
   )
 }

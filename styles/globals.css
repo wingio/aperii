@@ -204,3 +204,42 @@ a {
   color: white;
   box-shadow: 0 0 20px 0 black;
 }
+
+/* Home Footer */
+.footer {
+  color: white;
+  background: hsl(0deg, 0%, 12%);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 0;
+  font-size: .6rem;
+}
+
+.footer ul {
+  margin: 10px 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.footer li{
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.footer li a {
+  color: rgb(131, 131, 255);
+}
+
+@media screen and (max-width: 280px){
+  .footer {
+    font-size: 0.5rem;
+  }
+
+  .footer ul {
+    width: 100vw;
+  }
+}
