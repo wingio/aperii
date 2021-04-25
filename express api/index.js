@@ -7,7 +7,7 @@ const corsOpts = {
     optionsSuccessStatus: 200
 }
 const https = require('https')
-
+const fs = require('fs')
 
 const { sign, verify } =  require('jsonwebtoken')
 
@@ -274,7 +274,19 @@ client.connect(function (err) {
         res.send('world')
     })
 
-    app.listen(443, () => {
-        console.log('Api up and running')
-    })
+    if(!process.env.PROD){
+        app.listen(5000, () => {
+            console.log('Api running on port 5000')
+        })
+    } else {
+        var privateKey = fs.readFileSync('key.pem', 'utf-8');
+        var certificate = fs.readFileSync('cert.pem', 'utf-8');
+        const credentials = {
+            key: privateKey,
+            cert: certificate
+        }
+        https.createServer(credentials, app).listen(443, (
+            console.log('Api running on port 443')
+        ))
+    }
 });
