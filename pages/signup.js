@@ -8,7 +8,7 @@ export default function Home() {
   if (typeof window !== "undefined") {
   var token = localStorage.getItem('token')
   if (token && prod == true) {
-    fetch('https://98.24.125.170:443/auth/validate', {
+    fetch('https://api.aperii.com/auth/validate', {
       method: 'POST',
       headers: {
         authorization: token
@@ -36,7 +36,7 @@ export default function Home() {
       password: e.target.form[3].value
     }
     e.target.form[4].disabled = true
-    var res = await fetch('https://98.24.125.170:443/auth/signup', {
+    var res = await fetch('https://api.aperii.com/auth/signup', {
       method: 'POST',
       headers: {
         "content-type": 'application/json'
