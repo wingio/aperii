@@ -1,7 +1,6 @@
 import React, { Component, useState } from 'react';
 import Search from '../components/Search'
-import Dropdown from '../components/Dropdown'
-import DropdownItem from '../components/DropdownItem'
+import ProfileDropdown from '../components/ProfileDropdown'
 
 function FullLayout(props) {
   const [open, setOpen] = useState(false)
@@ -23,13 +22,7 @@ function FullLayout(props) {
   <div className={`sticky right`}>
     <div className="av-container">
       <img className={`av`} src={'https://avatars.githubusercontent.com/u/44992537?v=1'} onClick={toggleDropdown}></img>
-      {open ? <Dropdown>
-          <DropdownItem  loc="/" label="Profile" icon='user'></DropdownItem>
-          <DropdownItem label="Language" icon='bug' loc="https://github.com/wingio/aperii/issues/new/choose"></DropdownItem>
-          <DropdownItem label="Discord" icon='bug' loc="https://github.com/wingio/aperii/issues/new/choose"></DropdownItem>
-          <DropdownItem label="Settings" icon='bug' loc="https://github.com/wingio/aperii/issues/new/choose"></DropdownItem>
-          <DropdownItem label="Shhhhh" icon='bug' loc="https://github.com/wingio/aperii/issues/new/choose"></DropdownItem>
-        </Dropdown> : ''}
+      {open ? <ProfileDropdown /> : ''}
     </div>
   </div>
 </div>
