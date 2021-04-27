@@ -26,7 +26,9 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <meta property="og:title" content="Home" />
+        <meta property="og:title" content="Aperii" />
+        <meta property="og:description" content="A free, more open social experience" />
+        <meta property="og:image" content="/logo.png"/>
         <title>Home | aperii</title>
       </Head>
         <Navbar></Navbar>
