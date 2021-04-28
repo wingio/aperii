@@ -28,8 +28,8 @@ export default function Home() {
       <Head>
         <meta property="og:title" content="Aperii" />
         <meta property="og:description" content="A free, more open social experience" />
-        <meta property="og:image" content="/logo.png"/>
-        <title>Home | aperii</title>
+        <meta property="og:image" content="/logo_circle.png"/>
+        <title>Aperii</title>
       </Head>
         <Navbar></Navbar>
         <div className="blob" />
