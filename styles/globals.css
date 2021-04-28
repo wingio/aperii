@@ -12,6 +12,19 @@ body {
   --rust-blood-disabled: hsl(0, 34%, 26%);
 }
 
+::-webkit-scrollbar {
+  width: .5em;
+}
+ 
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: hsl(210, 21%, 25%);
+  border-radius: 5em;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -46,26 +59,33 @@ a {
 
 .sticky {
   position: sticky;
+  top: 0;
+}
+
+.search-container {
+  padding: 30px 0;
+  background: #0b0e11;
+  z-index: 11;
 }
 
 .left {
   height: 100vh;
   padding-top: 30px;
+  text-align: end;
 }
 
 .right {
   height: 100vh;
   padding-top: 30px;
-}
-
-.feed{
-  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .logo {
   width: 166px;
   height: 50px;
-  margin-bottom: -1.5px;
+  margin-bottom: 30px;
   margin-left: 2px;
   background-image: url('/logo_full.svg');
   background-size: cover;
@@ -78,6 +98,11 @@ a {
   border-radius: 50%;
   align-self: flex-start;
   cursor: pointer;
+}
+
+.av-container {
+  display: flex;
+  position: relative;
 }
 
 .av.clicked{
@@ -195,14 +220,16 @@ a {
 /* Dropdown */
 
 .dropdown {
-  position: relative;
+  position: absolute;
   left: -120px;
+  top: 45px;
   width: 160px;
   padding: 4px;
   background: hsl(210deg 21% 15%);
   border-radius: 10px;
   color: white;
   box-shadow: 0 0 20px 0 black;
+  z-index: 10;
 }
 
 /* Home Footer */
@@ -242,4 +269,46 @@ a {
   .footer ul {
     width: 100vw;
   }
+}
+
+/* Sidebar */
+
+.sidebar-option {
+  display: flex;
+  padding: .75rem;
+  border-radius: .5em;
+  color: white;
+  margin-bottom: .75em;
+  cursor: pointer;
+  transition: all ease-in-out 300ms;
+}
+
+.sidebar-option.current{
+  background: var(--rust-blood);
+}
+
+.sidebar-option:hover p{
+  color: rgb(182, 182, 182);
+}
+
+.sidebar-option.current:hover{
+  background: var(--rust-blood-hl);
+  color: white;
+}
+
+.sidebar-option.current:hover p{
+  color: white;
+}
+
+.sidebar-option p {
+  margin:0;
+  margin-left: .5em;
+  line-height: 20px;
+  font-weight: bold;
+  transition: all ease-in-out 300ms;
+}
+
+.sidebar-option img {
+  width: 20px;
+  height: 20px;
 }

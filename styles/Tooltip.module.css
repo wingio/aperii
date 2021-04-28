@@ -8,7 +8,7 @@
     font-size: 14px;
     font-weight: normal;
     position: absolute;
-    z-index: 1;
+    z-index: 12;
     bottom: calc(100% + 7px);
     margin-left: calc(-1.5rem - 3px);
     transition: all 2s linear;

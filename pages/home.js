@@ -15,5 +15,12 @@ export default function Demo() {
       <meta property="og:image" content="/logo_circle.png"/>
     </Head>
     <Post id={'gwdtfwtyf56wsdt76'}></Post>
+    <Post id={'gwdtfwtyf56wsdt76'}></Post>
+    <Post id={'gwdtfwtyf56wsdt76'}></Post>
+    <Post id={'gwdtfwtyf56wsdt76'}></Post>
+    <Post id={'gwdtfwtyf56wsdt76'}></Post>
+    <Post id={'gwdtfwtyf56wsdt76'}></Post>
+    <Post id={'gwdtfwtyf56wsdt76'}></Post>
+    <Post id={'gwdtfwtyf56wsdt76'}></Post>
   </Layout>
 }

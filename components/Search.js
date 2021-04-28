@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 
 const Search = () => {
-    return (<form>
+    return (<form className="search-container sticky">
         <input type='text' placeholder="Search..." className={style.search}></input>
     </form>)
 }
