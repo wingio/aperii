@@ -318,6 +318,14 @@ client.connect(function (err) {
             })
             return
         }
+
+        if(body.length > 256) {
+            res.status(400).send({
+                status: 400,
+                error: 'Invalid form body: Body must be limited to 256 characters'
+            })
+            return
+        }
         var postID = genId(20)
         posts.insertOne({
             id: postID,
