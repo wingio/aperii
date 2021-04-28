@@ -82,6 +82,10 @@ a {
   align-items: flex-end;
 }
 
+.feed {
+  padding: 0 1em;
+}
+
 .logo {
   width: 166px;
   height: 50px;
