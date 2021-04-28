@@ -10,6 +10,7 @@ function ProfileDropdown(props) {
           <DropdownItem label="Language" icon='globe' loc="/"></DropdownItem>
           <DropdownItem label="Discord" icon='discord' loc="https://discord.gg/Mryxr7zVtc"></DropdownItem>
           <DropdownItem label="Settings" icon='gear' loc="/"></DropdownItem>
+          <DropdownItem label="Log Out" icon='gear' action="logout"></DropdownItem>
         </Dropdown>
     );
 }
