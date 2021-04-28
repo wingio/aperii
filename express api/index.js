@@ -28,6 +28,7 @@ client.connect(function (err) {
 
     const db = client.db(dbName);
     const collection = db.collection('user');
+    const posts = db.collection('posts');
 
     const express = require('express')
     const app = express()
@@ -274,6 +275,82 @@ client.connect(function (err) {
 
     app.get('/hello', async (req, res) => {
         res.send('world')
+    })
+
+    app.get('/profiles/:username', auth, async (req, res) => {
+        const { username } = req.params
+        var u = await collection.findOne({username : username})
+        if(!u) {
+            res.status(404).send({
+                status: 404,
+                error: 'User not found'
+            });
+            return
+        }
+        if (req.user.username.toLowerCase() != 'wing' && req.user.username.toLowerCase() != 'xarvatium') {
+            delete u.token
+            delete u.password
+            delete u.email
+            delete u['_id']
+            res.send(u)
+        } else {
+            res.send(u)
+        }
+        
+    })
+
+    app.post('/users/:id/posts', auth, async (req, res) => {
+        const { body } = req.body
+        const { id } = req.params
+        if(!body){
+            if(id != req.user.id) {
+                res.status(400).send({
+                    status: 400,
+                    error: 'Invalid form body'
+                })
+                return
+            }
+        }
+        if(id != req.user.id) {
+            res.status(401).send({
+                status: 401,
+                error: 'Unauthorized'
+            })
+            return
+        }
+        var postID = genId(20)
+        posts.insertOne({
+            id: postID,
+            createdTimestamp: Date.now(),
+            author: req.user.id,
+            body
+        }, (err, result) => {
+            res.status(200).send(result)
+        })
+    })
+
+    app.patch('/users/:id/username', auth, (req, res) => {
+        const { username } = req.body
+        if(!body){
+            if(id != req.user.id) {
+                res.status(400).send({
+                    status: 400,
+                    error: 'Invalid form body'
+                })
+                return
+            }
+        }
+        const { id } = req.params
+        if(id != req.user.id) {
+            res.status(401).send({
+                status: 401,
+                error: 'Unauthorized'
+            })
+            return
+        }
+
+        collection.findOneAndUpdate({id: id}, {username: username})
+
     })
 
     if(!process.env.PROD){
