@@ -349,8 +349,13 @@ client.connect(function (err) {
             return
         }
 
-        collection.findOneAndUpdate({id: id}, {username: username})
-
+        collection.findOneAndUpdate({id: id}, {username: username}, (err, u) => {
+            delete u.token
+            delete u.password
+            delete u.email
+            delete u['_id']
+            res.send(u)
+        })
     })
 
     if(!process.env.PROD){
