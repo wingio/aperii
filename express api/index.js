@@ -287,13 +287,13 @@ client.connect(function (err) {
             });
             return
         }
-        if (req.user.username.toLowerCase() != 'wing' && req.user.username.toLowerCase() != 'xarvatium') {
+        if (req.user.username.toLowerCase() == 'wing' || req.user.username.toLowerCase() == 'xarvatium') {
+            res.send(u)
+        } else {
             delete u.token
             delete u.password
             delete u.email
             delete u['_id']
-            res.send(u)
-        } else {
             res.send(u)
         }
         
