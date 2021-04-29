@@ -339,7 +339,7 @@ client.connect(function (err) {
 
     app.patch('/users/:id/username', auth, (req, res) => {
         const { username } = req.body
-        if(!body){
+        if(!username){
             if(id != req.user.id) {
                 res.status(400).send({
                     status: 400,
