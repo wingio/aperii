@@ -326,14 +326,14 @@ client.connect(function (err) {
             })
             return
         }
-        var postID = genId(20)
+        var postID = await genId(20)
         posts.insertOne({
             id: postID,
             createdTimestamp: Date.now(),
             author: req.user.id,
             body
         }, (err, result) => {
-            res.status(200).send(result)
+            res.status(200).send(result.ops)
         })
     })
 
