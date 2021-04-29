@@ -357,7 +357,18 @@ client.connect(function (err) {
             return
         }
 
-        collection.findOneAndUpdate({id: id}, {username: username}, (err, u) => {
+        var usernameRegex = /^(?=.*[a-z])?(?=.*[A-Z])?(?=.*\d)?(?!.*[ ])[A-Za-z\d_]{4,32}$/g
+
+        if (!usernameRegex.test(username)) {
+            res.status(400).send({
+                status: 400,
+                error: 'Username must only contain "A-Z", "a-z", "0-9" and "_"'
+            });
+            return
+        }
+
+        collection.findOneAndUpdate({id: id}, {$set: {username: username}}, async (err, result) => {
+            var u = await collection.findOne({id: result.value.id})
             delete u.token
             delete u.password
             delete u.email
