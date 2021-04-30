@@ -31,7 +31,7 @@ function FullLayout(props) {
         setBase(_arrayBufferToBase64(arrayBuffer))
     }
     //reader.readAsArrayBuffer(e.target[1].files[0]);
-
+    e.target[2].disabled = true
     fetch(`https://aperii.com/api/v1/users/${user.id}/posts`, {
       body: JSON.stringify({
         body: e.target[0].value
