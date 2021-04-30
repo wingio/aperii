@@ -5,7 +5,7 @@ import SidebarFeedOption from '../components/SidebarFeedOption'
 function FullLayout(props) {
   const [open, setOpen] = useState(false)
   const [imgstuff, setBase] = useState('')
-
+  const user = props.user
   function toggleDropdown(e) {
     setOpen(!open)
     e.target.className = `av ${open ? '' : 'clicked'}`
@@ -30,7 +30,21 @@ function FullLayout(props) {
         console.log(arrayBuffer);
         setBase(_arrayBufferToBase64(arrayBuffer))
     }
-    reader.readAsArrayBuffer(e.target[1].files[0]);
+    //reader.readAsArrayBuffer(e.target[1].files[0]);
+
+    fetch(`https://aperii.com/api/v1/users/${user.id}/posts`, {
+      body: JSON.stringify({
+        body: e.target[0].value
+      }),
+      headers: {
+        'content-type': 'application/json',
+        authorization: localStorage.getItem('token')
+      },
+      method: 'POST'
+    }).then(res => res.json()).then(json => {
+      window.location = '/home'
+    })
+
   }
   return (
     <div className="container">            

@@ -77,7 +77,6 @@ a {
 .right {
   height: 100vh;
   padding-top: 30px;
-  display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
@@ -107,6 +106,7 @@ a {
 .av-container {
   display: flex;
   position: relative;
+  justify-content: flex-end;
 }
 
 .av.clicked{
@@ -225,7 +225,6 @@ a {
 
 .dropdown {
   position: absolute;
-  left: -120px;
   top: 45px;
   width: 160px;
   padding: 4px;
@@ -334,4 +333,34 @@ a {
 .post-form form {
   display: flex;
   flex-direction: column;
+}
+
+.post-form input[type="text"] {
+  padding: .75em;
+  border: none;
+  border-radius: .5em;
+  background: #2f3b48;
+  color: white;
+}
+
+.post-form input[type="text"]:active {
+  outline: none;
+  background: #3b4a5a;
+}
+
+.post-form img{
+  display: none
+}
+
+input[type="file"] {
+  display: none;
+}
+
+input[type="submit"] {
+  padding: 0.6em;
+  border-radius: 0.5em;
+  border: none;
+  margin-top: 1em;
+  background: var(--rust-blood);
+  color: white;
 }

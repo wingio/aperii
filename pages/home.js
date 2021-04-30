@@ -20,7 +20,7 @@ var post = {
   replies: []
 }
 
-export default function Demo( { posts } ) {
+export default function Demo( { posts, user } ) {
   if (typeof window !== "undefined") {
     var token = localStorage.getItem('token')
     if (token) {
@@ -41,16 +41,8 @@ export default function Demo( { posts } ) {
       window.location = '/'
     }
   }
-  
-    
 
-  useEffect(() => {
-    
-    return () => {
-    }
-  }, [posts])
-
-  return <Layout>
+  return <Layout user={user}>
     <Head>
       <title>Home - Aperii</title>
       <meta property="og:title" content="Aperii" />
@@ -63,13 +55,20 @@ export default function Demo( { posts } ) {
 
 export async function getServerSideProps(context) {
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-  var res = await fetch('https://aperii.com/api/v1/posts/all', {
-      method: 'GET',
-      headers: {
-        authorization: context.req.cookies.token
-      }
-    })
+  var res = await fetch('https://aperii.com/api/v1/all', {
+    method: 'GET',
+    headers: {
+      authorization: context.req.cookies.token
+    }
+  })
+  var userres = await fetch('https://aperii.com/api/v1/me', {
+    method: 'GET',
+    headers: {
+      authorization: context.req.cookies.token
+    }
+  })
   var result = await res.json()
+  var user = await userres.json()
   console.log(context.req.cookies)
-  return {props: {posts: result}}
+  return {props: {posts: result, user}}
 }
