@@ -11,7 +11,7 @@ export default (req, res) => {
                 'content-type': 'application/json'
             }
         }).then(res => res.json()).then(json => {
-            res.status(json.status).send(json)
+            res.status(json.status ? json.status : 200).send(json)
         })
     }
 }
