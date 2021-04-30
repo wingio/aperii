@@ -24,7 +24,7 @@ export default function Demo( { posts } ) {
   if (typeof window !== "undefined") {
     var token = localStorage.getItem('token')
     if (token) {
-      fetch('https://localhost/auth/validate', {
+      fetch('https://aperii.com/api/v1/auth/validate', {
         method: 'POST',
         headers: {
           authorization: token
