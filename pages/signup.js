@@ -57,6 +57,7 @@ export default function Home() {
       setErrorInput('')
       if (typeof window !== "undefined") {
         localStorage.setItem('token', result.token)
+        document.cookie = "token=" + result.token
       }
       window.location = '/home'
     }
