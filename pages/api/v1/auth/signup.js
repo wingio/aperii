@@ -6,7 +6,10 @@ export default (req, res) => {
         JSON.stringify(req.body)
         fetch('https://api.aperii.com/auth/signup', {
             method: 'POST',
-            body: JSON.stringify(req.body)
+            body: JSON.stringify(req.body),
+            headers: {
+                'content-type': 'application/json'
+            }
         }).then(res => res.json()).then(json => {
             res.status(json.status).send(json)
         })
