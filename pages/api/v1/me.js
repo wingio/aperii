@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 export default (req, res) => {
-    if(req.method =="POST"){
+    if(req.method =="GET"){
         //console.log(JSON.stringify(req.body))
         process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
         fetch('https://api.aperii.com/me', {
