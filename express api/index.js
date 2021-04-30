@@ -256,7 +256,7 @@ client.connect(function (err) {
 
         res.send(req.user)
     })
-    
+
     app.get('/users/:id', auth, async (req, res) => {
         const { id } = req.params
         var u = await collection.findOne({id : id})
@@ -401,25 +401,18 @@ client.connect(function (err) {
 
     app.get('/posts/all', auth, async (req, res) => {
         var allPosts = await posts.find().toArray()
-        allPosts.forEach(p => {
-            var i = allPosts.indexOf(p)
-            collection.findOne({
-                id: p.author
-            }).then(user => {
-                delete user.token
-                delete user.password
-                delete user.email
-                delete user['_id']
-                p.author = user
-                delete p["_id"]
-            }).then(() => {
-                if(i == allPosts.length - 1) {
-                    res.send(allPosts.sort((a, b) => {
-                        return (a.createdTimestamp > b.createdTimestamp) ? -1 : (a.createdTimestamp < b.createdTimestamp) ? 1 : 0
-                    }))
-                }
-            })
+        var allUsers = await collection.find().toArray()
+        var postlist = []
+        allPosts.map(p => {
+            var user = allUsers.filter(u => u.id == p.author)[0]
+            p.author = user
+            delete p.author.token
+            delete p.author.password
+            delete p.author.email
+            delete p.author['_id']
+            delete p["_id"]
         })
+        res.send(allPosts)
     })
 
     if(!process.env.PROD){

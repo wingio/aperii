@@ -14,9 +14,11 @@ const data = ({data}) => {
         setVisible(false)
     }
 
+    var umentionRegex = /@[a-zA-Z0-9_]+/g
+
     return (<div className={postStyle.post}>
         <div className={postStyle.avcontainer}>
-            <img className={postStyle.av} src={data.author.avatar}></img>
+            <img className={postStyle.av} src={data.author.avatar ? data.author.avatar : '/av.png'}></img>
         </div>
         <div className={postStyle.bodycontainer}>
         <div className={postStyle.author}>
