@@ -61,7 +61,7 @@ export default function Demo( { posts } ) {
 
 export async function getServerSideProps(context) {
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-  var res = await fetch('https://localhost/posts/all', {
+  var res = await fetch('https://aperii.com/api/v1/posts/all', {
       method: 'GET',
       headers: {
         authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc1NzUyNzg2NzI1MDcyNzkzODIzIiwiaWF0IjoxNjE4ODc5NDc4fQ.1NXFEaBvsBTsgNUwJjcbIxA6MGRrjhppOFhTx9azOtk'
