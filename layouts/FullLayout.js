@@ -4,10 +4,33 @@ import ProfileDropdown from '../components/ProfileDropdown'
 import SidebarFeedOption from '../components/SidebarFeedOption'
 function FullLayout(props) {
   const [open, setOpen] = useState(false)
+  const [imgstuff, setBase] = useState('')
 
   function toggleDropdown(e) {
     setOpen(!open)
     e.target.className = `av ${open ? '' : 'clicked'}`
+  }
+
+  function _arrayBufferToBase64( buffer ) {
+    var binary = '';
+    var bytes = new Uint8Array( buffer );
+    var len = bytes.byteLength;
+    for (var i = 0; i < len; i++) {
+        binary += String.fromCharCode( bytes[ i ] );
+    }
+    return window.btoa( binary );
+}
+
+  function makePost(e) {
+    var reader = new FileReader()
+    e.preventDefault()
+    var reader = new FileReader();
+    reader.onload = function(){
+        var arrayBuffer = this.result;
+        console.log(arrayBuffer);
+        setBase(_arrayBufferToBase64(arrayBuffer))
+    }
+    reader.readAsArrayBuffer(e.target[1].files[0]);
   }
   return (
     <div className="container">            
@@ -25,11 +48,21 @@ function FullLayout(props) {
   </div>
   <div className={`sticky right`}>
     <div className="av-container">
-      
       <img className={`av`} src={'https://avatars.githubusercontent.com/u/44992537?v=1'} onClick={toggleDropdown}></img>
       {open ? <ProfileDropdown /> : ''}
     </div>
-  </div>
+    <div className="sidebar-profile">
+      <div className="profile"></div>
+      <div className="post-form">
+        <form onSubmit={makePost}>
+          <input type="text"></input>
+          <input type="file"></input>
+          <input type="submit"></input>
+          <img src={`data:image/png;base64, ${imgstuff}`}></img>
+        </form>
+      </div>
+    </div>
+  </div>  
 </div>
 </div>
 

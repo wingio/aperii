@@ -300,7 +300,7 @@ client.connect(function (err) {
     })
 
     app.post('/users/:id/posts', auth, async (req, res) => {
-        const { body } = req.body
+        const { body, imageBuffer } = req.body
         const { id } = req.params
         if(!body){
             if(id != req.user.id) {
@@ -311,6 +311,7 @@ client.connect(function (err) {
                 return
             }
         }
+
         if(id != req.user.id) {
             res.status(401).send({
                 status: 401,
@@ -331,7 +332,8 @@ client.connect(function (err) {
             id: postID,
             createdTimestamp: Date.now(),
             author: req.user.id,
-            body
+            body,
+            media: [imageBuffer]
         }, (err, result) => {
             res.status(200).send(result.ops)
         })
@@ -377,6 +379,48 @@ client.connect(function (err) {
         })
     })
 
+    function addAuthorToPost(postArray) {
+        for (let index = 0; index < postArray.length; index++) {
+            var post = postArray[index];
+            collection.findOne({
+                id: post.author
+            }).then(user => {
+                delete user.token
+                delete user.password
+                delete user.email
+                delete user['_id']
+                post.author = user
+                delete post["_id"]
+            }).then(() => {
+                console.log(postArray)
+            })
+        }
+        return postArray
+    }
+
+    app.get('/posts/all', auth, async (req, res) => {
+        var allPosts = await posts.find().toArray()
+        allPosts.forEach(p => {
+            var i = allPosts.indexOf(p)
+            collection.findOne({
+                id: p.author
+            }).then(user => {
+                delete user.token
+                delete user.password
+                delete user.email
+                delete user['_id']
+                p.author = user
+                delete p["_id"]
+            }).then(() => {
+                if(i == allPosts.length - 1) {
+                    res.send(allPosts.sort((a, b) => {
+                        return (a.createdTimestamp > b.createdTimestamp) ? -1 : (a.createdTimestamp < b.createdTimestamp) ? 1 : 0
+                    }))
+                }
+            })
+        })
+    })
+
     if(!process.env.PROD){
         app.listen(5000, () => {
             console.log('Api running on port 5000')
@@ -389,7 +433,8 @@ client.connect(function (err) {
             cert: certificate
         }
         https.createServer(credentials, app).listen(443, (
-            console.log('Api running on port 443')
+             console.log('Api running on port 443')
         ))
+        app.listen(80)
     }
 });

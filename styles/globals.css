@@ -316,3 +316,22 @@ a {
   width: 20px;
   height: 20px;
 }
+
+/* Profile and post form */
+.sidebar-profile {
+  margin-top: 50px;
+}
+
+.post-form {
+  border: 1px solid rgb(136, 136, 136);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1em;
+}
+
+.post-form form {
+  display: flex;
+  flex-direction: column;
+}
