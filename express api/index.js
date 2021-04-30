@@ -256,6 +256,7 @@ client.connect(function (err) {
 
         res.send(req.user)
     })
+    
     app.get('/users/:id', auth, async (req, res) => {
         const { id } = req.params
         var u = await collection.findOne({id : id})
