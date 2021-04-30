@@ -2,6 +2,7 @@
 
 export default (req, res) => {
     if(req.method =="POST"){
+        process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
         fetch('https://api.aperii.com/auth/login', {
             method: 'POST',
             body: JSON.stringify(req.body)
