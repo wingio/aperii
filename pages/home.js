@@ -33,6 +33,8 @@ export default function Demo( { posts } ) {
         var result = await res.json()
         if (result.status) {
           window.location = '/'
+        } else {
+          document.cookie = "token=" + result.token
         }
       })
     } else {
@@ -64,7 +66,7 @@ export async function getServerSideProps(context) {
   var res = await fetch('https://aperii.com/api/v1/posts/all', {
       method: 'GET',
       headers: {
-        authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc1NzUyNzg2NzI1MDcyNzkzODIzIiwiaWF0IjoxNjE4ODc5NDc4fQ.1NXFEaBvsBTsgNUwJjcbIxA6MGRrjhppOFhTx9azOtk'
+        authorization: context.req.cookies.token
       }
     })
   var result = await res.json()

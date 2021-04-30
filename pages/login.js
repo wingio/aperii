@@ -18,6 +18,7 @@ export default function Home() {
     }).then(async res => {
       var result = await res.json()
       if (!result.status) {
+        document.cookie = "token=" + result.token
         window.location = '/home'
       }
     })
