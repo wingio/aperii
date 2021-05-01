@@ -30,6 +30,7 @@ export default function User({user}) {
 
 
 export async function getServerSideProps(context) {
+  console.log(context)
   var res = await fetch('https://aperii.com/api/v1/profiles/' + context.req.query.username, {
     method: 'GET',
     headers: {
