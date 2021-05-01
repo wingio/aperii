@@ -32,6 +32,7 @@ export default function Home() {
 
   async function signup(e){
     e.preventDefault()
+    console.log(e)
     var data = {
       username: e.target.form[0].value,
       password: e.target.form[1].value
