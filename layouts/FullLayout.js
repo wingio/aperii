@@ -44,7 +44,7 @@ function FullLayout(props) {
     }).then(res => res.json()).then(json => {
       window.location = '/home'
     })
-
+    return false
   }
   return (
     <div className="container">            

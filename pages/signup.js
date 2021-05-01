@@ -61,6 +61,7 @@ export default function Home() {
       }
       window.location = '/home'
     }
+    return false
   }
 
   

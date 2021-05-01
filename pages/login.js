@@ -61,6 +61,7 @@ export default function Home() {
       }
       window.location = '/home'
     }
+    return false
   }
 
   
@@ -76,7 +77,7 @@ export default function Home() {
           <h1>{names.login}</h1>
           <input type="text" name="username" id="username" placeholder={names.username} autoComplete="off" className={`form-control-material ${errorInput == 'username' ? 'input-error' : ''}`} required />
           <input type="password" name="password" id="password" placeholder={names.password} autoComplete="off" className={`form-control-material ${errorInput == 'password' ? 'input-error' : ''}`} required />
-          <button type="submit" className="btn btn-primary btn-ghost" onClick={signup}>{names.login}</button>
+          <button type="submit" className="btn btn-primary btn-ghost">{names.login}</button>
           {hasError ? <p className="errorText">{errorMsg}</p> : ''}
         </form> : ''}
       </div>
