@@ -412,7 +412,9 @@ client.connect(function (err) {
             delete p.author['_id']
             delete p["_id"]
         })
-        res.send(allPosts)
+        res.send(allPosts.sort((a, b) => {
+            return (a.createdTimestamp > b.createdTimestamp) ? -1 : (a.createdTimestamp > b.createdTimestamp) ? 1 : 0 
+        }))
     })
 
     if(!process.env.PROD){
