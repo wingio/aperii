@@ -1,10 +1,10 @@
 import Head from 'next/head'
-import styles from '../styles/User.module.css'
-import Search from '../components/Search'
-import Post from '../components/Post'
-import * as PostEx from '../Users'
-import * as users from '../Users'
-import Layout from '../layouts/Layout'
+import styles from '../../styles/User.module.css'
+import Search from '../../components/Search'
+import Post from '../../components/Post'
+import * as PostEx from '../../Users'
+import * as users from '../../Users'
+import Layout from '../../layouts/Layout'
 
 export default function User({user}) {
   const classesR = `${styles.sticky} ${styles.right}`
