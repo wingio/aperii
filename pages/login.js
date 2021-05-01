@@ -34,10 +34,10 @@ export default function Home() {
     e.preventDefault()
     console.log(e)
     var data = {
-      username: e.target.form[0].value,
-      password: e.target.form[1].value
+      username: e.target[0].value,
+      password: e.target[1].value
     }
-    e.target.form[2].disabled = true
+    e.target[2].disabled = true
     var res = await fetch('https://aperii.com/api/v1/auth/login', {
       method: 'POST',
       headers: {

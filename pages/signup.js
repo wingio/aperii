@@ -31,12 +31,12 @@ export default function Home() {
   async function signup(e){
     e.preventDefault()
     var data = {
-      displayName: e.target.form[0].value,
-      username: e.target.form[1].value,
-      email: e.target.form[2].value,
-      password: e.target.form[3].value
+      displayName: e.target[0].value,
+      username: e.target[1].value,
+      email: e.target[2].value,
+      password: e.target[3].value
     }
-    e.target.form[4].disabled = true
+    e.target[4].disabled = true
     var res = await fetch('https://aperii.com/api/v1/auth/signup', {
       method: 'POST',
       headers: {
