@@ -70,5 +70,7 @@ export async function getServerSideProps(context) {
   var result = await res.json()
   var user = await userres.json()
   console.log(context.req.cookies)
-  return {props: {posts: result, user}}
+  return {props: {posts: result.sort((a, b) => {
+            return (a.createdTimestamp > b.createdTimestamp) ? -1 : (a.createdTimestamp > b.createdTimestamp) ? 1 : 0 
+        }), user}}
 }
