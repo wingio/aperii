@@ -14,13 +14,13 @@ export default function User({user}) {
     <Layout>
       <Head>
         <meta property="og:title" content={`${user.displayName} (@${user.username})`} />
-        <meta property="og:description" content={user.bio} />
-        <meta property="og:image" content={user.avatar} />
-        <title>{`${user.displayName} (@${user.username})`} | aperii</title>
+        <meta property="og:description" content={user.bio ? user.bio : 'This user has no bio'} />
+        <meta property="og:image" content={user.avatar ? user.avatar : '/logo_circle.png'} />
+        <title>{`${user.displayName} (@${user.username})`} - Aperii</title>
       </Head>
       <div className={styles.user}>
         <div className={styles.banner}>
-          <img className={styles.avatar} src={user.avatar}></img>
+          <img className={styles.avatar} src={user.avatar ? user.avatar : '/av.png'}></img>
         </div>
         <p>Hello, {user.username}</p>
       </div>
@@ -30,9 +30,21 @@ export default function User({user}) {
 
 
 export async function getServerSideProps(context) {
-  const { username } = context.params
-  var user = users.filter(u => u.username == username)[0]
-
-  // Pass data to the page via props
+  var res = await fetch('https://aperii.com/api/v1/profiles/' + context.req.query.username, {
+    method: 'GET',
+    headers: {
+      'content-type': 'application/json',
+      authorization: context.req.cookies.token
+    }
+  })
+  var user = await res.json()
+  if(user.status){
+    user = {
+      displayName: 'User not found',
+      username: '404'
+    }
+  }
+    // Pass data to the page via props
   return { props: { user } }
+  
 }
