@@ -106,7 +106,7 @@ client.connect(function (err) {
         if (email && displayName && username && password) {
 
             var user = await collection.findOne({
-                username: username
+                username: username.toLowerCase()
             })
             if (user) {
                 res.status(400).send({
