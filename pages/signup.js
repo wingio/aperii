@@ -84,7 +84,7 @@ export default function Home() {
           <input type="text" name="email" id="email" placeholder={names.email} autoComplete="off" className={`form-control-material ${errorInput == 'email' ? 'input-error' : ''}`} required />
           
           <input type="password" name="password" id="password" placeholder={names.password} autoComplete="off" className={`form-control-material ${errorInput == 'password' ? 'input-error' : ''}`} required />
-          <button type="submit" className="btn btn-primary btn-ghost" onClick={signup}>{names.signup}</button>
+          <button type="submit" className="btn btn-primary btn-ghost">{names.signup}</button>
           {hasError ? <p className="errorText">{errorMsg}</p> : ''}
         </form> : ''}
       </div>
