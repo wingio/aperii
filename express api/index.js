@@ -242,6 +242,7 @@ client.connect(function (err) {
                 status: 401,
                 error: 'Unauthorized'
             })
+        return
         }
         res.status(200).send({
             username: user.username,
