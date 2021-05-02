@@ -173,14 +173,14 @@ client.connect(function (err) {
                     joinedTimestamp: Date.now(),
                     email: email,
                     displayName: displayName,
-                    username: username,
+                    username: username.toLowerCase(),
                     password: hash,
                     verifiedEmail: false,
                     token: token
                 }, (err, result) => {
 
                     res.status(200).send({
-                        username: username,
+                        username: username.toLowerCase(),
                         token: token
                     })
                 })

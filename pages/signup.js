@@ -29,7 +29,6 @@ export default function Home() {
   const [errorInput, setErrorInput] = useState('')
 
   async function signup(e){
-    console.log(e)
     e.preventDefault()
     var data = {
       displayName: e.target[0].value,
