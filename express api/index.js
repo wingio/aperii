@@ -294,8 +294,30 @@ client.connect(function (err) {
             delete u.password
             delete u.email
             delete u['_id']
+            var allPosts = await collection.find({author: u.id}).toArray()
+            allPosts.map(p => {
+                p.author = u
+                delete p.author.token
+                delete p.author.password
+                delete p.author.email
+                delete p.author['_id']
+                delete p["_id"]
+            })
+            
+            u.posts = allPosts
             res.send(u)
         } else {
+            var allPosts = await collection.find({author: u.id}).toArray()
+            allPosts.map(p => {
+                p.author = u
+                delete p.author.token
+                delete p.author.password
+                delete p.author.email
+                delete p.author['_id']
+                delete p["_id"]
+            })
+            
+            u.posts = allPosts
             res.send(u)
         }
         
