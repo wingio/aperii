@@ -232,7 +232,7 @@ a {
   border-radius: 10px;
   color: white;
   box-shadow: 0 0 20px 0 black;
-  z-index: 10;
+  z-index: 20;
 }
 
 /* Home Footer */
