@@ -70,8 +70,10 @@ export default function Home() {
   return (
     <div className="form-container">
       <Head>
-        <meta property="og:title" content="Home" />
-        <title>Log In | aperii</title>
+      <meta property="og:title" content="Log In" />
+        <meta property="og:description" content="Log in to your Aperii account" />
+        <meta property="og:image" content="/logo_circle.png" />
+        <title>Log In - Aperii</title>
       </Head>
       <div className={`forms`}>
         {prod ? <form className="login-form" onSubmit={signup}>
