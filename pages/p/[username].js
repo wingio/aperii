@@ -24,7 +24,7 @@ export default function User({user}) {
         </div>
         <p>Hello, {user.username}</p>
       </div>
-
+      <PostFeed posts={posts}></PostFeed>
     </Layout>
   )
 }
