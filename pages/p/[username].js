@@ -46,16 +46,7 @@ export async function getServerSideProps(context) {
       username: '404'
     }
   }
-  var res = await fetch('https://aperii.com/api/v1/posts/all', {
-    method: 'GET',
-    headers: {
-      authorization: context.req.cookies.token
-    }
-  })
-  var result = await res.json()
-  result = result.filter(p => p.username == user.username)
-  return {props: {posts: result.sort((a, b) => {
-            return (a.createdTimestamp > b.createdTimestamp) ? -1 : (a.createdTimestamp > b.createdTimestamp) ? 1 : 0 
-        }), user}}
+  
+  return {props: {user/*, posts: user.posts*/}}
   
 }

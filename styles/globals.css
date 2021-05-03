@@ -7,7 +7,7 @@ body {
 }
 
 * {
-  --rust-blood: hsl(0, 34%, 46%);
+  --rust-blood: #9d4d4d;
   --rust-blood-hl: hsl(0, 34%, 36%);
   --rust-blood-disabled: hsl(0, 34%, 26%);
 }
