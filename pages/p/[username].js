@@ -6,7 +6,7 @@ import * as PostEx from '../../Users'
 import * as users from '../../Users'
 import Layout from '../../layouts/Layout'
 import PostFeed from '../../components/PostFeed'
-export default function User({user}) {
+export default function User({user, posts}) {
   const classesR = `${styles.sticky} ${styles.right}`
   const classesL = `${styles.sticky} ${styles.left}`
   
