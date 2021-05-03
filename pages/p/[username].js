@@ -5,7 +5,7 @@ import Post from '../../components/Post'
 import * as PostEx from '../../Users'
 import * as users from '../../Users'
 import Layout from '../../layouts/Layout'
-
+import PostFeed from '../../components/PostFeed'
 export default function User({user}) {
   const classesR = `${styles.sticky} ${styles.right}`
   const classesL = `${styles.sticky} ${styles.left}`
@@ -24,6 +24,7 @@ export default function User({user}) {
         </div>
         <p>Hello, {user.username}</p>
       </div>
+
     </Layout>
   )
 }
@@ -38,13 +39,23 @@ export async function getServerSideProps(context) {
     }
   })
   var user = await res.json()
+
   if(user.status){
     user = {
       displayName: 'User not found',
       username: '404'
     }
   }
-    // Pass data to the page via props
-  return { props: { user } }
+  var res = await fetch('https://aperii.com/api/v1/posts/all', {
+    method: 'GET',
+    headers: {
+      authorization: context.req.cookies.token
+    }
+  })
+  var result = await res.json()
+  result = result.filter(p => p.username == user.username)
+  return {props: {posts: result.sort((a, b) => {
+            return (a.createdTimestamp > b.createdTimestamp) ? -1 : (a.createdTimestamp > b.createdTimestamp) ? 1 : 0 
+        }), user}}
   
 }
