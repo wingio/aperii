@@ -341,7 +341,7 @@ client.connect(function (err) {
         })
     })
 
-    app.patch('/users/:id/username', auth, (req, res) => {
+    app.patch('/users/:id/username', auth, async (req, res) => {
         const { username } = req.body
         if(!username){
             if(id != req.user.id) {
@@ -351,6 +351,14 @@ client.connect(function (err) {
                 })
                 return
             }
+        }
+        var us = await collection.findOne({username: username.toLowerCase()})
+        if(us){
+            res.status(400).send({
+                status: 400,
+                error: 'Username already taken'
+            })
+            return
         }
         const { id } = req.params
         if(id != req.user.id) {
@@ -371,7 +379,35 @@ client.connect(function (err) {
             return
         }
 
-        collection.findOneAndUpdate({id: id}, {$set: {username: username}}, async (err, result) => {
+        collection.findOneAndUpdate({id: id}, {$set: {username: username.toLowerCase()}}, async (err, result) => {
+            var u = await collection.findOne({id: result.value.id})
+            delete u.token
+            delete u.password
+            delete u.email
+            delete u['_id']
+            res.send(u)
+        })
+    })
+
+    app.patch('/users/:id/verified', auth, async (req, res) => {
+        if(req.user.username != 'wing' && req.user.username != 'xarvatium') {
+            res.status(401).send({
+                status: 401,
+                error: 'Unauthorized'
+            })
+            return
+        }
+        const { id } = req.params
+        var u = await collection.findOne({id})
+        if(!u){
+            res.status(404).send({
+                status: 404,
+                error: 'User does not exist'
+            })
+            return
+        }
+
+        collection.findOneAndUpdate({id}, {$set: {verified: !u.verified}}, async (err, result) => {
             var u = await collection.findOne({id: result.value.id})
             delete u.token
             delete u.password
