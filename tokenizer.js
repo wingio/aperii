@@ -4,12 +4,11 @@ function tokenize(string) {
     var mentionReg = /@[a-z0-9_]{4,32}/g
     var tokens = []
     var nextToken = {}
-    string.split(' ').forEach(segment => {
+    string.split(' ').forEach((segment, i) => {
         var mentions = segment.match(mentionReg)
         if (mentions) {
             nextToken.type = 1
             nextToken.value = mentions[0].slice(1)
-            nextToken.noSpaceAfter = segment.endsWith(mentions[0])
             tokens.push(nextToken)
             nextToken = {}
             nextToken.type = 0
@@ -26,9 +25,13 @@ function tokenize(string) {
     tokens.reduce((prev, curr, currIndex, arr) => {
         var last = arr[currIndex - 1] ? arr[currIndex - 1] : undefined
         if (last && (last.type == curr.type)) {
+            var newvalue = last.value + ' ' + curr.value
+            if(!newvalue.startsWith(',')){
+                newvalue += ' '
+            }
             arr[currIndex] = {
                 type: curr.type,
-                value: (nextToken.noSpaceAfter) ? last.value + ' ' + curr.value : last.value + ' ' + curr.value + ' '
+                value: newvalue
             }
             arr[currIndex - 1] = undefined
         }
@@ -41,6 +44,12 @@ function tokenize(string) {
             }
         })
     }
+
+    tokens.forEach((tok, i) => {
+        if(tok.type == 0){
+            tok.value += ' '
+        }
+    })
 
     return tokens
 }
