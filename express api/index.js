@@ -294,7 +294,7 @@ client.connect(function (err) {
             delete u.password
             delete u.email
             delete u['_id']
-            var allPosts = await collection.find({author: u.id}).toArray()
+            var allPosts = await posts.find({author: u.id}).toArray()
             allPosts.map(p => {
                 p.author = u
                 delete p.author.token
@@ -307,7 +307,7 @@ client.connect(function (err) {
             u.posts = allPosts
             res.send(u)
         } else {
-            var allPosts = await collection.find({author: u.id}).toArray()
+            var allPosts = await posts.find({author: u.id}).toArray()
             allPosts.map(p => {
                 p.author = u
                 delete p.author.token

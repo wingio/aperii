@@ -1,7 +1,7 @@
 import postStyle from '../styles/Post.module.css'
 import Tooltip from './Tooltip'
 import {useState} from 'react'
-
+import PostBody from './PostBody'
 
 const data = ({data}) => {
     const [visible, setVisible] = useState(false)
@@ -26,7 +26,7 @@ const data = ({data}) => {
             {data.author.verified ? <div className={postStyle.badge}></div> : ''}
             <span className={postStyle.username}>@{data.author.username}</span>
         </div>
-            <span className={postStyle.content}>{data.body}</span>
+            <span className={postStyle.content}><PostBody text={data.body}></PostBody></span>
         </div>
     </div>)
 }
