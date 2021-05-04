@@ -47,6 +47,9 @@ function tokenize(string) {
 
     tokens.forEach((tok, i) => {
         if(tok.type == 0){
+            if(!(tokens[-1].type == 1 && tok.value.startsWith(','))){
+                tok.value = ' ' + tok.value
+            }
             tok.value += ' '
         }
     })
