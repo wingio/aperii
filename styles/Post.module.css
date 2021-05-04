@@ -69,6 +69,15 @@
 .content {
     margin-left: var(--post-gap);
     padding: 0;
+    display: flex
+}
+
+.content p {
+    margin: 0
+}
+
+.content a {
+    color: rgb(0, 140, 255);
 }
 
 .tooltip {
