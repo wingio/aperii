@@ -9,6 +9,7 @@ function tokenize(string) {
         if (mentions) {
             nextToken.type = 1
             nextToken.value = mentions[0].slice(1)
+            nextToken.noSpaceAfter = segment.endsWith(mentions[0])
             tokens.push(nextToken)
             nextToken = {}
             nextToken.type = 0
@@ -27,7 +28,7 @@ function tokenize(string) {
         if (last && (last.type == curr.type)) {
             arr[currIndex] = {
                 type: curr.type,
-                value: last.value + ' ' + curr.value
+                value: (nextToken.noSpaceAfter) ? last.value + ' ' + curr.value : last.value + ' ' + curr.value + ' '
             }
             arr[currIndex - 1] = undefined
         }
