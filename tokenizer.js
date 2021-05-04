@@ -1,4 +1,4 @@
-var text = 'Hey @aperii, you suck'
+var text = 'Hey aperii you suck'
 
 function tokenize(string) {
     var mentionReg = /@[a-z0-9_]{4,32}/g
@@ -44,15 +44,6 @@ function tokenize(string) {
             }
         })
     }
-
-    tokens.forEach((tok, i) => {
-        if(tok.type == 0){
-            if(!(tokens[-1].type == 1 && tok.value.startsWith(','))){
-                tok.value = ' ' + tok.value
-            }
-            tok.value += ' '
-        }
-    })
 
     return tokens
 }
