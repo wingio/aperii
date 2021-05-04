@@ -12,7 +12,7 @@ function tokenize(string) {
             tokens.push(nextToken)
             nextToken = {}
             nextToken.type = 0
-            nextToken.value = segment.replaceAll(mentions[0], '')
+            nextToken.value = segment.replace(mentions[0], '')
         } else {
             nextToken.type = 0
             nextToken.value = segment
