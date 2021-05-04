@@ -1,7 +1,7 @@
 var text = 'Hey aperii you suck'
 
 function tokenize(string) {
-    var mentionReg = /@[a-z0-9_]{4,32}/g
+    var mentionReg = /^@[a-z0-9_]{4,32}$/g
     var tokens = []
     var nextToken = {}
     string.split(' ').forEach((segment, i) => {
