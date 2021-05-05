@@ -295,8 +295,10 @@ client.connect(function (err) {
             delete u.email
             delete u['_id']
             var allPosts = await posts.find({author: u.id}).toArray()
+            console.log(allPosts)
             allPosts.map(p => {
-                p.author = u
+                aProto = JSON.stringify(u)
+                p.author = JSON.parse(aProto)
                 delete p.author.token
                 delete p.author.password
                 delete p.author.email
@@ -309,7 +311,8 @@ client.connect(function (err) {
         } else {
             var allPosts = await posts.find({author: u.id}).toArray()
             allPosts.map(p => {
-                p.author = u
+                aProto = JSON.stringify(u)
+                p.author = JSON.parse(aProto)
                 delete p.author.token
                 delete p.author.password
                 delete p.author.email
