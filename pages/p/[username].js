@@ -47,6 +47,6 @@ export async function getServerSideProps(context) {
     }
   }
   
-  return {props: {user/*, posts: user.posts*/}}
+  return {props: {user, posts: user.posts}}
   
 }
