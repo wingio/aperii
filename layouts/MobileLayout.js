@@ -5,7 +5,7 @@ import Search from '../components/Search'
 function MobileLayout(props) {
   const {width, height} = useWindowSize()
   return (
-    <div className="container">
+    <div className="container" style={{display:"revert"}}>
       <div className={`ui`} style={{gridTemplateColumns: width >= 640? '640px' : '100%'}}>
         <div className={`feed`}>
           <Search></Search>
