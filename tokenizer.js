@@ -1,18 +1,14 @@
 var text = 'Hey aperii you suck'
 
 function tokenize(string) {
-    var mentionReg = /^@[a-z0-9_]{4,32}$/g
+    var mentionReg = /^@[a-zA-Z0-9_]{4,32}$/g
     var tokens = []
     var nextToken = {}
     string.split(' ').forEach((segment, i) => {
         var mentions = segment.match(mentionReg)
         if (mentions) {
             nextToken.type = 1
-            nextToken.value = mentions[0].slice(1)
-            tokens.push(nextToken)
-            nextToken = {}
-            nextToken.type = 0
-            nextToken.value = segment.replace(mentions[0], '')
+            nextToken.value = mentions[0].slice(1).toLowerCase()
         } else {
             nextToken.type = 0
             nextToken.value = segment
