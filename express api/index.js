@@ -58,6 +58,23 @@ client.connect(function (err) {
         })
     }
 
+    var softAuth = function (req, res, next) {
+        var unauth = {
+            status: 401,
+            error: 'Unauthorized'
+        }
+        const tok = req.headers.authorization
+        
+
+        collection.findOne({
+            token: tok
+        }).then(u => {
+            if(u) req.user = u
+            
+            next()
+        })
+    }
+
     app.use(express.json())
     app.use(cors(corsOpts))
     app.use(cookieparser())
@@ -279,7 +296,7 @@ client.connect(function (err) {
         res.send('world')
     })
 
-    app.get('/profiles/:username', auth, async (req, res) => {
+    app.get('/profiles/:username', softAuth, async (req, res) => {
         const { username } = req.params
         var u = await collection.findOne({username : username})
         if(!u) {
@@ -289,7 +306,7 @@ client.connect(function (err) {
             });
             return
         }
-        if (req.user.username.toLowerCase() != 'wing' && req.user.username.toLowerCase() != 'xarvatium') {
+        if (req.user && (req.user.username.toLowerCase() != 'wing' && req.user.username.toLowerCase() != 'xarvatium')) {
             delete u.token
             delete u.password
             delete u.email
