@@ -12,7 +12,7 @@ export default (req, res) => {
                 var buf = await text.arrayBuffer()
                 var img = Buffer.from(buf)
                 res.setHeader('Content-Type', resp.headers.get('Content-Type'))
-                res.setHeader('Content-Length', img.length//resp.headers.get('Content-Length'))
+                res.setHeader('Content-Length', img.length/*resp.headers.get('Content-Length')*/)
                 res.send(img)
             } else {
                 res.status(resp.status).send(resp.text())
