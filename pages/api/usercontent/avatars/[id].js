@@ -9,10 +9,10 @@ export default (req, res) => {
             var text = await resp.blob()
             console.log(text)
             if (resp.status == 200) {
-                var img = Buffer.from(text)
+                //var img = Buffer.from(text)
                 res.setHeader('Content-Type', resp.headers.get('Content-Type'))
                 res.setHeader('Content-Length', img.length)
-                res.send(img)
+                res.send(text)
             } else {
                 res.status(resp.status).send(resp.text())
             }
