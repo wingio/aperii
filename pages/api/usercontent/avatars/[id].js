@@ -8,9 +8,10 @@ export default (req, res) => {
         }).then(async (resp) => {
             var text = await resp.text()
             if (resp.status == 200) {
+                var img = Buffer.from(text)
                 res.setHeader('Content-Type', resp.headers.get('Content-Type'))
-                res.setHeader('Content-Length', resp.headers.get('Content-Length'))
-                res.send(text)
+                res.setHeader('Content-Length', img.length)
+                res.send(img)
             } else {
                 res.status(resp.status).send(text)
             }
