@@ -420,7 +420,7 @@ client.connect(function (err) {
             var av = await cdn.findOne({type: 'avatar', owner: id})
             if(av){
                 cdn.findOneAndUpdate({type: 'avatar', owner: id}, {$set:{data: avatar.split('base64,')[1], format }})
-                collection.findOneAndUpdate({id}, {$set:{avatar: `https://aperii.com/usercontent/avatars/${id}.${format}`}})
+                collection.findOneAndUpdate({id}, {$set:{avatar: `https://aperii.com/usercontent/avatars/${id}`}})
                 var u = await collection.findOne({id})
                 delete u.token
                 delete u.password
@@ -434,7 +434,7 @@ client.connect(function (err) {
                     data: avatar.split('base64,')[1],
                     format
                 })
-                collection.findOneAndUpdate({id}, {$set:{avatar: `https://aperii.com/usercontent/avatars/${id}.${format}`}})
+                collection.findOneAndUpdate({id}, {$set:{avatar: `https://aperii.com/usercontent/avatars/${id}`}})
                 var u = await collection.findOne({id})
                 delete u.token
                 delete u.password
@@ -564,9 +564,9 @@ client.connect(function (err) {
 
     //CDN
 
-    app.get('/avatars/:id.:format', async( req, res ) => {
-        const {id, format} = req.params
-        var av = await cdn.findOne({owner: id, format, type: 'avatar'})
+    app.get('/avatars/:id', async( req, res ) => {
+        const {id} = req.params
+        var av = await cdn.findOne({owner: id, type: 'avatar'})
 
         if (av) {
             var img = Buffer.from(av.data, 'base64');
