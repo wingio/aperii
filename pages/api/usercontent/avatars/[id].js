@@ -7,6 +7,7 @@ export default (req, res) => {
             method: 'GET'
         }).then(async (resp) => {
             var text = await resp.text()
+            console.log(resp)
             if (resp.status == 200) {
                 var img = Buffer.from(text)
                 res.setHeader('Content-Type', resp.headers.get('Content-Type'))
