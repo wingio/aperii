@@ -15,5 +15,5 @@ export default (req, res) => {
                 res.status(resp.status).send(text)
             }
         })
-
+    }
 }
