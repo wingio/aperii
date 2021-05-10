@@ -20,7 +20,7 @@ function NoLeftLayout(props) {
         <div className={`sticky right`}>
         <div className="av-container">
       <img className={`av`} src={user ? user.avatar ? user.avatar : '/av.png' : '/av.png'} onClick={toggleDropdown}></img>
-      {open ? <ProfileDropdown /> : ''}
+      {open ? <ProfileDropdown user={user}/> : ''}
     </div> </div> </div>
             </div>
   );
