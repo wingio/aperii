@@ -5,7 +5,7 @@ import ProfileDropdown from '../components/ProfileDropdown'
 function NoLeftLayout(props) {
   const {width, height} = useWindowSize()
   const [open, setOpen] = useState(false)
-
+  const { user } = props
   function toggleDropdown(e) {
     setOpen(!open)
     e.target.className = `av ${open ? '' : 'clicked'}`
@@ -19,7 +19,7 @@ function NoLeftLayout(props) {
         </div>
         <div className={`sticky right`}>
         <div className="av-container">
-      <img className={`av`} src={'https://avatars.githubusercontent.com/u/44992537?v=1'} onClick={toggleDropdown}></img>
+      <img className={`av`} src={user ? user.avatar ? user.avatar : '/av.png' : '/av.png'} onClick={toggleDropdown}></img>
       {open ? <ProfileDropdown /> : ''}
     </div> </div> </div>
             </div>

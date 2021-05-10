@@ -62,7 +62,7 @@ function FullLayout(props) {
   </div>
   <div className={`sticky right`}>
     <div className="av-container">
-      <img className={`av`} src={'https://avatars.githubusercontent.com/u/44992537?v=1'} onClick={toggleDropdown}></img>
+      <img className={`av`} src={user ? user.avatar ? user.avatar : '/av.png' : '/av.png'} onClick={toggleDropdown}></img>
       {open ? <ProfileDropdown /> : ''}
     </div>
     <div className="sidebar-profile">
