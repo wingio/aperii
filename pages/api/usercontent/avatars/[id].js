@@ -11,7 +11,7 @@ export default (req, res) => {
             if (resp.status == 200) {
                 //var img = Buffer.from(text)
                 res.setHeader('Content-Type', resp.headers.get('Content-Type'))
-                res.setHeader('Content-Length', img.length)
+                res.setHeader('Content-Length', resp.headers.get('Content-Length'))
                 res.send(text)
             } else {
                 res.status(resp.status).send(resp.text())
