@@ -11,6 +11,8 @@ const https = require('https')
 const fs = require('fs')
 
 const { sign, verify } =  require('jsonwebtoken')
+const constcls = require('../constants')
+const constants = new constcls()
 
 require('dotenv').config()
 
@@ -29,6 +31,8 @@ client.connect(function (err) {
     const db = client.db(dbName);
     const collection = db.collection('user');
     const posts = db.collection('posts');
+    const cdn = db.collection('cdn');
+    const relationships = db.collection('relationships')
 
     const express = require('express')
     const app = express()
@@ -383,81 +387,141 @@ client.connect(function (err) {
         })
     })
 
-    app.patch('/users/:id/username', auth, async (req, res) => {
-        const { username } = req.body
-        if(!username){
-            if(id != req.user.id) {
+    app.patch('/users/:id', auth, async (req, res) => {
+        const { avatar, verified, displayname, username } = req.body
+        const { id } = req.params
+
+        if(req.user.id != id) {
+            res.status(401).send({
+                status: 401,
+                error: 'Unauthorized'
+            })
+            return
+        }
+
+        if(avatar){
+            var datauriRegex = /^data:image\/(jpeg|jpg|png|gif);base64,[\d\D]+$/g
+            if(!datauriRegex.test(avatar)){
                 res.status(400).send({
                     status: 400,
-                    error: 'Invalid form body'
+                    error: 'Avatar needs to be a valid data uri scheme, only allowing jpeg, png, and gif formats'
                 })
                 return
             }
+            var formats = ['jpeg', 'jpg', 'png', 'gif']
+            var format = avatar.split(':')[1].split(';')[0].split('/')[1].toLowerCase()
+            if(!formats.includes(format)){
+                res.status(400).send({
+                    status: 400,
+                    error: 'Avatar needs to be a valid data uri scheme, only allowing jpeg, png, and gif formats'
+                })
+                return
+            }
+            var av = await cdn.findOne({type: 'avatar', owner: id})
+            if(av){
+                cdn.findOneAndUpdate({type: 'avatar', owner: id}, {$set:{data: avatar.split('base64,')[1], format }})
+                collection.findOneAndUpdate({id}, {$set:{avatar: `https://aperii.com/usercontent/avatars/${id}.${format}`}})
+                var u = await collection.findOne({id})
+                delete u.token
+                delete u.password
+                delete u.email
+                delete u["_id"]
+                res.send(u)
+            } else {
+                cdn.insertOne({
+                    type: 'avatar',
+                    owner: id,
+                    data: avatar.split('base64,')[1],
+                    format
+                })
+                collection.findOneAndUpdate({id}, {$set:{avatar: `https://aperii.com/usercontent/avatars/${id}.${format}`}})
+                var u = await collection.findOne({id})
+                delete u.token
+                delete u.password
+                delete u.email
+                delete u["_id"]
+                res.send(u)
+            }
         }
-        var us = await collection.findOne({username: username.toLowerCase()})
-        if(us){
-            res.status(400).send({
-                status: 400,
-                error: 'Username already taken'
-            })
-            return
-        }
-        const { id } = req.params
-        if(id != req.user.id) {
-            res.status(401).send({
-                status: 401,
-                error: 'Unauthorized'
-            })
-            return
-        }
-
-        var usernameRegex = /^(?=.*[a-z])?(?=.*[A-Z])?(?=.*\d)?(?!.*[ ])[A-Za-z\d_]{4,32}$/g
-
-        if (!usernameRegex.test(username)) {
-            res.status(400).send({
-                status: 400,
-                error: 'Username must only contain "A-Z", "a-z", "0-9" and "_"'
-            });
-            return
-        }
-
-        collection.findOneAndUpdate({id: id}, {$set: {username: username.toLowerCase()}}, async (err, result) => {
-            var u = await collection.findOne({id: result.value.id})
-            delete u.token
-            delete u.password
-            delete u.email
-            delete u['_id']
-            res.send(u)
-        })
     })
 
-    app.patch('/users/:id/verified', auth, async (req, res) => {
-        if(req.user.username != 'wing' && req.user.username != 'xarvatium') {
-            res.status(401).send({
-                status: 401,
-                error: 'Unauthorized'
-            })
-            return
-        }
-        const { id } = req.params
-        var u = await collection.findOne({id})
-        if(!u){
-            res.status(404).send({
-                status: 404,
-                error: 'User does not exist'
-            })
-            return
-        }
+    // app.patch('/users/:id/username', auth, async (req, res) => {
+    //     const { username } = req.body
+    //     if(!username){
+    //         if(id != req.user.id) {
+    //             res.status(400).send({
+    //                 status: 400,
+    //                 error: 'Invalid form body'
+    //             })
+    //             return
+    //         }
+    //     }
+    //     var us = await collection.findOne({username: username.toLowerCase()})
+    //     if(us){
+    //         res.status(400).send({
+    //             status: 400,
+    //             error: 'Username already taken'
+    //         })
+    //         return
+    //     }
+    //     const { id } = req.params
+    //     if(id != req.user.id) {
+    //         res.status(401).send({
+    //             status: 401,
+    //             error: 'Unauthorized'
+    //         })
+    //         return
+    //     }
 
-        collection.findOneAndUpdate({id}, {$set: {verified: !u.verified}}, async (err, result) => {
-            var u = await collection.findOne({id: result.value.id})
-            delete u.token
-            delete u.password
-            delete u.email
-            delete u['_id']
-            res.send(u)
-        })
-    })
+    //     var usernameRegex = /^(?=.*[a-z])?(?=.*[A-Z])?(?=.*\d)?(?!.*[ ])[A-Za-z\d_]{4,32}$/g
+
+    //     if (!usernameRegex.test(username)) {
+    //         res.status(400).send({
+    //             status: 400,
+    //             error: 'Username must only contain "A-Z", "a-z", "0-9" and "_"'
+    //         });
+    //         return
+    //     }
+
+    //     collection.findOneAndUpdate({id: id}, {$set: {username: username.toLowerCase()}}, async (err, result) => {
+    //         var u = await collection.findOne({id: result.value.id})
+    //         delete u.token
+    //         delete u.password
+    //         delete u.email
+    //         delete u['_id']
+    //         res.send(u)
+    //     })
+    // })
+
+    // app.patch('/users/:id/verified', auth, async (req, res) => {
+    //     if(req.user.username != 'wing' && req.user.username != 'xarvatium') {
+    //         res.status(401).send({
+    //             status: 401,
+    //             error: 'Unauthorized'
+    //         })
+    //         return
+    //     }
+    //     const { id } = req.params
+    //     var u = await collection.findOne({id})
+    //     if(!u){
+    //         res.status(404).send({
+    //             status: 404,
+    //             error: 'User does not exist'
+    //         })
+    //         return
+    //     }
+
+    //     collection.findOneAndUpdate({id}, {$set: {verified: !u.verified}}, async (err, result) => {
+    //         var u = await collection.findOne({id: result.value.id})
+    //         delete u.token
+    //         delete u.password
+    //         delete u.email
+    //         delete u['_id']
+    //         res.send(u)
+    //     })
+    // })
+
+    
 
     function addAuthorToPost(postArray) {
         for (let index = 0; index < postArray.length; index++) {
@@ -493,6 +557,30 @@ client.connect(function (err) {
         })
         res.send(allPosts)
     })
+
+
+
+
+
+    //CDN
+
+    app.get('/avatars/:id.:format', async( req, res ) => {
+        const {id, format} = req.params
+        var av = await cdn.findOne({owner: id, format, type: 'avatar'})
+
+        if (av) {
+            var img = Buffer.from(av.data, 'base64');
+
+            res.writeHead(200, {
+                'Content-Type': 'image/' + av.format,
+                'Content-Length': img.length
+            });
+            res.end(img);
+        } else {
+            res.status(404).send('Not Found')
+        }
+    })
+
 
     if(!process.env.PROD){
         app.listen(5000, () => {
