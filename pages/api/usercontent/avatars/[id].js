@@ -6,7 +6,7 @@ export default (req, res) => {
         fetch('https://api.aperii.com/avatars/' + req.query.id, {
             method: 'GET'
         }).then(async (resp) => {
-            var text = await resp.text()
+            var text = await resp.blob()
             console.log(text)
             if (resp.status == 200) {
                 var img = Buffer.from(text)
@@ -14,7 +14,7 @@ export default (req, res) => {
                 res.setHeader('Content-Length', img.length)
                 res.send(img)
             } else {
-                res.status(resp.status).send(text)
+                res.status(resp.status).send(resp.text())
             }
         })
     }
