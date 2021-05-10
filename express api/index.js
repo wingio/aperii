@@ -420,7 +420,7 @@ client.connect(function (err) {
             var av = await cdn.findOne({type: 'avatar', owner: id})
             if(av){
                 cdn.findOneAndUpdate({type: 'avatar', owner: id}, {$set:{data: avatar.split('base64,')[1], format }})
-                collection.findOneAndUpdate({id}, {$set:{avatar: `https://aperii.com/usercontent/avatars/${id}`}})
+                collection.findOneAndUpdate({id}, {$set:{avatar: `https://aperii.com/api/usercontent/avatars/${id}`}})
                 var u = await collection.findOne({id})
                 delete u.token
                 delete u.password
@@ -434,7 +434,7 @@ client.connect(function (err) {
                     data: avatar.split('base64,')[1],
                     format
                 })
-                collection.findOneAndUpdate({id}, {$set:{avatar: `https://aperii.com/usercontent/avatars/${id}`}})
+                collection.findOneAndUpdate({id}, {$set:{avatar: `https://aperii.com/api/usercontent/avatars/${id}`}})
                 var u = await collection.findOne({id})
                 delete u.token
                 delete u.password
