@@ -10,7 +10,7 @@ export default (req, res) => {
             if (resp.status == 200) {
                 res.setHeader('Content-Type', resp.headers.get('Content-Type'))
                 res.setHeader('Content-Length', resp.headers.get('Content-Length'))
-                res.send(Buffer.from(text))
+                res.send(text)
             } else {
                 res.status(resp.status).send(text)
             }
