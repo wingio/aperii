@@ -310,7 +310,7 @@ client.connect(function (err) {
             });
             return
         }
-        if (req.user && (req.user.username.toLowerCase() != 'wing' && req.user.username.toLowerCase() != 'xarvatium')) {
+        if (!req.user || !req.user.admin) {
             delete u.token
             delete u.password
             delete u.email
