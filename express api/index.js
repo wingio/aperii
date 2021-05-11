@@ -368,6 +368,14 @@ client.connect(function (err) {
             return
         }
 
+        if(body.length < 1) {
+            res.status(400).send({
+                status: 400,
+                error: 'Invalid form body: Body cannot be nothing'
+            })
+            return
+        }
+
         if(body.length > 256) {
             res.status(400).send({
                 status: 400,
@@ -557,10 +565,6 @@ client.connect(function (err) {
         })
         res.send(allPosts)
     })
-
-
-
-
 
     //CDN
 
