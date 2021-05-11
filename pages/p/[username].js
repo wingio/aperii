@@ -6,23 +6,23 @@ import * as PostEx from '../../Users'
 import * as users from '../../Users'
 import Layout from '../../layouts/Layout'
 import PostFeed from '../../components/PostFeed'
-export default function User({user, posts}) {
+export default function User({profile, posts}) {
   const classesR = `${styles.sticky} ${styles.right}`
   const classesL = `${styles.sticky} ${styles.left}`
   
   return (
     <Layout>
       <Head>
-        <meta property="og:title" content={`${user.displayName} (@${user.username})`} />
-        <meta property="og:description" content={user.bio ? user.bio : 'This user has no bio'} />
-        <meta property="og:image" content={user.avatar ? user.avatar : '/logo_circle.png'} />
-        <title>{`${user.displayName} (@${user.username})`} - Aperii</title>
+        <meta property="og:title" content={`${profile.displayName} (@${profile.username})`} />
+        <meta property="og:description" content={profile.bio ? profile.bio : 'This user has no bio'} />
+        <meta property="og:image" content={profile.avatar ? profile.avatar : '/logo_circle.png'} />
+        <title>{`${profile.displayName} (@${profile.username})`} - Aperii</title>
       </Head>
       <div className={styles.user}>
         <div className={styles.banner}>
-          <img className={styles.avatar} src={user.avatar ? user.avatar : '/av.png'}></img>
+          <img className={styles.avatar} src={profile.avatar ? profile.avatar : '/av.png'}></img>
         </div>
-        <p>Hello, {user.username}</p>
+        <p>Hello, {profile.username}</p>
       </div>
       <PostFeed posts={posts}></PostFeed>
     </Layout>
@@ -47,6 +47,6 @@ export async function getServerSideProps(context) {
     }
   }
   
-  return {props: {user, posts: user.posts}}
+  return {props: {profile: user, posts: user.posts}}
   
 }
