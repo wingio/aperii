@@ -47,6 +47,6 @@ export async function getServerSideProps(context) {
     }
   }
   
-  return {props: {profile, posts: user.posts}}
+  return {props: {profile, posts: profile.posts}}
   
 }
