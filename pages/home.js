@@ -6,7 +6,6 @@ import * as PostEx from '../Post'
 import Layout from '../layouts/Layout'
 import {useState, useEffect} from 'react'
 import PostFeed from '../components/PostFeed'
-import { redirect } from 'next/dist/next-server/server/api-utils'
 var post = {
   id: 'gwdtfwtyf56wsdt76',
   content: '<b>Lorem ipsum</b> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -78,26 +77,26 @@ export async function getServerSideProps(context) {
   var result = await res.json()
   var user = await userres.json()
   return user.status ? {
-    // redirect: {
-    //   href: '/',
-    //   permenant: false
-    // }
-    props: {
-      posts: [{
-        body: 'Nice try, but you need to log in',
-        id: 'nicetry',
-        createdTimestamp: Date.now(),
-        author: {
-          username: 'aperii',
-          displayName: 'Aperii',
-          verified: true,
-          avatar: '/logo_circle.png',
-          id: 'aperii',
-          joinedTimestamp: Date.now()
-        }
-      }],
-      user
+    redirect: {
+      href: '/',
+      permenant: false
     }
+    // props: {
+    //   posts: [{
+    //     body: 'Nice try, but you need to log in',
+    //     id: 'nicetry',
+    //     createdTimestamp: Date.now(),
+    //     author: {
+    //       username: 'aperii',
+    //       displayName: 'Aperii',
+    //       verified: true,
+    //       avatar: '/logo_circle.png',
+    //       id: 'aperii',
+    //       joinedTimestamp: Date.now()
+    //     }
+    //   }],
+    //   user
+    // }
   } : {
     props: {
       posts: result.sort((a, b) => {
