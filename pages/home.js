@@ -56,12 +56,7 @@ export default function Demo( { posts, user } ) {
 }
 
 export async function getServerSideProps(context) {
-  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'; = await fetch('https://aperii.com/api/v1/posts/all', {
-    method: 'GET',
-    headers: {
-      authorization: context.req.cookies.token
-    }
-  })
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'; 
   var res;
   var userres;
   if (context.req.cookies.token) {
