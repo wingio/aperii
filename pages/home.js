@@ -59,7 +59,7 @@ export async function getServerSideProps(context) {
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
   var res;
   var userres;
-  
+
   res = await fetch('https://aperii.com/api/v1/posts/all', {
     method: 'GET',
     headers: {
@@ -78,9 +78,25 @@ export async function getServerSideProps(context) {
   var result = await res.json()
   var user = await userres.json()
   return user.status ? {
-    redirect: {
-      href: '/',
-      permenant: false
+    // redirect: {
+    //   href: '/',
+    //   permenant: false
+    // }
+    props: {
+      posts: [{
+        body: 'Nice try, but you need to log in',
+        id: 'nicetry',
+        createdTimestamp: Date.now(),
+        author: {
+          username: 'aperii',
+          displayName: 'Aperii',
+          verified: true,
+          avatar: '/logo_circle.png',
+          id: 'aperii',
+          joinedTimestamp: Date.now()
+        }
+      }],
+      user
     }
   } : {
     props: {
