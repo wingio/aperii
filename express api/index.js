@@ -653,7 +653,8 @@ client.connect(function (err) {
                 joinedTimestamp: 1,
                 displayName: 1,
                 username: 1,
-                verified: 1
+                verified: 1,
+                avatar: 1
             }
         }).toArray()
         res.status(200).send(followers)
@@ -678,10 +679,35 @@ client.connect(function (err) {
                 joinedTimestamp: 1,
                 displayName: 1,
                 username: 1,
-                verified: 1
+                verified: 1,
+                avatar: 1
             }
         }).toArray()
         res.status(200).send(followers)
+    })
+
+    //Feed
+
+    app.get('/users/me/feed', auth, async (req, res) => {
+        var rel = await relationships.find({owner: req.user.id, type: 'follow'}).toArray()
+        rel = rel.map(r => {return r.subject})
+        var authors = await collection.find({id: {$in: rel}}, {
+            projection: {
+                _id: 0,
+                id: 1,
+                joinedTimestamp: 1,
+                displayName: 1,
+                username: 1,
+                verified: 1,
+                avatar: 1
+            }
+        }).toArray()
+        var feed = await posts.find({author: {$in: rel}}, {projection: {
+            _id: 0
+        }}).toArray()
+
+        feed = feed.map(p => {p.author = authors.filter(u => u.id == p.author)[0]; return p })
+        res.send(feed)
     })
 
     //CDN
