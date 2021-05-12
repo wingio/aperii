@@ -40,13 +40,33 @@ export async function getServerSideProps(context) {
   })
   var profile = await res.json()
 
-  if(profile.status){
+  if (profile.status) {
     profile = {
       displayName: 'User not found',
       username: '404'
     }
   }
-  
-  return {props: {profile, posts: profile.posts}}
-  
+  var userres;
+  if (context.req.cookies.token) {
+     userres = await fetch('https://aperii.com/api/v1/me', {
+      method: 'GET',
+      headers: {
+        authorization: context.req.cookies.token
+      }
+    })
+  }
+
+  var user = userres ? await userres.json() : {
+    displayName: 'User not found',
+    username: '404'
+  }
+
+  return {
+    props: {
+      profile,
+      posts: profile.posts,
+      user
+    }
+  }
+
 }

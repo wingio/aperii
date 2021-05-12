@@ -6,6 +6,7 @@ import * as PostEx from '../Post'
 import Layout from '../layouts/Layout'
 import {useState, useEffect} from 'react'
 import PostFeed from '../components/PostFeed'
+import { redirect } from 'next/dist/next-server/server/api-utils'
 var post = {
   id: 'gwdtfwtyf56wsdt76',
   content: '<b>Lorem ipsum</b> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -55,23 +56,49 @@ export default function Demo( { posts, user } ) {
 }
 
 export async function getServerSideProps(context) {
-  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-  var res = await fetch('https://aperii.com/api/v1/posts/all', {
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'; = await fetch('https://aperii.com/api/v1/posts/all', {
     method: 'GET',
     headers: {
       authorization: context.req.cookies.token
     }
   })
-  var userres = await fetch('https://aperii.com/api/v1/me', {
-    method: 'GET',
-    headers: {
-      authorization: context.req.cookies.token
-    }
-  })
-  var result = await res.json()
-  var user = await userres.json()
+  var res;
+  var userres;
+  if (context.req.cookies.token) {
+    res = await fetch('https://aperii.com/api/v1/posts/all', {
+      method: 'GET',
+      headers: {
+        authorization: context.req.cookies.token
+      }
+    })
+
+    userres = await fetch('https://aperii.com/api/v1/me', {
+      method: 'GET',
+      headers: {
+        authorization: context.req.cookies.token
+      }
+    })
+  }
+  
+  var result = res ? await res.json() : []
+
+  var user = userres ? await userres.json() : {
+    displayName: 'User not found',
+    username: '404'
+  }
+  
   console.log(context.req.cookies)
-  return {props: {posts: result.sort((a, b) => {
-            return (a.createdTimestamp > b.createdTimestamp) ? -1 : (a.createdTimestamp > b.createdTimestamp) ? 1 : 0 
-        }), user}}
+  return user.status ? {
+    redirect: {
+      href: '/',
+      permenant: false
+    }
+  } : {
+    props: {
+      posts: result.sort((a, b) => {
+        return (a.createdTimestamp > b.createdTimestamp) ? -1 : (a.createdTimestamp > b.createdTimestamp) ? 1 : 0
+      }),
+      user
+    }
+  }
 }
