@@ -79,7 +79,7 @@ client.connect(function (err) {
         })
     }
 
-    app.use(express.json())
+    app.use(express.json({limit: 1000000}))
     app.use(cors(corsOpts))
     app.use(cookieparser())
 
@@ -564,6 +564,124 @@ client.connect(function (err) {
             delete p["_id"]
         })
         res.send(allPosts)
+    })
+
+    //Relationships
+
+    app.post('/users/:id/followers', auth, async (req, res) => {
+        const { id } = req.params
+
+        var user = await collection.findOne({id})
+        if(!user){
+            res.status(404).send({
+                status: 404,
+                error: 'User does not exist'
+            })
+            return
+        }
+
+        var rel = await relationships.findOne({owner: req.user.id, subject: id, type: 'follow'})
+        if(rel){
+            res.status(200).send({
+                code: 200,
+                message: 'Already following that user!'
+            })
+            return
+        }
+
+        relationships.insertOne({
+            type: 'follow',
+            subject: id,
+            owner: req.user.id
+        })
+
+        res.status(200).send({
+            code: 200,
+            message: 'Sucesfully followed that user'
+        })
+    })
+
+    app.delete('/users/:id/followers', auth, async (req, res) => {
+        const { id } = req.params
+
+        var user = await collection.findOne({id})
+        if(!user){
+            res.status(404).send({
+                status: 404,
+                error: 'User does not exist'
+            })
+            return
+        }
+
+        var rel = await relationships.findOne({owner: req.user.id, subject: id, type: 'follow'})
+        if(!rel){
+            res.status(405).send({
+                status: 405,
+                error: 'Not following that user!'
+            })
+            return
+        }
+
+        relationships.deleteOne({
+            type: 'follow',
+            subject: id,
+            owner: req.user.id
+        })
+
+        res.status(200).send({
+            code: 200,
+            message: 'Sucesfully unfollowed that user'
+        })
+    })
+
+    app.get('/users/:id/followers', auth, async (req, res) => {
+        const { id } = req.params
+        var user = await collection.findOne({id})
+        if(!user){
+            res.status(404).send({
+                status: 404,
+                error: 'User does not exist'
+            })
+            return
+        }
+        var rel = await relationships.find({subject: id, type: 'follow'}).toArray()
+        rel = rel.map(r => {return r.owner})
+        var followers = await collection.find({id : {$in:rel}}, {
+            projection: {
+                _id: 0,
+                id: 1,
+                joinedTimestamp: 1,
+                displayName: 1,
+                username: 1,
+                verified: 1
+            }
+        }).toArray()
+        res.status(200).send(followers)
+    })
+
+    app.get('/users/:id/following', auth, async (req, res) => {
+        const { id } = req.params
+        var user = await collection.findOne({id})
+        if(!user){
+            res.status(404).send({
+                status: 404,
+                error: 'User does not exist'
+            })
+            return
+        }
+        var rel = await relationships.find({owner: id, type: 'follow'}).toArray()
+        rel = rel.map(r => {return r.subject})
+        var followers = await collection.find({id : {$in:rel}}, {
+            projection: {
+                _id: 0,
+                id: 1,
+                joinedTimestamp: 1,
+                displayName: 1,
+                username: 1,
+                verified: 1
+            }
+        }).toArray()
+        res.status(200).send(followers)
     })
 
     //CDN

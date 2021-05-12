@@ -38,15 +38,15 @@ export async function getServerSideProps(context) {
       authorization: context.req.cookies.token
     }
   })
-  var user = await res.json()
+  var profile = await res.json()
 
-  if(user.status){
-    user = {
+  if(profile.status){
+    profile = {
       displayName: 'User not found',
       username: '404'
     }
   }
   
-  return {props: {profile: user, posts: user.posts}}
+  return {props: {profile, posts: user.posts}}
   
 }
