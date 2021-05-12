@@ -56,33 +56,27 @@ export default function Demo( { posts, user } ) {
 }
 
 export async function getServerSideProps(context) {
-  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'; 
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
   var res;
   var userres;
-  if (context.req.cookies.token) {
-    res = await fetch('https://aperii.com/api/v1/posts/all', {
-      method: 'GET',
-      headers: {
-        authorization: context.req.cookies.token
-      }
-    })
-
-    userres = await fetch('https://aperii.com/api/v1/me', {
-      method: 'GET',
-      headers: {
-        authorization: context.req.cookies.token
-      }
-    })
-  }
   
-  var result = res ? await res.json() : []
+  res = await fetch('https://aperii.com/api/v1/posts/all', {
+    method: 'GET',
+    headers: {
+      authorization: context.req.cookies.token
+    }
+  })
 
-  var user = userres ? await userres.json() : {
-    displayName: 'User not found',
-    username: '404'
-  }
-  
-  console.log(context.req.cookies)
+  userres = await fetch('https://aperii.com/api/v1/me', {
+    method: 'GET',
+    headers: {
+      authorization: context.req.cookies.token
+    }
+  })
+
+
+  var result = await res.json()
+  var user = await userres.json()
   return user.status ? {
     redirect: {
       href: '/',

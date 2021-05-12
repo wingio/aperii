@@ -65,7 +65,10 @@ export async function getServerSideProps(context) {
     props: {
       profile,
       posts: profile.posts,
-      user
+      user: user.status ? {
+        displayName: 'User not found',
+        username: '404'
+      } : user
     }
   }
 
