@@ -69,7 +69,6 @@
 .content {
     margin-left: var(--post-gap);
     padding: 0;
-    display: flex;
     margin-top: 0;
     margin-bottom: 0;
 }
