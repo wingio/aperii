@@ -26,7 +26,7 @@ const data = ({data}) => {
             {data.author.verified ? <div className={postStyle.badge}></div> : ''}
             <span className={postStyle.username}>@{data.author.username}</span>
         </div>
-            <span className={postStyle.content}><PostBody text={data.body}></PostBody></span>
+            <p className={postStyle.content}><PostBody text={data.body}></PostBody></p>
         </div>
     </div>)
 }
