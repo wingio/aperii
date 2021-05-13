@@ -30,6 +30,7 @@
     font-weight: 700;
     font-size: .9em;
     margin-left: 30px;
+    border-bottom: 1px solid #888888;
 }
 
 .userinfo p {
@@ -38,7 +39,8 @@
 }
 
 .username {
-    font-size: 1rem;
+    font-size: 1rem!important;
     color: #688888;
     font-weight: 600;
 }
+
