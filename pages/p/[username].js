@@ -6,23 +6,25 @@ import * as PostEx from '../../Users'
 import * as users from '../../Users'
 import Layout from '../../layouts/Layout'
 import PostFeed from '../../components/PostFeed'
-export default function User({profile, posts}) {
-  const classesR = `${styles.sticky} ${styles.right}`
-  const classesL = `${styles.sticky} ${styles.left}`
-  
+
+
+export default function User({profile, posts, user}) {
   return (
-    <Layout>
+    <Layout user={user}>
       <Head>
         <meta property="og:title" content={`${profile.displayName} (@${profile.username})`} />
         <meta property="og:description" content={profile.bio ? profile.bio : 'This user has no bio'} />
-        <meta property="og:image" content={profile.avatar ? profile.avatar : '/logo_circle.png'} />
+        <meta property="og:image" content={profile.avatar ? profile.avatar : '/av.png'} />
         <title>{`${profile.displayName} (@${profile.username})`} - Aperii</title>
       </Head>
       <div className={styles.user}>
         <div className={styles.banner}>
           <img className={styles.avatar} src={profile.avatar ? profile.avatar : '/av.png'}></img>
         </div>
-        <p>Hello, {profile.username}</p>
+        <div className={styles.userinfo}>
+          <p>{profile.displayName}</p>
+          <p>@{profile.username}</p>
+        </div>
       </div>
       <PostFeed posts={posts}></PostFeed>
     </Layout>
