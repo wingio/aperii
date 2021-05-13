@@ -24,7 +24,7 @@ export default function User({profile, posts, user}) {
         <img className={styles.avatar} src={profile.avatar ? profile.avatar : '/av.png'}></img>
         <div className={styles.userinfo}>
           <p>{profile.displayName}</p>
-          <p>@{profile.username}</p>
+          <p className={styles.username}>@{profile.username}</p>
         </div>
       </div>
       <PostFeed posts={posts}></PostFeed>
