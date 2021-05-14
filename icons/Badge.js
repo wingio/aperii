@@ -1,8 +1,6 @@
 import * as React from "react";
 /**
- * 
  * @param {React.SVGProps<SVGSVGElement>} props 
- * @returns 
  */
 function Badge(props) {
   return (

@@ -7,6 +7,8 @@ import * as users from '../../Users'
 import Layout from '../../layouts/Layout'
 import PostFeed from '../../components/PostFeed'
 import Badge from '../../icons/Badge'
+import Calender from '../../icons/Calender'
+import moment from 'moment'
 
 export default function User({profile, posts, user}) {
   return (
@@ -25,6 +27,9 @@ export default function User({profile, posts, user}) {
         <div className={styles.userinfo}>
           <p>{profile.displayName}{profile.verified ? <Badge width="1.2rem" className={styles.badge}></Badge> : ''}</p>
           <p className={styles.username}>@{profile.username}</p>
+        </div>
+        <div>
+          <p style={{color: "#888"}}><Calender width=".9rem" color="#888"></Calender>Joined {moment(profile.joinedTimestamp).format('MMMM YYYY')}</p>
         </div>
       </div>
       <PostFeed posts={posts}></PostFeed>
@@ -70,7 +75,8 @@ export async function getServerSideProps(context) {
       posts: profile.posts,
       user: user.status ? {
         displayName: 'User not found',
-        username: '404'
+        username: '404',
+        joinedTimestamp: Date.now()
       } : user
     }
   }
