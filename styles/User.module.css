@@ -47,16 +47,9 @@
 }
 
 .badge {
-    color: #345ed3;
-    height: 1.1rem;
-    width: 1.1rem;
-    margin-bottom: -1.2px;
-    margin-left: 5px;
-    background-image: url(/badge.svg);
-    background-size: 1.1rem 1.1rem;
-    display: inline-block;
+    margin-left: .2rem;
+    margin-bottom: -.1rem;
     transition: box-shadow .5s;
-    border-radius: 50%;
 }
 
 .badge:hover{

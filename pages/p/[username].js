@@ -23,7 +23,7 @@ export default function User({profile, posts, user}) {
         </div>
         <img className={styles.avatar} src={profile.avatar ? profile.avatar : '/av.png'}></img>
         <div className={styles.userinfo}>
-          <p>{profile.displayName}{profile.verified ? <Badge></Badge> : ''}</p>
+          <p>{profile.displayName}{profile.verified ? <Badge width="1.2rem"></Badge> : ''}</p>
           <p className={styles.username}>@{profile.username}</p>
         </div>
       </div>
