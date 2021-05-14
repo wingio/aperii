@@ -50,7 +50,7 @@ function FullLayout(props) {
     <div className="container">            
     <div className={`ui full`}>
   <div className={`sticky left`}>
-    <span className={`logo`}></span>
+    <a href="/home"><span className={`logo`}></span></a>
     <SidebarFeedOption name="Home" current={true} icon="home"></SidebarFeedOption>
     <SidebarFeedOption name="Discover" icon="compass"></SidebarFeedOption>
   </div>
