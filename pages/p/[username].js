@@ -6,7 +6,7 @@ import * as PostEx from '../../Users'
 import * as users from '../../Users'
 import Layout from '../../layouts/Layout'
 import PostFeed from '../../components/PostFeed'
-
+import Badge from '../../icons/Badge'
 
 export default function User({profile, posts, user}) {
   return (
@@ -23,7 +23,7 @@ export default function User({profile, posts, user}) {
         </div>
         <img className={styles.avatar} src={profile.avatar ? profile.avatar : '/av.png'}></img>
         <div className={styles.userinfo}>
-          <p>{profile.displayName}{profile.verified ? <div className={styles.badge}></div> : ''}</p>
+          <p>{profile.displayName}{profile.verified ? <Badge></Badge> : ''}</p>
           <p className={styles.username}>@{profile.username}</p>
         </div>
       </div>
