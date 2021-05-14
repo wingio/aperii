@@ -29,7 +29,7 @@ export default function User({profile, posts, user}) {
           <p className={styles.username}>@{profile.username}</p>
         </div>
         <div>
-          <p style={{color: "#888"}}><Calender width=".9rem" color="#888"></Calender>Joined {moment(profile.joinedTimestamp).format('MMMM YYYY')}</p>
+          <p style={{color: "#888"}}><Calender width=".9rem" fill="#888"></Calender>Joined {moment(profile.joinedTimestamp).format('MMMM YYYY')}</p>
         </div>
       </div>
       <PostFeed posts={posts}></PostFeed>
