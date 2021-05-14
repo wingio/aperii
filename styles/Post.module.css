@@ -47,13 +47,8 @@
 }
 
 .badge {
-    color: rgb(52, 94, 211);
-    height: 15px;
-    width: 15px;
     margin-bottom: -1.5px;
     margin-left: 3px;
-    background-image: url(/badge.svg);
-    background-size: 15px 15px;
     display: inline-block;
     transition: box-shadow .5s;
     border-radius: 50%;

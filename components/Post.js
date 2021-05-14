@@ -2,7 +2,7 @@ import postStyle from '../styles/Post.module.css'
 import Tooltip from './Tooltip'
 import {useState} from 'react'
 import PostBody from './PostBody'
-
+import Badge from '../icons/Badge'
 const data = ({data}) => {
     const [visible, setVisible] = useState(false)
 
@@ -23,7 +23,7 @@ const data = ({data}) => {
         <div className={postStyle.bodycontainer}>
         <div className={postStyle.author}>
             <a href={`/p/${data.author.username}`}><span className={postStyle.displayName}>{data.author.displayName}</span></a>
-            {data.author.verified ? <div className={postStyle.badge}></div> : ''}
+            {data.author.verified ? <Badge className={postStyle.badge} width="15px"></Badge> : ''}
             <span className={postStyle.username}>@{data.author.username}</span>
         </div>
             <p className={postStyle.content}><PostBody text={data.body}></PostBody></p>
