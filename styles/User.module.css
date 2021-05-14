@@ -55,3 +55,17 @@
 .badge:hover{
     box-shadow: 0 0 20px 2px rgb(255 255 255 / 60%);
 }
+
+.miscInfo {
+    margin-left: 10px
+}
+
+.joinDate {
+    color: rgb(136, 136, 136);
+    font-size: .9rem!important;
+}
+
+.joinDateIcon {
+    margin-right: 0.4rem;
+    margin-bottom: -0.1rem;
+}

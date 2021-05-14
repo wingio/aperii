@@ -28,8 +28,8 @@ export default function User({profile, posts, user}) {
           <p>{profile.displayName}{profile.verified ? <Badge width="1.2rem" className={styles.badge}></Badge> : ''}</p>
           <p className={styles.username}>@{profile.username}</p>
         </div>
-        <div>
-          <p style={{color: "#888"}}><Calender width=".9rem" fill="#888"></Calender>Joined {moment(profile.joinedTimestamp).format('MMMM YYYY')}</p>
+        <div className={styles.miscInfo}>
+          <p style={{color: "#888"}} className={styles.joinDate}><Calender width=".9rem" fill="#888" className={styles.joinDateIcon}></Calender>Joined {moment(profile.joinedTimestamp).format('MMMM YYYY')}</p>
         </div>
       </div>
       <PostFeed posts={posts}></PostFeed>
