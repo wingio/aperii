@@ -10,6 +10,8 @@ body {
   --rust-blood: #9d4d4d;
   --rust-blood-hl: hsl(0, 34%, 36%);
   --rust-blood-disabled: hsl(0, 34%, 26%);
+  --darkle: hsl(210, 21%, 5%);
+  --darkle-bright-1: hsl(210, 21%, 25%);
 }
 
 ::-webkit-scrollbar {

@@ -1,13 +1,25 @@
+.background {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    backdrop-filter: brightness(0.5);
+    top: 0;
+    left: 0;
+    z-index: 100000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+.popout {
+    padding: 1.2rem;
+    background: var(--darkle);
+    min-width: 200px;
+    display: flex;
+    align-items: flex-start;
+}
 
-
-
-
-
-
-
-
-
-
-/* Components */
-
+.bottom {
+    background: var(--darkle-light-1);
+    padding: .3rem;
+}
