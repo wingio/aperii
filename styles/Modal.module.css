@@ -16,6 +16,7 @@
     min-width: 200px;
     display: flex;
     justify-content: flex-start;
+    flex-direction: column;
 }
 
 .content{
