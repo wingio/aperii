@@ -11,6 +11,7 @@
 
 .btnPrimary:hover{
     background-color: var(--rust-blood-hl);
+    cursor: pointer;
 }
 
 
