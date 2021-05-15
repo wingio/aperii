@@ -9,8 +9,6 @@
     transition: background .3s ease-in-out;
 }
 
-.btnPrimary
-:hover,
-:active{
+.btnPrimary:hover,.btnPrimary:active{
     background-color: var(--rust-blood-hl);
 }
