@@ -11,7 +11,7 @@
 
 /* Components */
 
-.btn-primary {
+.btnPrimary {
     padding: .8em;
     background-color: var(--rust-blood);
     color: white;
