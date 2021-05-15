@@ -12,16 +12,18 @@
 }
 
 .popout {
-    padding: 1.2rem;
+    padding: 1.2rem 1.2rem 0 1.2rem;
     background: var(--darkle);
     min-width: 200px;
     display: flex;
-    align-items: flex-start;
+    justify-content: flex-start;
 }
 
 .bottom {
     background: var(--darkle-light-1);
     padding: .3rem;
     display: flex;
-    align-items: flex-end;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 1.2rem;
 }
