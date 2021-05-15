@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '../styles/Modal.module.css'
-import ButtonPrimary from './Button-Primary'
+import Button from './Button'
 
 export default function Modal({ children }) {
 
@@ -15,7 +15,7 @@ export default function Modal({ children }) {
                     {children}
                 </div>
                 <div className={styles.bottom}>
-                    <ButtonPrimary label="Save" click={testF}></ButtonPrimary>
+                    <Button label="Save" click={testF} style="primary"></Button>
                 </div>
             </div>            
         </div>

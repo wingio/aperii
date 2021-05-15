@@ -1,4 +1,4 @@
-.btnPrimary {
+.primary {
     padding: .8em;
     background-color: var(--rust-blood);
     color: #fff;
@@ -6,15 +6,15 @@
     border: none;
     border-radius: .3rem;
     min-width: 70px;
+    cursor: pointer;
     transition: background .3s ease-in-out;
 }
 
-.btnPrimary:hover{
+.primary:hover{
     background-color: var(--rust-blood-hl);
-    cursor: pointer;
 }
 
 
-.btnPrimary:active {
+.primary:active {
     background-color: var(--rust-blood-hl);
 }
