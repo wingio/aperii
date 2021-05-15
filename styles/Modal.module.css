@@ -12,7 +12,7 @@
 }
 
 .popout {
-    background: var(--darkle);
+    background: var(--darkle-bright-1);
     min-width: 200px;
 }
 
@@ -23,7 +23,7 @@
 }
 
 .bottom {
-    background: var(--darkle-bright-1);
+    background: var(--darkle-bright-2);
     padding: .3rem;
     display: flex;
     justify-content: flex-end;
