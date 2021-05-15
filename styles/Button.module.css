@@ -18,3 +18,25 @@
 .primary:active {
     background-color: var(--rust-blood-hl);
 }
+
+.secondary {
+    padding: .8em;
+    background-color: transparent;
+    color: rgb(224, 224, 224);
+    outline: none;
+    border: none;
+    border-radius: .3rem;
+    min-width: 70px;
+    cursor: pointer;
+    transition: background .3s ease-in-out;
+    text-decoration: underline;
+}
+
+.secondary:hover{
+    color: white;
+}
+
+
+.secondary:active {
+    color: white;
+}
