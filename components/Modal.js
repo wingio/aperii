@@ -3,7 +3,7 @@ import styles from '../styles/Modal.module.css'
 import Button from './Button'
 
 
-export default function Modal({ children, title : subtitle }) {
+export default function Modal({ children, title, subtitle }) {
 
     function testF(e) {
 
