@@ -6,4 +6,11 @@
     border: none;
     border-radius: .3rem;
     min-width: 70px;
+    transition: background .3s ease-in-out;
+}
+
+.btnPrimary
+:hover,
+:active{
+    background-color: var(--rust-blood-hl);
 }
