@@ -14,6 +14,8 @@
 .popout {
     background: var(--darkle-bright-1);
     min-width: 200px;
+    width: 60%;
+    max-width: 400px;
 }
 
 .content{
