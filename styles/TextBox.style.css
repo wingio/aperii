@@ -1,0 +1,8 @@
+.textbox {
+    padding: .75em;
+    border: none;
+    border-radius: .5em;
+    background: #2f3b48;
+    color: #fff;
+    width: 100%;
+}

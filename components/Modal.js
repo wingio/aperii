@@ -3,7 +3,7 @@ import styles from '../styles/Modal.module.css'
 import Button from './Button'
 
 
-export default function Modal({ children }) {
+export default function Modal({ children, title : subtitle }) {
 
     function testF(e) {
 
@@ -13,6 +13,8 @@ export default function Modal({ children }) {
         <div className={styles.background}>
             <div className={styles.popout}>
                 <div className={styles.content}>
+                    <h3>{title ? title : 'Hello 👋'}</h3>
+                    {subtitle ? <p>{subtitle}</p> : ''}
                     {children}
                 </div>
                 <div className={styles.bottom}>

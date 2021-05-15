@@ -1,7 +1,10 @@
 import React from 'react'
-
-export default function TextBox() {
+import styles from '../styles/TextBox.module.css'
+export default function TextBox({ label }) {
     return (
-        <input type="text"></input>
+        <>
+            {label ? <label>{label}</label> : ''}
+            <input type="text" className={styles.textbox}></input>
+        </>
     )
 }
