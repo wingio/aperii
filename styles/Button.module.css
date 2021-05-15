@@ -28,7 +28,7 @@
     border-radius: .3rem;
     min-width: 70px;
     cursor: pointer;
-    transition: background .3s ease-in-out;
+    transition: color .3s ease-in-out;
     text-decoration: underline;
 }
 

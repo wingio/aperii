@@ -2,6 +2,7 @@ import React from 'react'
 import styles from '../styles/Modal.module.css'
 import Button from './Button'
 
+
 export default function Modal({ children }) {
 
     function testF(e) {
