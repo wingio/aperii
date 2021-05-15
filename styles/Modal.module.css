@@ -24,7 +24,7 @@
 
 .bottom {
     background: var(--darkle-bright-2);
-    padding: .3rem;
+    padding: .7rem;
     display: flex;
     justify-content: flex-end;
     width: 100%;

@@ -1,5 +1,9 @@
 .btnPrimary {
     padding: .8em;
     background-color: var(--rust-blood);
-    color: white;
+    color: #fff;
+    outline: none;
+    border: none;
+    border-radius: .3rem;
+    min-width: 70px;
 }
