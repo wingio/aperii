@@ -32,3 +32,9 @@
     width: 100%;
     margin-top: 1.2rem;
 }
+
+@media screen and (max-width: 600px) {
+    .popout{
+        width: 90%;
+    }
+}
