@@ -13,7 +13,7 @@ import * as info from '../info.json'
 
 export default function Demo( { posts, user } ) {
   var expiramentsEnabled = false
-  var showChangelog= false
+  var showChangelog = true
   if (typeof window !== "undefined") {
     var exp = localStorage.getItem('enableExpirements')
     var vers = localStorage.getItem('currentVersion')
