@@ -2,7 +2,7 @@
     width: 100vw;
     height: 100vh;
     position: fixed;
-    backdrop-filter: brightness(0.5);
+    backdrop-filter: brightness(0.3);
     top: 0;
     left: 0;
     z-index: 100000000;
