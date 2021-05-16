@@ -54,7 +54,7 @@ export default function Demo( { posts, user } ) {
       <meta property="og:description" content="A free, more open social experience" />
       <meta property="og:image" content="/logo_circle.png"/>
     </Head>
-    {window ? (localStorage.getItem('expiramental') == true) ? <Changelog user={user}/> : '' : ''}
+    {typeof window != 'undefined' ? (localStorage.getItem('expiramental') == true) ? <Changelog user={user}/> : '' : ''}
     <PostFeed posts={posts}></PostFeed>
   </Layout>
 }
