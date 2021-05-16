@@ -11,12 +11,12 @@ export default function Changelog() {
     return (
         opened ? <Modal title="See what's new!" subtitle={`Version: ${info.version}`} buttons={[{label: 'OK', btnstyle: 'primary', onClick: close}]}>
             {info.changelog.image && <img src={info.changelog.image}></img>}
-            {info.changelog.sections.map(s => {
+            {info.changelog.sections.map(s => 
                 <div key={s.name}>
-                    <SectionTitle style={{color: "white"}}>{s.name}</SectionTitle>
+                    <h4 style={{color: "white"}}>{s.name}</h4>
                     <p style={{color: "white"}}>{s.value}</p>
                 </div>
-            })}
+            )}
         </Modal> : <></>
     )
 }
