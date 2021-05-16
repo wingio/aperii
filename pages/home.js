@@ -9,28 +9,19 @@ import PostFeed from '../components/PostFeed'
 
 import MakePostModal from '../components/MakePostModal'
 import Changelog from '../components/Changelog'
-
-var post = {
-  id: 'gwdtfwtyf56wsdt76',
-  content: '<b>Lorem ipsum</b> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-  author: {
-      id: 'gyegyuf76645aw56d76a45',
-      username: 'wing',
-      displayName: 'Wing',
-      verified: true,
-      avatar: 'https://avatars.githubusercontent.com/u/44992537?v=1'
-  },
-  likes: 100,
-  reposts: 5,
-  replies: []
-}
+import * as info from '../info.json'
 
 export default function Demo( { posts, user } ) {
   var expiramentsEnabled = false
+  var showChangelog= false
   if (typeof window !== "undefined") {
-    var exp = localStorage.getItem('expiramental')
+    var exp = localStorage.getItem('enableExpirements')
+    var vers = localStorage.getItem('currentVersion')
     if(exp){
       exp == true || exp == "true" ? expiramentsEnabled = true : expiramentsEnabled = false
+    }
+    if(vers){
+      showChangelog = (vers != info.version)
     }
   }
 
@@ -63,7 +54,7 @@ export default function Demo( { posts, user } ) {
       <meta property="og:description" content="A free, more open social experience" />
       <meta property="og:image" content="/logo_circle.png"/>
     </Head>
-    {expiramentsEnabled ? <Changelog/> : ''}
+    {expiramentsEnabled && showChangelog ? <Changelog/> : ''}
     <PostFeed posts={posts}></PostFeed>
   </Layout>
 }

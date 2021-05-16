@@ -7,8 +7,10 @@ export default function Changelog() {
     const [opened, setOpen] = useState(true)
 
     var close = () => {
+        localStorage.setItem('currentVersion', info.version)
         setOpen(false)
     }
+    
     return (
         opened ? <Modal title="See what's new!" subtitle={`Version: ${info.version}`} buttons={[{label: 'OK', btnstyle: 'primary', onClick: close}]}>
             {info.changelog.image && <img src={info.changelog.image} style={{width: "100%", borderRadius: "0.5rem"}}></img>}
