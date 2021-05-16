@@ -3,7 +3,7 @@ import styles from '../styles/Modal.module.css'
 import Button from './Button'
 
 
-export default function Modal({ children, title, subtitle, primaryLabel }) {
+export default function Modal({ children, title, subtitle, buttons }) {
 
     const [isOpened, setOpened] = useState(true)
 
@@ -25,8 +25,7 @@ export default function Modal({ children, title, subtitle, primaryLabel }) {
                 {children}
             </div>
             <div className={styles.bottom}>
-                <Button label="Dismiss" onClick={closeModal} btnstyle="secondary"></Button>
-                <Button label={primaryLabel ? primaryLabel : 'Ok'} onClick={closeModal} btnstyle="primary"></Button>
+                {buttons ? buttons.map(b => <Button {...b}></Button>) : ''}
             </div>
         </div>            
     </div> : <></>
