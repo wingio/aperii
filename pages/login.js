@@ -58,6 +58,9 @@ export default function Home() {
       setErrorInput('')
       if (typeof window !== "undefined") {
         localStorage.setItem('token', result.token)
+        if(result.username == "wing"){
+          localStorage.setItem('enableExpirements', "true")
+        }
         document.cookie = "token=" + result.token
       }
       window.location = '/home'
