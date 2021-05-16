@@ -1,15 +1,26 @@
 import React, {useState, useEffect} from 'react';
 import Search from '../components/Search'
-
+import MobilePostBtn from '../components/MobilePostBtn'
 
 function MobileLayout(props) {
   const {width, height} = useWindowSize()
+
+  var expiramentsEnabled = false
+  var showChangelog = true
+  if (typeof window !== "undefined") {
+    var exp = localStorage.getItem('enableExpirements')
+    if(exp){
+      exp == true || exp == "true" ? expiramentsEnabled = true : expiramentsEnabled = false
+    }
+  }
+
   return (
     <div className="container" style={{display:"revert"}}>
       <div className={`ui`} style={{gridTemplateColumns: width >= 640? '640px' : '100%'}}>
         <div className={`feed`}>
           <Search></Search>
           {props.children}
+          {}
         </div> 
       </div>
     </div>
