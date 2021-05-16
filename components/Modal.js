@@ -25,8 +25,8 @@ export default function Modal({ children, title, subtitle }) {
                 {children}
             </div>
             <div className={styles.bottom}>
-                <Button label="Dismiss" onClick={closeModal} style="secondary"></Button>
-                <Button label="Save" onClick={closeModal} style="primary"></Button>
+                <Button label="Dismiss" onClick={closeModal} btnstyle="secondary"></Button>
+                <Button label="Save" onClick={closeModal} btnstyle="primary"></Button>
             </div>
         </div>            
     </div> : <></>

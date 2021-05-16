@@ -6,9 +6,9 @@ import styles from '../styles/Button.module.css'
  * @returns 
  */
 export default function Button(props) {
-    const { label, click, style } = props
+    const { label, btnstyle } = props
     return (
-        <button className={styles.btnPrimary} className={styles[style] ? styles[style] : styles.primary} {...props}>
+        <button className={styles[btnstyle] ? styles[btnstyle] : styles.primary} {...props}>
             {label}
         </button>
     )
