@@ -30,7 +30,7 @@ export default function Demo( { posts, user } ) {
   if (typeof window !== "undefined") {
     var token = localStorage.getItem('token')
     var exp = localStorage.getItem('expiramental')
-    exp == true || exp == "true" ? setExpiramental(true) : setExpiramental(false)
+    exp == true || exp == "true" && setExpiramental(true)
     if (token) {
       fetch('https://aperii.com/api/v1/auth/validate', {
         method: 'POST',
@@ -89,22 +89,6 @@ export async function getServerSideProps(context) {
       href: '/',
       permenant: false
     }
-    // props: {
-    //   posts: [{
-    //     body: 'Nice try, but you need to log in',
-    //     id: 'nicetry',
-    //     createdTimestamp: Date.now(),
-    //     author: {
-    //       username: 'aperii',
-    //       displayName: 'Aperii',
-    //       verified: true,
-    //       avatar: '/logo_circle.png',
-    //       id: 'aperii',
-    //       joinedTimestamp: Date.now()
-    //     }
-    //   }],
-    //   user
-    // }
   } : {
     props: {
       posts: result.sort((a, b) => {
