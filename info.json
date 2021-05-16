@@ -1,4 +1,25 @@
 {
     "version": "ALPHA 0.3.01",
-    "apiVersion": 1
+    "apiVersion": 1,
+    "changelog": {
+        "image": "/cl.png",
+        "sections":[
+            {
+                "name": "Mobile posts are here!",
+                "value": "After a long time of desktop exclusivity, mobile users are now also able to post. Simply click the circle button in the bottom right corner of your screen!"
+            },
+            {
+                "name": "Mobile posts are here!",
+                "value": "After a long time of desktop exclusivity, mobile users are now also able to post. Simply click the circle button in the bottom right corner of your screen!"
+            },
+            {
+                "name": "Mobile posts are here!",
+                "value": "After a long time of desktop exclusivity, mobile users are now also able to post. Simply click the circle button in the bottom right corner of your screen!"
+            },
+            {
+                "name": "Mobile posts are here!",
+                "value": "After a long time of desktop exclusivity, mobile users are now also able to post. Simply click the circle button in the bottom right corner of your screen!"
+            }
+        ]
+    }
 }

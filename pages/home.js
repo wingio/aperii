@@ -8,7 +8,7 @@ import {useState, useEffect} from 'react'
 import PostFeed from '../components/PostFeed'
 
 import MakePostModal from '../components/MakePostModal'
-
+import Changelog from '../components/Changelog'
 
 var post = {
   id: 'gwdtfwtyf56wsdt76',
@@ -54,7 +54,7 @@ export default function Demo( { posts, user } ) {
       <meta property="og:description" content="A free, more open social experience" />
       <meta property="og:image" content="/logo_circle.png"/>
     </Head>
-    {user.username == 'wing' ? <MakePostModal user={user}/> : ''}
+    {user.username == 'wing' ? <Changelog user={user}/> : ''}
     <PostFeed posts={posts}></PostFeed>
   </Layout>
 }
