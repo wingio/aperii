@@ -20,7 +20,7 @@ function MobileLayout(props) {
         <div className={`feed`}>
           <Search></Search>
           {props.children}
-          {expiramentsEnabled ? <MobilePostBtn user={props.user}/> : ''}
+          <MobilePostBtn user={props.user}/>
         </div> 
       </div>
     </div>
