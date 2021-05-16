@@ -2,7 +2,7 @@
     "version": "ALPHA 0.3.01",
     "apiVersion": 1,
     "changelog": {
-        "image": "/cl.png",
+        "image": "/mobileposts.png",
         "sections":[
             {
                 "name": "Mobile posts are here!",
