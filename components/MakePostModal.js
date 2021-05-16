@@ -2,12 +2,10 @@ import React, {useState} from 'react'
 import Modal from './Modal'
 import TextBox from './TextBox'
 import ModalForm from './ModalForm'
-export default function MakePostModal({ user }) {
+export default function MakePostModal({ user, ref }) {
     const [opened, setOpen] = useState(true)
 
-    var close = () => {
-        setOpen(false)
-    }
+    var close = ref.current.close
 
     var post = (e) => {
         e.preventDefault()
