@@ -9,12 +9,13 @@ export default function MakePostModal() {
         setOpen(false)
     }
     var post = (e) => {
+        e.preventDefault()
         console.log(e)
     }
 
     return (
         opened ? <Modal title="What's on your mind?" subtitle="To let everyone know, make a post!" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Post', btnstyle: 'primary', onClick: post}]}>
-            <ModalForm>
+            <ModalForm onSubmit={post}>
                 <TextBox></TextBox>
             </ModalForm>
         </Modal> : <></>
