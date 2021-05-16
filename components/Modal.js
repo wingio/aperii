@@ -13,8 +13,8 @@ export default function Modal({ children, title, subtitle }) {
         <div className={styles.background}>
             <div className={styles.popout}>
                 <div className={styles.content}>
-                    <h3>{title ? title : 'Hello 👋'}</h3>
-                    {subtitle ? <p>{subtitle}</p> : ''}
+                    <h3 style={{marginTop: 0, color: "white", marginBottom: subtitle ? 0 : 'revert'}}>{title ? title : 'Hello 👋'}</h3>
+                    {subtitle ? <p style={{marginTop: ".2em"}}>{subtitle}</p> : ''}
                     {children}
                 </div>
                 <div className={styles.bottom}>

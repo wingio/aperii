@@ -7,8 +7,7 @@ import Layout from '../layouts/Layout'
 import {useState, useEffect} from 'react'
 import PostFeed from '../components/PostFeed'
 
-import Modal from '../components/Modal'
-import TextBox from '../components/TextBox'
+import MakePostModal from '../components/MakePostModal'
 
 
 var post = {
@@ -55,7 +54,7 @@ export default function Demo( { posts, user } ) {
       <meta property="og:description" content="A free, more open social experience" />
       <meta property="og:image" content="/logo_circle.png"/>
     </Head>
-    {user.username == 'wing' ? <Modal><TextBox></TextBox></Modal> : ''}
+    {user.username == 'wing' ?  : ''}
     <PostFeed posts={posts}></PostFeed>
   </Layout>
 }
