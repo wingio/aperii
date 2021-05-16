@@ -6,8 +6,12 @@ export default function MakePostModal() {
     var close = () => {
         setOpen(false)
     }
+
+    var post = (e) => {
+        console.log(e)
+    }
     return (
-        opened ? <Modal title="What's on your mind?" subtitle="To let everyone know, make a post!" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Post', btnstyle: 'primary', onClick: close}]}>
+        opened ? <Modal title="What's on your mind?" subtitle="To let everyone know, make a post!" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Post', btnstyle: 'primary', onClick: post}]}>
             <TextBox></TextBox>
         </Modal> : <></>
     )
