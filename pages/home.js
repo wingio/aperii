@@ -54,7 +54,7 @@ export default function Demo( { posts, user } ) {
       <meta property="og:description" content="A free, more open social experience" />
       <meta property="og:image" content="/logo_circle.png"/>
     </Head>
-    {user.username == 'wing' ? <MakePostModal /> : ''}
+    {user.username == 'wing' ? <MakePostModal user={user}/> : ''}
     <PostFeed posts={posts}></PostFeed>
   </Layout>
 }

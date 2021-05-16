@@ -2,15 +2,30 @@ import React, {useState} from 'react'
 import Modal from './Modal'
 import TextBox from './TextBox'
 import ModalForm from './ModalForm'
-export default function MakePostModal() {
+export default function MakePostModal({ user }) {
     const [opened, setOpen] = useState(true)
 
     var close = () => {
         setOpen(false)
     }
+
     var post = (e) => {
         e.preventDefault()
-        console.log(e)
+        var body = e.type == "click" ? e.target.form[0].value : e.target[0].value
+
+        fetch(`https://aperii.com/api/v1/users/${user.id}/posts`, {
+            body: JSON.stringify({
+                body
+            }),
+            headers: {
+                'content-type': 'application/json',
+                authorization: localStorage.getItem('token')
+            },
+            method: 'POST'
+        }).then(res => res.json()).then(json => {
+            close()
+            window.location = '/home'
+        })
     }
 
     return (
