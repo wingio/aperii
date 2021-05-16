@@ -14,8 +14,8 @@ export default function MakePostModal() {
     }
 
     return (
-        opened ? <Modal title="What's on your mind?" subtitle="To let everyone know, make a post!" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Post', btnstyle: 'primary', onClick: post}]}>
-            <ModalForm onSubmit={post}>
+        opened ? <Modal title="What's on your mind?" subtitle="To let everyone know, make a post!" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Post', btnstyle: 'primary', form: "modal-postform", onClick: post}]}>
+            <ModalForm onSubmit={post} id="modal-postform">
                 <TextBox></TextBox>
             </ModalForm>
         </Modal> : <></>
