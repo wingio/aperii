@@ -28,9 +28,15 @@ var post = {
 export default function Demo( { posts, user } ) {
   const [expiramentsEnabled, setExpiramental] = useState(false)
   if (typeof window !== "undefined") {
-    var token = localStorage.getItem('token')
     var exp = localStorage.getItem('expiramental')
-    exp == true || exp == "true" && setExpiramental(true)
+    if(exp){
+      exp == true || exp == "true" && setExpiramental(true)
+    }
+  }
+
+
+  if (typeof window !== "undefined") {
+    var token = localStorage.getItem('token')
     if (token) {
       fetch('https://aperii.com/api/v1/auth/validate', {
         method: 'POST',
@@ -57,7 +63,7 @@ export default function Demo( { posts, user } ) {
       <meta property="og:description" content="A free, more open social experience" />
       <meta property="og:image" content="/logo_circle.png"/>
     </Head>
-    {expiramentsEnabled ? <Changelog user={user}/> : ''}
+    {expiramentsEnabled ? <Changelog/> : ''}
     <PostFeed posts={posts}></PostFeed>
   </Layout>
 }
