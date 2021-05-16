@@ -26,11 +26,11 @@ var post = {
 }
 
 export default function Demo( { posts, user } ) {
-  const [expiramentsEnabled, setExpiramental] = useState(false)
+  var expiramentsEnabled = false
   if (typeof window !== "undefined") {
     var exp = localStorage.getItem('expiramental')
     if(exp){
-      exp == true || exp == "true" && setExpiramental(true)
+      exp == true || exp == "true" ? expiramentsEnabled = true : expiramentsEnabled = false
     }
   }
 
