@@ -3,7 +3,7 @@ import styles from '../styles/Button.module.css'
 
 export default function Button({ label, click, style }) {
     return (
-        <button onClick={click} className={styles.btnPrimary} className={styles[style] ? styles[style] : styles.primary}>
+        <button className={styles.btnPrimary} className={styles[style] ? styles[style] : styles.primary}>
             {label}
         </button>
     )

@@ -15,8 +15,6 @@ export default function Modal({ children, title, subtitle }) {
         setOpened(false)
     }
 
-
-
     return (
         isOpened ? 
         <div className={styles.background} onClick={closeModal}>
@@ -27,8 +25,8 @@ export default function Modal({ children, title, subtitle }) {
                 {children}
             </div>
             <div className={styles.bottom}>
-                <Button label="Dismiss" click={testF} style="secondary"></Button>
-                <Button label="Save" click={closeModal} style="primary"></Button>
+                <Button label="Dismiss" onClick={closeModal} style="secondary"></Button>
+                <Button label="Save" onClick={closeModal} style="primary"></Button>
             </div>
         </div>            
     </div> : <></>
