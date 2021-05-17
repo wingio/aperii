@@ -25,10 +25,10 @@ export default function ExperimentsModal({ user, closeAction }) {
     }
 
     return (
-        <Modal title="What's on your mind?" subtitle="To let everyone know, make a post!" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Post', btnstyle: 'primary', form: "modal-postform", onClick: post}]}>
-            <ModalForm onSubmit={post} id="modal-postform">
-                <p>New line support for textboxes</p>
-                <p style={{fontSize: "0.5em", opacity: 0.5}}>textbox_newline_05_17_21</p>
+        <Modal title="Feeling like a scientist?" subtitle="Try out new features before they're public" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Save', btnstyle: 'primary', form: "modal-exp", onClick: save}]}>
+            <ModalForm onSubmit={post} id="modal-exp">
+                <p style={{marginBottom: "0.2em"}}>New line support for textboxes</p>
+                <p style={{fontSize: "0.7em", opacity: 0.5, marginTop:0}}>textbox_newline_05_17_21</p>
                 <select name="experiment1" id="exp1">
                     <option value="">Control</option>
                     <option value="1">Treatment 1</option>
