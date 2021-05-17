@@ -6,8 +6,7 @@ export default function ExperimentsModal({ user, closeAction }) {
     var close = closeAction
 
     var save = (e) => {
-        e.preventDefault()
-        console.log(e)
+        console.log(parseInt(e.target.form[0].value, 10))
     }
 
     return (
@@ -15,8 +14,8 @@ export default function ExperimentsModal({ user, closeAction }) {
             <ModalForm id="modal-exp">
                 <p style={{marginBottom: "0.2em"}}>New line support for textboxes</p>
                 <p style={{fontSize: "0.7em", opacity: 0.5, marginTop:0}}>textbox_newline_05_17_21</p>
-                <select name="experiment1" id="exp1">
-                    <option value="">Control</option>
+                <select name="textbox_newline_05_17_21" id="exp1">
+                    <option value="0">Control</option>
                     <option value="1">Treatment 1</option>
                 </select>
             </ModalForm>
