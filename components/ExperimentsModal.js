@@ -5,23 +5,8 @@ import ModalForm from './ModalForm'
 export default function ExperimentsModal({ user, closeAction }) {
     var close = closeAction
 
-    var post = (e) => {
-        e.preventDefault()
-        var body = e.type == "click" ? e.target.form[0].value : e.target[0].value
-
-        fetch(`https://aperii.com/api/v1/users/${user.id}/posts`, {
-            body: JSON.stringify({
-                body
-            }),
-            headers: {
-                'content-type': 'application/json',
-                authorization: localStorage.getItem('token')
-            },
-            method: 'POST'
-        }).then(res => res.json()).then(json => {
-            close()
-            window.location = '/home'
-        })
+    var save = (e) => {
+        console.log(e)
     }
 
     return (
