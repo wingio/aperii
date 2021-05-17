@@ -40,7 +40,11 @@ function FullLayout(props) {
         },
         method: 'POST'
       }).then(res => res.json()).then(json => {
-        window.location = '/home'
+        if(json.error){
+          console.log(json)
+        } else {
+          window.location = '/home'
+        }
       })
       return
     }
