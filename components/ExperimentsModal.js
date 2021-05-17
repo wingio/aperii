@@ -11,7 +11,7 @@ export default function ExperimentsModal({ user, closeAction, exp }) {
         const experiments = [
             "textbox_newline_05_17_21"
         ]
-        
+        var val = ""
         for(val in e.target.form.children[val]){
             if(experiments.includes(val)){
                 console.log(e.target.form.children[val].value)
