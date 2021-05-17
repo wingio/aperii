@@ -28,7 +28,7 @@ export default function MakePostModal({ user, closeAction }) {
         <Modal title="What's on your mind?" subtitle="To let everyone know, make a post!" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Post', btnstyle: 'primary', form: "modal-postform", onClick: post}]}>
             <ModalForm onSubmit={post} id="modal-postform">
                 <p>New line support for textboxes</p>
-                <p style={{fontSize="0.5em", opacity: 0.5}}>textbox_newline_05_17_21</p>
+                <p style={{fontSize: "0.5em", opacity: 0.5}}>textbox_newline_05_17_21</p>
                 <select name="experiment1" id="exp1">
                     <option value="">Control</option>
                     <option value="1">Treatment 1</option>
