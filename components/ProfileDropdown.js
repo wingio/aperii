@@ -1,7 +1,7 @@
-import { faCloudShowersHeavy } from '@fortawesome/free-solid-svg-icons';
-import React from 'react';
+import React, {useState} from 'react';
 import Dropdown from './Dropdown'
 import DropdownItem from './DropdownItem'
+import ExperimentsModal from './ExperimentsModal'
 
 function ProfileDropdown(props) {
   var expiramentsEnabled = faCloudShowersHeavy
@@ -12,6 +12,11 @@ function ProfileDropdown(props) {
     }
   }
 
+  const [modalOpened, setOpened] = useState(false)
+    var close = () => {
+        setOpened(false)
+    }
+
   return (
       <Dropdown>
         <DropdownItem loc={`/p/${props.user.username}`} label="Profile" icon='user'></DropdownItem>
@@ -19,8 +24,9 @@ function ProfileDropdown(props) {
         <DropdownItem label="Language" icon='globe' loc="/"></DropdownItem>
         <DropdownItem label="Discord" icon='discord' loc="https://discord.gg/Mryxr7zVtc"></DropdownItem>
         <DropdownItem label="Settings" icon='gear' loc="/"></DropdownItem>
-        {expiramentsEnabled ? <DropdownItem label="Experiments" icon='gear' loc="/"></DropdownItem> : ''}
+        {expiramentsEnabled ? <DropdownItem label="Experiments" icon='gear' loc="/" click={() => {setOpened(true)}}></DropdownItem> : ''}
         <DropdownItem label="Log Out" icon='gear' action="logout"></DropdownItem>
+        {modalOpened ? <ExperimentsModal closeAction={close}></ExperimentsModal> : ''}
       </Dropdown>
   );
 }
