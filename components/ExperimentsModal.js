@@ -6,6 +6,7 @@ export default function ExperimentsModal({ user, closeAction }) {
     var close = closeAction
 
     var save = (e) => {
+        e.preventDefault()
         console.log(e)
     }
 
