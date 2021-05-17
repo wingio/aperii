@@ -24,7 +24,7 @@ function ProfileDropdown(props) {
         <DropdownItem label="Language" icon='globe' loc="/"></DropdownItem>
         <DropdownItem label="Discord" icon='discord' loc="https://discord.gg/Mryxr7zVtc"></DropdownItem>
         <DropdownItem label="Settings" icon='gear' loc="/"></DropdownItem>
-        {expiramentsEnabled ? <DropdownItem label="Experiments" icon='gear' loc="/" click={() => {setOpened(true)}}></DropdownItem> : ''}
+        {expiramentsEnabled ? <DropdownItem label="Experiments" icon='gear' click={() => {setOpened(true)}}></DropdownItem> : ''}
         <DropdownItem label="Log Out" icon='gear' action="logout"></DropdownItem>
         {modalOpened ? <ExperimentsModal closeAction={close}></ExperimentsModal> : ''}
       </Dropdown>
