@@ -8,8 +8,15 @@ export default function ExperimentsModal({ user, closeAction, exp }) {
     var save = (e) => {
         e.preventDefault()
         console.log(e)
-
+        const experiments = [
+            "textbox_newline_05_17_21"
+        ]
         
+        for(val in e.target.form.children[val]){
+            if(experiments.includes(val)){
+                console.log(e.target.form.children[val].val)
+            }
+        }
 
     }
 
