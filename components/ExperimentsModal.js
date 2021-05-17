@@ -7,7 +7,9 @@ export default function ExperimentsModal({ user, closeAction, exp }) {
 
     var save = (e) => {
         e.preventDefault()
+        
         console.log(e)
+
         const experiments = [
             "textbox_newline_05_17_21"
         ]
