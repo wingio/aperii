@@ -8,6 +8,7 @@ export default function ExperimentsModal({ user, closeAction, exp }) {
     var update = (e) => {
         console.log(e.target.value)
         exp[e.target.name] = e.target.value
+        setValue(exp)
     }
 
     var save = () => {
