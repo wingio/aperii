@@ -6,7 +6,7 @@ import DropdownItem from './DropdownItem'
 function ProfileDropdown(props) {
   var expiramentsEnabled = faCloudShowersHeavy
   if (typeof window !== "undefined") {
-    var exp = localStorage.getItem('enableExpirements')
+    var exp = localStorage.getItem('enableExperiments')
     if (exp) {
       exp == true || exp == "true" ? expiramentsEnabled = true : expiramentsEnabled = false
     }

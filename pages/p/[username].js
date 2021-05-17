@@ -11,8 +11,17 @@ import Calender from '../../icons/Calender'
 import moment from 'moment'
 
 export default function User({profile, posts, user}) {
+  var expStore = {}
+  if (typeof window !== "undefined") {
+    var exp = localStorage.getItem('enableExperiments')
+    var expStore = localStorage.getItem('experiments') ? JSON.parse(localStorage.getItem('experiments')) : {}
+    if(exp){
+      exp == true || exp == "true" ? expiramentsEnabled = true : expiramentsEnabled = false
+    }
+  }
+
   return (
-    <Layout user={user}>
+    <Layout user={user} misc={expStore}>
       <Head>
         <meta property="og:title" content={`${profile.displayName} (@${profile.username})`} />
         <meta property="og:description" content={profile.bio ? profile.bio : 'This user has no bio'} />

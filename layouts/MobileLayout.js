@@ -8,11 +8,13 @@ function MobileLayout(props) {
   var expiramentsEnabled = false
   var showChangelog = true
   if (typeof window !== "undefined") {
-    var exp = localStorage.getItem('enableExpirements')
+    var exp = localStorage.getItem('enableExperiments')
     if(exp){
       exp == true || exp == "true" ? expiramentsEnabled = true : expiramentsEnabled = false
     }
   }
+
+  const expStore = props.misc
 
   return (
     <div className="container" style={{display:"revert"}}>

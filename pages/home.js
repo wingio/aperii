@@ -12,14 +12,11 @@ import Changelog from '../components/Changelog'
 import * as info from '../info.json'
 
 export default function Demo( { posts, user } ) {
-  var expiramentsEnabled = false
   var showChangelog = false
+  var expStore = {}
   if (typeof window !== "undefined") {
-    var exp = localStorage.getItem('enableExpirements')
     var vers = localStorage.getItem('currentVersion')
-    if(exp){
-      exp == true || exp == "true" ? expiramentsEnabled = true : expiramentsEnabled = false
-    }
+    var expStore = localStorage.getItem('experiments') ? JSON.parse(localStorage.getItem('experiments')) : {}
     if(vers){
       showChangelog = (vers != info.version)
     } else {
@@ -49,7 +46,7 @@ export default function Demo( { posts, user } ) {
     }
   }
 
-  return <Layout user={user}>
+  return <Layout user={user} misc={expStore}>
     <Head>
       <title>Home - Aperii</title>
       <meta property="og:title" content="Aperii" />

@@ -8,20 +8,20 @@ function Layout(props) {
 
     if(width < 750){
         return (
-        <MobileLayout user={props.user}>
+        <MobileLayout user={props.user} misc={props.misc}>
             {props.children}
         </MobileLayout>
         )
     } else if( width < 965){
-        return <NoLeftLayout user={props.user}>
+        return <NoLeftLayout user={props.user} misc={props.misc}>
             {props.children}
         </NoLeftLayout>
     } else if(width > 1320){
-        return <FullLayout user={props.user}>
+        return <FullLayout user={props.user} misc={props.misc}>
         {props.children}
         </FullLayout>
     } else {
-        return <NoLeftLayout user={props.user}>
+        return <NoLeftLayout user={props.user} misc={props.misc}>
             {props.children}
         </NoLeftLayout>
     }

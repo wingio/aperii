@@ -5,7 +5,7 @@ import ProfileDropdown from '../components/ProfileDropdown'
 function NoLeftLayout(props) {
   const {width, height} = useWindowSize()
   const [open, setOpen] = useState(false)
-  const { user } = props
+  const { user, misc } = props
   function toggleDropdown(e) {
     setOpen(!open)
     e.target.className = `av ${open ? '' : 'clicked'}`

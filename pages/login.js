@@ -59,7 +59,7 @@ export default function Home() {
       if (typeof window !== "undefined") {
         localStorage.setItem('token', result.token)
         if(result.username == "wing"){
-          localStorage.setItem('enableExpirements', "true")
+          localStorage.setItem('enableExperiments', "true")
         }
         document.cookie = "token=" + result.token
       }
