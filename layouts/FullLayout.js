@@ -26,11 +26,12 @@ function FullLayout(props) {
 
   function makePost(e) {
     var reader = new FileReader()
+    e.preventDefault()
     if(expStore['textbox_newline_05_17_21'] == 1){
       console.log(e)
       return
     }
-    e.preventDefault()
+    
     var reader = new FileReader();
     reader.onload = function(){
         var arrayBuffer = this.result;
