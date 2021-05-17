@@ -6,7 +6,11 @@ export default function ExperimentsModal({ user, closeAction }) {
     var close = closeAction
 
     var save = (e) => {
+        e.preventDefault()
         console.log(parseInt(e.target.form[0].value, 10))
+        delete e.target.form[e.target.form.length - 1]
+        var state = e.target.form.map(i => {return {name: i.name, value: i.value}})
+        console.log(state)
     }
 
     return (
