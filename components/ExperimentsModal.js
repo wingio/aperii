@@ -16,7 +16,7 @@ export default function ExperimentsModal({ user, closeAction, exp }) {
         
         experiments.forEach((e, i) => {
             console.log(e.target)
-            console.log(e.target.form[i].value)
+            //console.log(e.target.form[i].value)
         })
 
     }
