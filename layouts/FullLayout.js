@@ -2,6 +2,8 @@ import React, { Component, useState } from 'react';
 import Search from '../components/Search'
 import ProfileDropdown from '../components/ProfileDropdown'
 import SidebarFeedOption from '../components/SidebarFeedOption'
+import RichTextbox from '../components/RichTextbox'
+
 function FullLayout(props) {
   const [open, setOpen] = useState(false)
   const [imgstuff, setBase] = useState('')
@@ -70,7 +72,7 @@ function FullLayout(props) {
       <div className="profile"></div>
       <div className="post-form">
         <form onSubmit={makePost}>
-          <input type="text"></input>
+          {expStore['textbox_newline_05_17_21'] == 1 ? <RichTextbox /> : <input type="text"></input>}
           <input type="file"></input>
           <input type="submit"></input>
           <img src={`data:image/png;base64, ${imgstuff}`}></img>
