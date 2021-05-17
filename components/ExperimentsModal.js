@@ -14,7 +14,7 @@ export default function ExperimentsModal({ user, closeAction, exp }) {
         
         for(val in e.target.form.children[val]){
             if(experiments.includes(val)){
-                console.log(e.target.form.children[val].val)
+                console.log(e.target.form.children[val].value)
             }
         }
 
