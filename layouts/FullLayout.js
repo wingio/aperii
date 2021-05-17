@@ -6,6 +6,7 @@ function FullLayout(props) {
   const [open, setOpen] = useState(false)
   const [imgstuff, setBase] = useState('')
   const user = props.user
+  const expStore = props.misc
   function toggleDropdown(e) {
     setOpen(!open)
     e.target.className = `av ${open ? '' : 'clicked'}`
