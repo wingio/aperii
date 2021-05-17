@@ -28,7 +28,7 @@ function FullLayout(props) {
     var reader = new FileReader()
     e.preventDefault()
     if(expStore['textbox_newline_05_17_21'] == 1){
-      console.log(e)
+      console.log(e.target.children[0].children[0].innerText)
       return
     }
     
