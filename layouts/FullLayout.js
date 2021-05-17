@@ -27,8 +27,23 @@ function FullLayout(props) {
   function makePost(e) {
     var reader = new FileReader()
     e.preventDefault()
+    
     if(expStore['textbox_newline_05_17_21'] == 1){
       console.log(e.target.children[0].children[0].innerText)
+
+      e.target[2].disabled = true
+      fetch(`https://aperii.com/api/v1/users/${user.id}/posts`, {
+        body: JSON.stringify({
+          body: e.target.children[0].children[0].innerText
+        }),
+        headers: {
+          'content-type': 'application/json',
+          authorization: localStorage.getItem('token')
+        },
+        method: 'POST'
+      }).then(res => res.json()).then(json => {
+        window.location = '/home'
+      })
       return
     }
     
@@ -38,6 +53,8 @@ function FullLayout(props) {
         console.log(arrayBuffer);
         setBase(_arrayBufferToBase64(arrayBuffer))
     }
+
+
     //reader.readAsArrayBuffer(e.target[1].files[0]);
     e.target[2].disabled = true
     fetch(`https://aperii.com/api/v1/users/${user.id}/posts`, {
