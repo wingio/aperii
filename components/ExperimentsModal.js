@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Modal from './Modal'
 import TextBox from './TextBox'
 import ModalForm from './ModalForm'
-export default function MakePostModal({ user, closeAction }) {
+export default function ExperimentsModal({ user, closeAction }) {
     var close = closeAction
 
     var post = (e) => {
