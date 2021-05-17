@@ -4,16 +4,18 @@ import TextBox from './TextBox'
 import ModalForm from './ModalForm'
 export default function ExperimentsModal({ user, closeAction, exp }) {
     var close = closeAction
-    
+
     var update = (e) => {
         console.log(e.target.value)
         exp[e.target.name] = e.target.value
     }
 
     var save = () => {
-        localStorage.setItem('experiments', JSON.stringify(exp))
-        close()
-        location.href = location.href
+        if(typeof window != "undefined"){
+            localStorage.setItem('experiments', JSON.stringify(exp))
+            close()
+            location.href = location.href
+        }
     }
 
     return (
