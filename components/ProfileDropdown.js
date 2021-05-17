@@ -26,7 +26,7 @@ function ProfileDropdown(props) {
         <DropdownItem label="Settings" icon='gear' loc="/"></DropdownItem>
         {expiramentsEnabled ? <DropdownItem label="Experiments" icon='gear' click={() => {setOpened(true)}}></DropdownItem> : ''}
         <DropdownItem label="Log Out" icon='gear' action="logout"></DropdownItem>
-        {modalOpened ? <ExperimentsModal closeAction={close}></ExperimentsModal> : ''}
+        {modalOpened ? <ExperimentsModal closeAction={close} exp={props.exp}></ExperimentsModal> : ''}
       </Dropdown>
   );
 }

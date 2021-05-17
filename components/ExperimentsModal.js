@@ -2,14 +2,15 @@ import React, {useState} from 'react'
 import Modal from './Modal'
 import TextBox from './TextBox'
 import ModalForm from './ModalForm'
-export default function ExperimentsModal({ user, closeAction }) {
+export default function ExperimentsModal({ user, closeAction, exp }) {
     var close = closeAction
 
     var save = (e) => {
         e.preventDefault()
-        console.log(parseInt(e.target.form[0].value, 10))
-        var state = e.target.form.map(i => [i.name, i.value])
-        console.log(state)
+        console.log(e)
+
+        
+
     }
 
     return (
