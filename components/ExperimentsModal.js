@@ -4,7 +4,7 @@ import TextBox from './TextBox'
 import ModalForm from './ModalForm'
 export default function ExperimentsModal({ user, closeAction, exp }) {
     var close = closeAction
-
+    
     var update = (e) => {
         console.log(e.target.value)
         exp[e.target.name] = e.target.value
@@ -17,7 +17,7 @@ export default function ExperimentsModal({ user, closeAction, exp }) {
     }
 
     return (
-        <Modal title="Feeling like a scientist?" subtitle="Try out new features before they're public" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Dismiss', btnstyle: 'primary', onClick: close}]}>
+        <Modal title="Feeling like a scientist?" subtitle="Try out new features before they're public" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Save', btnstyle: 'primary', onClick: save}]}>
                 <p style={{marginBottom: "0.2em"}}>New line support for textboxes</p>
                 <p style={{fontSize: "0.7em", opacity: 0.5, marginTop:0}}>textbox_newline_05_17_21</p>
                 <select name="textbox_newline_05_17_21" id="exp1" onChange={update}>
