@@ -1,4 +1,4 @@
-var text = '\nHey @aperii you suck\nok and?'
+var text = 'Hey @aperii you suck!\n:('
 
 function tokenize(string) {
     var lines = string.split('\n')
@@ -10,7 +10,8 @@ function tokenize(string) {
         tokens.push(...toks, {type: 3})
     })
     tokens.pop()
-    while(tokens[0].type == 3 || tokens[0].value == ''){
+
+    while(tokens.length > 0 && (tokens[0].value == '' || tokens[0].type == 3)){
         tokens.shift()
     }
 
@@ -65,4 +66,4 @@ function perline(string){
 module.exports = tokenize
 
 
-console.log(tokenize(text))
+//console.log(tokenize(text))
