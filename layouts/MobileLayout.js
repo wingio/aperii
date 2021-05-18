@@ -21,7 +21,7 @@ function MobileLayout(props) {
         <div className={`feed`}>
           <Search></Search>
           <div className="av-container">
-      <img className={`av`} src={user ? user.avatar ? user.avatar : '/av.png' : '/av.png'} onClick={() => {setOpen(!open)}}></img>
+      {expStore["mobile_header_05_18_21"] == 1 ? <img className={`av`} src={user ? user.avatar ? user.avatar : '/av.png' : '/av.png'} onClick={() => {setOpen(!open)}}></img> : ''}
       {open ? <ProfileDropdown user={props.user} exp={expStore}/> : ''}
       </div>
           {props.children}
