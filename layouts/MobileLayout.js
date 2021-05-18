@@ -4,9 +4,10 @@ import MobilePostBtn from '../components/MobilePostBtn'
 
 function MobileLayout(props) {
   const {width, height} = useWindowSize()
-
+  const [open, setOpen] = useState(false)
   var expiramentsEnabled = false
-  var showChangelog = true
+  const expStore = props.misc
+  const user = props.user
   if (typeof window !== "undefined") {
     var exp = localStorage.getItem('enableExperiments')
     if(exp){
@@ -21,6 +22,10 @@ function MobileLayout(props) {
       <div className={`ui`} style={{gridTemplateColumns: width >= 640? '640px' : '100%'}}>
         <div className={`feed`}>
           <Search></Search>
+          <div className="av-container">
+      <img className={`av`} src={user ? user.avatar ? user.avatar : '/av.png' : '/av.png'} onClick={() => {setOpen(!open)}}></img>
+      {open ? <ProfileDropdown user={props.user} exp={expStore}/> : ''}
+      </div>
           {props.children}
           <MobilePostBtn user={props.user}/>
         </div> 
