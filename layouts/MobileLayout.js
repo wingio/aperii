@@ -19,14 +19,19 @@ function MobileLayout(props) {
     <div className="container" style={{display:"revert"}}>
       <div className={`ui`} style={{gridTemplateColumns: width >= 640? '640px' : '100%'}}>
         <div className={`feed`}>
-          <Search></Search>
-          <div className="av-container">
-      {expStore["mobile_header_05_18_21"] == 1 ? <img className={`av`} src={user ? user.avatar ? user.avatar : '/av.png' : '/av.png'} onClick={() => {setOpen(!open)}}></img> : ''}
-      {open ? <ProfileDropdown user={props.user} exp={expStore}/> : ''}
-      </div>
+          {expStore["mobile_header_05_18_21"] == 1 ? <div className="search-container sticky">
+            <Search></Search>
+            <div className="av-container">
+              <img className={`av`} src={user ? user.avatar ? user.avatar
+                : '/av.png' : '/av.png' } onClick={()=> {setOpen(!open)}}></img>
+              {open ?
+              <ProfileDropdown user={props.user} exp={expStore} /> : ''}
+            </div>
+          </div> : <Search></Search>}
+
           {props.children}
-          <MobilePostBtn user={props.user}/>
-        </div> 
+          <MobilePostBtn user={props.user} />
+        </div>
       </div>
     </div>
   );
