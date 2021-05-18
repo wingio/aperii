@@ -1,7 +1,7 @@
 var text = '\nHey @aperii you\n\n suck!\n\n:('
 
 function tokenize(string) {
-    var lines = string.split('\n')
+    var lines = string.split(/(\n|\\n|&nbsp;)/gm)
     var tokens = []
     lines.forEach(line => {
         if(line.length < 1) return
