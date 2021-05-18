@@ -15,8 +15,6 @@ function MobileLayout(props) {
     }
   }
 
-  const expStore = props.misc
-
   return (
     <div className="container" style={{display:"revert"}}>
       <div className={`ui`} style={{gridTemplateColumns: width >= 640? '640px' : '100%'}}>
