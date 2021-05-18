@@ -23,7 +23,7 @@ export default function ExperimentsModal({ user, closeAction, exp }) {
         <Modal title="Feeling like a scientist?" subtitle="Try out new features before they're public" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Save', btnstyle: 'primary', onClick: save}]}>
                 <p style={{marginBottom: "0.2em"}}>New mobile header</p>
                 <p style={{fontSize: "0.7em", opacity: 0.5, marginTop:0}}>mobile_header_05_18_21</p>
-                <select name="mobile_header_05_18_21" id="exp2" onChange={update} defaultValue={value["textbox_newline_05_17_21"] ? value["textbox_newline_05_17_21"] : "0"}>
+                <select name="mobile_header_05_18_21" id="exp2" onChange={update} defaultValue={value["mobile_header_05_18_21"] ? value["mobile_header_05_18_21"] : "0"}>
                     <option value="0">Control</option>
                     <option value="1">Treatment 1</option>
                 </select>
