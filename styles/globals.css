@@ -378,3 +378,11 @@ input[type="submit"] {
   background: var(--darkle);
   z-index: 11;
 }
+
+.search-container-mobile {
+  padding: 0;
+  background: #0b0e11;
+  z-index: 11;
+  width: 100%;
+  margin-right: .5em;
+}

@@ -20,7 +20,7 @@ function MobileLayout(props) {
       <div className={`ui`} style={{gridTemplateColumns: width >= 640? '640px' : '100%'}}>
         <div className={`feed`}>
           {expStore["mobile_header_05_18_21"] == 1 ? <div className="header sticky">
-            <Search></Search>
+            <Search mobile={true}></Search>
             <div className="av-container">
               <img className={`av`} src={user ? user.avatar ? user.avatar
                 : '/av.png' : '/av.png' } onClick={()=> {setOpen(!open)}}></img>

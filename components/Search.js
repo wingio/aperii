@@ -2,8 +2,8 @@ import style from '../styles/Search.module.css'
 import Link from 'next/link'
 
 
-const Search = () => {
-    return (<form className="search-container sticky">
+const Search = (props) => {
+    return (<form className={`search-container${props.mobile ? '-mobile' : ''} sticky`}>
         <input type='text' placeholder="Search..." className={style.search}></input>
     </form>)
 }
