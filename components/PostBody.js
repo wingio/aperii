@@ -3,7 +3,7 @@ const tokenize = require('../tokenizer')
 
 export default function PostBody({ text }) {
 
-    var tokens = tokenize(text)
+    var tokens = tokenize(text.replace('&nbsp;', ''))
 
     return (
         <>

@@ -41,7 +41,6 @@ function FullLayout(props) {
         method: 'POST'
       }).then(res => res.json()).then(json => {
         if(json.error){
-          console.log(json)
         } else {
           window.location = '/home'
         }
