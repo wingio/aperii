@@ -1,4 +1,4 @@
-var text = 'Hey @aperii you suck\nok and?'
+var text = '\nHey @aperii you suck\nok and?'
 
 function tokenize(string) {
     var lines = string.split('\n')
@@ -10,6 +10,9 @@ function tokenize(string) {
         tokens.push(...toks, {type: 3})
     })
     tokens.pop()
+    while(tokens[0].type == 3 || tokens[0].value == ''){
+        tokens.shift()
+    }
     return tokens
 }
 
