@@ -2,11 +2,14 @@ import React, {useState, useEffect} from 'react';
 import FullLayout from './FullLayout'
 import NoLeftLayout from './NoLeftLayout'
 import MobileLayout from './MobileLayout'
-
+import Splash from './Splash'
 function Layout(props) {
     const {width, height} = useWindowSize()
-
-    if(width < 750){
+    if(typeof width == 'undefined'){
+      return(
+        <Splash />
+      )
+    } else if(width < 750){
         return (
         <MobileLayout user={props.user} misc={props.misc}>
             {props.children}
