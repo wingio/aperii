@@ -1,9 +1,10 @@
-var text = '\nHey @aperii you suck!\n:('
+var text = '\nHey @aperii you\n\n suck!\n\n:('
 
 function tokenize(string) {
     var lines = string.split('\n')
     var tokens = []
     lines.forEach(line => {
+        if(line.length < 1) return
         var toks = perline(line)
         //console.log(toks)
         //tokens = [...toks, {type: 3}]
@@ -66,4 +67,4 @@ function perline(string){
 module.exports = tokenize
 
 
-console.log(tokenize(text))
+//console.log(tokenize(text))
