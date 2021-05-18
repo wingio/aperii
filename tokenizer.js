@@ -1,9 +1,23 @@
-var text = 'Hey aperii you suck'
+var text = 'Hey @aperii you suck\nok and?'
 
 function tokenize(string) {
+    var lines = string.split('\n')
+    var tokens = []
+    lines.forEach(line => {
+        var toks = perline(line)
+        //console.log(toks)
+        //tokens = [...toks, {type: 3}]
+        tokens.push(...toks, {type: 3})
+    })
+    tokens.pop()
+    return tokens
+}
+
+function perline(string){
     var mentionReg = /^@[a-zA-Z0-9_]{3,32}$/g
     var tokens = []
     var nextToken = {}
+
     string.split(' ').forEach((segment, i) => {
         var mentions = segment.match(mentionReg)
         if (mentions) {

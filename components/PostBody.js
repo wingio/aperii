@@ -7,7 +7,7 @@ export default function PostBody({ text }) {
 
     return (
         <>
-            {tokens.map((tok, i) => tok.type == 0 ? `${tok.value}` : <a href={`/p/${tok.value}`} style={{marginRight: '.2em', marginLeft: `${i == 0 ? '0em' : '.2em'}`}}>@{tok.value}</a>)}
+            {tokens.map((tok, i) => tok.type == 0 ? `${tok.value}` : tok.type = 3 ? <br /> : <a href={`/p/${tok.value}`} style={{marginRight: '.2em', marginLeft: `${i == 0 ? '0em' : '.2em'}`}}>@{tok.value}</a>)}
         </>
     )
 }
