@@ -22,7 +22,7 @@ function MobileLayout(props) {
           {expStore["mobile_header_05_18_21"] == 1 ? <div className="header sticky">
             <Search mobile={true}></Search>
             <div className="av-container">
-              <img className={`av`} src={user ? user.avatar ? user.avatar
+              <img className={`av mobile`} src={user ? user.avatar ? user.avatar
                 : '/av.png' : '/av.png' } onClick={()=> {setOpen(!open)}}></img>
               {open ?
               <ProfileDropdown user={props.user} exp={expStore} /> : ''}
