@@ -1,7 +1,8 @@
-var text = '\nHey @aperii you\n\n suck!\n\n:('
+var text = '@aperii&nbsp;\nhi'
 
 function tokenize(string) {
-    var lines = string.split(/(\n|\\n|&nbsp;)/gm)
+    var lines = string.split('\n')
+    console.log(lines)
     var tokens = []
     lines.forEach(line => {
         if(line.length < 1) return
@@ -20,15 +21,14 @@ function tokenize(string) {
 }
 
 function perline(string){
-    var mentionReg = /^@[a-zA-Z0-9_]{3,32}$/g
+    var mentionReg = /^@[a-zA-Z0-9_]{3,32}(&nbsp;)$/g
     var tokens = []
     var nextToken = {}
-
     string.split(' ').forEach((segment, i) => {
         var mentions = segment.match(mentionReg)
         if (mentions) {
             nextToken.type = 1
-            nextToken.value = mentions[0].slice(1).toLowerCase()
+            nextToken.value = mentions[0].slice(1).toLowerCase().replace('&nbsp;', '')
         } else {
             nextToken.type = 0
             nextToken.value = segment
@@ -67,4 +67,4 @@ function perline(string){
 module.exports = tokenize
 
 
-//console.log(tokenize(text))
+console.log(tokenize(text))
