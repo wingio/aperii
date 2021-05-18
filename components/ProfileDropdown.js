@@ -4,7 +4,7 @@ import DropdownItem from './DropdownItem'
 import ExperimentsModal from './ExperimentsModal'
 
 function ProfileDropdown(props) {
-  var expiramentsEnabled = {}
+  var expiramentsEnabled = false
   if (typeof window !== "undefined") {
     var exp = localStorage.getItem('enableExperiments')
     if (exp) {
