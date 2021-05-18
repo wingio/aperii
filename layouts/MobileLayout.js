@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Search from '../components/Search'
 import MobilePostBtn from '../components/MobilePostBtn'
-
+import ProfileDropdown from'../components/ProfileDropdown'
 function MobileLayout(props) {
   const {width, height} = useWindowSize()
   const [open, setOpen] = useState(false)
