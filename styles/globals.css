@@ -368,3 +368,13 @@ input[type="submit"] {
   color: white;
 }
 
+
+
+/*Mobile Header */
+
+.header {
+  padding: 30px 0;
+  display: flex;
+  background: var(--darkle);
+  z-index: 11;
+}
