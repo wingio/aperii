@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Search from '../components/Search'
 import ProfileDropdown from '../components/ProfileDropdown'
+import MobilePostBtn from '../components/MobilePostBtn'
 
 function NoLeftLayout(props) {
   const {width, height} = useWindowSize()
@@ -16,6 +17,7 @@ function NoLeftLayout(props) {
         <div className={`feed`}>
           <Search></Search>
           {props.children}
+          <MobilePostBtn user={props.user}/>
         </div>
         <div className={`sticky right`}>
         <div className="av-container">
