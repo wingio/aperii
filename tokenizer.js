@@ -21,7 +21,7 @@ function tokenize(string) {
 }
 
 function perline(string){
-    var mentionReg = /^@[a-zA-Z0-9_]{3,32}(&nbsp;)*$/g
+    var mentionReg = /^@[a-zA-Z0-9_]{3,32}$/g
     var tokens = []
     var nextToken = {}
     string.split(' ').forEach((segment, i) => {
