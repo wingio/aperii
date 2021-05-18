@@ -13,7 +13,8 @@ function tokenize(string) {
     while(tokens[0].type == 3 || tokens[0].value == ''){
         tokens.shift()
     }
-    return tokens
+
+    return tokens.length < 1 ? [{type: 0, value: ' '}] : tokens
 }
 
 function perline(string){
