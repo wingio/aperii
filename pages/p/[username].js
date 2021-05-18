@@ -12,6 +12,7 @@ import moment from 'moment'
 
 export default function User({profile, posts, user}) {
   var expStore = {}
+  var expiramentsEnabled = false
   if (typeof window !== "undefined") {
     var exp = localStorage.getItem('enableExperiments')
     var expStore = localStorage.getItem('experiments') ? JSON.parse(localStorage.getItem('experiments')) : {}
