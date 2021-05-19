@@ -4,13 +4,13 @@ export default function MobileTabBar({ currentPage }) {
     return (
         <div className={styles.tabbar}>
             <div className={`${styles.tab} ${currentPage=="home" ? styles.active : ''}`}>
-                <img src="/icons/home.svg"></img>
+                <img className={styles.icon} src="/icons/home.svg"></img>
             </div>
             <div className={styles.tab}>
-                <img src="/icons/compass.svg"></img>
+                <img className={styles.icon} src="/icons/compass.svg"></img>
             </div>
             <div className={`${styles.tab} ${currentPage=="profile" ? styles.active : ''}`}>
-                <img src="/icons/user.svg"></img>
+                <img className={styles.icon} src="/icons/user.svg"></img>
             </div>
         </div>
     )
