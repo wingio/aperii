@@ -20,6 +20,6 @@
     color: white;
 }
 
-.tab.active .icon{
-    color: var(--rust-blood);
+.tab.active{
+    border-top: 0.3em solid var(--rust-blood);
 }
