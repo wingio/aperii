@@ -27,3 +27,7 @@
 .tab.active{
     border-top: 0.3em solid var(--rust-blood);
 }
+
+.option {
+    width: 100%;
+}
