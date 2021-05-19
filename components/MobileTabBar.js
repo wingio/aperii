@@ -6,7 +6,7 @@ export default function MobileTabBar({ currentPage, username }) {
     return (
         <div className={styles.tabbar}>
             <div className={`${styles.tab} ${currentPage=="home" ? styles.active : ''}`}>
-                <a href="/home">
+                <a href="/home" style={{width: "100%"}}>
                     <Icon name="home" className={styles.icon}></Icon>
                 </a>
             </div>
