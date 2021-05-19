@@ -11,10 +11,10 @@
 .tab {
     width: 100%;
     text-align: center;
+    height: 60px;
 }
 
 .icon {
-    margin: 14px;
     width: 1.3em;
 }
 
