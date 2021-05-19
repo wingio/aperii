@@ -39,6 +39,6 @@ export default function Icon(props) {
     }
 
     return (
-        <icon {...props}></icon>
+        <>{icon(...props)}</>
     )
 }
