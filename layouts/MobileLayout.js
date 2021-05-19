@@ -28,7 +28,7 @@ function MobileLayout(props) {
               <ProfileDropdown user={props.user} exp={expStore} /> : ''}
             </div>
           </div> : <Search></Search>}
-        <div className={`feed`} style={{marginBottom: expStore["mobile_layout_05_18_21"] == 1 ? "70px" : '0'}}>
+        <div className={`feed`} style={{marginBottom: '0'}}>
           
           {props.children}
           
