@@ -5,10 +5,18 @@
     left: 0;
     display: flex;
     justify-content: space-evenly;
-    background: var(--darkle-bright-1);
+    background: var(--darkle-bright-2);
 }
 
+.tab {
+    width: 100%;
+    text-align: center;
+}
 
-.tab img{
+.tab img {
     padding-top: 1.3em;
+}
+
+.tab.active {
+    border-top: .3em solid var(--rust-blood);
 }

@@ -22,7 +22,7 @@ export default function User({profile, posts, user}) {
   }
 
   return (
-    <Layout user={user} misc={expStore}>
+    <Layout user={user} misc={expStore} page={profile.username == user.username ? 'profile' : 'home'}>
       <Head>
         <meta property="og:title" content={`${profile.displayName} (@${profile.username})`} />
         <meta property="og:description" content={profile.bio ? profile.bio : 'This user has no bio'} />

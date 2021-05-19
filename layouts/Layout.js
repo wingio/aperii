@@ -11,7 +11,7 @@ function Layout(props) {
       )
     } else if(width < 750){
         return (
-        <MobileLayout user={props.user} misc={props.misc}>
+        <MobileLayout user={props.user} misc={props.misc} page={props.page}>
             {props.children}
         </MobileLayout>
         )
