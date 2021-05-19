@@ -14,7 +14,8 @@
 }
 
 .tab img {
-    padding-top: 1.3em;
+    padding-top: .9em;
+    width: 1.3em;
 }
 
 .tab.active {
