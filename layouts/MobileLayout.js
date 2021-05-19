@@ -19,7 +19,7 @@ function MobileLayout(props) {
   return (
     <div className="container" style={{display:"revert"}}>
       <div className={`ui`} style={{gridTemplateColumns: width >= 640? '640px' : '100%'}}>
-        <div className={`feed`}>
+        <div className={`feed`} style={{marginBottom: expStore["mobile_layout_05_18_21"] == 1 ? "70px" : '0'}}>
           {expStore["mobile_layout_05_18_21"] == 1 ? <div className="header sticky">
             <Search mobile={true}></Search>
             <div className="av-container">
