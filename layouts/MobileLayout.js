@@ -31,7 +31,7 @@ function MobileLayout(props) {
           </div> : <Search></Search>}
 
           {props.children}
-          <MobilePostBtn user={props.user} />
+          <MobilePostBtn user={props.user} hasTabBar={expStore["mobile_layout_05_18_21"] == 1}/>
           {expStore["mobile_layout_05_18_21"] == 1 ? <BottomTabBar currentPage={page}></BottomTabBar> : ''}
         </div>
       </div>
