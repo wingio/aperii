@@ -87,6 +87,8 @@ a {
 
 .feed {
   padding: 0 1em;
+  overflow-y: scroll;
+  height: 100vh;
 }
 
 .logo {
