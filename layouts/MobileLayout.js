@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Search from '../components/Search'
 import MobilePostBtn from '../components/MobilePostBtn'
 import ProfileDropdown from'../components/ProfileDropdown'
+import BottomTabBar from '../components/MobileTabBar'
 function MobileLayout(props) {
   const {width, height} = useWindowSize()
   const [open, setOpen] = useState(false)
@@ -31,6 +32,7 @@ function MobileLayout(props) {
 
           {props.children}
           <MobilePostBtn user={props.user} />
+          {expStore["mobile_layout_05_18_21"] == 1 ? <BottomTabBar></BottomTabBar> : ''}
         </div>
       </div>
     </div>
