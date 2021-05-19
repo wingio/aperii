@@ -15,6 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border-top: .3em solid var(--darkle-bright-3);
 }
 
 .icon {
