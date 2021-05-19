@@ -16,8 +16,9 @@
 
 .icon {
     width: 1.3em;
+    color: white;
 }
 
-.tab.active {
-    border-top: .3em solid var(--rust-blood);
+.tab.active .icon{
+    color: var(--rust-blood);
 }
