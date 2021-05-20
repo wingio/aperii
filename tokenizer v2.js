@@ -1,6 +1,7 @@
 var example = "Hey @wing, you suck\ngo away"
 //console.log(example.split(''))
 function tokenizer(input) {
+    input.replace('\\n', '\n')
     var chars = input.split('')
     let tokens = []
     var blank = {
