@@ -1,5 +1,5 @@
-var example = "Hey @wing, you suck"
-
+var example = "Hey @wing, you suck\ngo away"
+//console.log(example.split(''))
 function tokenizer(input) {
     var chars = input.split('')
     let tokens = []
@@ -18,6 +18,7 @@ function tokenizer(input) {
         }
         var mentionRegex = /^[@a-zA-Z_0-9]$/
         isMention = (char == "@" && chars[i + 1] != "@") || lastMention != undefined
+        isLinebreak = (char == "\n" && chars[i + 1] != "\n")
         if(isMention && mentionRegex.test(char)){
             lastMention = i
             newTok.type = 1
@@ -30,6 +31,17 @@ function tokenizer(input) {
                 newTok.value += char
             }
             
+        } else if(isLinebreak) {
+            lastMention = undefined
+            newTok.type = 3
+
+            if(lastTok.type == newTok.type){
+                lastTok.type = 3
+                lastTok.value += char
+            } else {
+                newTok.type = 3
+                newTok.value += char
+            }
         } else {
             lastMention = undefined
             newTok.type = 0
