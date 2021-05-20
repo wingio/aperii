@@ -1,0 +1,54 @@
+var example = "Hey @wing, you suck"
+
+function tokenizer(input) {
+    var chars = input.split('')
+    let tokens = []
+    var blank = {
+        type: 0,
+        value: ""
+    }
+    
+    var isMention = false
+    var lastMention = undefined
+    chars.forEach((char, i) => {
+        var lastTok = tokens.length < 1 ? blank : tokens.pop()
+        var newTok = {
+            type: 0,
+            value: ""
+        }
+        var mentionRegex = /^[@a-zA-Z_0-9]$/
+        isMention = (char == "@" && chars[i + 1] != "@") || lastMention != undefined
+        if(isMention && mentionRegex.test(char)){
+            lastMention = i
+            newTok.type = 1
+
+            if(lastTok.type == newTok.type){
+                lastTok.type = 1
+                lastTok.value += char
+            } else {
+                newTok.type = 1
+                newTok.value += char
+            }
+            
+        } else {
+            lastMention = undefined
+            newTok.type = 0
+
+            if(lastTok.type == newTok.type){
+                lastTok.type = 0
+                lastTok.value += char
+            } else {
+                newTok.type = 0
+                newTok.value += char
+            }
+        }
+
+        tokens.push(lastTok)
+        if(newTok.type != lastTok.type) tokens.push(newTok) 
+    });
+
+    return tokens
+}
+
+module.exports = tokenizer
+//console.log(tokenizer(example))
