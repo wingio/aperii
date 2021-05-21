@@ -82,7 +82,7 @@ export async function getServerSideProps(context) {
   var user = await userres.json()
   return user.error || result.error ? {
     redirect: {
-      href: '/',
+      destination: '/',
       permenant: false
     }
   } : {
