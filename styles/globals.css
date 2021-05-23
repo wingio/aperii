@@ -395,11 +395,3 @@ input[type="submit"] {
   height: 45px;
 }
 
-@keyframes popup {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
