@@ -394,3 +394,12 @@ input[type="submit"] {
   width: 45px;
   height: 45px;
 }
+
+@keyframes popup {
+  0% {
+    scale: 0;
+  }
+  100% {
+    scale: 1;
+  }
+}
