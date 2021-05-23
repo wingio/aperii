@@ -16,7 +16,7 @@ function NoLeftLayout(props) {
     <div className="container">
       <div className={`ui`} style={{gridTemplateColumns: width > 965 + 60 ? '640px 325px' : '640px 50px'}}>
 
-        <div className={`feed`}>
+        <div className={`feed`} style={{height: "calc(100vh - 60px)"}}>
           <Search mobile={false}></Search>
           {props.children}
           <MobilePostBtn user={user} />
