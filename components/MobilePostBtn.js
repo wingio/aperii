@@ -9,7 +9,7 @@ export default function MobilePostBtn({user, hasTabBar}) {
     return (
         <>
         {modalOpened ? <MakePostModal user={user} closeAction={close}></MakePostModal> : ''}
-        <button onClick={() => {setOpened(true)}} style={{border: "none", padding: "0", position: "fixed", bottom: hasTabBar ? "calc(60px + 0.5em)" : "0.5em", right: "0.5em", borderRadius: "50%", background: "var(--rust-blood)", width:"4rem", height:"4rem", fontSize: "3rem", fontWeight: "bolder", color: "white", display:"flex"}}>
+        <button onClick={() => {setOpened(true)}} style={{border: "none", padding: "0", position: "fixed", bottom: "calc(60px + 0.5em)", right: "0.5em", borderRadius: "50%", background: "var(--rust-blood)", width:"4rem", height:"4rem", fontSize: "3rem", fontWeight: "bolder", color: "white", display:"flex"}}>
             <PostIcon width="1.5rem" style={{margin: "auto"}}/>
         </button>
         </>

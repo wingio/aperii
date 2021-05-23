@@ -7,7 +7,7 @@ import BottomTabBar from '../components/MobileTabBar'
 function NoLeftLayout(props) {
   const {width, height} = useWindowSize()
   const [open, setOpen] = useState(false)
-  const { user, misc } = props
+  const { user, misc, page } = props
   function toggleDropdown(e) {
     setOpen(!open)
     e.target.className = `av ${open ? '' : 'clicked'}`
