@@ -16,7 +16,7 @@ function Layout(props) {
         </MobileLayout>
         )
     } else if( width < 965){
-        return <NoLeftLayout user={props.user} misc={props.misc}>
+        return <NoLeftLayout user={props.user} misc={props.misc}  page={props.page}>
             {props.children}
         </NoLeftLayout>
     } else if(width > 1320){
@@ -24,7 +24,7 @@ function Layout(props) {
         {props.children}
         </FullLayout>
     } else {
-        return <NoLeftLayout user={props.user} misc={props.misc}>
+        return <NoLeftLayout user={props.user} misc={props.misc}  page={props.page}>
             {props.children}
         </NoLeftLayout>
     }
