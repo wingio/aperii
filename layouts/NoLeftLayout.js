@@ -17,9 +17,10 @@ function NoLeftLayout(props) {
       <div className={`ui`} style={{gridTemplateColumns: width > 965 + 60 ? '640px 325px' : '640px 50px'}}>
 
         <div className={`feed`}>
+          <Search></Search>
           {props.children}
           <MobilePostBtn user={user} />
-          <BottomTabBar currentPage={page} username={user.username}></BottomTabBar>
+          <BottomTabBar currentPage={page} username={user.username} />
         </div>
 
         <div className={`sticky right`}>
