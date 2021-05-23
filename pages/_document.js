@@ -9,7 +9,9 @@ class MyDocument extends Document {
   render() {
     return (
       <Html style={{background: '#0b0e11'}}>
-        <Head />
+        <Head>
+          <link rel="manifest" href="/manifest.json" />
+        </Head>
         <body>
           <Main />
           <NextScript />
