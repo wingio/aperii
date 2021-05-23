@@ -19,7 +19,7 @@ function MobileLayout(props) {
   return (
     <div className="container" style={{display:"revert"}}>
       <div className={`ui`} style={{gridTemplateColumns: width >= 640? '640px' : '100%'}}>
-      {expStore["mobile_layout_05_18_21"] == 1 ? <div className="header sticky">
+      <div className="header sticky">
             <Search mobile={true}></Search>
             <div className="av-container">
               <img className={`av mobile`} src={user ? user.avatar ? user.avatar
@@ -27,14 +27,14 @@ function MobileLayout(props) {
               {open ?
               <ProfileDropdown user={props.user} exp={expStore} /> : ''}
             </div>
-          </div> : <Search></Search>}
+          </div>
         <div className={`feed`} style={{height: expStore["mobile_layout_05_18_21"] == 1 ? "calc(100vh - 165px)" : "100vh"}}>
           
           {props.children}
           
         </div>
         <MobilePostBtn user={props.user} hasTabBar={expStore["mobile_layout_05_18_21"] == 1}/>
-        {expStore["mobile_layout_05_18_21"] == 1 ? <BottomTabBar currentPage={page} username={user.username}></BottomTabBar> : ''}
+        <BottomTabBar currentPage={page} username={user.username}></BottomTabBar>
       </div>
     </div>
   );

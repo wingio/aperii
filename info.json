@@ -1,16 +1,11 @@
 {
-    "version": "ALPHA 0.3.76",
+    "version": "ALPHA 0.4.84",
     "apiVersion": 1,
     "changelog": {
-        "image": "/mobileposts.png",
         "sections":[
             {
-                "name": "Mobile posts are here!",
-                "value": "After a long time of desktop exclusivity, mobile users are now also able to post. Simply click the circle button in the bottom right corner of your screen!"
-            },
-            {
-                "name": "Changelogs :)",
-                "value": "From now on, version changes will come with a description of what changed in the form of these popups"
+                "name": "Shiny!",
+                "value": "Mobile interface has been drastically improved"
             }
         ]
     }
