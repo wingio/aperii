@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Search from '../components/Search'
 import ProfileDropdown from '../components/ProfileDropdown'
 import MobilePostBtn from '../components/MobilePostBtn'
+import BottomTabBar from '../components/MobileTabBar'
 
 function NoLeftLayout(props) {
   const {width, height} = useWindowSize()
