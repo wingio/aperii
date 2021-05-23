@@ -15,11 +15,13 @@ function NoLeftLayout(props) {
   return (
     <div className="container">
       <div className={`ui`} style={{gridTemplateColumns: width > 965 + 60 ? '640px 325px' : '640px 50px'}}>
-        
+
         <div className={`feed`}>
           {props.children}
+          <MobilePostBtn user={user} />
+          <BottomTabBar currentPage={page} username={user.username}></BottomTabBar>
         </div>
-        
+
         <div className={`sticky right`}>
           <div className="av-container">
             <img className={`av`} src={user ? user.avatar ? user.avatar : '/av.png' : '/av.png' }
@@ -29,8 +31,7 @@ function NoLeftLayout(props) {
           </div>
         </div>
       </div>
-      <MobilePostBtn user={user} />
-      <BottomTabBar currentPage={page} username={user.username}></BottomTabBar>
+
     </div>
   );
 
