@@ -14,15 +14,6 @@ function NoLeftLayout(props) {
   }
   return (
     <div className="container">
-      <div className="header sticky">
-          <Search mobile={true}></Search>
-          <div className="av-container">
-            <img className={`av mobile`} src={user ? user.avatar ? user.avatar : '/av.png' : '/av.png' } onClick={()=>
-            {setOpen(!open)}}></img>
-            {open ?
-            <ProfileDropdown user={props.user} exp={expStore} /> : ''}
-          </div>
-        </div>
       <div className={`ui`} style={{gridTemplateColumns: width > 965 + 60 ? '640px 325px' : '640px 50px'}}>
         
         <div className={`feed`}>
