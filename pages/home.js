@@ -12,7 +12,7 @@ import Changelog from '../components/Changelog'
 import * as info from '../info.json'
 
 export default function Demo( { posts, user } ) {
-  var showChangelog = true
+  var showChangelog = false
   var expStore = {}
   if (typeof window !== "undefined") {
     var vers = localStorage.getItem('currentVersion')
