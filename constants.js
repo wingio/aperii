@@ -15,7 +15,8 @@ class Constants {
             NONE: 0,
             VERIFIED: 1 << 1,
             STAFF: 1 << 2,
-            EARLY_SUPPORTER: 1 << 3
+            ADMIN: 1 << 3,
+            EARLY_SUPPORTER: 1 << 4
         }
     }
 

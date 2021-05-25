@@ -730,6 +730,108 @@ client.connect(function (err) {
     })
 
 
+    //Admin
+
+    app.patch('/admin/user/:id/admin', auth, async (req, res) => {
+        var devs = ['wing', 'xarvatium']
+        const { id } = req.params
+        const user = id == '@me' ? req.user : await collection.findOne({id: id})
+
+        if(!user){
+            res.status(401).send({
+                status: 401,
+                error: "Unauthorized"
+            })
+            return
+        }
+
+        if(devs.includes(req.user.username)){
+            var flags = user.flags ? user.flags : 0
+            var resolved = constants.getFlagsFromBitfield(flags)
+            if(resolved.admin == true) {
+                flags = flags - constants.FLAGS.ADMIN
+            } else if (resolved.admin == false) {
+                flags += constants.FLAGS.ADMIN
+            }
+            collection.findOneAndUpdate({id: user.id}, {$set: {flags: flags}})
+            res.send(constants.getFlagsFromBitfield(flags))
+        } else {
+            res.status(401).send({
+                status: 401,
+                error: "Unauthorized"
+            })
+        }
+    })
+
+    app.patch('/admin/user/:id/verified', auth, async (req, res) => {
+        
+        const { id } = req.params
+        const user = id == '@me' ? req.user : await collection.findOne({id: id})
+        var me = constants.getFlagsFromBitfield(req.user.flags ? req.user.flags : 0)
+        if(!user){
+            res.status(401).send({
+                status: 401,
+                error: "Unauthorized"
+            })
+            return
+        }
+
+        if(me.admin == true){
+            var flags = user.flags ? user.flags : 0
+            var resolved = constants.getFlagsFromBitfield(flags)
+            if(resolved.verified == true) {
+                flags = flags - constants.FLAGS.VERIFIED
+            } else if (resolved.verified == false) {
+                flags += constants.FLAGS.VERIFIED
+            }
+            var newFlags = constants.getFlagsFromBitfield(flags)
+            collection.findOneAndUpdate({id: user.id}, {$set: {flags: flags, verified: newFlags.verified}})
+            res.send(newFlags)
+        } else {
+            res.status(401).send({
+                status: 401,
+                error: "Unauthorized"
+            })
+        }
+    })
+
+    app.post('/admin/synces', auth, async (req, res) => {
+        var me = constants.getFlagsFromBitfield(req.user.flags ? req.user.flags : 0)
+
+        if(me.admin == true){
+            var all = await collection.find().toArray()      
+            var early = all.filter(u => u.joinedTimestamp <= 1622519999000)
+
+            early.forEach(user => {
+                var flags = user.flags ? user.flags : 0
+                var resolved = constants.getFlagsFromBitfield(flags)
+                if (resolved.early_supporter == true) {
+                    flags = flags - constants.FLAGS.EARLY_SUPPORTER
+                } else if (resolved.early_supporter == false) {
+                    flags += constants.FLAGS.EARLY_SUPPORTER
+                }
+                collection.findOneAndUpdate({
+                    id: user.id
+                }, {
+                    $set: {
+                        flags: flags
+                    }
+                })
+            })
+
+            res.send({
+                status: 200,
+                message: "Flag synced"
+            })
+        } else {
+            res.status(401).send({
+                status: 401,
+                error: "Unauthorized"
+            })
+        }
+    })
+
+
     if(!process.env.PROD){
         app.listen(5000, () => {
             console.log('Api running on port 5000')
