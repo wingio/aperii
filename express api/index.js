@@ -79,7 +79,7 @@ client.connect(function (err) {
         })
     }
 
-    app.use(express.json({limit: 1000000}))
+    app.use(express.json({limit: "8mb"}))
     app.use(cors(corsOpts))
     app.use(cookieparser())
 
@@ -396,9 +396,9 @@ client.connect(function (err) {
     })
 
     app.patch('/users/:id', auth, async (req, res) => {
-        const { avatar, verified, displayname, username } = req.body
+        const { avatar, displayname, username } = req.body
         const { id } = req.params
-
+        const errors = []
         if(req.user.id != id) {
             res.status(401).send({
                 status: 401,
@@ -407,50 +407,109 @@ client.connect(function (err) {
             return
         }
 
-        if(avatar){
+        if (avatar) {
             var datauriRegex = /^data:image\/(jpeg|jpg|png|gif);base64,[\d\D]+$/g
-            if(!datauriRegex.test(avatar)){
-                res.status(400).send({
+            if (!datauriRegex.test(avatar)) {
+                errors.push({
                     status: 400,
-                    error: 'Avatar needs to be a valid data uri scheme, only allowing jpeg, png, and gif formats'
+                    error: 'Avatar needs to be a valid data uri scheme, only allowing jpeg, png, and gif formats',
+                    field: 'avatar'
                 })
-                return
             }
-            var formats = ['jpeg', 'jpg', 'png', 'gif']
-            var format = avatar.split(':')[1].split(';')[0].split('/')[1].toLowerCase()
-            if(!formats.includes(format)){
-                res.status(400).send({
-                    status: 400,
-                    error: 'Avatar needs to be a valid data uri scheme, only allowing jpeg, png, and gif formats'
-                })
-                return
-            }
-            var av = await cdn.findOne({type: 'avatar', owner: id})
-            if(av){
-                cdn.findOneAndUpdate({type: 'avatar', owner: id}, {$set:{data: avatar.split('base64,')[1], format }})
-                collection.findOneAndUpdate({id}, {$set:{avatar: `https://aperii.com/api/usercontent/avatars/${id}`}})
-                var u = await collection.findOne({id})
-                delete u.token
-                delete u.password
-                delete u.email
-                delete u["_id"]
-                res.send(u)
-            } else {
-                cdn.insertOne({
+            if (errors.filter(e => e.field == "avatar").length < 1) {
+                var formats = ['jpeg', 'jpg', 'png', 'gif']
+                var format = avatar.split(':')[1].split(';')[0].split('/')[1].toLowerCase()
+                if (!formats.includes(format)) {
+                    errors.push({
+                        status: 400,
+                        error: 'Avatar needs to be a valid data uri scheme, only allowing jpeg, png, and gif formats',
+                        field: 'avatar'
+                    })
+                }
+                var av = await cdn.findOne({
                     type: 'avatar',
-                    owner: id,
-                    data: avatar.split('base64,')[1],
-                    format
+                    owner: id
                 })
-                collection.findOneAndUpdate({id}, {$set:{avatar: `https://aperii.com/api/usercontent/avatars/${id}`}})
-                var u = await collection.findOne({id})
-                delete u.token
-                delete u.password
-                delete u.email
-                delete u["_id"]
-                res.send(u)
+                if (errors.filter(e => e.field == "avatar").length < 1) {
+                    if (av) {
+                        cdn.findOneAndUpdate({
+                            type: 'avatar',
+                            owner: id
+                        }, {
+                            $set: {
+                                data: avatar.split('base64,')[1],
+                                format
+                            }
+                        })
+                        collection.findOneAndUpdate({
+                            id
+                        }, {
+                            $set: {
+                                avatar: `https://aperii.com/api/usercontent/avatars/${id}`
+                            }
+                        })
+                    } else {
+                        cdn.insertOne({
+                            type: 'avatar',
+                            owner: id,
+                            data: avatar.split('base64,')[1],
+                            format
+                        })
+                        collection.findOneAndUpdate({
+                            id
+                        }, {
+                            $set: {
+                                avatar: `https://aperii.com/api/usercontent/avatars/${id}`
+                            }
+                        })
+                    }
+                }
             }
         }
+
+        if(username){
+            var usernameRegex = /^(?=.*[a-z])?(?=.*[A-Z])?(?=.*\d)?(?!.*[ ])[A-Za-z\d_]{4,32}$/g
+            if(!usernameRegex.test(username)){
+                errors.push({
+                    status: 400,
+                    error: 'Does not meet username requirements',
+                    field: 'username'
+                })
+                
+            }
+            if(errors.filter(e => e.field == 'username').length < 1){
+                collection.findOneAndUpdate({id: id}, {$set:{username: username.toLowerCase()}})
+            }
+        }
+
+        if(displayname){
+            if (username.length < 4 || username.length > 32) {
+                errors.push({
+                    status: 400,
+                    error: 'Display name must be between 4 and 32 characters long',
+                    field: 'displayname'
+                });
+            }
+            if(errors.filter(e => e.field == 'displayname').length < 1){
+                collection.findOneAndUpdate({id: id}, {$set:{displayname: displayname}})
+            }
+        }
+
+        var u = await collection.findOne({
+            id
+        })
+        delete u.token
+        delete u.password
+        delete u.email
+        delete u["_id"]
+
+        if(errors.length > 0) res.status(errors[0].status)
+        res.send(errors.length < 1 ? {
+            profile: u
+        } : {
+            profile: u,
+            errors
+        })
     })
 
     // app.patch('/users/:id/username', auth, async (req, res) => {
