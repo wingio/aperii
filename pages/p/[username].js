@@ -9,6 +9,9 @@ import PostFeed from '../../components/PostFeed'
 import Badge from '../../icons/Badge'
 import Calender from '../../icons/Calender'
 import moment from 'moment'
+import consts from '../../constants'
+import Icon from '../../icons/Icon'
+const c = new consts()
 
 export default function User({profile, posts, user}) {
   var expStore = {}
@@ -39,7 +42,7 @@ export default function User({profile, posts, user}) {
           <p className={styles.username}>@{profile.username}</p>
         </div>
         <div className={styles.miscInfo}>
-          <p style={{color: "#888"}} className={styles.joinDate}><Calender width=".9rem" fill="#888" className={styles.joinDateIcon}></Calender>Joined {moment(profile.joinedTimestamp).format('MMMM YYYY')}</p>
+          <p style={{color: "#888"}} className={styles.joinDate}>{profile.flags.early_supporter ? <Icon name="star" width=".9rem" fill="#e2ec56" style={{marginLeft: ".2em"}}/> : ''} <Calender width=".9rem" fill="#888" className={styles.joinDateIcon}></Calender><Calender width=".9rem" fill="#888" className={styles.joinDateIcon}></Calender>Joined {moment(profile.joinedTimestamp).format('MMMM YYYY')}</p>
         </div>
       </div>
       <PostFeed posts={posts}></PostFeed>
@@ -79,6 +82,8 @@ export async function getServerSideProps(context) {
     username: '404'
   }
 
+  user.flags = user.flags ? c.getFlagsFromBitfield(user.flags) : c.getFlagsFromBitfield(0)
+  
   return {
     props: {
       profile,
