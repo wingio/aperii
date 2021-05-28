@@ -28,7 +28,7 @@ function MobileLayout(props) {
               <ProfileDropdown user={props.user} exp={expStore} /> : ''}
             </div>
           </div>
-        <div className={`feed`} style={{height: "calc(100vh - 60px - 105px)!important"}}>
+        <div className={`feed`} style={{height: "!important"}}>
           
           {props.children}
           
