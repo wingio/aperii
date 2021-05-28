@@ -43,7 +43,7 @@ export default function User({profile, posts, user}) {
           <p className={styles.username}>@{profile.username}</p>
         </div>
         <div className={styles.miscInfo}>
-          <p style={{color: "#888"}} className={styles.joinDate}>{profile.flags.early_supporter ? <Icon name="star" width=".9rem" style={{color: "#e2ec56"}} fill="#e2ec56" className={styles.joinDateIcon}/> : <Calender width=".9rem" fill="#888" className={styles.joinDateIcon}></Calender>} Joined {moment(profile.joinedTimestamp).format('MMMM YYYY')}</p>
+          <p style={{color: "#888"}} className={styles.joinDate}>{profile.flags.early_supporter ? <Icon name="star" width=".9rem" style={{color: "#e2ec56"}} fill="#e2ec56" className={styles.earlyJoinDateIcon}/> : <Calender width=".9rem" fill="#888" className={styles.joinDateIcon}></Calender>} Joined {moment(profile.joinedTimestamp).format('MMMM YYYY')}</p>
         </div>
       </div>
       <PostFeed posts={posts}></PostFeed>
