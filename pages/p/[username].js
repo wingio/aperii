@@ -24,6 +24,7 @@ export default function User({profile, posts, user}) {
     }
   }
 
+
   return (
     <Layout user={user} misc={expStore} page={profile.username == user.username ? 'profile' : 'home'}>
       <Head>
@@ -82,7 +83,7 @@ export async function getServerSideProps(context) {
     username: '404'
   }
 
-  user.flags = user.flags ? c.getFlagsFromBitfield(user.flags) : c.getFlagsFromBitfield(0)
+  profile.flags = profile.flags ? c.getFlagsFromBitfield(profile.flags) : c.getFlagsFromBitfield(0)
   
   return {
     props: {
