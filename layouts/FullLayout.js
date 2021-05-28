@@ -80,7 +80,7 @@ function FullLayout(props) {
     <SidebarFeedOption name="Home" current={true} icon="home"></SidebarFeedOption>
     <SidebarFeedOption name="Discover" icon="compass"></SidebarFeedOption>
   </div>
-  <div className={`feed`}>
+  <div className={`feed`} style={{height: "100vh"}}>
     <Search></Search>
     <div className="content">
       {props.children}
