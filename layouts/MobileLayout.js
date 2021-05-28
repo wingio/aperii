@@ -28,12 +28,12 @@ function MobileLayout(props) {
               <ProfileDropdown user={props.user} exp={expStore} /> : ''}
             </div>
           </div>
-        <div className={`feed`} style={{height: "calc(100vh - 60px)!important"}}>
+        <div className={`feed`} style={{height: "calc(100vh - 60px - 105px)!important"}}>
           
           {props.children}
           
         </div>
-        <MobilePostBtn user={props.user} hasTabBar={expStore["mobile_layout_05_18_21"] == 1}/>
+        <MobilePostBtn user={props.user} hasTabBar={true}/>
         <BottomTabBar currentPage={page} username={user.username}></BottomTabBar>
       </div>
     </div>
