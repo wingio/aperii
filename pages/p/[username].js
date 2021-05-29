@@ -28,7 +28,7 @@ export default function User({profile, posts, user}) {
 
 
   const [pOpened, setpOpened] = useState(true)
-  closeProfile = () => {
+  var closeProfile = () => {
     setpOpened(false)
   }
   return (
