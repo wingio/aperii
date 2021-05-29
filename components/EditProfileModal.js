@@ -14,10 +14,19 @@ export default function MakePostModal({ user, closeAction }) {
         var body = e.type == "click" ? e.target.form : e.target
 
         var reader = new FileReader();
+        function _arrayBufferToBase64( buffer ) {
+            var binary = '';
+            var bytes = new Uint8Array( buffer );
+            var len = bytes.byteLength;
+            for (var i = 0; i < len; i++) {
+                binary += String.fromCharCode( bytes[ i ] );
+            }
+            return window.btoa( binary );
+        }
         reader.onload = function () {
             var arrayBuffer = this.result;
             console.log(arrayBuffer);
-            setBase(_arrayBufferToBase64(arrayBuffer))
+            return _arrayBufferToBase64(arrayBuffer)
         }
 
 
