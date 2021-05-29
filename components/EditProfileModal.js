@@ -13,22 +13,6 @@ export default function MakePostModal({ user, closeAction }) {
         e.preventDefault()
         var body = e.type == "click" ? e.target.form : e.target
 
-        var reader = new FileReader();
-        // function _arrayBufferToBase64( buffer ) {
-        //     var binary = '';
-        //     var bytes = new Uint8Array( buffer );
-        //     var len = bytes.byteLength;
-        //     for (var i = 0; i < len; i++) {
-        //         binary += String.fromCharCode( bytes[ i ] );
-        //     }
-        //     return window.btoa( binary );
-        // }
-        // reader.onload = function () {
-        //     var arrayBuffer = this.result;
-        //     console.log(arrayBuffer);
-        //     return _arrayBufferToBase64(arrayBuffer)
-        // }
-
         const toBase64 = file => new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.readAsDataURL(file);
@@ -38,20 +22,20 @@ export default function MakePostModal({ user, closeAction }) {
 
 
         var base64 = await toBase64(body[0].files[0])
-        console.log(base64)
-        // fetch(`https://aperii.com/api/v1/users/${user.id}`, {
-        //     body: JSON.stringify({
-        //         avatar: `data:${body[0].files[0].type};base64,${base64}`
-        //     }),
-        //     headers: {
-        //         'content-type': 'application/json',
-        //         authorization: localStorage.getItem('token')
-        //     },
-        //     method: 'PATCH'
-        // }).then(res => res.json()).then(json => {
-        //     close()
-        //     window.location = window.location
-        // })
+        //console.log(base64)
+        fetch(`https://aperii.com/api/v1/users/${user.id}`, {
+            body: JSON.stringify({
+                avatar: base64
+            }),
+            headers: {
+                'content-type': 'application/json',
+                authorization: localStorage.getItem('token')
+            },
+            method: 'PATCH'
+        }).then(res => res.json()).then(json => {
+            close()
+            window.location = window.location
+        })
     }
 
     return (
