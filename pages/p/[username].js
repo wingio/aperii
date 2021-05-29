@@ -11,6 +11,8 @@ import Calender from '../../icons/Calender'
 import moment from 'moment'
 import consts from '../../constants'
 import Icon from '../../icons/Icon'
+import EditProfileModal from '../../components/EditProfileModal'
+import {useState} from 'react'
 const c = new consts()
 
 export default function User({profile, posts, user}) {
@@ -25,6 +27,10 @@ export default function User({profile, posts, user}) {
   }
 
 
+  const [pOpened, setpOpened] = useState(true)
+  closeProfile = () => {
+    setpOpened(false)
+  }
   return (
     <Layout user={user} misc={expStore} page={profile.username == user.username ? 'profile' : 'home'}>
       <Head>
@@ -37,6 +43,7 @@ export default function User({profile, posts, user}) {
         <div className={styles.banner}>
           
         </div>
+        {profile.username == user.username && user.username == "wing" && pOpened ? <EditProfileModal user={user} closeAction={closeProfile}/> : ''}
         <img className={styles.avatar} src={profile.avatar ? profile.avatar : '/av.png'}></img>
         <div className={styles.userinfo}>
           <p>{profile.displayName}{profile.verified ? <Badge width="1.2rem" className={styles.badge}></Badge> : ''}</p>
