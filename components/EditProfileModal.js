@@ -14,24 +14,24 @@ export default function MakePostModal({ user, closeAction }) {
         var body = e.type == "click" ? e.target.form : e.target
 
         var reader = new FileReader();
-        function _arrayBufferToBase64( buffer ) {
-            var binary = '';
-            var bytes = new Uint8Array( buffer );
-            var len = bytes.byteLength;
-            for (var i = 0; i < len; i++) {
-                binary += String.fromCharCode( bytes[ i ] );
-            }
-            return window.btoa( binary );
-        }
-        reader.onload = function () {
-            var arrayBuffer = this.result;
-            console.log(arrayBuffer);
-            return _arrayBufferToBase64(arrayBuffer)
-        }
+        // function _arrayBufferToBase64( buffer ) {
+        //     var binary = '';
+        //     var bytes = new Uint8Array( buffer );
+        //     var len = bytes.byteLength;
+        //     for (var i = 0; i < len; i++) {
+        //         binary += String.fromCharCode( bytes[ i ] );
+        //     }
+        //     return window.btoa( binary );
+        // }
+        // reader.onload = function () {
+        //     var arrayBuffer = this.result;
+        //     console.log(arrayBuffer);
+        //     return _arrayBufferToBase64(arrayBuffer)
+        // }
 
 
-        var base64 = reader.readAsArrayBuffer(body[0].files[0]);
-        console.log(`data:${body[0].files[0].type};base64,${base64}`)
+        var base64 = reader.readAsDataURL(body[0].files[0])
+        console.log(base64)
         // fetch(`https://aperii.com/api/v1/users/${user.id}`, {
         //     body: JSON.stringify({
         //         avatar: `data:${body[0].files[0].type};base64,${base64}`
