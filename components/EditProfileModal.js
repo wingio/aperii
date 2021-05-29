@@ -9,7 +9,7 @@ export default function MakePostModal({ user, closeAction }) {
 
     
 
-    var post = (e) => {
+    var post = async (e) => {
         e.preventDefault()
         var body = e.type == "click" ? e.target.form : e.target
 
@@ -29,8 +29,15 @@ export default function MakePostModal({ user, closeAction }) {
         //     return _arrayBufferToBase64(arrayBuffer)
         // }
 
+        const toBase64 = file => new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+        });
 
-        var base64 = reader.readAsDataURL(body[0].files[0])
+
+        var base64 = await toBase64(body[0].files[0])
         console.log(base64)
         // fetch(`https://aperii.com/api/v1/users/${user.id}`, {
         //     body: JSON.stringify({
