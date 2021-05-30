@@ -1,5 +1,13 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
+export const config = {
+    api:{
+        bodyParser: {
+            sizeLimit: "8mb"
+        }
+    }
+}
+
 export default (req, res) => {
     if(req.method =="PATCH"){
         process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
