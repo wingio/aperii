@@ -1,6 +1,14 @@
 .avSelect {
     width: 100px;
     height: 100px;
-    background: hsla(0, 0%, 0%, 0.308);
+    background: rgb(0 0 0 / 55%);
     position: absolute;
+    color: white;
+    font-size: .7em;
+    text-transform: uppercase;
+    font-weight: 700;
+    line-height: 100px;
+    text-align: center;
+    border-radius: 50%;
+    cursor: pointer;
 }

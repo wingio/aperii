@@ -51,14 +51,16 @@ export default function MakePostModal({ user, closeAction }) {
         setSource(await toBase64(e.target.files[0]))
     }
 
+    const [inputVisible, setVis] = useState(false)
+
     return (
         opened ? <Modal title="What's on your mind?" subtitle="To let everyone know, make a post!" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Post', btnstyle: 'primary', form: "modal-postform", onClick: post}]}>
             <ModalForm onSubmit={post} id="modal-postform">
-                <label className={styles.avSelect}>
+                <label className={styles.avSelect} style={{display: inputVisible == false ? 'none' : 'revert'}}>
                     <input type="file" accept=".png, .jpg, .jpeg, .gif" multiple={false} onChange={updatePreview} style={{display: "hidden"}}/>
                     Select Image
                 </label>
-                <img src={source} width="100px"></img>
+                <img src={source} width="100px" height="100px" style={{borderRadius: "50%"}} onMouseEnter={() => {setVis(true)}} onMouseLeave={() => {setVis(false)}}></img>
             </ModalForm>
         </Modal> : <></>
     )
