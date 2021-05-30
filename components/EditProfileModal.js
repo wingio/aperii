@@ -38,10 +38,23 @@ export default function MakePostModal({ user, closeAction }) {
         })
     }
 
+    const [source, setSource] = useState(user.avatar ? user.avatar : '/av.png')
+    function updatePreview(e) {
+        const toBase64 = file => new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+        });
+
+        setSource(toBase64(e.target.files[0]))
+    }
+
     return (
         opened ? <Modal title="What's on your mind?" subtitle="To let everyone know, make a post!" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Post', btnstyle: 'primary', form: "modal-postform", onClick: post}]}>
             <ModalForm onSubmit={post} id="modal-postform">
-                <input type="file" accept=".png, .jpg, .jpeg, .gif" />
+                <input type="file" accept=".png, .jpg, .jpeg, .gif" multiple={false} onChange={updatePreview} style={{display: "revert"}}/>
+                <img src={source} width="100px"></img>
             </ModalForm>
         </Modal> : <></>
     )
