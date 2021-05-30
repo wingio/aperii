@@ -39,7 +39,7 @@ export default function MakePostModal({ user, closeAction }) {
     }
 
     const [source, setSource] = useState(user.avatar ? user.avatar : '/av.png')
-    function updatePreview(e) {
+    async function updatePreview(e) {
         const toBase64 = file => new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.readAsDataURL(file);
@@ -47,7 +47,7 @@ export default function MakePostModal({ user, closeAction }) {
             reader.onerror = error => reject(error);
         });
 
-        setSource(toBase64(e.target.files[0]))
+        setSource(await toBase64(e.target.files[0]))
     }
 
     return (
