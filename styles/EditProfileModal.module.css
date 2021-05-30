@@ -1,0 +1,6 @@
+.avSelect {
+    width: 100px;
+    height: 100px;
+    background: hsla(0, 0%, 0%, 0.308);
+    position: absolute;
+}

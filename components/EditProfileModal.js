@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import Modal from './Modal'
 import TextBox from './TextBox'
 import ModalForm from './ModalForm'
+import styles from '../styles/EditProfileModal.module.css'
 export default function MakePostModal({ user, closeAction }) {
     const [opened, setOpen] = useState(true)
 
@@ -53,7 +54,10 @@ export default function MakePostModal({ user, closeAction }) {
     return (
         opened ? <Modal title="What's on your mind?" subtitle="To let everyone know, make a post!" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Post', btnstyle: 'primary', form: "modal-postform", onClick: post}]}>
             <ModalForm onSubmit={post} id="modal-postform">
-                <input type="file" accept=".png, .jpg, .jpeg, .gif" multiple={false} onChange={updatePreview} style={{display: "revert"}}/>
+                <label className={styles.avSelect}>
+                    <input type="file" accept=".png, .jpg, .jpeg, .gif" multiple={false} onChange={updatePreview} style={{display: "hidden"}}/>
+                    Select Image
+                </label>
                 <img src={source} width="100px"></img>
             </ModalForm>
         </Modal> : <></>
