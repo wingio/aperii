@@ -11,4 +11,9 @@
     text-align: center;
     border-radius: 50%;
     cursor: pointer;
+    opacity: 0;
+}
+
+.avSelect:hover{
+    opacity: 1;
 }
