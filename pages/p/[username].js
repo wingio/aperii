@@ -12,6 +12,7 @@ import moment from 'moment'
 import consts from '../../constants'
 import Icon from '../../icons/Icon'
 import EditProfileModal from '../../components/EditProfileModal'
+import Button from '../../components/Button'
 import {useState} from 'react'
 const c = new consts()
 
@@ -43,12 +44,13 @@ export default function User({profile, posts, user}) {
         <div className={styles.banner}>
           
         </div>
-        {profile.username == user.username && user.username == "wing" && pOpened ? <EditProfileModal user={user} closeAction={closeProfile}/> : ''}
+        {pOpened ? <EditProfileModal user={user} closeAction={closeProfile}/> : ''}
         <img className={styles.avatar} src={profile.avatar ? profile.avatar : '/av.png'}></img>
         <div className={styles.userinfo}>
           <p>{profile.displayName}{profile.verified ? <Badge width="1.2rem" className={styles.badge}></Badge> : ''}</p>
           <p className={styles.username}>@{profile.username}</p>
         </div>
+        {profile.username == user.username && user.username == "wing" ? <Button label="Edit Profile" btnstyle="primary" onClick={() => {setpOpened(true)}} /> : ''}
         <div className={styles.miscInfo}>
           <p style={{color: "#888"}} className={styles.joinDate}>{profile.flags.early_supporter ? <Icon name="star" width=".9rem" style={{color: "#e2ec56"}} fill="#e2ec56" className={styles.earlyJoinDateIcon}/> : ''} <Calender width=".9rem" fill="#888" className={styles.joinDateIcon}></Calender> Joined {moment(profile.joinedTimestamp).format('MMMM YYYY')}</p>
         </div>
