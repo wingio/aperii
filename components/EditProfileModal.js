@@ -53,12 +53,14 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
 
     return (
         opened ? <Modal title="Edit your profile" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Save', btnstyle: 'primary', form: "modal-postform", onClick: post}]} showVanish={showVanish}>
-            <ModalForm onSubmit={post} id="modal-postform">
+            <ModalForm onSubmit={post} id="modal-postform" style={{display:"flex", flexDirection: "column", alignItems: "center"}}>
                 <label className={styles.avSelect}>
                     <input type="file" accept=".png, .jpg, .jpeg, .gif" multiple={false} onChange={updatePreview} style={{display: "hidden"}}/>
                     Select Image
                 </label>
                 <img src={source} width="100px" height="100px" style={{borderRadius: "50%"}}></img>
+                <TextBox/>
+                <TextBox/>
             </ModalForm>
         </Modal> : <></>
     )
