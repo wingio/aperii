@@ -6,6 +6,7 @@ import styles from '../styles/TextBox.module.css'
  * @returns 
  */
 export default function TextBox(props) {
+    const { label } = props
     return (
         <>
             {label ? <label>{label}</label> : ''}
