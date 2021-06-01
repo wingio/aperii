@@ -7,7 +7,7 @@ export default function MobilePostBtn({user, hasTabBar}) {
     var close = () => {
         setVanished(true)
         setTimeout(() => {
-            setOpened(true)
+            setOpened(false)
         }, 25)
     }
     return (
