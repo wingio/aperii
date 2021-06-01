@@ -32,7 +32,9 @@ export default function User({profile, posts, user}) {
   const [vanished, setVanished] = useState(false)
   var closeProfile = () => {
     setVanished(true)
-    setpOpened(false)
+    setTimeout(() => {
+      setpOpened(false)
+    }, 20)
   }
 
   var openProfile = () => {
