@@ -59,8 +59,8 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
                     Select Image
                 </label>
                 <img src={source} width="100px" height="100px" style={{borderRadius: "50%"}}></img>
-                <TextBox/>
-                <TextBox/>
+                <TextBox label="Display Name" style={{marginBottom: "10px"}}/>
+                <TextBox label="Username"/>
             </ModalForm>
         </Modal> : <></>
     )

@@ -1,10 +1,15 @@
-import React from 'react'
+import React, {InputHTMLAttributes} from 'react'
 import styles from '../styles/TextBox.module.css'
-export default function TextBox({ label }) {
+/**
+ * 
+ * @param {InputHTMLAttributes<HTMLInputElement>} props 
+ * @returns 
+ */
+export default function TextBox(props) {
     return (
         <>
             {label ? <label>{label}</label> : ''}
-            <input type="text" className={styles.textbox}></input>
+            <input type="text" className={styles.textbox} {...props}></input>
         </>
     )
 }
