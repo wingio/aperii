@@ -3,7 +3,7 @@ import Modal from './Modal'
 import TextBox from './TextBox'
 import ModalForm from './ModalForm'
 import styles from '../styles/EditProfileModal.module.css'
-export default function MakePostModal({ user, closeAction }) {
+export default function MakePostModal({ user, closeAction, showVanish }) {
     const [opened, setOpen] = useState(true)
 
     var close = closeAction
@@ -52,7 +52,7 @@ export default function MakePostModal({ user, closeAction }) {
     }
 
     return (
-        opened ? <Modal title="Edit your profile" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Save', btnstyle: 'primary', form: "modal-postform", onClick: post}]}>
+        opened ? <Modal title="Edit your profile" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Save', btnstyle: 'primary', form: "modal-postform", onClick: post}]} showVanish={showVanish}>
             <ModalForm onSubmit={post} id="modal-postform">
                 <label className={styles.avSelect}>
                     <input type="file" accept=".png, .jpg, .jpeg, .gif" multiple={false} onChange={updatePreview} style={{display: "hidden"}}/>

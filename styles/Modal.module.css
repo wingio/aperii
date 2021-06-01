@@ -20,6 +20,15 @@
     }
   }
 
+@keyframes vanish {
+    0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(0);
+      }
+}
+
 .popout {
     background: var(--darkle-bright-1);
     min-width: 200px;
@@ -28,6 +37,10 @@
     border-radius: .4rem;
     overflow: hidden;
     animation: popup 0.2s ease;
+}
+
+.popout.vanish {
+    animation: vanish 0.2s ease;
 }
 
 .content{

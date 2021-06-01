@@ -29,11 +29,14 @@ export default function User({profile, posts, user}) {
 
 
   const [pOpened, setpOpened] = useState(false)
+  const [vanished, setVanished] = useState(false)
   var closeProfile = () => {
+    setVanished(true)
     setpOpened(false)
   }
 
   var openProfile = () => {
+    setVanished(false)
     setpOpened(true)
   }
   return (
@@ -48,7 +51,7 @@ export default function User({profile, posts, user}) {
         <div className={styles.banner}>
           
         </div>
-        {pOpened ? <EditProfileModal user={user} closeAction={closeProfile}/> : ''}
+        {pOpened ? <EditProfileModal user={user} closeAction={closeProfile} showVanish={vanished}/> : ''}
         <img className={styles.avatar} src={profile.avatar ? profile.avatar : '/av.png'}></img>
         <div className={styles.userinfo}>
           <p>{profile.displayName}{profile.verified ? <Badge width="1.2rem" className={styles.badge}></Badge> : ''}</p>

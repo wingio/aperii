@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Modal from './Modal'
 import TextBox from './TextBox'
 import ModalForm from './ModalForm'
-export default function MakePostModal({ user, closeAction }) {
+export default function MakePostModal({ user, closeAction, showVanish }) {
     const [opened, setOpen] = useState(true)
 
     var close = closeAction
@@ -27,7 +27,7 @@ export default function MakePostModal({ user, closeAction }) {
     }
 
     return (
-        opened ? <Modal title="What's on your mind?" subtitle="To let everyone know, make a post!" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Post', btnstyle: 'primary', form: "modal-postform", onClick: post}]}>
+        opened ? <Modal title="What's on your mind?" subtitle="To let everyone know, make a post!" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Post', btnstyle: 'primary', form: "modal-postform", onClick: post}]} showVanish={showVanish}>
             <ModalForm onSubmit={post} id="modal-postform">
                 <TextBox></TextBox>
             </ModalForm>
