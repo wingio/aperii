@@ -34,7 +34,7 @@ export default function User({profile, posts, user}) {
     setVanished(true)
     setTimeout(() => {
       setpOpened(false)
-    }, 20)
+    }, 25)
   }
 
   var openProfile = () => {
