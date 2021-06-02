@@ -49,11 +49,8 @@
 .badge {
     margin-left: .2rem;
     margin-bottom: -.1rem;
+    transition: box-shadow .5s;
     cursor: pointer;
-}
-
-.badge:hover{
-    box-shadow: 0 0 20px 2px rgb(255 255 255 / 60%);
 }
 
 .miscInfo {
