@@ -13,6 +13,7 @@ import consts from '../../constants'
 import Icon from '../../icons/Icon'
 import EditProfileModal from '../../components/EditProfileModal'
 import Button from '../../components/Button'
+import VerifiedBadge from '../../components/VerifiedBadge'
 import {useState} from 'react'
 const c = new consts()
 
@@ -56,7 +57,7 @@ export default function User({profile, posts, user}) {
         {pOpened ? <EditProfileModal user={user} closeAction={closeProfile} showVanish={vanished}/> : ''}
         <img className={styles.avatar} src={profile.avatar ? profile.avatar : '/av.png'}></img>
         <div className={styles.userinfo}>
-          <p>{profile.displayName}{profile.verified ? <Badge width="1.2rem" className={styles.badge}></Badge> : ''}</p>
+          <p>{profile.displayName}{profile.verified ? <VerifiedBadge className={styles.badge} /> : ''}</p>
           <p className={styles.username}>@{profile.username}</p>
         </div>
         {profile.username == user.username ? <Button label="Edit Profile" btnstyle="primary" onClick={openProfile} style={{marginLeft: "10px"}} /> : ''}
