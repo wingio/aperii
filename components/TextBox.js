@@ -9,7 +9,7 @@ export default function TextBox(props) {
     const { label } = props
     return (
         <>
-            {label ? <label style={{color: "white", margin: "10px 0"}}>{label}</label> : ''}
+            {label ? <label style={{color: "white", margin: "10px 0", width: "100%", fontSize: "small"}}>{label}</label> : ''}
             <input type="text" className={styles.textbox} {...props}>{props.children}</input>
         </>
     )
