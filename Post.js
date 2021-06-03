@@ -1,6 +1,6 @@
 const constants = require('./constants')
 const c = new constants()
 
-var me = c.getFlagsFromBitfield(14)
+var me = c.dgetFlagsFromBitfield(144)
 
 console.log(me)

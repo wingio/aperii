@@ -54,7 +54,8 @@
 }
 
 .miscInfo {
-    margin-left: 10px
+    margin-left: 10px;
+    display: flex;
 }
 
 .joinDate {
