@@ -6,6 +6,7 @@ import CreatePost from './CreatePost'
 import Compass from './Compass'
 import Home from './Home'
 import Star from './Star'
+import Logo from './Logo'
 
 /**
  * 
@@ -37,6 +38,9 @@ export default function Icon(props) {
             break;
         case 'star':
             icon = Star
+            break;
+        case 'logo':
+            icon = Logo
             break;
         default:
             icon = User
