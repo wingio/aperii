@@ -2,14 +2,7 @@ import React, {useState} from 'react'
 import styles from '../styles/MobileTabBar.module.css'
 import Icon from '../icons/Icon'
 
-export default function MobileTabBar({ currentPage, username }) {
-    const [showNoti, setShowNoti] = useState(false)
-    if(typeof window != "undefined"){
-        const exp = localStorage.getItem("experiments")
-        if(exp){
-            setShowNoti(exp["noti_tab_06_05_21"] == 1)
-        }
-    }
+export default function MobileTabBar({ currentPage, username, misc }) {
 
     return (
         <div className={styles.tabbar}>
@@ -23,7 +16,7 @@ export default function MobileTabBar({ currentPage, username }) {
                 <Icon name="compass" className={styles.icon}></Icon>
             </div>
 
-            {showNoti ? <div className={styles.tab}>
+            {misc["noti_tab_06_05_21"] == 1 ? <div className={styles.tab}>
                 <Icon name="bell" className={styles.icon}></Icon>
             </div> : ''}
             

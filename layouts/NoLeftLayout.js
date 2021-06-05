@@ -20,7 +20,7 @@ function NoLeftLayout(props) {
           <Search mobile={false}></Search>
           {props.children}
           <MobilePostBtn user={user} />
-          <BottomTabBar currentPage={page} username={user.username} />
+          <BottomTabBar currentPage={page} username={user.username} misc={misc} />
         </div>
 
         <div className={`sticky right`}>
