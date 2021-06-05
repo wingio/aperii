@@ -7,6 +7,7 @@ import Compass from './Compass'
 import Home from './Home'
 import Star from './Star'
 import Logo from './Logo'
+import Bell from './Bell'
 
 /**
  * 
@@ -41,6 +42,9 @@ export default function Icon(props) {
             break;
         case 'logo':
             icon = Logo
+            break;
+        case 'bell':
+            icon = Bell
             break;
         default:
             icon = User
