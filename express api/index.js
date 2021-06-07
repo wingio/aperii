@@ -854,6 +854,39 @@ client.connect(function (err) {
         }
     })
 
+    app.patch('/admin/user/:id/staff', auth, async (req, res) => {
+        
+        const { id } = req.params
+        const user = id == '@me' ? req.user : await collection.findOne({id: id})
+        var me = constants.getFlagsFromBitfield(req.user.flags ? req.user.flags : 0)
+        if(!user){
+            res.status(401).send({
+                status: 401,
+                error: "Unauthorized"
+            })
+            return
+        }
+
+        if(me.admin == true){
+            var flags = user.flags ? user.flags : 0
+            var resolved = constants.getFlagsFromBitfield(flags)
+            if(resolved.staff == true) {
+                flags = flags - constants.FLAGS.STAFF
+            } else if (resolved.staff == false) {
+                flags += constants.FLAGS.STAFF
+            }
+            var newFlags = constants.getFlagsFromBitfield(flags)
+            collection.findOneAndUpdate({id: user.id}, {$set: {flags: flags}})
+            res.send(newFlags)
+        } else {
+            res.status(401).send({
+                status: 401,
+                error: "Unauthorized"
+            })
+        }
+    })
+
+
     app.post('/admin/synces', auth, async (req, res) => {
         var me = constants.getFlagsFromBitfield(req.user.flags ? req.user.flags : 0)
 
@@ -864,9 +897,7 @@ client.connect(function (err) {
             early.forEach(user => {
                 var flags = user.flags ? user.flags : 0
                 var resolved = constants.getFlagsFromBitfield(flags)
-                if (resolved.early_supporter == true) {
-                    flags = flags - constants.FLAGS.EARLY_SUPPORTER
-                } else if (resolved.early_supporter == false) {
+                if (resolved.early_supporter == false) {
                     flags += constants.FLAGS.EARLY_SUPPORTER
                 }
                 collection.findOneAndUpdate({

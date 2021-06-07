@@ -2,7 +2,7 @@ import * as React from "react";
 /**
  * @param {React.SVGProps<SVGSVGElement>} props 
  */
-function User(props) {
+function Bell(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,4 +15,4 @@ function User(props) {
   );
 }
 
-export default User;
+export default Bell;
