@@ -8,7 +8,6 @@ export default (req, res) => {
         //JSON.stringify(req.body)
         fetch(`https://api.aperii.com/users/me/notifications`, {
             method: 'GET',
-            body: JSON.stringify(req.body),
             headers: {
                 'content-type': 'application/json',
                 authorization: req.headers.authorization
