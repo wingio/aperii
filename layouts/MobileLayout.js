@@ -36,7 +36,7 @@ function MobileLayout(props) {
           
         </div>
         <MobilePostBtn user={props.user} hasTabBar={true}/>
-        <BottomTabBar currentPage={page} username={user.username} misc={props.misc} fixed={false}></BottomTabBar>
+        <BottomTabBar currentPage={page} username={user.username} misc={props.misc} fixed={true}></BottomTabBar>
       </div>
     </div>
   );
