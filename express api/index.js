@@ -13,6 +13,8 @@ const fs = require('fs')
 const { sign, verify } =  require('jsonwebtoken')
 const constcls = require('../constants')
 const constants = new constcls()
+var idgen = require('../idgen');
+var tokenizer = require('../tokenizer v2')
 
 require('dotenv').config()
 
@@ -33,6 +35,7 @@ client.connect(function (err) {
     const posts = db.collection('posts');
     const cdn = db.collection('cdn');
     const relationships = db.collection('relationships')
+    const noti = db.collection('notifications')
 
     const express = require('express')
     const app = express()
@@ -98,18 +101,14 @@ client.connect(function (err) {
             return token
         }
     }
-    async function genId(length) {
-        var id = ''
-        var chars = "0123456789"
-        for (let i = 0; i < length; i++) {
-            var rn = Math.floor(Math.random() * chars.length)
-            id += chars.slice(rn, rn + 1)
-        }
-        var user = await collection.findOne({
+    async function genId(type) {
+        var id = idgen(type)
+        var col = type == 'user' ? collection : type == 'post' ? posts : type == 'noti' ? noti : undefined
+        var obj = await col.findOne({
             id: id
         })
-        if (user) {
-            return genId(length)
+        if (obj) {
+            return genId(type)
         } else {
             return id
         }
@@ -186,7 +185,7 @@ client.connect(function (err) {
                 });
                 return
             }
-            var userid = await genId(20)
+            var userid = await genId('user')
             var token = await sign({id: userid}, process.env.ACCESS_TOKEN_SECRET)
             bcrypt.hash(password, 10, async (err, hash) => {
                 collection.insertOne({
@@ -383,7 +382,26 @@ client.connect(function (err) {
             })
             return
         }
-        var postID = await genId(20)
+        var postID = await genId('post')
+        var toks = tokenizer(body)
+        if(toks.filter(t => t.type == 1).length > 0){
+            toks.filter(t => t.type == 1).forEach(async tok => {
+                var user = await collection.findOne({username: tok.value.toLowerCase().slice(1)})
+                if(user){
+                    noti.insertOne({
+                        owner: user.id,
+                        id: await genId('noti'),
+                        type: 0,
+                        createdTimestamp: Date.now(),
+                        read: false,
+                        props: {
+                            post_author_id: req.user.id,
+                            post_id: postID
+                        }
+                    })
+                }
+            })
+        }
         posts.insertOne({
             id: postID,
             createdTimestamp: Date.now(),
@@ -758,7 +776,8 @@ client.connect(function (err) {
                 displayName: 1,
                 username: 1,
                 verified: 1,
-                avatar: 1
+                avatar: 1,
+                flags: 1
             }
         }).toArray()
         var feed = await posts.find({author: {$in: rel}}, {projection: {
@@ -767,6 +786,45 @@ client.connect(function (err) {
 
         feed = feed.map(p => {p.author = authors.filter(u => u.id == p.author)[0]; return p })
         res.send(feed)
+    })
+
+    app.get('/users/me/notifications', auth, async (req, res) => {
+        var notis = await noti.find({owner: req.user.id}, {projection: {
+            _id: 0,
+            owner: 1,
+            id: 1,
+            type: 1,
+            createdTimestamp: 1,
+            read: 1,
+            props: 1
+        }}).toArray()
+        var postids = notis.filter(n => n.type == 0).map(n => { return n.props.post_id })
+        var postList = await posts.find({id: {$in: postids}}, {projection: {
+            _id: 0,
+            id: 1,
+            author: 1,
+            body: 1,
+            createdTimestamp: 1,
+            media: 1
+        }}).toArray()
+        var authors = postList.map(p => {return p.author})
+        var authorList = await collection.find({id: {$in: authors}}, {
+            projection: {
+                _id: 0,
+                id: 1,
+                joinedTimestamp: 1,
+                displayName: 1,
+                username: 1,
+                verified: 1,
+                avatar: 1,
+                flags: 1
+            }
+        }).toArray()
+
+        postList.map(p => {p.author = authorList.filter(a => a.id == p.author)[0]; return p})
+
+        notis.map(n => {n.props.post = postList.filter(p => p.id == n.props.post_id)[0]; delete n.props.post_id; delete n.props.post_author_id; return n})
+        res.send(notis)
     })
 
     //CDN
