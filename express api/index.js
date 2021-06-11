@@ -101,12 +101,17 @@ client.connect(function (err) {
             return token
         }
     }
-    async function genId(type) {
+
+    async function genId(type, author) {
         var id = idgen(type)
         var col = type == 'user' ? collection : type == 'post' ? posts : type == 'noti' ? noti : undefined
-        var obj = await col.findOne({
+        var filter = type == "post" ? {
+            id: id,
+            author: author
+        } : {
             id: id
-        })
+        }
+        var obj = await col.findOne(filter)
         if (obj) {
             return genId(type)
         } else {
@@ -382,7 +387,7 @@ client.connect(function (err) {
             })
             return
         }
-        var postID = await genId('post')
+        var postID = await genId('post', req.user.id)
         var toks = tokenizer(body)
         if(toks.filter(t => t.type == 1).length > 0){
             toks.filter(t => t.type == 1).forEach(async tok => {
@@ -825,6 +830,33 @@ client.connect(function (err) {
 
         notis.map(n => {n.props.post = postList.filter(p => p.id == n.props.post_id)[0]; delete n.props.post_id; delete n.props.post_author_id; return n})
         res.send(notis)
+    })
+
+    //Notifications
+
+    app.patch('/notifications/:id/read', auth, async (req, res) => {
+        const { id }= req.params
+        const not = await noti.findOne({id: id})
+        if(!not) {
+            res.status(404).send({
+                status: 404,
+                error: 'Notification not found'
+            })
+            return
+        }
+        if(not.owner != req.user.id) {
+            res.status(401).send({
+                status: 401,
+                error: 'Unauthorized'
+            })
+            return
+        }
+
+        noti.findOneAndUpdate({id: id}, {$set: {read: !not.read}})
+        res.send({
+            status: 200,
+            message: `Marked as ${!not.read == false ? 'un' : ''}read`
+        })
     })
 
     //CDN
