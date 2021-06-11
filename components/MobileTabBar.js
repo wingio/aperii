@@ -2,10 +2,10 @@ import React, {useState} from 'react'
 import styles from '../styles/MobileTabBar.module.css'
 import Icon from '../icons/Icon'
 
-export default function MobileTabBar({ currentPage, username, misc }) {
+export default function MobileTabBar({ currentPage, username, misc, fixed = true }) {
 
     return (
-        <div className={styles.tabbar}>
+        <div className={styles.tabbar} style={{position: fixed ? 'fixed' : 'revert'}}>
             <div className={`${styles.tab} ${currentPage=="home" ? styles.active : ''}`}>
                 <a href="/home" style={{width: "100%"}}>
                     <Icon name="home" className={styles.icon}></Icon>

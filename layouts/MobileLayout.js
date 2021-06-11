@@ -3,6 +3,8 @@ import Search from '../components/Search'
 import MobilePostBtn from '../components/MobilePostBtn'
 import ProfileDropdown from'../components/ProfileDropdown'
 import BottomTabBar from '../components/MobileTabBar'
+import styles from '../styles/MobileLayout.module.css'
+
 function MobileLayout(props) {
   const {width, height} = useWindowSize()
   const [open, setOpen] = useState(false)
@@ -19,7 +21,7 @@ function MobileLayout(props) {
   return (
     <div className="container" style={{display:"revert"}}>
       <div className={`ui`} style={{gridTemplateColumns: width >= 640? '640px' : '100%'}}>
-      <div className="header sticky">
+      <div className="header">
             <Search mobile={true}></Search>
             <div className="av-container">
               <img className={`av mobile`} src={user ? user.avatar ? user.avatar
@@ -28,13 +30,13 @@ function MobileLayout(props) {
               <ProfileDropdown user={props.user} exp={expStore} /> : ''}
             </div>
           </div>
-        <div className={`feed`} style={{height: "100%!important"}}>
+        <div className={`feed`} className={styles.feed}>
           
           {props.children}
           
         </div>
         <MobilePostBtn user={props.user} hasTabBar={true}/>
-        <BottomTabBar currentPage={page} username={user.username} misc={props.misc}></BottomTabBar>
+        <BottomTabBar currentPage={page} username={user.username} misc={props.misc} fixed={false}></BottomTabBar>
       </div>
     </div>
   );
