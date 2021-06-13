@@ -1,0 +1,89 @@
+.post {
+    --post-gap: 10px;
+}
+
+.post {
+    margin-bottom: 10px;
+    color: rgb(255, 255, 255);
+    width: 100%;
+    max-height: 500px;
+    padding: 12px;
+    display: grid;
+    grid-template-columns: 48px auto;
+    grid-template-rows: max-content;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    border-radius: 10px;
+    border: 1px solid #888888;
+}
+
+.avcontainer {
+    display: inline-grid;
+}
+
+.bodycontainer {
+    display: inline-grid;
+}
+
+.av {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    align-self: flex-start;
+}
+
+.author {
+    font-size: 15px;
+    font-weight: 700;
+    align-self: baseline;
+    margin: 0;
+    position: relative;
+    top: 2px;
+    left: var(--post-gap);
+}
+
+.displayName {
+    color: rgb(255, 255, 255);
+}
+
+.badge {
+    margin-bottom: -1.5px;
+    margin-left: 3px;
+    display: inline-block;
+    transition: box-shadow .5s;
+    border-radius: 50%;
+}
+
+.username {
+    font-weight: 600;
+    align-self: baseline;
+    color: rgb(136, 136, 136);
+    margin-left: 4px;
+}
+
+.content {
+    margin-left: var(--post-gap);
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.content p {
+    margin: 0
+}
+
+.content a {
+    color: #4eafff;
+}
+
+.tooltip {
+    visibility: hidden;
+}
+
+.badge:hover{
+    box-shadow: 0 0 20px 2px rgb(255 255 255 / 60%);
+}
+
+.content {
+    overflow-wrap: anywhere;
+}

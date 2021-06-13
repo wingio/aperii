@@ -8,6 +8,7 @@ import Home from './Home'
 import Star from './Star'
 import Logo from './Logo'
 import Bell from './Bell'
+import Mention from './Mention'
 
 /**
  * 
@@ -45,6 +46,9 @@ export default function Icon(props) {
             break;
         case 'bell':
             icon = Bell
+            break;
+        case 'mention':
+            icon = Mention
             break;
         default:
             icon = User
