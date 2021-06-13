@@ -9,7 +9,7 @@ const data = ({data}) => {
 
     var ping = (
         <>
-            <div className={styles.notinfo}><Icon name="mention" style={{marginRight: ".4em", color: "var(--rust-blood)"}} width="1.3rem"/> {<><b>{data.props.post.author.displayName}</b><p style={{margin: 0}}> has mentioned you in a post</p></>}</div>
+            <div className={styles.notinfo}><Icon name="mention" style={{marginRight: ".5em", color: "var(--rust-blood)"}} width="1.3rem"/> {<><b>{data.props.post.author.displayName}</b> has mentioned you in a post</>}</div>
             <div className={styles.content}><Post data={data.props.post}></Post></div>
         </>
     )

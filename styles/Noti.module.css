@@ -10,5 +10,5 @@
 }
 
 .content {
-    padding-left: 30px;
+    padding-left: calc(1.3rem + .5em);
 }
