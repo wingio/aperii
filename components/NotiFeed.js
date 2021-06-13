@@ -7,7 +7,7 @@ export default function NotiFeed({ notis }) {
     })
     return (
         <div>
-            {notis.map(p => <Post data={p} key={p.id}></Post>)}
+            {notis.map(p => <Noti data={p} key={p.id}></Noti>)}
         </div>
     )
 }
