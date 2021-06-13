@@ -11,7 +11,7 @@ const data = ({data}) => {
     )
 
     return (<div>
-        {data.type == 1 ? ping : ''}
+        {data.type == 0 ? ping : ''}
     </div>)
 }
 
