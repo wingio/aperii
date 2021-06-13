@@ -16,8 +16,10 @@ export default function MobileTabBar({ currentPage, username, misc, fixed = true
                 <Icon name="compass" className={styles.icon}></Icon>
             </div>
 
-            {misc["noti_tab_06_05_21"] == 1 ? <div className={styles.tab}>
-                <Icon name="bell" className={styles.icon}></Icon>
+            {misc["noti_tab_06_05_21"] == 1 ? <div className={`${styles.tab} ${currentPage=="notis" ? styles.active : ''}`}>
+            <a href={`/notifications`} style={{width: "100%"}}>
+                    <Icon name="bell" className={styles.icon}></Icon>
+                </a>
             </div> : ''}
             
             <div className={`${styles.tab} ${currentPage=="profile" ? styles.active : ''}`}>
