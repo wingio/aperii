@@ -24,7 +24,7 @@ const data = ({data}) => {
     )
 
     return (<div className={styles.noti}>
-        {data.type == 0 ? ping : ''}
+        {data.type == -1 ? info : data.type == 0 ? ping : ''}
     </div>)
 }
 
