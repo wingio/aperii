@@ -8,7 +8,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html style={{background: '#0b0e11'}}>
+      <Html style={{background: '#0b0e11'}} lang="en">
         <Head>
           <link rel="manifest" href="/manifest.webmanifest" />
         </Head>

@@ -15,6 +15,14 @@ const data = ({data}) => {
         </>
     )
 
+    var info = (
+        <>
+            <div className={styles.iconarea}><div className={styles.icon}><Icon name="bell" style={{color: "white"}} width="1.3rem"/></div></div>
+            <div className={styles.notinfo}>{<p style={{margin: 0}}>Welcome to Aperii!</p>}</div>
+            <div className={styles.content}><Post data={data.props.post}></Post></div>
+        </>
+    )
+
     return (<div className={styles.noti}>
         {data.type == 0 ? ping : ''}
     </div>)
