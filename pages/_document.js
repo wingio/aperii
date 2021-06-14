@@ -10,7 +10,7 @@ class MyDocument extends Document {
     return (
       <Html style={{background: '#0b0e11'}}>
         <Head>
-          <link rel="manifest" href="/manifest.json" />
+          <link rel="manifest" href="/manifest.webmanifest" />
         </Head>
         <body>
           <Main />
