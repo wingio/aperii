@@ -5,6 +5,7 @@
         "icon text"
         "icon content";
     grid-gap: .5em;
+    grid-template-columns: max-content;
 }
 
 .notinfo {
