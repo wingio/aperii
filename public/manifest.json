@@ -1,31 +1,36 @@
 {
-    "name": "Aperii",
-    "short_name": "aperii",
-    "icons": [{
-          "src": "webapp-icons/128.png",
-          "sizes": "128x128",
-          "type": "image/png"
-        }, {
-          "src": "webapp-icons/152.png",
-          "sizes": "152x152",
-          "type": "image/png"
-        }, {
-          "src": "webapp-icons/144.png",
-          "sizes": "144x144",
-          "type": "image/png"
-        }, {
-          "src": "webapp-icons/192.png",
-          "sizes": "192x192",
-          "type": "image/png",
-          "purpose": "any maskable"
-        }, {
-          "src": "webapp-icons/mask.png",
-          "sizes": "512x512",
-          "type": "image/png",
-          "purpose": "any maskable"
-        }],
-    "start_url": "/",
-    "display": "standalone",
-    "background_color": "#0b0e11",
-    "theme_color": "#9D4D4D"
-  }
+  "name": "Aperii",
+  "short_name": "Aperii",
+  "icons": [{
+    "src": "webapp-icons/128.png",
+    "sizes": "128x128",
+    "type": "image/png"
+  }, {
+    "src": "webapp-icons/152.png",
+    "sizes": "152x152",
+    "type": "image/png"
+  }, {
+    "src": "webapp-icons/144.png",
+    "sizes": "144x144",
+    "type": "image/png"
+  }, {
+    "src": "webapp-icons/192.png",
+    "sizes": "192x192",
+    "type": "image/png",
+    "purpose": "any maskable"
+  }, {
+    "src": "webapp-icons/mask.png",
+    "sizes": "512x512",
+    "type": "image/png",
+    "purpose": "any maskable"
+  }],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0e11",
+  "theme_color": "#9D4D4D",
+  "description": "A free, more open social experience",
+  "lang": "en",
+  "scope": "/"
+}
+
+
