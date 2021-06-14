@@ -1,14 +1,22 @@
 .noti {
     margin-bottom: 20px;
-    margin-top: 20px;
+    display: grid;
+    grid-template-areas: "icon text",
+                         "icon content";
 }
 
 .notinfo {
     display: flex;
     color: #888;
     margin: 10px 0;
+    grid-area: icon;
 }
 
 .content {
     padding-left: calc(1.3rem + .5em);
+    grid-area: content;
+}
+
+.icon {
+    grid-area: icon;
 }
