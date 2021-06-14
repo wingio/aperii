@@ -1,22 +1,30 @@
 .noti {
     margin-bottom: 20px;
     display: grid;
-    grid-template-areas: "icon text",
-                         "icon content";
+    grid-template-areas:
+        "icon text"
+        "icon content";
+    grid-gap: .5em;
 }
 
 .notinfo {
     display: flex;
     color: #888;
-    margin: 10px 0;
-    grid-area: icon;
+    grid-area: text;
 }
 
 .content {
-    padding-left: calc(1.3rem + .5em);
     grid-area: content;
 }
 
 .icon {
     grid-area: icon;
+    width: 1.7rem;
+    height: 1.7rem;
+    border-radius: 50%;
+    background: var(--rust-blood);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
 }
