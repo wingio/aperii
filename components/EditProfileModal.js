@@ -5,7 +5,7 @@ import ModalForm from './ModalForm'
 import styles from '../styles/EditProfileModal.module.css'
 export default function MakePostModal({ user, closeAction, showVanish }) {
     const [opened, setOpen] = useState(true)
-    const [changes, setChanges] = useState({})
+    const [changes, setChanges] = useState({made: false})
     const [User, setUser] = useState(user)
     var close = closeAction
 
@@ -33,8 +33,8 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
             },
             method: 'PATCH'
         }).then(res => res.json()).then(json => {
-            //close()
-            //window.location = window.location
+            setUser(json.profile)
+            setChanges({made: false})
         })
     }
 
@@ -48,19 +48,22 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
         });
 
         setSource(await toBase64(e.target.files[0]))
-        setChanges(changes['avatar'] = await toBase64(e.target.files[0]))
+        var ch = changes
+        ch.avatar = await toBase64(e.target.files[0])
+        ch.made = true
+        setChanges(ch)
     }
 
     return (
-        opened ? <Modal title="Edit your profile" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Save', btnstyle: 'primary', form: "modal-postform", onClick: post, disabled: changes == {}}]} showVanish={showVanish}>
+        opened ? <Modal title="Edit your profile" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Save', btnstyle: 'primary', form: "modal-postform", onClick: post, disabled: !changes.made}]} showVanish={showVanish}>
             <ModalForm onSubmit={post} id="modal-postform" style={{display:"flex", flexDirection: "column", alignItems: "center"}}>
                 <label className={styles.avSelect}>
                     <input type="file" accept=".png, .jpg, .jpeg, .gif" multiple={false} onChange={updatePreview} style={{display: "hidden"}}/>
                     Select Image
                 </label>
                 <img src={source} width="100px" height="100px" style={{borderRadius: "50%"}}></img>
-                <TextBox label="Display Name" style={{marginBottom: "10px"}} placeholder={user.displayName} onChange={(e) => { var ch = changes; ch.displayName = e.target.value; setChanges(ch)}}></TextBox>
-                <TextBox label="Username" placeholder={user.username} onChange={(e) => { var ch = changes; ch.username = e.target.value; setChanges(ch)}}></TextBox>
+                <TextBox label="Display Name" style={{marginBottom: "10px"}} placeholder={user.displayName} onChange={(e) => { var ch = changes; ch.displayname = e.target.value; ch.made == true; setChanges(ch)}}></TextBox>
+                <TextBox label="Username" placeholder={user.username} onChange={(e) => { var ch = changes; ch.username = e.target.value; ch.made == true; setChanges(ch)}}></TextBox>
             </ModalForm>
         </Modal> : <></>
     )
