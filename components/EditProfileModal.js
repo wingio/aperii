@@ -33,8 +33,8 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
             },
             method: 'PATCH'
         }).then(res => res.json()).then(json => {
-            close()
-            window.location = window.location
+            //close()
+            //window.location = window.location
         })
     }
 
