@@ -48,7 +48,7 @@ export default function Demo( { posts, user } ) {
 
   return <Layout user={user} misc={expStore} page="notis">
     <Head>
-      <title>Home - Aperii</title>
+      <title>Notifications - Aperii</title>
       <meta property="og:title" content="Aperii" />
       <meta property="og:description" content="A free, more open social experience" />
       <meta property="og:image" content="/logo_circle.png"/>
