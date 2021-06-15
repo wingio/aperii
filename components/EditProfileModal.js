@@ -23,7 +23,7 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
         });
 
 
-        var base64 = await toBase64(body[0].files[0])
+        //var base64 = await toBase64(body[0].files[0])
         //console.log(base64)
         fetch(`https://aperii.com/api/v1/users/${user.id}`, {
             body: JSON.stringify(changes),
@@ -59,8 +59,8 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
                     Select Image
                 </label>
                 <img src={source} width="100px" height="100px" style={{borderRadius: "50%"}}></img>
-                <TextBox label="Display Name" style={{marginBottom: "10px"}} placeholder={user.displayName} onChange={(e) => {setChanges(changes['displayName'] = e.target.value)}}></TextBox>
-                <TextBox label="Username" placeholder={user.username} onChange={(e) => {setChanges(changes['username'] = e.target.value)}}></TextBox>
+                <TextBox label="Display Name" style={{marginBottom: "10px"}} placeholder={user.displayName} onChange={(e) => { var ch = changes; ch.displayName = e.target.value; setChanges(ch)}}></TextBox>
+                <TextBox label="Username" placeholder={user.username} onChange={(e) => { var ch = changes; ch.username = e.target.value; setChanges(ch)}}></TextBox>
             </ModalForm>
         </Modal> : <></>
     )
