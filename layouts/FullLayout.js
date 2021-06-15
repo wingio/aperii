@@ -77,9 +77,9 @@ function FullLayout(props) {
     <div className={`ui full`}>
   <div className={`sticky left`}>
     <a href="/home"><span className={`logo`}></span></a>
-    <SidebarFeedOption name="Home" current={true} icon="home"></SidebarFeedOption>
+    <a href="/home"><SidebarFeedOption name="Home" current={props.page == "home"} icon="home"></SidebarFeedOption></a>
     <SidebarFeedOption name="Discover" icon="compass"></SidebarFeedOption>
-    {expStore["noti_tab_06_05_21"] == 1 ? <SidebarFeedOption name="Notifications" icon="bell"></SidebarFeedOption> : ''}
+    {expStore["noti_tab_06_05_21"] == 1 ? <a href="/notifications"><SidebarFeedOption name="Notifications" current={props.page == "notis"} icon="bell"></SidebarFeedOption></a> : ''}
   </div>
   <div className={`feed`} style={{height: "100vh"}}>
     <Search></Search>

@@ -20,7 +20,7 @@ function Layout(props) {
             {props.children}
         </NoLeftLayout>
     } else if(width > 1320){
-        return <FullLayout user={props.user} misc={props.misc}>
+        return <FullLayout user={props.user} misc={props.misc} page={props.page}>
         {props.children}
         </FullLayout>
     } else {
