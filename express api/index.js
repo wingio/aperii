@@ -500,8 +500,28 @@ client.connect(function (err) {
                 })
                 
             }
-            if(errors.filter(e => e.field == 'username').length < 1){
-                collection.findOneAndUpdate({id: id}, {$set:{username: username.toLowerCase()}})
+
+            
+            if (errors.filter(e => e.field == 'username').length < 1) {
+                var u = await collection.findOne({
+                    username: username
+                })
+                if (u) {
+                    errors.push({
+                        status: 400,
+                        error: 'Username already taken',
+                        field: username
+                    })
+                }
+                if (errors.filter(e => e.field == 'username').length < 1) {
+                collection.findOneAndUpdate({
+                    id: id
+                }, {
+                    $set: {
+                        username: username.toLowerCase()
+                    }
+                })
+            }
             }
         }
 
