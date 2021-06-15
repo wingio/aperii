@@ -31,7 +31,7 @@ client.connect(function (err) {
     console.log('Connected successfully to server');
 
     const db = client.db(dbName);
-    const collection = db.collection('user');
+    const users = db.collection('user');
     const posts = db.collection('posts');
     const cdn = db.collection('cdn');
     const relationships = db.collection('relationships')
@@ -51,7 +51,7 @@ client.connect(function (err) {
             return
         }
 
-        collection.findOne({
+        users.findOne({
             token: tok
         }).then(u => {
             if (!u) {
@@ -73,7 +73,7 @@ client.connect(function (err) {
         const tok = req.headers.authorization
         
 
-        collection.findOne({
+        users.findOne({
             token: tok
         }).then(u => {
             if(u) req.user = u
@@ -92,7 +92,7 @@ client.connect(function (err) {
             var rn = Math.floor(Math.random() * chars.length)
             token += chars.slice(rn, rn + 1)
         }
-        var user = await collection.findOne({
+        var user = await users.findOne({
             token: token
         })
         if (user) {
@@ -104,7 +104,7 @@ client.connect(function (err) {
 
     async function genId(type, author) {
         var id = idgen(type)
-        var col = type == 'user' ? collection : type == 'post' ? posts : type == 'noti' ? noti : undefined
+        var col = type == 'user' ? users : type == 'post' ? posts : type == 'noti' ? noti : undefined
         var filter = type == "post" ? {
             id: id,
             author: author
@@ -130,7 +130,7 @@ client.connect(function (err) {
 
         if (email && displayName && username && password) {
 
-            var user = await collection.findOne({
+            var user = await users.findOne({
                 username: username.toLowerCase()
             })
             if (user) {
@@ -141,7 +141,7 @@ client.connect(function (err) {
                 return
             }
 
-            var user = await collection.findOne({
+            var user = await users.findOne({
                 email: email
             })
             if (user) {
@@ -193,7 +193,7 @@ client.connect(function (err) {
             var userid = await genId('user')
             var token = await sign({id: userid}, process.env.ACCESS_TOKEN_SECRET)
             bcrypt.hash(password, 10, async (err, hash) => {
-                collection.insertOne({
+                users.insertOne({
                     id: userid,
                     joinedTimestamp: Date.now(),
                     email: email,
@@ -224,7 +224,7 @@ client.connect(function (err) {
             username,
             password
         } = req.body
-        var user = await collection.findOne({
+        var user = await users.findOne({
             username: username
         })
         if (!user) {
@@ -259,7 +259,7 @@ client.connect(function (err) {
                 error: 'Unauthorized'
             })
         }
-        var user = await collection.findOne({
+        var user = await users.findOne({
             token: tok
         })
         if (!user) {
@@ -285,7 +285,7 @@ client.connect(function (err) {
 
     app.get('/users/:id', auth, async (req, res) => {
         const { id } = req.params
-        var u = await collection.findOne({id : id})
+        var u = await users.findOne({id : id})
         if(!u) {
             res.status(404).send({
                 status: 404,
@@ -306,7 +306,7 @@ client.connect(function (err) {
 
     app.get('/profiles/:username', softAuth, async (req, res) => {
         const { username } = req.params
-        var u = await collection.findOne({username : username})
+        var u = await users.findOne({username : username})
         if(!u) {
             res.status(404).send({
                 status: 404,
@@ -391,7 +391,7 @@ client.connect(function (err) {
         var toks = tokenizer(body)
         if(toks.filter(t => t.type == 1).length > 0){
             toks.filter(t => t.type == 1).forEach(async tok => {
-                var user = await collection.findOne({username: tok.value.toLowerCase().slice(1)})
+                var user = await users.findOne({username: tok.value.toLowerCase().slice(1)})
                 if(user){
                     noti.insertOne({
                         owner: user.id,
@@ -464,7 +464,7 @@ client.connect(function (err) {
                                 format
                             }
                         })
-                        collection.findOneAndUpdate({
+                        users.findOneAndUpdate({
                             id
                         }, {
                             $set: {
@@ -478,7 +478,7 @@ client.connect(function (err) {
                             data: avatar.split('base64,')[1],
                             format
                         })
-                        collection.findOneAndUpdate({
+                        users.findOneAndUpdate({
                             id
                         }, {
                             $set: {
@@ -503,7 +503,7 @@ client.connect(function (err) {
 
             
             if (errors.filter(e => e.field == 'username').length < 1) {
-                var u = await collection.findOne({
+                var u = await users.findOne({
                     username: username
                 })
                 if (u) {
@@ -514,7 +514,7 @@ client.connect(function (err) {
                     })
                 }
                 if (errors.filter(e => e.field == 'username').length < 1) {
-                collection.findOneAndUpdate({
+                users.findOneAndUpdate({
                     id: id
                 }, {
                     $set: {
@@ -534,11 +534,11 @@ client.connect(function (err) {
                 });
             }
             if(errors.filter(e => e.field == 'displayname').length < 1){
-                collection.findOneAndUpdate({id: id}, {$set:{displayname: displayname}})
+                users.findOneAndUpdate({id: id}, {$set:{displayname: displayname}})
             }
         }
 
-        var u = await collection.findOne({
+        var u = await users.findOne({
             id
         })
         delete u.token
@@ -636,7 +636,7 @@ client.connect(function (err) {
     function addAuthorToPost(postArray) {
         for (let index = 0; index < postArray.length; index++) {
             var post = postArray[index];
-            collection.findOne({
+            users.findOne({
                 id: post.author
             }).then(user => {
                 delete user.token
@@ -654,7 +654,7 @@ client.connect(function (err) {
 
     app.get('/posts/all', auth, async (req, res) => {
         var allPosts = await posts.find().toArray()
-        var allUsers = await collection.find().toArray()
+        var allUsers = await users.find().toArray()
         var postlist = []
         allPosts.map(p => {
             var user = allUsers.filter(u => u.id == p.author)[0]
@@ -673,7 +673,7 @@ client.connect(function (err) {
     app.post('/users/:id/followers', auth, async (req, res) => {
         const { id } = req.params
 
-        var user = await collection.findOne({id})
+        var user = await users.findOne({id})
         if(!user){
             res.status(404).send({
                 status: 404,
@@ -706,7 +706,7 @@ client.connect(function (err) {
     app.delete('/users/:id/followers', auth, async (req, res) => {
         const { id } = req.params
 
-        var user = await collection.findOne({id})
+        var user = await users.findOne({id})
         if(!user){
             res.status(404).send({
                 status: 404,
@@ -738,7 +738,7 @@ client.connect(function (err) {
 
     app.get('/users/:id/followers', auth, async (req, res) => {
         const { id } = req.params
-        var user = await collection.findOne({id})
+        var user = await users.findOne({id})
         if(!user){
             res.status(404).send({
                 status: 404,
@@ -748,7 +748,7 @@ client.connect(function (err) {
         }
         var rel = await relationships.find({subject: id, type: 'follow'}).toArray()
         rel = rel.map(r => {return r.owner})
-        var followers = await collection.find({id : {$in:rel}}, {
+        var followers = await users.find({id : {$in:rel}}, {
             projection: {
                 _id: 0,
                 id: 1,
@@ -764,7 +764,7 @@ client.connect(function (err) {
 
     app.get('/users/:id/following', auth, async (req, res) => {
         const { id } = req.params
-        var user = await collection.findOne({id})
+        var user = await users.findOne({id})
         if(!user){
             res.status(404).send({
                 status: 404,
@@ -774,7 +774,7 @@ client.connect(function (err) {
         }
         var rel = await relationships.find({owner: id, type: 'follow'}).toArray()
         rel = rel.map(r => {return r.subject})
-        var followers = await collection.find({id : {$in:rel}}, {
+        var followers = await users.find({id : {$in:rel}}, {
             projection: {
                 _id: 0,
                 id: 1,
@@ -793,7 +793,7 @@ client.connect(function (err) {
     app.get('/users/me/feed', auth, async (req, res) => {
         var rel = await relationships.find({owner: req.user.id, type: 'follow'}).toArray()
         rel = rel.map(r => {return r.subject})
-        var authors = await collection.find({id: {$in: rel}}, {
+        var authors = await users.find({id: {$in: rel}}, {
             projection: {
                 _id: 0,
                 id: 1,
@@ -833,7 +833,7 @@ client.connect(function (err) {
             media: 1
         }}).toArray()
         var authors = postList.map(p => {return p.author})
-        var authorList = await collection.find({id: {$in: authors}}, {
+        var authorList = await users.find({id: {$in: authors}}, {
             projection: {
                 _id: 0,
                 id: 1,
@@ -904,7 +904,7 @@ client.connect(function (err) {
     app.patch('/admin/user/:id/admin', auth, async (req, res) => {
         var devs = ['wing', 'xarvatium']
         const { id } = req.params
-        const user = id == '@me' ? req.user : await collection.findOne({id: id})
+        const user = id == '@me' ? req.user : await users.findOne({id: id})
 
         if(!user){
             res.status(401).send({
@@ -922,7 +922,7 @@ client.connect(function (err) {
             } else if (resolved.admin == false) {
                 flags += constants.FLAGS.ADMIN
             }
-            collection.findOneAndUpdate({id: user.id}, {$set: {flags: flags}})
+            users.findOneAndUpdate({id: user.id}, {$set: {flags: flags}})
             res.send(constants.getFlagsFromBitfield(flags))
         } else {
             res.status(401).send({
@@ -935,7 +935,7 @@ client.connect(function (err) {
     app.patch('/admin/user/:id/verified', auth, async (req, res) => {
         
         const { id } = req.params
-        const user = id == '@me' ? req.user : await collection.findOne({id: id})
+        const user = id == '@me' ? req.user : await users.findOne({id: id})
         var me = constants.getFlagsFromBitfield(req.user.flags ? req.user.flags : 0)
         if(!user){
             res.status(401).send({
@@ -954,7 +954,7 @@ client.connect(function (err) {
                 flags += constants.FLAGS.VERIFIED
             }
             var newFlags = constants.getFlagsFromBitfield(flags)
-            collection.findOneAndUpdate({id: user.id}, {$set: {flags: flags, verified: newFlags.verified}})
+            users.findOneAndUpdate({id: user.id}, {$set: {flags: flags, verified: newFlags.verified}})
             res.send(newFlags)
         } else {
             res.status(401).send({
@@ -967,7 +967,7 @@ client.connect(function (err) {
     app.patch('/admin/user/:id/staff', auth, async (req, res) => {
         
         const { id } = req.params
-        const user = id == '@me' ? req.user : await collection.findOne({id: id})
+        const user = id == '@me' ? req.user : await users.findOne({id: id})
         var me = constants.getFlagsFromBitfield(req.user.flags ? req.user.flags : 0)
         if(!user){
             res.status(401).send({
@@ -986,7 +986,7 @@ client.connect(function (err) {
                 flags += constants.FLAGS.STAFF
             }
             var newFlags = constants.getFlagsFromBitfield(flags)
-            collection.findOneAndUpdate({id: user.id}, {$set: {flags: flags}})
+            users.findOneAndUpdate({id: user.id}, {$set: {flags: flags}})
             res.send(newFlags)
         } else {
             res.status(401).send({
@@ -1001,7 +1001,7 @@ client.connect(function (err) {
         var me = constants.getFlagsFromBitfield(req.user.flags ? req.user.flags : 0)
 
         if(me.admin == true){
-            var all = await collection.find().toArray()      
+            var all = await users.find().toArray()      
             var early = all.filter(u => u.joinedTimestamp <= 1622519999000)
 
             early.forEach(user => {
@@ -1010,7 +1010,7 @@ client.connect(function (err) {
                 if (resolved.early_supporter == false) {
                     flags += constants.FLAGS.EARLY_SUPPORTER
                 }
-                collection.findOneAndUpdate({
+                users.findOneAndUpdate({
                     id: user.id
                 }, {
                     $set: {
