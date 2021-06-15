@@ -62,8 +62,8 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
                     Select Image
                 </label>
                 <img src={source} width="100px" height="100px" style={{borderRadius: "50%"}}></img>
-                <TextBox label="Display Name" style={{marginBottom: "10px"}} placeholder={user.displayName} onChange={(e) => { var ch = changes; ch.displayname = e.target.value; ch.made == true; setChanges(ch)}}></TextBox>
-                <TextBox label="Username" placeholder={user.username} onChange={(e) => { var ch = changes; ch.made == true; setChanges(ch)}}></TextBox>
+                <TextBox label="Display Name" style={{marginBottom: "10px"}} placeholder={user.displayName} onChange={(e) => { var ch = changes; ch.displayname = e.target.value; ch.made = true; setChanges(ch)}}></TextBox>
+                <TextBox label="Username" placeholder={user.username} onChange={(e) => { var ch = changes; ch.made = true; setChanges(ch)}}></TextBox>
             </ModalForm>
         </Modal> : <></>
     )
