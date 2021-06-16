@@ -18,7 +18,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: .5em;
+  width: 0em;
 }
  
 ::-webkit-scrollbar-track {
@@ -108,6 +108,7 @@ a {
   background-image: url('/logo_full.svg');
   background-size: cover;
   display: inline-block;
+  margin-top: -1px
 }
 
 .av {

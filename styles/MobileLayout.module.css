@@ -1,5 +1,7 @@
 .feed {
-    padding: 0 1em;
-    overflow-y: scroll;
-    height: calc(100vh - 60px - 105px);
-  }
+  padding: 0;
+  overflow-y: scroll;
+  height: calc(100vh - 60px - 105px);
+  overflow-x: hidden;
+  margin-top: -1px;
+}
