@@ -60,7 +60,7 @@ export default function User({profile, posts, user}) {
           <p>{profile.displayName}{profile.verified ? <VerifiedBadge className={styles.badge} /> : ''}</p>
           <p className={styles.username}>@{profile.username}</p>
         </div>
-        {profile.username == user.username ? <Button label="Edit Profile" btnstyle="primary" onClick={openProfile} style={{marginLeft: "10px"}} /> : ''}
+        {profile.username == user.username ? <Button label="Edit Profile" btnstyle="primary" onClick={openProfile} style={{marginLeft: "1em"}} /> : ''}
         <div className={styles.miscInfo}>
           {profile.flags.staff || profile.flags.admin ? <Icon name="logo" width=".9rem" color="var(--border-grey)" className={styles.joinDateIcon}/> : ''}
           <p style={{color: "var(--border-grey)"}} className={styles.joinDate}>{profile.flags.early_supporter ? <Icon name="star" width=".9rem" style={{color: "#e2ec56"}} fill="#e2ec56" className={styles.joinDateIcon}/> : ''} <Calender width=".9rem" fill="var(--border-grey)" className={styles.joinDateIcon}></Calender> Joined {moment(profile.joinedTimestamp).format('MMMM YYYY')}</p>
