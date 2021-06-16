@@ -387,7 +387,7 @@ input[type="submit"] {
 /*Mobile Header */
 
 .header {
-  padding: 30px 1em;
+  padding: 1em 1em;
   display: flex;
   background: var(--darkle);
   z-index: 11;
