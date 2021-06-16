@@ -5,7 +5,7 @@ import ModalForm from './ModalForm'
 import styles from '../styles/EditProfileModal.module.css'
 export default function MakePostModal({ user, closeAction, showVanish }) {
     const [opened, setOpen] = useState(true)
-    const [changes, setChanges] = useState({made: false})
+    const [changes, setChanges] = useState({})
     const [User, setUser] = useState(user)
     var close = closeAction
 
@@ -63,8 +63,8 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
                     Select Image
                 </label>
                 <img src={source} width="100px" height="100px" style={{borderRadius: "50%"}}></img>
-                <TextBox label="Display Name" style={{marginBottom: "10px"}} placeholder={user.displayName} onChange={(e) => { var ch = changes; ch.displayname = e.target.value; ch.made = true; setChanges(ch)}}></TextBox>
-                <TextBox label="Username" placeholder={user.username} onChange={(e) => { var ch = changes; ch.made = true; setChanges(ch)}}></TextBox>
+                <TextBox label="Display Name" style={{marginBottom: "10px"}} placeholder={user.displayName} onChange={(e) => { var chngs = changes; chngs.displayname = e.target.value; setChanges(ch)}}></TextBox>
+                <TextBox label="Username" placeholder={user.username} onChange={(e) => { var ch = changes; setChanges(ch)}}></TextBox>
             </ModalForm>
         </Modal> : <></>
     )
