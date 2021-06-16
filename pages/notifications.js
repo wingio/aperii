@@ -46,7 +46,7 @@ export default function Demo( { posts, user } ) {
     }
   }
 
-  return <Layout user={user} misc={expStore} page="notis">
+  return <Layout user={user} misc={expStore} page="notis" title="Notifications">
     <Head>
       <title>Notifications - Aperii</title>
       <meta property="og:title" content="Aperii" />
