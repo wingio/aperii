@@ -80,6 +80,7 @@ function FullLayout(props) {
     <a href="/home"><SidebarFeedOption name="Home" current={props.page == "home"} icon="home"></SidebarFeedOption></a>
     <SidebarFeedOption name="Discover" icon="compass"></SidebarFeedOption>
     {expStore["noti_tab_06_05_21"] == 1 ? <a href="/notifications"><SidebarFeedOption name="Notifications" current={props.page == "notis"} icon="bell"></SidebarFeedOption></a> : ''}
+    <a href={`/p/${user.username}`}><SidebarFeedOption name="Profile" current={props.page == "profile"} icon="user"></SidebarFeedOption></a>
   </div>
   <div className={`feed`} style={{height: "100vh"}}>
     <Search></Search>
