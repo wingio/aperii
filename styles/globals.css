@@ -392,6 +392,7 @@ input[type="submit"] {
   background: var(--darkle);
   z-index: 11;
   border-bottom: 1px solid var(--border-grey);
+  align-items: center;
 }
 
 .search-container-mobile {
