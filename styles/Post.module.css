@@ -14,7 +14,7 @@
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     border-radius: 10px;
-    border: 1px solid #888888;
+    border: 1px solid var(--border-grey);
 }
 
 .avcontainer {

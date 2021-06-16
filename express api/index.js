@@ -526,7 +526,7 @@ client.connect(function (err) {
         }
 
         if(displayname){
-            if (username.length < 4 || username.length > 32) {
+            if (displayname.length < 4 || displayname.length > 32) {
                 errors.push({
                     status: 400,
                     error: 'Display name must be between 4 and 32 characters long',
