@@ -87,9 +87,17 @@ a {
 }
 
 .feed {
-  padding: 0 1em;
+  padding: 0;
   overflow-y: scroll;
+  overflow-x: hidden;
   height: calc(100vh - 60px - 105px);
+  border-right: 1px solid var(--border-grey);
+  border-left: 1px solid var(--border-grey);
+}
+
+.feed::-webkit-scrollbar {
+  position: fixed;
+  right: 0;
 }
 
 .logo {
