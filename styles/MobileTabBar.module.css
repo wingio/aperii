@@ -3,25 +3,25 @@
     bottom: 0;
     display: flex;
     justify-content: space-evenly;
-    background: var(--darkle-bright-2);
+    background: var(--darkle);
 }
 
 .tab {
     width: 100%;
     text-align: center;
-    height: 60px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-top: .3em solid var(--darkle-bright-3);
+    border-top: 1px solid var(--border-grey);
 }
 
 .icon {
-    width: 1.3em;
+    width: 1.2em;
     height: 60px;
     color: white;
 }
 
-.tab.active{
-    border-top: 0.3em solid var(--rust-blood);
+.tab.active .icon{
+    color: var(--rust-blood);
 }
