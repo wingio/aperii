@@ -83,7 +83,7 @@ function FullLayout(props) {
     <a href={`/p/${user.username}`}><SidebarFeedOption name="Profile" current={props.page == "profile"} icon="user"></SidebarFeedOption></a>
   </div>
   <div className={`feed`} style={{height: "100vh"}}>
-    <Search></Search>
+    <Search title={props.title}></Search>
     <div className="content">
       {props.children}
     </div>

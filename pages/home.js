@@ -46,7 +46,7 @@ export default function Demo( { posts, user } ) {
     }
   }
 
-  return <Layout user={user} misc={expStore} page="home">
+  return <Layout user={user} misc={expStore} page="home" title="Home">
     <Head>
       <title>Home - Aperii</title>
       <meta property="og:title" content="Aperii" />

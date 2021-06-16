@@ -22,7 +22,7 @@ function MobileLayout(props) {
     <div className="container" style={{display:"revert"}}>
       <div className={`ui`} style={{gridTemplateColumns: width >= 640? '640px' : '100%'}}>
       <div className="header">
-            <Search mobile={true}></Search>
+            <Search mobile={true} title={props.title}></Search>
             <div className="av-container">
               <img className={`av mobile`} src={user ? user.avatar ? user.avatar
                 : '/av.png' : '/av.png' } onClick={()=> {setOpen(!open)}}></img>
