@@ -35,6 +35,7 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
         }).then(res => res.json()).then(json => {
             setUser(json.profile)
             setChanges({made: false})
+            window.location.href = window.location.href
         })
     }
 

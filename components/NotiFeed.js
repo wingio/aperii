@@ -1,7 +1,7 @@
 import React from 'react'
 import Noti from './Noti'
 
-export default function NotiFeed({ notis }) {
+export default function NotiFeed({ notis, user }) {
     notis = notis.length > 0 ? notis : [
         {
             "owner": "1",
@@ -22,7 +22,7 @@ export default function NotiFeed({ notis }) {
                         "avatar": "https://aperii.com/api/usercontent/avatars/72457234678237955171",
                         "flags": 26
                     },
-                    "body": "👋",
+                    "body": `@${user.username} 👋`,
                     "media": [
                         null
                     ]

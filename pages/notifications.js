@@ -54,7 +54,7 @@ export default function Demo( { posts, user } ) {
       <meta property="og:image" content="/logo_circle.png"/>
     </Head>
     {showChangelog ? <Changelog/> : ''}
-    <NotiFeed notis={posts} />
+    <NotiFeed notis={posts} user={user}/>
   </Layout>
 }
 
