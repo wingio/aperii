@@ -71,6 +71,7 @@ a {
   padding: 30px 0;
   background: #0b0e11;
   z-index: 11;
+  border-bottom: 1px solid var(--border-grey);
 }
 
 .left {
@@ -390,6 +391,7 @@ input[type="submit"] {
   display: flex;
   background: var(--darkle);
   z-index: 11;
+  border-bottom: 1px solid var(--border-grey);
 }
 
 .search-container-mobile {
