@@ -24,6 +24,8 @@
     border-radius: 50%;
     margin-left: 1em;
     margin-top: -45px;
+    background: #0b0e11;
+    border: 4px solid var(--darkle);
 }
 
 .userinfo {
