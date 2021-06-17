@@ -11,7 +11,7 @@
 
 .notinfo {
     display: flex;
-    color: var(--border-grey);
+    color: #888;
     grid-area: text;
 }
 
