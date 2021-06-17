@@ -18,6 +18,11 @@
     border-bottom: 1px solid var(--border-grey);
 }
 
+.embed {
+    border: 1px solid var(--border-grey);
+    border-radius: 5px;
+}
+
 .avcontainer {
     display: inline-grid;
 }

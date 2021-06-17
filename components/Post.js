@@ -3,7 +3,7 @@ import Tooltip from './Tooltip'
 import {useState} from 'react'
 import PostBody from './PostBody'
 import Badge from '../icons/Badge'
-const data = ({data}) => {
+const data = ({data, embed}) => {
     const [visible, setVisible] = useState(false)
 
     function showTooltip() {
@@ -16,7 +16,7 @@ const data = ({data}) => {
 
     var umentionRegex = /@[a-zA-Z0-9_]+/g
 
-    return (<div className={postStyle.post}>
+    return (<div className={postStyle.post + ` ${embed ? `embed` : ''}`}>
         <div className={postStyle.avcontainer}>
             <img className={postStyle.av} src={data.author.avatar ? data.author.avatar : '/av.png'}></img>
         </div>

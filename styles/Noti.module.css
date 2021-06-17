@@ -1,11 +1,12 @@
 .noti {
-    margin-bottom: 20px;
     display: grid;
     grid-template-areas:
         "icon text"
         "icon content";
     grid-gap: .5em;
     grid-template-columns: max-content;
+    padding: 20px;
+    border-bottom: 1px solid var(--border-grey);
 }
 
 .notinfo {

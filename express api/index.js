@@ -534,7 +534,7 @@ client.connect(function (err) {
                 });
             }
             if(errors.filter(e => e.field == 'displayname').length < 1){
-                users.findOneAndUpdate({id: id}, {$set:{displayname: displayname}})
+                users.findOneAndUpdate({id: id}, {$set:{displayName: displayname}})
             }
         }
 
