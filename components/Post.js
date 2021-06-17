@@ -18,7 +18,7 @@ const data = ({data, embed}) => {
 
     var umentionRegex = /@[a-zA-Z0-9_]+/g
 
-    return (<div className={postStyle.post + ` ${embed ? postStyle.embed : ''}`} onContextMenu={openContext}>
+    return (<div className={postStyle.post + ` ${embed ? postStyle.embed : ''}`} >
         <div className={postStyle.avcontainer}>
             <img className={postStyle.av} src={data.author.avatar ? data.author.avatar : '/av.png'}></img>
         </div>
