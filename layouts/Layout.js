@@ -11,20 +11,20 @@ function Layout(props) {
       )
     } else if(width < 750){
         return (
-        <MobileLayout user={props.user} misc={props.misc} page={props.page} title={props.title}>
+        <MobileLayout {...props}>
             {props.children}
         </MobileLayout>
         )
     } else if( width < 965){
-        return <NoLeftLayout user={props.user} misc={props.misc} page={props.page} title={props.title}>
+        return <NoLeftLayout {...props}>
             {props.children}
         </NoLeftLayout>
     } else if(width > 1320){
-        return <FullLayout user={props.user} misc={props.misc} page={props.page} title={props.title}>
+        return <FullLayout {...props}>
         {props.children}
         </FullLayout>
     } else {
-        return <NoLeftLayout user={props.user} misc={props.misc} page={props.page} title={props.title}>
+        return <NoLeftLayout {...props}>
             {props.children}
         </NoLeftLayout>
     }

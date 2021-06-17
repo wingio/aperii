@@ -43,7 +43,7 @@ export default function User({profile, posts, user}) {
     setpOpened(true)
   }
   return (
-    <Layout user={user} misc={expStore} page={profile.username == user.username ? 'profile' : 'home'} title={profile.displayName}>
+    <Layout user={user} misc={expStore} page={profile.username == user.username ? 'profile' : 'home'} title={profile.displayName} showBadge={profile.verified} showCount={true} postCount={posts.length}>
       <Head>
         <meta property="og:title" content={`${profile.displayName} (@${profile.username})`} />
         <meta property="og:description" content={profile.bio ? profile.bio : 'This user has no bio'} />
