@@ -1,7 +1,7 @@
 .user {
     --rust-blood: #9D4D4D;
     border-bottom: 1px solid var(--border-grey);
-    margin-bottom: 20px;
+    margin-bottom: -1px;
 }
 
 .av {
