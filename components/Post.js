@@ -7,11 +7,13 @@ import ContextMenu from './ContextMenu'
 
 const data = ({data, embed}) => {
     const [visible, setVisible] = useState(false)
+    const [coords, setCoords] = useState({x: 0, y: 0})
 
     function openContext(e){
         e.preventDefault()
         console.log(e)
         setVisible(!visible)
+        setCoords({x: e.clientX, y: e.clientY})
     }
 
     var umentionRegex = /@[a-zA-Z0-9_]+/g
@@ -28,7 +30,7 @@ const data = ({data, embed}) => {
         </div>
             <p className={postStyle.content}><PostBody text={data.body}></PostBody></p>
         </div>
-        {visible ? <ContextMenu></ContextMenu> : ''}
+        {visible ? <ContextMenu {...coords}></ContextMenu> : ''}
     </div>)
 }
 
