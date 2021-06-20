@@ -24,7 +24,7 @@ function DropdownItem(props) {
             case "toggletheme":
                 var theme = localStorage.getItem('theme') ? localStorage.getItem('theme') : "dark"
                 var body = document.querySelector("body")
-                if (theme == "dark") {
+                if (theme == "light") {
                     body.classList.remove('light')
                     body.classList.add('dark')
                     localStorage.setItem('theme', 'dark')
