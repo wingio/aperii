@@ -13,7 +13,7 @@ class MyDocument extends Document {
     }
 
     return (
-      <Html style={{background: 'var(--primary-bg)'}} lang="en">
+      <Html lang="en">
         <Head>
           <link rel="manifest" href="/manifest.webmanifest" />
         </Head>
