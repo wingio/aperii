@@ -13,7 +13,7 @@ class MyDocument extends Document {
         <Head>
           <link rel="manifest" href="/manifest.webmanifest" />
         </Head>
-        <body className="dark">
+        <body>
           <Main />
           <NextScript />
           <script defer src="/scripts/themer.js"></script>
