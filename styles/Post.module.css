@@ -49,7 +49,7 @@
 }
 
 .displayName {
-    color: rgb(255, 255, 255);
+    color: var(--text-color);
 }
 
 .badge {
