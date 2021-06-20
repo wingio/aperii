@@ -30,7 +30,7 @@ body {
   --primary-bg-hl-1: var(--darkle-bright-1);
   --primary-bg-hl-2: var(--darkle-bright-2);
   --primary-bg-hl-3: var(--darkle-bright-3);
-  --font-color: #fff;
+  --text-color: #fff;
   --badge-color: #fff;
 }
 
@@ -42,7 +42,7 @@ body {
   --primary-bg-hl-1: var(--light-2);
   --primary-bg-hl-2: var(--light-3);
   --primary-bg-hl-3: var(--light-4);
-  --font-color: #000;
+  --text-color: #000;
   --badge-color: var(--rust-blood);
 }
 
