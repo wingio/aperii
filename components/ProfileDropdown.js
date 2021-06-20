@@ -17,13 +17,13 @@ function ProfileDropdown(props) {
     setOpened(false)
   }
 
-  const [themeIcon, setThemeIcon] = useState('sun')
+  var themeIcon = 'sun'
   if (typeof window != "undefined") {
     var theme = localStorage.getItem('theme') ? localStorage.getItem('theme') : "dark"
     if (theme == "light") {
-      setThemeIcon('moon')
+      themeIcon = 'moon'
     } else {
-      setThemeIcon('sun')
+      themeIcon = 'sun'
     }
   }
 
