@@ -7,29 +7,13 @@ class MyDocument extends Document {
     return { ...initialProps }
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      theme: "dark"
-    };
-  }
-
   render() {
-    if(typeof window != "undefined"){
-      
-    }
-
-    this.componentDidMount = () => {
-      console.log('hi')
-      this.setState({theme: localStorage.getItem('theme') ? localStorage.getItem('theme') : "dark"})
-    }
-    
     return (
       <Html lang="en">
         <Head>
           <link rel="manifest" href="/manifest.webmanifest" />
         </Head>
-        <body className={this.state.theme}>
+        <body className="dark">
           <Main />
           <NextScript />
         </body>
