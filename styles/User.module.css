@@ -1,5 +1,5 @@
 .user {
-    --rust-blood: #9D4D4D;
+    --primary: #9D4D4D;
     border-bottom: 1px solid var(--border-grey);
     margin-bottom: -1px;
 }
@@ -15,7 +15,7 @@
 .banner {
     width: 100%;
     height: 150px;
-    background-color: var(--rust-blood);
+    background-color: var(--primary);
 }
 
 .avatar {
@@ -25,7 +25,7 @@
     margin-left: 1em;
     margin-top: -45px;
     background: #0b0e11;
-    border: 4px solid var(--darkle);
+    border: 4px solid var(--primary-bg);
 }
 
 .userinfo {

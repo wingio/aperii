@@ -6,7 +6,7 @@ export default function VerifiedBadge({className}) {
     return (
         <>
             {opened ? <VerifiedInfoModal close={() => {setOpened(false)}} vanished={!opened}></VerifiedInfoModal> : ''}
-            <Icon name="badge" onClick={() => {setOpened(true)}} width="1.2rem" className={className}></Icon>
+            <Icon name="badge" onClick={() => {setOpened(true)}} width="1.2rem" className={className} style={{color: "var(--badge-color)"}}></Icon>
         </>
     )
 }

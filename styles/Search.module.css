@@ -5,7 +5,7 @@
     background-color: #2f2935;
     display: inline-block;
     border-radius: 10px;
-    color: white;
+    color: var(--text-color);
 }
 
 .search:focus{

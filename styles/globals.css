@@ -4,6 +4,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  transition: background 500ms ease-in, color 1000ms ease-in;
 }
 
 * {
@@ -13,9 +14,40 @@ body {
   --darkle: hsl(210, 21%, 5%);
   --darkle-bright-1: hsl(210, 21%, 20%);
   --darkle-bright-2: hsl(210, 21%, 15%);
-  --darkle-bright-3: hsl(210, 21%, 10%);
+  --darkle-bright-3: hsla(207, 22%, 10%, 0.151);
+  --light-1: hsl(0, 0%, 93%);
+  --light-2: hsl(0, 0%, 83%);
+  --light-3: hsl(0, 0%, 73%);
+  --light-4: hsl(0, 0%, 63%);
   --border-grey: #3e3e3e;
 }
+
+.dark {
+  --primary: var(--rust-blood);
+  --secondary: var(--rust-blood-hl);
+  --primary-disabled: var(--rust-blood-disabled);
+  --primary-bg: var(--darkle);
+  --primary-bg-hl-1: var(--darkle-bright-1);
+  --primary-bg-hl-2: var(--darkle-bright-2);
+  --primary-bg-hl-3: var(--darkle-bright-3);
+  --font-color: #fff;
+  --badge-color: #fff;
+}
+
+.light {
+  --primary: var(--rust-blood);
+  --secondary: var(--rust-blood-hl);
+  --primary-disabled: var(--rust-blood-disabled);
+  --primary-bg: var(--light-1);
+  --primary-bg-hl-1: var(--light-2);
+  --primary-bg-hl-2: var(--light-3);
+  --primary-bg-hl-3: var(--light-4);
+  --font-color: #000;
+  --badge-color: var(--rust-blood);
+}
+
+
+
 
 ::-webkit-scrollbar {
   width: 0em;
@@ -141,7 +173,7 @@ a {
 .btn {
   padding: 15px;
   border-radius: 10px;
-  background: var(--rust-blood);
+  background: var(--primary);
   border: none;
   transition: all .5s ease;
   color: white;
@@ -150,12 +182,12 @@ a {
 }
 
 .btn:hover {
-  background: var(--rust-blood-hl);
+  background: var(--primary-hl);
 }
 
 .btn:disabled {
-  background: var(--rust-blood-disabled);
-  color: var(--rust-blood-hl);
+  background: var(--primary-disabled);
+  color: var(--primary-hl);
 }
 
 .login-form {
@@ -245,7 +277,7 @@ a {
   top: 45px;
   width: 160px;
   padding: 4px;
-  background: hsl(210deg 21% 15%);
+  background: hsl(210deg, 21%, 15%);
   border-radius: 10px;
   color: white;
   box-shadow: 0 0 20px 0 black;
@@ -297,14 +329,15 @@ a {
   display: flex;
   padding: .75rem;
   border-radius: .5em;
-  color: white;
+  color: var(--text-color);
   margin-bottom: .75em;
   cursor: pointer;
   transition: all ease-in-out 300ms;
 }
 
 .sidebar-option.current{
-  background: var(--rust-blood);
+  background: var(--primary);
+  color: white;
 }
 
 .sidebar-option:hover p{
@@ -312,7 +345,7 @@ a {
 }
 
 .sidebar-option.current:hover{
-  background: var(--rust-blood-hl);
+  background: var(--primary-hl);
   color: white;
 }
 
@@ -378,7 +411,7 @@ input[type="submit"] {
   border-radius: 0.5em;
   border: none;
   margin-top: 1em;
-  background: var(--rust-blood);
+  background: var(--primary);
   color: white;
 }
 
@@ -389,7 +422,7 @@ input[type="submit"] {
 .header {
   padding: 1em 1em;
   display: flex;
-  background: var(--darkle);
+  background: var(--primary-bg);
   z-index: 11;
   border-bottom: 1px solid var(--border-grey);
   align-items: center;

@@ -3,7 +3,7 @@
     bottom: 0;
     display: flex;
     justify-content: space-evenly;
-    background: var(--darkle);
+    background: var(--primary-bg);
 }
 
 .tab {
@@ -23,5 +23,5 @@
 }
 
 .tab.active .icon{
-    color: var(--rust-blood);
+    color: var(--primary);
 }

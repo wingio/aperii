@@ -30,7 +30,7 @@
 }
 
 .popout {
-    background: var(--darkle-bright-1);
+    background: var(--primary-bg-bright-1);
     min-width: 200px;
     width: 60%;
     max-width: 400px;
@@ -52,7 +52,7 @@
 }
 
 .bottom {
-    background: var(--darkle-bright-2);
+    background: var(--primary-bg-bright-2);
     padding: .7rem;
     display: flex;
     justify-content: flex-end;

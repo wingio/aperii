@@ -16,8 +16,8 @@ export default function Modal({ children, title, subtitle, buttons, showVanish }
         <div className={styles.background}>
         <div className={`${styles.popout} ${showVanish ? styles.vanish : ''}`}>
             <div className={styles.content}>
-                {title ? <h3 style={{marginTop: 0, color: "white", marginBottom: subtitle ? 0 : 'revert'}}>{title}</h3> : ''}
-                {subtitle ? <p style={{marginTop: ".2em", color: "white", fontSize: ".7em"}}>{subtitle}</p> : ''}
+                {title ? <h3 style={{marginTop: 0, color: "var(--text-color)", marginBottom: subtitle ? 0 : 'revert'}}>{title}</h3> : ''}
+                {subtitle ? <p style={{marginTop: ".2em", color: "var(--text-color)", fontSize: ".7em"}}>{subtitle}</p> : ''}
                 {children}
             </div>
             <div className={styles.bottom}>

@@ -18,7 +18,7 @@ export default function Changelog() {
         opened ? <Modal title="See what's new!" subtitle={`Version: ${info.version}`} buttons={[{label: 'OK', btnstyle: 'primary', onClick: close}]} showVanish={vanish}>
             {info.changelog.image && <img src={info.changelog.image} style={{width: "100%", borderRadius: "0.5rem"}}></img>}
             {info.changelog.sections.map(s => 
-                <div key={s.name}><h4 style={{color: "white", display:"flex", textTransform: "uppercase", fontSize: "0.9em"}} className={styles.section}>{s.name}</h4><p style={{color: "white"}}>{s.value}</p></div>
+                <div key={s.name}><h4 style={{color: "var(--text-color)", display:"flex", textTransform: "uppercase", fontSize: "0.9em"}} className={styles.section}>{s.name}</h4><p style={{color: "var(--text-color)"}}>{s.value}</p></div>
             )}
         </Modal> : <></>
     )
