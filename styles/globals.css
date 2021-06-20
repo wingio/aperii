@@ -20,7 +20,6 @@ body {
   --light-2: hsl(0, 0%, 83%);
   --light-3: hsl(0, 0%, 73%);
   --light-4: hsl(0, 0%, 63%);
-  --border-grey: #3e3e3e;
 }
 
 .dark {
@@ -34,6 +33,7 @@ body {
   --text-color: #fff;
   --badge-color: #fff;
   --icon-color: #fff;
+  --border-grey: #3e3e3e;
 }
 
 .light {
@@ -47,6 +47,7 @@ body {
   --text-color: #000;
   --badge-color: var(--rust-blood);
   --icon-color: #888;
+  --border-grey: #bdbdbd;
 }
 
 
@@ -433,7 +434,7 @@ input[type="submit"] {
 
 .search-container-mobile {
   padding: 0;
-  background: #0b0e11;
+  background: var(--primary-bg);
   z-index: 11;
   width: 100%;
   margin-right: .5em;
