@@ -22,7 +22,7 @@ function ProfileDropdown(props) {
         <DropdownItem label="Report a bug" icon='bug' loc="https://github.com/wingio/aperii/issues/new/choose"></DropdownItem>
         <DropdownItem label="Language" icon='globe' loc="/"></DropdownItem>
         <DropdownItem label="Discord" icon='discord' loc="https://discord.gg/Mryxr7zVtc"></DropdownItem>
-        <DropdownItem label="Settings" icon='gear' loc="/"></DropdownItem>
+        <DropdownItem label="Settings" icon='gear' loc="/settings"></DropdownItem>
         {expiramentsEnabled ? <DropdownItem label="Experiments" icon='gear' click={() => {setOpened(true)}}></DropdownItem> : ''}
         <DropdownItem label="Log Out" icon='gear' action="logout"></DropdownItem>
         {modalOpened ? <ExperimentsModal closeAction={close} exp={props.exp}></ExperimentsModal> : ''}
