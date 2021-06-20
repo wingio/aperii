@@ -13,6 +13,8 @@ import Bug from './Bug'
 import Discord from './Discord'
 import Gear from './Gear'
 import Globe from './Globe'
+import Sun from './Sun'
+import Moon from './Moon'
 
 /**
  * 
@@ -65,6 +67,12 @@ export default function Icon(props) {
             break;
         case 'globe':
             icon = Globe
+            break;
+        case 'moon':
+            icon = Moon
+            break;
+        case 'sun':
+            icon = Sun
             break;
         default:
             icon = User
