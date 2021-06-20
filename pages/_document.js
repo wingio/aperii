@@ -16,6 +16,10 @@ class MyDocument extends Document {
 
   render() {
     if(typeof window != "undefined"){
+      
+    }
+
+    this.componentDidMount = () => {
       this.setState({theme: localStorage.getItem('theme') ? localStorage.getItem('theme') : "dark"})
     }
     
