@@ -1,6 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import {useState} from 'react'
-import '../themer'
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -17,6 +16,7 @@ class MyDocument extends Document {
         <body className="dark">
           <Main />
           <NextScript />
+          <script defer src="themer.js"></script>
         </body>
       </Html>
     )
