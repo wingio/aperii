@@ -8,9 +8,9 @@ class MyDocument extends Document {
   }
 
   render() {
-    const [theme, setTheme] = useState('dark')
+    var theme;
     if(typeof window != "undefined"){
-      setTheme(localStorage.getItem('theme') ? localStorage.getItem('theme') : "dark")
+      theme = localStorage.getItem('theme') ? localStorage.getItem('theme') : "dark"
     }
 
     return (
@@ -18,7 +18,7 @@ class MyDocument extends Document {
         <Head>
           <link rel="manifest" href="/manifest.webmanifest" />
         </Head>
-        <body className={theme}>
+        <body className={theme ? theme : "dark"}>
           <Main />
           <NextScript />
         </body>
