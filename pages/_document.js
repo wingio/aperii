@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+import {useState} from 'react'
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -7,9 +8,9 @@ class MyDocument extends Document {
   }
 
   render() {
-    var theme = "dark"
-    if(typeof document != "undefined"){
-      theme = localStorage.getItem('theme') ? localStorage.getItem('theme') : "dark"
+    const [theme, setTheme] = useState('dark')
+    if(typeof window != "undefined"){
+      setTheme(localStorage.getItem('theme') ? localStorage.getItem('theme') : "dark")
     }
 
     return (
