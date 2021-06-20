@@ -1,4 +1,5 @@
 import React from 'react';
+import Icon from '../icons/Icon';
 import styles from '../styles/DropdownItem.module.css'
 function DropdownItem(props) {
     const {label, icon, loc, action, click} = props
@@ -24,7 +25,7 @@ function DropdownItem(props) {
 
     return (
         <div className={styles.dropdownitem} onClick={click ? click : loc ? goToHref : doAction}>
-            <img width='15px' height="15px" src={icon ? `/icons/${icon}.svg` : ''} style={{margin: '10px'}}></img>
+            <Icon name={icon} width="15px" style={{margin: '10px', color: "var(--text-color)"}}/>
             <p style={{margin:0}}>{label}</p>
         </div>
     );

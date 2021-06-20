@@ -34,6 +34,8 @@ body {
   --badge-color: #fff;
   --icon-color: #fff;
   --border-grey: #3e3e3e;
+  --dropshadow: 0 0 20px 0 #000;
+  --dropdown-bg: var(--darkle-bright-2)
 }
 
 .light {
@@ -48,6 +50,8 @@ body {
   --badge-color: var(--rust-blood);
   --icon-color: #888;
   --border-grey: #bdbdbd;
+  --dropshadow: 0 0 12px 0px #bdbdbd;
+  --dropdown-bg: #fff;
 }
 
 
@@ -281,10 +285,10 @@ a {
   top: 45px;
   width: 160px;
   padding: 4px;
-  background: hsl(210deg, 21%, 15%);
+  background: var(--dropdown-bg);
   border-radius: 10px;
-  color: white;
-  box-shadow: 0 0 20px 0 black;
+  color: var(--text-color);
+  box-shadow: var(--dropshadow);
   z-index: 20;
 }
 

@@ -9,6 +9,10 @@ import Star from './Star'
 import Logo from './Logo'
 import Bell from './Bell'
 import Mention from './Mention'
+import Bug from './Bug'
+import Discord from './Discord'
+import Gear from './Gear'
+import Globe from './Globe'
 
 /**
  * 
@@ -49,6 +53,18 @@ export default function Icon(props) {
             break;
         case 'mention':
             icon = Mention
+            break;
+        case 'bug':
+            icon = Bug
+            break;
+        case 'discord':
+            icon = Discord
+            break;
+        case 'gear':
+            icon = Gear
+            break;
+        case 'globe':
+            icon = Globe
             break;
         default:
             icon = User
