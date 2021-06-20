@@ -20,6 +20,7 @@ class MyDocument extends Document {
     }
 
     this.componentDidMount = () => {
+      console.log('hi')
       this.setState({theme: localStorage.getItem('theme') ? localStorage.getItem('theme') : "dark"})
     }
     
