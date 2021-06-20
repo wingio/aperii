@@ -33,6 +33,7 @@ body {
   --primary-bg-hl-3: var(--darkle-bright-3);
   --text-color: #fff;
   --badge-color: #fff;
+  --icon-color: #fff;
 }
 
 .light {
@@ -45,6 +46,7 @@ body {
   --primary-bg-hl-3: var(--light-4);
   --text-color: #000;
   --badge-color: var(--rust-blood);
+  --icon-color: #888;
 }
 
 
