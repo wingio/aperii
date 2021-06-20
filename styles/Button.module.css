@@ -11,12 +11,12 @@
 }
 
 .primary:hover{
-    background-color: var(--primary-hl);
+    background-color: var(--secondary);
 }
 
 
 .primary:active {
-    background-color: var(--primary-hl);
+    background-color: var(--secondary);
 }
 
 .secondary {
