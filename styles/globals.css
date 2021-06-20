@@ -16,7 +16,7 @@ body {
   --darkle-bright-1: hsl(210, 21%, 20%);
   --darkle-bright-2: hsl(210, 21%, 15%);
   --darkle-bright-3: hsla(207, 22%, 10%, 0.151);
-  --light-1: hsl(0, 0%, 93%);
+  --light-1: hsl(0, 0%, 100%);
   --light-2: hsl(0, 0%, 83%);
   --light-3: hsl(0, 0%, 73%);
   --light-4: hsl(0, 0%, 63%);
@@ -349,7 +349,7 @@ a {
 }
 
 .sidebar-option.current:hover{
-  background: var(--primary-hl);
+  background: var(--secondary);
   color: white;
 }
 
