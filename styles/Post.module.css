@@ -5,7 +5,7 @@
 .post {
     --post-gap: 10px;
     margin-bottom: -1px;
-    color: #fff;
+    color: var(--text-color);
     width: 100%;
     max-height: 500px;
     padding: 20px 1em;
