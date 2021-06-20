@@ -8,8 +8,10 @@
     align-items: center;
     border-radius: 7px;
     cursor: pointer;
+    color: var(--text-color);
 }
 
 .dropdownitem:hover {
     background: rgba(0, 0, 0, 0.363);
+    color: white;
 }

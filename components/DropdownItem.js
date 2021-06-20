@@ -25,7 +25,7 @@ function DropdownItem(props) {
 
     return (
         <div className={styles.dropdownitem} onClick={click ? click : loc ? goToHref : doAction}>
-            <Icon name={icon} width="15px" style={{margin: '10px', color: "var(--text-color)"}}/>
+            <Icon name={icon} width="15px" style={{margin: '10px'}}/>
             <p style={{margin:0}}>{label}</p>
         </div>
     );
