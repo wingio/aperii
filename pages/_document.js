@@ -16,7 +16,7 @@ class MyDocument extends Document {
         <body className="dark">
           <Main />
           <NextScript />
-          <script defer src="themer.js"></script>
+          <script defer src="/scripts/themer.js"></script>
         </body>
       </Html>
     )
