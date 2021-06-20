@@ -2,7 +2,7 @@
     padding: .75em;
     border: none;
     border-radius: .5em;
-    background: #2f3b48;
+    background: var(--primary-bg-hl-2);
     color: #fff;
     width: 100%;
 }
