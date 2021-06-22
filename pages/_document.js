@@ -12,6 +12,7 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <link rel="manifest" href="/manifest.webmanifest" />
+          <meta property="og:site_name" content="Aperii" />
         </Head>
         <body>
           <Main />

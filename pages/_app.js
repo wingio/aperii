@@ -5,12 +5,6 @@ import * as info from '../info.json'
 
 function MyApp({ Component, pageProps }) {
   return (<div>
-    <Head>
-      <meta property="og:site_name" content="Aperii" />
-      <meta property="og:url" content="https://aperii.com/"  key="url"/>
-      <meta itemprop="image" content="public/logo.png"  key="image"/>
-      <meta name="description" content="A free, more open social experience" key="desc"/>
-    </Head>
     <Component {...pageProps} />
   </div>)
 }

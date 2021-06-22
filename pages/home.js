@@ -49,9 +49,10 @@ export default function Demo( { posts, user } ) {
   return <Layout user={user} misc={expStore} page="home" title="Home">
     <Head>
       <title>Home - Aperii</title>
-      <meta property="og:title" content="Aperii" />
-      <meta property="og:description" content="A free, more open social experience" />
-      <meta property="og:image" content="/logo_circle.png"/>
+      
+      <meta property="og:url" content="https://aperii.com/"  key="url"/>
+      <meta itemprop="image" content="public/logo.png"  key="image"/>
+      <meta name="description" content="A free, more open social experience" key="desc"/>
     </Head>
     {showChangelog ? <Changelog/> : ''}
     <PostFeed posts={posts}></PostFeed>
