@@ -43,14 +43,16 @@ export default function User({profile, posts, user}) {
     setpOpened(true)
   }
   return (
-    <Layout user={user} misc={expStore} page={profile.username == user.username ? 'profile' : 'home'} title={profile.displayName} showBadge={profile.verified} showCount={true} postCount={posts.length}>
-      <Head>
+    <>
+    <Head>
         <title>{`${profile.displayName} (@${profile.username})`} - Aperii</title>
         <meta property="og:title" content={`${profile.displayName} (@${profile.username})`}  key="title"/>
         <meta property="og:url" content={"https://aperii.com/p/" + profile.username}  key="url"/>
         <meta property="og:description" content={profile.bio ? profile.bio : 'This user has no bio'} key="desc"/>
         <meta property="og:image" content={profile.avatar ? profile.avatar : '/av.png'} key="image"/>
       </Head>
+    <Layout user={user} misc={expStore} page={profile.username == user.username ? 'profile' : 'home'} title={profile.displayName} showBadge={profile.verified} showCount={true} postCount={posts.length}>
+      
       <div className={styles.user}>
         <div className={styles.banner}>
           
@@ -69,6 +71,7 @@ export default function User({profile, posts, user}) {
       </div>
       <PostFeed posts={posts}></PostFeed>
     </Layout>
+    </>
   )
 }
 
