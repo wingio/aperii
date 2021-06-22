@@ -45,9 +45,9 @@ export default function User({profile, posts, user}) {
   return (
     <Layout user={user} misc={expStore} page={profile.username == user.username ? 'profile' : 'home'} title={profile.displayName} showBadge={profile.verified} showCount={true} postCount={posts.length}>
       <Head>
-        <meta property="og:title" content={`${profile.displayName} (@${profile.username})`} />
-        <meta property="og:description" content={profile.bio ? profile.bio : 'This user has no bio'} />
-        <meta property="og:image" content={profile.avatar ? profile.avatar : '/av.png'} />
+        <meta property="og:title" content={`${profile.displayName} (@${profile.username})`}  key="title"/>
+        <meta property="og:description" content={profile.bio ? profile.bio : 'This user has no bio'} key="desc"/>
+        <meta property="og:image" content={profile.avatar ? profile.avatar : '/av.png'} key="image"/>
         <title>{`${profile.displayName} (@${profile.username})`} - Aperii</title>
       </Head>
       <div className={styles.user}>
