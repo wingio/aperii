@@ -47,6 +47,7 @@ export default function User({profile, posts, user}) {
       <Head>
         <title>{`${profile.displayName} (@${profile.username})`} - Aperii</title>
         <meta property="og:title" content={`${profile.displayName} (@${profile.username})`}  key="title"/>
+        <meta property="og:url" content={"https://aperii.com/p/" + profile.username}  key="url"/>
         <meta property="og:description" content={profile.bio ? profile.bio : 'This user has no bio'} key="desc"/>
         <meta property="og:image" content={profile.avatar ? profile.avatar : '/av.png'} key="image"/>
       </Head>

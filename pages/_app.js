@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }) {
   return (<div>
     <Head>
       <meta property="og:site_name" content="Aperii" />
-      <meta property="og:url" content="https://aperii.wingio.xyz/"  key="url"/>
+      <meta property="og:url" content="https://aperii.com/"  key="url"/>
       <meta itemprop="image" content="public/logo.png"  key="image"/>
       <meta name="description" content="A free, more open social experience" key="desc"/>
     </Head>
