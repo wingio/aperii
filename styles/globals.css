@@ -203,7 +203,7 @@ a {
   align-items: center;
   padding: 50px 40px;
   color: white;
-  background: #131a21;
+  background: var(--primary-bg-hl-2);
   border-radius: 10px;
   width: 300px;
 }
@@ -213,7 +213,7 @@ a {
   padding: 8px;
   border: none;
   border-radius: 5px;
-  background: #2f2935;
+  background: var(--primary-bg-hl-2);
   color: white;
   margin: 10px 0 10px 0;
 }
