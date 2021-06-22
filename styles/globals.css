@@ -186,10 +186,11 @@ a {
   color: white;
   width: 100%;
   margin: 12px 0 9px 0;
+  cursor: pointer;
 }
 
 .btn:hover {
-  background: var(--primary-hl);
+  background: var(--secondary);
 }
 
 .btn:disabled {
@@ -202,10 +203,11 @@ a {
   flex-direction: column;
   align-items: center;
   padding: 50px 40px;
-  color: white;
+  color: var(--text-color);
   background: var(--primary-bg-hl-2);
   border-radius: 10px;
   width: 300px;
+  box-shadow: var(--dropshadow);
 }
 
 .form-control-material {
@@ -213,7 +215,7 @@ a {
   padding: 8px;
   border: none;
   border-radius: 5px;
-  background: var(--primary-bg-hl-2);
+  background: var(--darkle-bright-3);
   color: white;
   margin: 10px 0 10px 0;
 }
