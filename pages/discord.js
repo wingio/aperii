@@ -1,8 +1,10 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 export default function Home() {
-  const router = useRouter()
-  router.push("https://discord.gg/Mryxr7zVtc")
+  if(typeof window != "undefined"){
+    const router = useRouter()
+    router.push("https://discord.gg/Mryxr7zVtc")
+  }
   return (
     <div>
       <Head>
