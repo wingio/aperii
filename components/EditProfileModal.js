@@ -36,7 +36,7 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
         }).then(res => res.json()).then(json => {
             setUser(json.profile)
             setChanges({})
-            //router.reload()
+            router.reload()
         })
     }
 
