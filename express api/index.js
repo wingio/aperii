@@ -516,7 +516,7 @@ client.connect(function (err) {
                     errors.push({
                         status: 400,
                         error: 'Username already taken',
-                        field: username
+                        field: "username"
                     })
                 }
                 if (errors.filter(e => e.field == 'username').length < 1) {
