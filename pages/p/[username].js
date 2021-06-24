@@ -92,7 +92,8 @@ export async function getServerSideProps(context) {
   if (profile.status) {
     profile = {
       displayName: 'User not found',
-      username: '404'
+      username: '404',
+      joinedTimestamp: Date.now()
     }
   }
   var userres;
@@ -108,7 +109,6 @@ export async function getServerSideProps(context) {
   var user = userres ? await userres.json() : {
     displayName: 'User not found',
     username: '404',
-    posts: []
   }
 
   profile.flags = profile.flags ? c.getFlagsFromBitfield(profile.flags) : c.getFlagsFromBitfield(0)
@@ -116,12 +116,11 @@ export async function getServerSideProps(context) {
   return {
     props: {
       profile,
-      posts: profile.posts,
+      posts: profile.posts ? profile.posts : [],
       user: user.status ? {
         displayName: 'User not found',
         username: '404',
-        joinedTimestamp: Date.now(),
-        posts: []
+        joinedTimestamp: Date.now()
       } : user
     }
   }
