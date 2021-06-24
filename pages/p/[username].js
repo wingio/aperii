@@ -42,6 +42,9 @@ export default function User({profile, posts, user}) {
     setVanished(false)
     setpOpened(true)
   }
+
+  posts = !user.suspended ? posts : [c.getSuspendedPost(user)]
+  
   return (
     <>
     <Head>
@@ -104,11 +107,12 @@ export async function getServerSideProps(context) {
 
   var user = userres ? await userres.json() : {
     displayName: 'User not found',
-    username: '404'
+    username: '404',
+    posts: []
   }
 
   profile.flags = profile.flags ? c.getFlagsFromBitfield(profile.flags) : c.getFlagsFromBitfield(0)
-  
+  user.avatar = user.suspended ? '/av.png' : user.avatar
   return {
     props: {
       profile,

@@ -80,6 +80,26 @@ class Constants {
     
         return result
     }
+
+    getSuspendedPost(user) {
+        return {
+            "id": "1",
+            "createdTimestamp": Date.now(),
+            "author": {
+                "id": "1",
+                "joinedTimestamp": Date.now(),
+                "displayName": user.displayName,
+                "username": user.username,
+                "verified": user.verified,
+                "avatar": "https://aperii.com/av.png",
+                "flags": 0
+            },
+            "body": `This account has been suspended`,
+            "media": [
+                null
+            ]
+        }
+    }
 }
 
 module.exports = Constants

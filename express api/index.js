@@ -57,6 +57,11 @@ client.connect(function (err) {
                 res.status(401).send(unauth)
                 return
             }
+
+            if(u.suspended == true){
+                res.status(401).send(unauth)
+                return
+            }
     
             req.user = u
             
@@ -190,7 +195,7 @@ client.connect(function (err) {
                 return
             }
             var userid = await genId('user')
-            var token = await sign({id: userid}, process.env.ACCESS_TOKEN_SECRET)
+            var token = await sign({id: userid, timestamp: Date.now()}, process.env.ACCESS_TOKEN_SECRET)
             bcrypt.hash(password, 10, async (err, hash) => {
                 users.insertOne({
                     id: userid,
@@ -200,6 +205,8 @@ client.connect(function (err) {
                     username: username.toLowerCase(),
                     password: hash,
                     verifiedEmail: false,
+                    suspended: false,
+                    flags: 0,
                     token: token
                 }, (err, result) => {
 
@@ -330,7 +337,7 @@ client.connect(function (err) {
                 delete p["_id"]
             })
             
-            u.posts = allPosts
+            u.posts = u.suspended != true ? allPosts : []
             res.send(u)
         } else {
             var allPosts = await posts.find({author: u.id}).toArray()
@@ -344,7 +351,7 @@ client.connect(function (err) {
                 delete p["_id"]
             })
             
-            u.posts = allPosts
+            u.posts = u.suspended != true ? allPosts : []
             res.send(u)
         }
         
@@ -664,7 +671,7 @@ client.connect(function (err) {
             delete p.author['_id']
             delete p["_id"]
         })
-        res.send(allPosts)
+        res.send(allPosts.filter(p => p.author.suspended != true))
     })
 
     //Relationships
@@ -789,7 +796,7 @@ client.connect(function (err) {
 
     //Feed
 
-    app.get('/users/me/feed', auth, async (req, res) => {
+    app.get('/users/@me/feed', auth, async (req, res) => {
         var rel = await relationships.find({owner: req.user.id, type: 'follow'}).toArray()
         rel = rel.map(r => {return r.subject})
         var authors = await users.find({id: {$in: rel}}, {
@@ -995,6 +1002,39 @@ client.connect(function (err) {
         }
     })
 
+    app.patch('/admin/user/:id/suspended', auth, async (req, res) => {
+        
+        const { id } = req.params
+        const user = await users.findOne({id: id})
+        if(req.user.id == id){
+            res.status(403).send({
+                status: 403,
+                error: "You cannot suspend yourself"
+            })
+            return
+        }
+        var me = constants.getFlagsFromBitfield(req.user.flags ? req.user.flags : 0)
+        if(!user){
+            res.status(401).send({
+                status: 401,
+                error: "Unauthorized"
+            })
+            return
+        }
+
+        if(me.admin == true){
+            user.suspended = user.suspended ? user.suspended : false
+            users.findOneAndUpdate({id: user.id}, {$set: {suspended: !user.suspended}})
+            const newuser = await users.findOne({id: user.id})
+            res.send(newuser)
+        } else {
+            res.status(401).send({
+                status: 401,
+                error: "Unauthorized"
+            })
+        }
+    })
+
 
     app.post('/admin/synces', auth, async (req, res) => {
         var me = constants.getFlagsFromBitfield(req.user.flags ? req.user.flags : 0)
@@ -1014,6 +1054,34 @@ client.connect(function (err) {
                 }, {
                     $set: {
                         flags: flags
+                    }
+                })
+            })
+
+            res.send({
+                status: 200,
+                message: "Flag synced"
+            })
+        } else {
+            res.status(401).send({
+                status: 401,
+                error: "Unauthorized"
+            })
+        }
+    })
+
+    app.post('/admin/syncsuspended', auth, async (req, res) => {
+        var me = constants.getFlagsFromBitfield(req.user.flags ? req.user.flags : 0)
+
+        if(me.admin == true){
+            var all = await users.find().toArray()      
+
+            all.forEach(user => {
+                users.findOneAndUpdate({
+                    id: user.id
+                }, {
+                    $set: {
+                        suspended: false
                     }
                 })
             })
