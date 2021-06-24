@@ -74,7 +74,7 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
                 <TextBox label="Display Name" style={{marginBottom: "10px"}} placeholder={user.displayName} onChange={(e) => { var chngs = changes; chngs.displayname = e.target.value; setChanges(chngs)}}></TextBox>
                 <TextBox label="Username" placeholder={user.username} onChange={(e) => { var ch = changes; ch.username = e.target.value; setChanges(ch)}}></TextBox>
             </ModalForm>
-            {error.error ? <p className="errorText" style={{color: "white"}}>{error.error}</p> : ''}
+            {error.error ? <p className="errorText" style={{color: "var(--text-color)"}}>{error.error}</p> : ''}
         </Modal> : <></>
     )
 }
