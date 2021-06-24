@@ -116,7 +116,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       profile,
-      posts: profile.posts ? profile.posts : [],
+      posts: profile.posts ? profile.posts : profile.suspended ? [c.getSuspendedPost(profile)] : [],
       user: user.status ? {
         displayName: 'User not found',
         username: '404',

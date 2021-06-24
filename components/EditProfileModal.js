@@ -3,12 +3,13 @@ import Modal from './Modal'
 import TextBox from './TextBox'
 import ModalForm from './ModalForm'
 import styles from '../styles/EditProfileModal.module.css'
+import { useRouter } from 'next/router'
 export default function MakePostModal({ user, closeAction, showVanish }) {
     const [opened, setOpen] = useState(true)
     const [changes, setChanges] = useState({})
     const [User, setUser] = useState(user)
     var close = closeAction
-
+    const router = useRouter()
     
 
     var post = async (e) => {
@@ -34,8 +35,8 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
             method: 'PATCH'
         }).then(res => res.json()).then(json => {
             setUser(json.profile)
-            setChanges({made: false})
-            window.location.href = window.location.href
+            setChanges({})
+            //router.reload()
         })
     }
 
@@ -64,7 +65,7 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
                 </label>
                 <img src={source} width="100px" height="100px" style={{borderRadius: "50%"}}></img>
                 <TextBox label="Display Name" style={{marginBottom: "10px"}} placeholder={user.displayName} onChange={(e) => { var chngs = changes; chngs.displayname = e.target.value; setChanges(chngs)}}></TextBox>
-                <TextBox label="Username" placeholder={user.username} onChange={(e) => { var ch = changes; setChanges(ch)}}></TextBox>
+                <TextBox label="Username" placeholder={user.username} onChange={(e) => { var ch = changes; ch.username = e.target.value; setChanges(ch)}}></TextBox>
             </ModalForm>
         </Modal> : <></>
     )
