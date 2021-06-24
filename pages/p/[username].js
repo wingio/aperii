@@ -120,7 +120,8 @@ export async function getServerSideProps(context) {
       user: user.status ? {
         displayName: 'User not found',
         username: '404',
-        joinedTimestamp: Date.now()
+        joinedTimestamp: Date.now(),
+        posts: []
       } : user
     }
   }
