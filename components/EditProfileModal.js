@@ -8,6 +8,7 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
     const [opened, setOpen] = useState(true)
     const [changes, setChanges] = useState({})
     const [User, setUser] = useState(user)
+    const [error, setError] = useState({})
     var close = closeAction
     const router = useRouter()
     
@@ -36,7 +37,13 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
         }).then(res => res.json()).then(json => {
             setUser(json.profile)
             setChanges({})
-            router.reload()
+            if(!json.errors){
+                setError({})
+                close()
+                router.reload()
+            } else {
+                setError(json.errors[0])
+            }
         })
     }
 
@@ -67,6 +74,7 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
                 <TextBox label="Display Name" style={{marginBottom: "10px"}} placeholder={user.displayName} onChange={(e) => { var chngs = changes; chngs.displayname = e.target.value; setChanges(chngs)}}></TextBox>
                 <TextBox label="Username" placeholder={user.username} onChange={(e) => { var ch = changes; ch.username = e.target.value; setChanges(ch)}}></TextBox>
             </ModalForm>
+            {error.error ? <p className="errorText">{error.error}</p> : ''}
         </Modal> : <></>
     )
 }
