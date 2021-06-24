@@ -112,7 +112,7 @@ export async function getServerSideProps(context) {
   }
 
   profile.flags = profile.flags ? c.getFlagsFromBitfield(profile.flags) : c.getFlagsFromBitfield(0)
-  user.avatar = user.suspended ? '/av.png' : user.avatar
+  profile.avatar = profile.suspended ? '/av.png' : profile.avatar
   return {
     props: {
       profile,
