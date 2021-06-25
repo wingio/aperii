@@ -41,6 +41,3 @@ flaskAPI/
 # Express API 
 express api/.env
 express api/openssl-openssl-3.0.0-alpha14
-
-#-----Temp-----
-express api
