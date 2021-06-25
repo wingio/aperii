@@ -858,6 +858,14 @@ client.connect(function (err) {
         res.send(notis)
     })
 
+    app.get('/users/me/notifications/unread', auth, async (req, res) => {
+        var notis = await noti.find({owner: req.user.id, read: false}).toArray()
+        res.send({
+            status: 200,
+            count: notis.length
+        })
+    })
+
     //Notifications
 
     app.patch('/notifications/:id/read', auth, async (req, res) => {
@@ -1089,6 +1097,22 @@ client.connect(function (err) {
             res.send({
                 status: 200,
                 message: "Flag synced"
+            })
+        } else {
+            res.status(401).send({
+                status: 401,
+                error: "Unauthorized"
+            })
+        }
+    })
+
+    app.get('/admin/apiversion', auth, async (req, res) => {
+        var me = constants.getFlagsFromBitfield(req.user.flags ? req.user.flags : 0)
+
+        if(me.admin == true){
+            res.send({
+                status: 200,
+                message: "v1-582"
             })
         } else {
             res.status(401).send({
