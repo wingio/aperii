@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 export default function MobileTabBar({ currentPage, username, misc, fixed = true }) {
     const router = useRouter()
     function route(url){
-        router.push(url)
+        router.route(url)
     }
     return (
         <div className={styles.tabbar} style={{position: fixed ? 'fixed' : 'revert'}}>
