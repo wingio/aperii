@@ -77,10 +77,10 @@ function FullLayout(props) {
     <div className={`ui full`}>
   <div className={`sticky left`}>
     <a href="/home"><span className={`logo`}></span></a>
-    <a href="/home"><SidebarFeedOption name="Home" current={props.page == "home"} icon="home"></SidebarFeedOption></a>
+    <SidebarFeedOption name="Home" current={props.page == "home"} icon="home" goto="/home"></SidebarFeedOption>
     <SidebarFeedOption name="Discover" icon="compass"></SidebarFeedOption>
-    {expStore["noti_tab_06_05_21"] == 1 ? <a href="/notifications"><SidebarFeedOption name="Notifications" current={props.page == "notis"} icon="bell"></SidebarFeedOption></a> : ''}
-    <a href={`/p/${user.username}`}><SidebarFeedOption name="Profile" current={props.page == "profile"} icon="user"></SidebarFeedOption></a>
+    {expStore["noti_tab_06_05_21"] == 1 ? <SidebarFeedOption name="Notifications" current={props.page == "notis"} icon="bell" goto="/notifications"></SidebarFeedOption> : ''}
+    <SidebarFeedOption name="Profile" current={props.page == "profile"} icon="user" goto={`/p/${user.username}`}></SidebarFeedOption>
   </div>
   <div className={`feed`} style={{height: "100vh"}}>
     <Search title={props.title} showBadge={props.showBadge} showPosts={props.showCount} postCount={props.postCount}></Search>
