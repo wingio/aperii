@@ -10,7 +10,7 @@ export default function Button(props) {
     const { label, btnstyle, loading } = props
     return (
         <button className={styles[btnstyle] ? styles[btnstyle] : styles.primary} {...props} disabled={!!loading}>
-            {loading ? <Loading style={{color: "white"}} height="15px" /> : label}
+            {loading ? <Loading style={{color: "rgba(255, 255, 255, .7)"}} height="8px" /> : label}
         </button>
     )
 }

@@ -7,7 +7,7 @@ function User(props) {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="currentColor"
-      viewBox="0 0 256 64" 
+      viewBox="0 0 128 32" 
       {...props}
     >
       <circle fill="currentColor" cx="0" cy="0" r="11" transform="translate(16 16)">

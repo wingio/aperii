@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 export default function MakePostModal({ user, closeAction, showVanish }) {
     const [opened, setOpen] = useState(true)
     const [changes, setChanges] = useState({})
+    const [isLoading, setIsLoading] = useState(false)
     const [User, setUser] = useState(user)
     const [error, setError] = useState({})
     var close = closeAction
@@ -15,6 +16,7 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
 
     var post = async (e) => {
         e.preventDefault()
+        setIsLoading(true)
         var body = e.type == "click" ? e.target.form : e.target
 
         const toBase64 = file => new Promise((resolve, reject) => {
@@ -36,11 +38,12 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
             method: 'PATCH'
         }).then(res => res.json()).then(json => {
             setUser(json.profile)
+            setIsLoading(false)
             if(!json.errors){
                 setError({})
                 setChanges({})
-                close()
                 router.push(`/p/${json.profile.username}`)
+                close()
             } else {
                 setError(json.errors[0])
             }
@@ -64,7 +67,7 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
     }
 
     return (
-        opened ? <Modal title="Edit your profile" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Save', btnstyle: 'primary', form: "modal-postform", onClick: post}]} showVanish={showVanish}>
+        opened ? <Modal title="Edit your profile" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Save', btnstyle: 'primary', form: "modal-postform", onClick: post, loading: isLoading}]} showVanish={showVanish}>
             <ModalForm onSubmit={post} id="modal-postform" style={{display:"flex", flexDirection: "column", alignItems: "center"}}>
                 <label className={styles.avSelect}>
                     <input type="file" accept=".png, .jpg, .jpeg, .gif" multiple={false} onChange={updatePreview} style={{display: "hidden"}}/>
