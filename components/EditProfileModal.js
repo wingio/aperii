@@ -36,9 +36,9 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
             method: 'PATCH'
         }).then(res => res.json()).then(json => {
             setUser(json.profile)
-            setChanges({})
             if(!json.errors){
                 setError({})
+                setChanges({})
                 close()
                 router.push(`/p/${json.profile.username}`)
             } else {
