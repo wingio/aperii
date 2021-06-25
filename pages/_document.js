@@ -13,6 +13,7 @@ class MyDocument extends Document {
         <Head>
           <link rel="manifest" href="/manifest.webmanifest" />
           <meta property="og:site_name" content="Aperii" />
+          <meta name="theme-color" content="#9d4d4d" />
         </Head>
         <body>
           <Main />
