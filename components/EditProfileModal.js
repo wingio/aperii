@@ -67,7 +67,7 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
     }
 
     return (
-        opened ? <Modal title="Edit your profile" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Save', btnstyle: 'primary', form: "modal-postform", onClick: post, loading: isLoading}]} showVanish={showVanish}>
+        opened ? <Modal title="Edit your profile" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Save', btnstyle: 'primary', form: "modal-postform", onClick: post, loading: isLoading, disabled: (Object.keys(changes).length === 0)}]} showVanish={showVanish}>
             <ModalForm onSubmit={post} id="modal-postform" style={{display:"flex", flexDirection: "column", alignItems: "center"}}>
                 <label className={styles.avSelect}>
                     <input type="file" accept=".png, .jpg, .jpeg, .gif" multiple={false} onChange={updatePreview} style={{display: "hidden"}}/>
