@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Dropdown from './Dropdown'
 import DropdownItem from './DropdownItem'
 import ExperimentsModal from './ExperimentsModal'
+import PlaygroundModal from './PlaygroundModal';
 
 function ProfileDropdown(props) {
   var expiramentsEnabled = false
@@ -13,7 +14,11 @@ function ProfileDropdown(props) {
   }
 
   const [modalOpened, setOpened] = useState(false)
+  const [pgOpened, setPgOpened] = useState(false)
   var close = () => {
+    setOpened(false)
+  }
+  var pgclose = () => {
     setOpened(false)
   }
 
@@ -35,9 +40,10 @@ function ProfileDropdown(props) {
         <DropdownItem label="Toggle theme" icon={themeIcon} action="toggletheme" />
         <DropdownItem label="Settings" icon='gear' loc="/settings"></DropdownItem>
         {expiramentsEnabled ? <DropdownItem label="Experiments" icon='flask' click={() => {setOpened(true)}}></DropdownItem> : ''}
-        {props.user.flags.admin ? <DropdownItem label="UI Playground" icon='shapes' click={() => {setOpened(true)}}></DropdownItem> : ''}
+        {props.user.flags.admin ? <DropdownItem label="UI Playground" icon='shapes' click={() => {setPgOpened(true)}}></DropdownItem> : ''}
         <DropdownItem label="Log Out" icon='gear' action="logout"></DropdownItem>
         {modalOpened ? <ExperimentsModal closeAction={close} exp={props.exp}></ExperimentsModal> : ''}
+        {pgOpened ? <PlaygroundModal closeAction={pgclose}/> : ''}
       </Dropdown>
   );
 }
