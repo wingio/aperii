@@ -19,7 +19,7 @@ function ProfileDropdown(props) {
     setOpened(false)
   }
   var pgclose = () => {
-    setOpened(false)
+    setPgOpened(false)
   }
 
   var themeIcon = 'sun'
