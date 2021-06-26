@@ -5,10 +5,9 @@ import ModalForm from './ModalForm'
 import styles from '../styles/EditProfileModal.module.css'
 import { useRouter } from 'next/router'
 export default function MakePostModal({ user, closeAction, showVanish }) {
-    const [opened, setOpen] = useState(true)
+    const [hasChanges, setHasChanges] = useState(false)
     const [changes, setChanges] = useState({})
     const [isLoading, setIsLoading] = useState(false)
-    const [User, setUser] = useState(user)
     const [error, setError] = useState({})
     var close = closeAction
     const router = useRouter()
@@ -67,17 +66,17 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
     }
 
     return (
-        opened ? <Modal title="Edit your profile" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Save', btnstyle: 'primary', form: "modal-postform", onClick: post, loading: isLoading, disabled: (Object.keys(changes).length === 0)}]} showVanish={showVanish}>
+        <Modal title="Edit your profile" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Save', btnstyle: 'primary', form: "modal-postform", onClick: post, loading: isLoading, disabled: !hasChanges}]} showVanish={showVanish}>
             <ModalForm onSubmit={post} id="modal-postform" style={{display:"flex", flexDirection: "column", alignItems: "center"}}>
                 <label className={styles.avSelect}>
                     <input type="file" accept=".png, .jpg, .jpeg, .gif" multiple={false} onChange={updatePreview} style={{display: "hidden"}}/>
                     Select Image
                 </label>
                 <img src={source} width="100px" height="100px" style={{borderRadius: "50%"}}></img>
-                <TextBox label="Display Name" style={{marginBottom: "10px"}} placeholder={user.displayName} onChange={(e) => { var chngs = changes; chngs.displayname = e.target.value; setChanges(chngs)}}></TextBox>
-                <TextBox label="Username" placeholder={user.username} onChange={(e) => { var ch = changes; ch.username = e.target.value; setChanges(ch)}}></TextBox>
+                <TextBox label="Display Name" style={{marginBottom: "10px"}} placeholder={user.displayName} onChange={(e) => { var chngs = changes; chngs.displayname = e.target.value; setChanges(chngs); setHasChanges(Object.keys(changes).length === 0)}}></TextBox>
+                <TextBox label="Username" placeholder={user.username} onChange={(e) => { var ch = changes; ch.username = e.target.value; setChanges(ch); setHasChanges(Object.keys(changes).length === 0)}}></TextBox>
             </ModalForm>
             {error.error ? <p className="errorText" style={{color: "var(--text-color)"}}>{error.error}</p> : ''}
-        </Modal> : <></>
+        </Modal>
     )
 }
