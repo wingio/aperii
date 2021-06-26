@@ -35,6 +35,7 @@ function ProfileDropdown(props) {
         <DropdownItem label="Toggle theme" icon={themeIcon} action="toggletheme" />
         <DropdownItem label="Settings" icon='gear' loc="/settings"></DropdownItem>
         {expiramentsEnabled ? <DropdownItem label="Experiments" icon='gear' click={() => {setOpened(true)}}></DropdownItem> : ''}
+        {props.user.flags.admin ? <DropdownItem label="UI Playground" icon='gear' click={() => {setOpened(true)}}></DropdownItem> : ''}
         <DropdownItem label="Log Out" icon='gear' action="logout"></DropdownItem>
         {modalOpened ? <ExperimentsModal closeAction={close} exp={props.exp}></ExperimentsModal> : ''}
       </Dropdown>
