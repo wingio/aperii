@@ -10,7 +10,7 @@ import NotiFeed from '../components/NotiFeed'
 import MakePostModal from '../components/MakePostModal'
 import Changelog from '../components/Changelog'
 import * as info from '../info.json'
-import consts from '../../constants'
+import consts from '../constants'
 const c = new consts()
 
 export default function Demo( { posts, user } ) {
