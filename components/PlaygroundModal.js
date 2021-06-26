@@ -9,9 +9,9 @@ export default function PlaygroundModal({ user, closeAction, exp }) {
 
     return (
         <Modal title="UI Playground" subtitle="Explore and test ui elements" buttons={[{label: 'OK', btnstyle: 'primary', onClick: close}]}>
-                <Button label="Primary" btnstyle="primary"></Button>
-                <Button label="Primary Disabled" btnstyle="primary" disabled={true}></Button>
-                <Button label="Loading" btnstyle="primary" loading={true}></Button>
+                <Button label="Primary" btnstyle="primary" style={{marginRight: "10px"}}></Button>
+                <Button label="Primary Disabled" btnstyle="primary" disabled={true} style={{marginRight: "10px"}}></Button>
+                <Button label="Loading" btnstyle="primary" loading={true} style={{marginRight: "10px"}}></Button>
                 <Button label="Secondary" btnstyle="secondary"></Button>
                 <p>Regular Textbox</p>
                 <TextBox></TextBox>
