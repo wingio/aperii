@@ -15,6 +15,8 @@ import Gear from './Gear'
 import Globe from './Globe'
 import Sun from './Sun'
 import Moon from './Moon'
+import Flask from './Flask'
+import Shapes from './Shapes'
 
 /**
  * 
@@ -73,6 +75,12 @@ export default function Icon(props) {
             break;
         case 'sun':
             icon = Sun
+            break;
+        case 'flask':
+            icon = Flask
+            break;
+        case 'shapes':
+            icon = Shapes
             break;
         default:
             icon = User

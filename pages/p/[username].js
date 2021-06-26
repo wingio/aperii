@@ -116,6 +116,7 @@ export async function getServerSideProps(context) {
   var suspendedArr = []
   suspendedArr.push(c.getSuspendedPost(profile))
   profile.posts = profile.suspended ? suspendedArr : profile.posts
+  user.flags = user.flags ? c.getFlagsFromBitfield(user.flags) : c.getFlagsFromBitfield(0)
   return {
     props: {
       profile,
