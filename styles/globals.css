@@ -450,3 +450,7 @@ input[type="submit"] {
   height: 35px;
 }
 
+img.emoji {
+  height: 21px;
+  margin-bottom: -4px;
+}
