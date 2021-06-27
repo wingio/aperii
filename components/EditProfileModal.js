@@ -74,8 +74,9 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
                     Select Image
                 </label>
                 <img src={source} width="100px" height="100px" style={{borderRadius: "50%"}}></img>
-                <TextBox label="Display Name" style={{marginBottom: "10px"}} placeholder={user.displayName} onChange={(e) => { var chngs = changes; chngs.displayname = e.target.value; setChanges(chngs); setHasChanges(Object.keys(changes).length === 0)}}></TextBox>
-                <TextBox label="Username" placeholder={user.username} onChange={(e) => { var ch = changes; ch.username = e.target.value; setChanges(ch); setHasChanges(Object.keys(changes).length === 0)}}></TextBox>
+                <TextBox label="Display Name" style={{marginBottom: "10px"}} placeholder={user.displayName} onChange={(e) => { var chngs = changes; chngs.displayname = e.target.value; setChanges(chngs)}}></TextBox>
+                <TextBox label="Username" placeholder={user.username} onChange={(e) => { var ch = changes; ch.username = e.target.value; setChanges(ch)}}></TextBox>
+                <TextBox label="Bio" placeholder={user.bio} onChange={(e) => { var ch = changes; ch.bio = e.target.value; setChanges(ch)}}></TextBox>
             </ModalForm>
             {error.error ? <p className="errorText" style={{color: "var(--text-color)"}}>{error.error}</p> : ''}
         </Modal>
