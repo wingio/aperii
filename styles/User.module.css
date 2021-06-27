@@ -76,6 +76,7 @@
 .bio {
     margin-left: 13px;
     margin-bottom: 10px;
+    color: var(--text-color);
 }
 
 .bio a {
