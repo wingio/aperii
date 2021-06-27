@@ -204,6 +204,8 @@ client.connect(function (err) {
                     displayName: displayName,
                     username: username.toLowerCase(),
                     password: hash,
+                    bio: "",
+                    banner: "",
                     verifiedEmail: false,
                     suspended: false,
                     flags: 0,
@@ -425,7 +427,7 @@ client.connect(function (err) {
     })
 
     app.patch('/users/:id', auth, async (req, res) => {
-        const { avatar, displayname, username } = req.body
+        const { avatar, displayname, username, bio } = req.body
         const { id } = req.params
         const errors = []
         if(req.user.id != id) {
@@ -528,6 +530,28 @@ client.connect(function (err) {
                     }
                 })
             }
+            }
+        }
+
+        if(bio){
+            var usernameRegex = /^[\d\D]{0,64}$/g
+            if(!usernameRegex.test(bio)){
+                errors.push({
+                    status: 400,
+                    error: 'Bio exceeds 64 character limit',
+                    field: 'bio'
+                })
+                
+            }
+
+            if (errors.filter(e => e.field == 'bio').length < 1) {
+                users.findOneAndUpdate({
+                    id: id
+                }, {
+                    $set: {
+                        bio: bio
+                    }
+                })
             }
         }
 
@@ -1078,7 +1102,7 @@ client.connect(function (err) {
         }
     })
 
-    app.post('/admin/syncsuspended', auth, async (req, res) => {
+    app.post('/admin/syncbio', auth, async (req, res) => {
         var me = constants.getFlagsFromBitfield(req.user.flags ? req.user.flags : 0)
 
         if(me.admin == true){
@@ -1089,14 +1113,15 @@ client.connect(function (err) {
                     id: user.id
                 }, {
                     $set: {
-                        suspended: false
+                        bio: "",
+                        banner: ""
                     }
                 })
             })
 
             res.send({
                 status: 200,
-                message: "Flag synced"
+                message: "Bio synced"
             })
         } else {
             res.status(401).send({
@@ -1112,7 +1137,7 @@ client.connect(function (err) {
         if(me.admin == true){
             res.send({
                 status: 200,
-                message: "v1-584"
+                message: "v1-613"
             })
         } else {
             res.status(401).send({
