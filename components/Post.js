@@ -5,7 +5,7 @@ import PostBody from './PostBody'
 import Badge from '../icons/Badge'
 import ContextMenu from './ContextMenu'
 
-const data = ({data, embed}) => {
+const data = ({data, embed, useTwemoji}) => {
     const [visible, setVisible] = useState(false)
     const [coords, setCoords] = useState({x: 0, y: 0})
 
@@ -28,7 +28,7 @@ const data = ({data, embed}) => {
             {data.author.verified ? <Badge className={postStyle.badge} width="15px" style={{color: "var(--badge-color)"}}></Badge> : ''}
             <span className={postStyle.username}>@{data.author.username}</span>
         </div>
-            <p className={postStyle.content}><PostBody text={data.body}></PostBody></p>
+            <p className={postStyle.content}><PostBody text={data.body} useTwemoji={useTwemoji}></PostBody></p>
         </div>
         {visible ? <ContextMenu {...coords}></ContextMenu> : ''}
     </div>)

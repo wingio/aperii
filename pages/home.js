@@ -57,7 +57,7 @@ export default function Demo( { posts, user } ) {
       <meta name="description" content="A free, more open social experience" key="desc"/>
     </Head>
     {showChangelog ? <Changelog/> : ''}
-    <PostFeed posts={posts}></PostFeed>
+    <PostFeed posts={posts} useTwemoji={expStore["use_twemoji_06_26_21"] == 1}></PostFeed>
   </Layout>
 }
 
