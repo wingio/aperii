@@ -15,6 +15,7 @@ import EditProfileModal from '../../components/EditProfileModal'
 import Button from '../../components/Button'
 import VerifiedBadge from '../../components/VerifiedBadge'
 import {useState} from 'react'
+import PostBody from '../../components/PostBody'
 const c = new consts()
 
 export default function User({profile, posts, user}) {
@@ -66,6 +67,7 @@ export default function User({profile, posts, user}) {
           <p>{profile.displayName}{profile.verified ? <VerifiedBadge className={styles.badge} /> : ''}</p>
           <p className={styles.username}>@{profile.username}</p>
         </div>
+        <div className={styles.bio}><PostBody text={profile.bio} useTwemoji={expStore["use_twemoji_06_26_21"] == 1}></PostBody></div>
         {profile.username == user.username ? <Button label="Edit Profile" btnstyle="primary" onClick={openProfile} style={{marginLeft: "1em"}} /> : ''}
         <div className={styles.miscInfo}>
           {profile.flags.staff || profile.flags.admin ? <Icon name="logo" width=".9rem" color="var(--border-grey)" className={styles.joinDateIcon}/> : ''}
