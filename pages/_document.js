@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import {useState} from 'react'
+import KeyboardShortcutProvider from '../providers/KeyboardShortcutProvider'
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -15,11 +16,13 @@ class MyDocument extends Document {
           <meta property="og:site_name" content="Aperii" />
           <meta name="theme-color" content="#9d4d4d" />
         </Head>
+        <KeyboardShortcutProvider>
         <body>
           <Main />
           <NextScript />
           <script defer src="/scripts/themer.js"></script>
         </body>
+        </KeyboardShortcutProvider>
       </Html>
     )
   }

@@ -50,7 +50,6 @@ export default function Demo( { posts, user } ) {
   }
 
   return (
-  <KeyboardShortcutProvider>
   <Layout user={user} misc={expStore} page="notis" title="Notifications">
     <Head>
       <title>Notifications - Aperii</title>
@@ -60,7 +59,6 @@ export default function Demo( { posts, user } ) {
     </Head>
     <NotiFeed notis={posts} user={user}/>
   </Layout>
-  </KeyboardShortcutProvider>
   )
 }
 
