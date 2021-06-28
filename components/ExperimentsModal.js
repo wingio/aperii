@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Modal from './Modal'
 import TextBox from './TextBox'
 import ModalForm from './ModalForm'
-export default function ExperimentsModal({ user, closeAction, exp }) {
+export default function ExperimentsModal({ user, closeAction, exp, vanished }) {
     var close = closeAction
     const [value, setValue] = useState(exp)
     var update = (e) => {
@@ -20,7 +20,7 @@ export default function ExperimentsModal({ user, closeAction, exp }) {
     }
 
     return (
-        <Modal title="Feeling like a scientist?" subtitle="Try out new features before they're public" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Save', btnstyle: 'primary', onClick: save}]}>
+        <Modal title="Feeling like a scientist?" subtitle="Try out new features before they're public" buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Save', btnstyle: 'primary', onClick: save}]} showVanish={vanished ? vanished : false}>
                 <p style={{marginBottom: "0.2em", color: "var(--text-color)"}}>Use Twemoji</p>
                 <p style={{fontSize: "0.7em", opacity: 0.5, marginTop:0, color: "var(--text-color)"}}>use_twemoji_06_26_21</p>
                 <select name="use_twemoji_06_26_21" id="exp4" onChange={update} defaultValue={value["use_twemoji_06_26_21"] ? value["use_twemoji_06_26_21"] : "0"}>
