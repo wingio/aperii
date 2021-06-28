@@ -9,7 +9,7 @@ export default function KeyboardShortcutProvider(props) {
      * @type {React.KeyboardEventHandler<HTMLDivElement}
      */
     var handleKeypress = (e) => {
-        if(e.ctrlKey && e.key == "e"){
+        if(e.key == "F1"){
             setShowChangelog(true)
         }
     }

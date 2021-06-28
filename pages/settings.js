@@ -17,16 +17,9 @@ import {useRouter} from 'next/router'
 import KeyboardShortcutProvider from '../providers/KeyboardShortcutProvider'
 
 export default function Demo( { posts, user } ) {
-  var showChangelog = false
   var expStore = {}
   if (typeof window !== "undefined") {
-    var vers = localStorage.getItem('currentVersion')
     var expStore = localStorage.getItem('experiments') ? JSON.parse(localStorage.getItem('experiments')) : {}
-    if(vers){
-      showChangelog = (vers != info.version)
-    } else {
-      showChangelog = false
-    }
   }
 
   var router = useRouter()
@@ -65,7 +58,6 @@ export default function Demo( { posts, user } ) {
       <meta property="og:description" content="A free, more open social experience" />
       <meta property="og:image" content="/logo_circle.png"/>
     </Head>
-    {showChangelog ? <Changelog/> : ''}
     <NotiFeed notis={posts} user={user}/>
   </Layout>
   </KeyboardShortcutProvider>
