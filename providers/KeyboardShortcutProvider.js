@@ -41,7 +41,7 @@ export default function KeyboardShortcutProvider(props) {
     return (
         <>
             {showChangelog ? <Changelog closeAction={clClose} vanished={clvanished} /> : ''}
-            {showExp ? <ExperimentsModal vanished={expvanished} closeAction={expClose} />: ''}
+            {showExp ? <ExperimentsModal vanished={expvanished} closeAction={expClose} exp={props.exp}/>: ''}
             {props.children}
         </>
     )
