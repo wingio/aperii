@@ -1,20 +1,20 @@
 import Head from 'next/head'
 import styles from '../styles/Demo.module.css'
-import Search from '../components/Search'
-import Post from '../components/Post'
-import * as PostEx from '../Post'
-import Layout from '../layouts/Layout'
+import Search from '../../components/Search'
+import Post from '../../components/Post'
+import * as PostEx from '../../Post'
+import Layout from '../../layouts/Layout'
 import {useState, useEffect} from 'react'
-import NotiFeed from '../components/NotiFeed'
+import NotiFeed from '../../components/NotiFeed'
 
-import MakePostModal from '../components/MakePostModal'
-import Changelog from '../components/Changelog'
-import * as info from '../info.json'
-import consts from '../constants'
+import MakePostModal from '../../components/MakePostModal'
+import Changelog from '../../components/Changelog'
+import * as info from '../../info.json'
+import consts from '../../constants'
 const c = new consts()
 
 import {useRouter} from 'next/router'
-import KeyboardShortcutProvider from '../providers/KeyboardShortcutProvider'
+import KeyboardShortcutProvider from '../../providers/KeyboardShortcutProvider'
 
 export default function Demo( { posts, user } ) {
   var expStore = {}
@@ -50,7 +50,7 @@ export default function Demo( { posts, user } ) {
   }
 
   return (
-  <Layout user={user} misc={expStore} page="settings" title="Notifications">
+  <Layout user={user} misc={expStore} page="settings" title="Settings">
     <Head>
       <title>Settings - Aperii</title>
       <meta property="og:title" content="Aperii" />
@@ -58,7 +58,7 @@ export default function Demo( { posts, user } ) {
       <meta property="og:image" content="/logo_circle.png"/>
     </Head>
     <div>
-    <div style={{color: "var(--text-color)", borderTop: "1px solid var(--border-color)"}}>
+    <div style={{color: "var(--text-color)", borderTop: "1px solid var(--border-color)", borderBottom: "1px solid var(--border-color)", fontSize: ".8em", padding: "1em" }}>
       <h4>Copyright</h4>
       <p className="mg0">© 2021 Aperii</p>
       <br />
