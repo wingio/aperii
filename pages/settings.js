@@ -14,6 +14,7 @@ import consts from '../constants'
 const c = new consts()
 
 import {useRouter} from 'next/router'
+import KeyboardShortcutProvider from '../providers/KeyboardShortcutProvider'
 
 export default function Demo( { posts, user } ) {
   var showChangelog = false
@@ -55,7 +56,9 @@ export default function Demo( { posts, user } ) {
 
   }
 
-  return <Layout user={user} misc={expStore} page="notis" title="Notifications">
+  return (
+  <KeyboardShortcutProvider>
+  <Layout user={user} misc={expStore} page="notis" title="Notifications">
     <Head>
       <title>Notifications - Aperii</title>
       <meta property="og:title" content="Aperii" />
@@ -65,6 +68,8 @@ export default function Demo( { posts, user } ) {
     {showChangelog ? <Changelog/> : ''}
     <NotiFeed notis={posts} user={user}/>
   </Layout>
+  </KeyboardShortcutProvider>
+  )
 }
 
 export async function getServerSideProps(context) {

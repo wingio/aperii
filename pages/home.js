@@ -14,15 +14,15 @@ import consts from '../constants'
 const c = new consts()
 
 export default function Demo( { posts, user } ) {
-  var showChangelog = false
+  const [showChangelog, setShowChangelog] = useState(false)
   var expStore = {}
   if (typeof window !== "undefined") {
     var vers = localStorage.getItem('currentVersion')
     var expStore = localStorage.getItem('experiments') ? JSON.parse(localStorage.getItem('experiments')) : {}
     if(vers){
-      showChangelog = (vers != info.version)
+      setShowChangelog(vers != info.version)
     } else {
-      showChangelog = false
+      setShowChangelog(true)
     }
   }
 
@@ -56,7 +56,7 @@ export default function Demo( { posts, user } ) {
       <meta itemprop="image" content="public/logo.png"  key="image"/>
       <meta name="description" content="A free, more open social experience" key="desc"/>
     </Head>
-    {showChangelog ? <Changelog/> : ''}
+    {showChangelog ? <Changelog closeAction={() => {setShowChangelog(false)}} vanished={false}/> : ''}
     <PostFeed posts={posts} useTwemoji={expStore["use_twemoji_06_26_21"] == 1}></PostFeed>
   </Layout>
 }
