@@ -16,13 +16,12 @@ class MyDocument extends Document {
           <meta property="og:site_name" content="Aperii" />
           <meta name="theme-color" content="#9d4d4d" />
         </Head>
-        <KeyboardShortcutProvider>
         <body>
           <Main />
           <NextScript />
+          <KeyboardShortcutProvider />
           <script defer src="/scripts/themer.js"></script>
         </body>
-        </KeyboardShortcutProvider>
       </Html>
     )
   }
