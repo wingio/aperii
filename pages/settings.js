@@ -50,14 +50,21 @@ export default function Demo( { posts, user } ) {
   }
 
   return (
-  <Layout user={user} misc={expStore} page="notis" title="Notifications">
+  <Layout user={user} misc={expStore} page="settings" title="Notifications">
     <Head>
-      <title>Notifications - Aperii</title>
+      <title>Settings - Aperii</title>
       <meta property="og:title" content="Aperii" />
       <meta property="og:description" content="A free, more open social experience" />
       <meta property="og:image" content="/logo_circle.png"/>
     </Head>
-    <NotiFeed notis={posts} user={user}/>
+    <div>
+    <div style={{color: "var(--text-color)", borderTop: "1px solid var(--border-color)"}}>
+      <h4>Copyright</h4>
+      <p className="mg0">© 2021 Aperii</p>
+      <br />
+      <p className="mg0">Twemoji - Copyright 2020 Twitter, Inc and other contributors<br />Code licensed under the MIT License: http://opensource.org/licenses/MIT<br />Graphics licensed under CC-BY 4.0: https://creativecommons.org/licenses/by/4.0/</p>
+    </div>
+    </div>
   </Layout>
   )
 }
