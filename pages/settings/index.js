@@ -46,8 +46,8 @@ export default function Demo( { posts, user } ) {
       <meta property="og:image" content="/logo_circle.png"/>
     </Head>
     <div>
-      <div style={{color: "var(--text-color)", borderTop: "1px solid var(--border-grey)", borderBottom: "1px solid var(--border-grey)", fontSize: ".8em", padding: "1em" }}>
-        <h4>Copyright</h4>
+      <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: ".8em", padding: "1em" }}>
+        <h4 className="mg0">Copyright</h4>
         <p className="mg0">© 2021 Aperii</p>
         <br />
         <p className="mg0">Twemoji - Copyright 2020 Twitter, Inc and other contributors<br />Code licensed under the MIT License: http://opensource.org/licenses/MIT<br />Graphics licensed under CC-BY 4.0: https://creativecommons.org/licenses/by/4.0/</p>
