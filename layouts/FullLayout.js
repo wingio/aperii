@@ -81,6 +81,11 @@ function FullLayout(props) {
     <SidebarFeedOption name="Discover" icon="compass"></SidebarFeedOption>
     {expStore["noti_tab_06_05_21"] == 1 ? <SidebarFeedOption name="Notifications" current={props.page == "notis"} icon="bell" goto="/notifications"></SidebarFeedOption> : ''}
     <SidebarFeedOption name="Profile" current={props.page == "profile"} icon="user" goto={`/p/${user.username}`}></SidebarFeedOption>
+    <div style={{fontSize: "0.5em", color: "var(--text-color)"}}>
+      <p className="mg0">© 2021 Aperii</p>
+      <br />
+      <p className="mg0">Twemoji - Copyright 2020 Twitter, Inc and other contributors<br />Code licensed under the MIT License: http://opensource.org/licenses/MIT<br />Graphics licensed under CC-BY 4.0: https://creativecommons.org/licenses/by/4.0/</p>
+    </div>
   </div>
   <div className={`feed`} style={{height: "100vh"}}>
     <Search title={props.title} showBadge={props.showBadge} showPosts={props.showCount} postCount={props.postCount}></Search>
