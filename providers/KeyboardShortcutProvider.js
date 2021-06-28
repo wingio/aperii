@@ -16,8 +16,7 @@ export default function KeyboardShortcutProvider(props) {
 
     if(typeof window != "undefined"){
         document.addEventListener("keyup", (e) => {
-            console.log(e.key)
-            if(e.key == "/"){
+            if(e.ctrlKey && e.key == "F1"){
                 setShowChangelog(true)
             }
         })
