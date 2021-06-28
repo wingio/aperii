@@ -1,20 +1,8 @@
 import Head from 'next/head'
-import styles from '../styles/Demo.module.css'
-import Search from '../../components/Search'
-import Post from '../../components/Post'
-import * as PostEx from '../../Post'
 import Layout from '../../layouts/Layout'
-import {useState, useEffect} from 'react'
-import NotiFeed from '../../components/NotiFeed'
-
-import MakePostModal from '../../components/MakePostModal'
-import Changelog from '../../components/Changelog'
-import * as info from '../../info.json'
 import consts from '../../constants'
 const c = new consts()
-
 import {useRouter} from 'next/router'
-import KeyboardShortcutProvider from '../../providers/KeyboardShortcutProvider'
 
 export default function Demo( { posts, user } ) {
   var expStore = {}
