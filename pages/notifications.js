@@ -16,7 +16,7 @@ const c = new consts()
 export default function Demo( { posts, user } ) {
   var expStore = {}
   if (typeof window !== "undefined") {
-    var expStore = localStorage.getItem('experiments') ? JSON.parse(localStorage.getItem('experiments')) : {}elog = false
+    var expStore = localStorage.getItem('experiments') ? JSON.parse(localStorage.getItem('experiments')) : {}
   }
 
 
