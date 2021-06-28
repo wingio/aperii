@@ -19,7 +19,6 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <KeyboardShortcutProvider />
           <script defer src="/scripts/themer.js"></script>
         </body>
       </Html>

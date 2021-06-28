@@ -3,6 +3,7 @@ import FullLayout from './FullLayout'
 import NoLeftLayout from './NoLeftLayout'
 import MobileLayout from './MobileLayout'
 import Splash from './Splash'
+import KeyboardShortcutProvider from '../providers/KeyboardShortcutProvider';
 function Layout(props) {
     const {width, height} = useWindowSize()
     if(typeof width == 'undefined'){
@@ -11,22 +12,36 @@ function Layout(props) {
       )
     } else if(width < 750){
         return (
-        <MobileLayout {...props}>
+        <KeyboardShortcutProvider>
+          <MobileLayout {...props}>
             {props.children}
-        </MobileLayout>
+          </MobileLayout>
+        </KeyboardShortcutProvider>
         )
     } else if( width < 965){
-        return <NoLeftLayout {...props}>
+        return (
+        <KeyboardShortcutProvider>
+          <NoLeftLayout {...props}>
             {props.children}
-        </NoLeftLayout>
+          </NoLeftLayout>
+        </KeyboardShortcutProvider>
+        )
     } else if(width > 1320){
-        return <FullLayout {...props}>
-        {props.children}
-        </FullLayout>
-    } else {
-        return <NoLeftLayout {...props}>
+        return (
+        <KeyboardShortcutProvider>
+          <FullLayout {...props}>
             {props.children}
-        </NoLeftLayout>
+          </FullLayout>
+        </KeyboardShortcutProvider>
+        )
+    } else {
+        return (
+        <KeyboardShortcutProvider>
+          <NoLeftLayout {...props}>
+            {props.children}
+          </NoLeftLayout>
+        </KeyboardShortcutProvider>
+        )
     }
 
     function useWindowSize() {
