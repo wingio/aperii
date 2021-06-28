@@ -14,7 +14,7 @@ import consts from '../constants'
 const c = new consts()
 
 export default function Demo( { posts, user } ) {
-  const showChangelog = false
+  var showChangelog = false
   var expStore = {}
   if (typeof window !== "undefined") {
     var vers = localStorage.getItem('currentVersion')
