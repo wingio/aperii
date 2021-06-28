@@ -5,14 +5,7 @@ import * as info from '../info.json'
 export default function KeyboardShortcutProvider(props) {
     const [showChangelog, setShowChangelog] = useState(false)
     const [vanished, setVanished] = useState(false)
-    /**
-     * @type {React.KeyboardEventHandler<HTMLDivElement}
-     */
-    var handleKeypress = (e) => {
-        if(e.key == "/"){
-            setShowChangelog(true)
-        }
-    }
+    
     var close = () => {
         localStorage.setItem('currentVersion', info.version)
         setVanished(true)
@@ -21,10 +14,19 @@ export default function KeyboardShortcutProvider(props) {
         }, 25)
     }
 
+    if(typeof window != "undefined"){
+        document.addEventListener("keyup", (e) => {
+            console.log(e.key)
+            if(e.key == "/"){
+                setShowChangelog(true)
+            }
+        })
+    }
+
     return (
-        <div onKeyUp={handleKeypress}>
+        <>
             {showChangelog ? <Changelog closeAction={close} vanished={vanished}></Changelog> : ''}
             {props.children}
-        </div>
+        </>
     )
 }
