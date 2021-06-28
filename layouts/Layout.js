@@ -12,7 +12,7 @@ function Layout(props) {
       )
     } else if(width < 750){
         return (
-        <KeyboardShortcutProvider>
+        <KeyboardShortcutProvider exp={props.misc}>
           <MobileLayout {...props}>
             {props.children}
           </MobileLayout>
@@ -20,7 +20,7 @@ function Layout(props) {
         )
     } else if( width < 965){
         return (
-        <KeyboardShortcutProvider>
+        <KeyboardShortcutProvider exp={props.misc}>
           <NoLeftLayout {...props}>
             {props.children}
           </NoLeftLayout>
@@ -28,7 +28,7 @@ function Layout(props) {
         )
     } else if(width > 1320){
         return (
-        <KeyboardShortcutProvider>
+        <KeyboardShortcutProvider exp={props.misc}>
           <FullLayout {...props}>
             {props.children}
           </FullLayout>
@@ -36,7 +36,7 @@ function Layout(props) {
         )
     } else {
         return (
-        <KeyboardShortcutProvider>
+        <KeyboardShortcutProvider exp={props.misc}>
           <NoLeftLayout {...props}>
             {props.children}
           </NoLeftLayout>
