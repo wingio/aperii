@@ -12,7 +12,7 @@ export default function PostBody({ text, useTwemoji }) {
     } else {
         return (
             <>
-                {tokens.map((tok, i) => tok.type == 0 ? `${tok.value}` : tok.type == 1 ? <a href={`/p/${tok.value.slice(1)}`}>{tok.value}</a> : tok.type == 3 ? <br /> : '')}
+                {tokens.map((tok, i) => tok.type == 0 ? `${tok.value}` : tok.type == 1 ? <a href={`/p/${tok.value.slice(1).toLowerCase()}`}>{tok.value}</a> : tok.type == 3 ? <br /> : '')}
             </>
         )
     }
