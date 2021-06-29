@@ -48,7 +48,7 @@ export default function Demo( { user } ) {
     </Head>
     <div>
       <Link href="/settings/account/info">
-      <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: "1em", padding: "1em" }}>
+      <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: "1em", padding: "1em" }} className="settingsoption link">
         <h4 className="mg0">Account Information</h4>
       </div>
       </Link>

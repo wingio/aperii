@@ -19,6 +19,7 @@ body {
   --light-2: hsl(0, 0%, 100%);
   --light-3: hsl(0, 0%, 80%);
   --light-4: hsl(0, 0%, 70%);
+  --light-5: #e0e0e0;
 }
 
 .dark {
@@ -34,7 +35,8 @@ body {
   --icon-color: #fff;
   --border-grey: #3e3e3e;
   --dropshadow: 0 0 20px 0 #000;
-  --dropdown-bg: var(--darkle-bright-2)
+  --dropdown-bg: var(--darkle-bright-2);
+  --settings-hl: var(--darkle-bright-1);
 }
 
 .light {
@@ -51,6 +53,7 @@ body {
   --border-grey: #bdbdbd;
   --dropshadow: 0 0 12px 0px #bdbdbd;
   --dropdown-bg: #fff;
+  --settings-hl: var(--light-5);
 }
 
 
@@ -458,4 +461,12 @@ img.emoji {
 
 .mg0 {
   margin: 0;
+}
+
+.settingsoption.link {
+  cursor: pointer;
+}
+
+.settingsoption.link:hover {
+  background: var(--settings-hl);
 }
