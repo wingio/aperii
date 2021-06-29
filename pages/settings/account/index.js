@@ -47,17 +47,11 @@ export default function Demo( { user } ) {
       <meta property="og:image" content="/logo_circle.png"/>
     </Head>
     <div>
-      <Link href="/settings/account">
+      <Link href="/settings/account/info">
       <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: "1em", padding: "1em" }}>
-        <h4 className="mg0">Account</h4>
+        <h4 className="mg0">Account Information</h4>
       </div>
       </Link>
-      <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: ".8em", padding: "1em" }}>
-        <h4 className="mg0">Copyright</h4>
-        <p className="mg0">© 2021 Aperii</p>
-        <br />
-        <p className="mg0">Twemoji - Copyright 2020 Twitter, Inc and other contributors<br />Code licensed under the MIT License: http://opensource.org/licenses/MIT<br />Graphics licensed under CC-BY 4.0: https://creativecommons.org/licenses/by/4.0/</p>
-      </div>
     </div>
   </Layout>
   )

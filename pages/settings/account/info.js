@@ -4,8 +4,9 @@ import consts from '../../constants'
 const c = new consts()
 import {useRouter} from 'next/router'
 import Link from 'next/link'
+import moment from 'moment'
 
-export default function Demo( { user } ) {
+export default function Demo( { user} ) {
   var expStore = {}
   if (typeof window !== "undefined") {
     var expStore = localStorage.getItem('experiments') ? JSON.parse(localStorage.getItem('experiments')) : {}
@@ -47,16 +48,21 @@ export default function Demo( { user } ) {
       <meta property="og:image" content="/logo_circle.png"/>
     </Head>
     <div>
-      <Link href="/settings/account">
       <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: "1em", padding: "1em" }}>
-        <h4 className="mg0">Account</h4>
+        <h4 className="mg0">Username</h4>
+        <p className="mg0">@{user.username}</p>
       </div>
-      </Link>
-      <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: ".8em", padding: "1em" }}>
-        <h4 className="mg0">Copyright</h4>
-        <p className="mg0">© 2021 Aperii</p>
-        <br />
-        <p className="mg0">Twemoji - Copyright 2020 Twitter, Inc and other contributors<br />Code licensed under the MIT License: http://opensource.org/licenses/MIT<br />Graphics licensed under CC-BY 4.0: https://creativecommons.org/licenses/by/4.0/</p>
+      <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: "1em", padding: "1em" }}>
+        <h4 className="mg0">Email</h4>
+        <p className="mg0">{user.email}</p>
+      </div>
+      <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: "1em", padding: "1em" }}>
+        <h4 className="mg0">Verified</h4>
+        <p className="mg0">{user.flags.verified ? "Yes" : "No"}</p>
+      </div>
+      <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: "1em", padding: "1em" }}>
+        <h4 className="mg0">Joined</h4>
+        <p className="mg0">{moment(user.joinedTimestamp).format("dddd, MMMM Do YYYY, h:mma")}</p>
       </div>
     </div>
   </Layout>
