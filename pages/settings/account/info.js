@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Layout from '../../layouts/Layout'
+import Layout from '../../../layouts/Layout'
 import consts from '../../../constants'
 const c = new consts()
 import {useRouter} from 'next/router'
