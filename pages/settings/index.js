@@ -4,6 +4,7 @@ import consts from '../../constants'
 const c = new consts()
 import {useRouter} from 'next/router'
 import Link from 'next/link'
+import Icon from '../../icons/Icon'
 
 export default function Demo( { user } ) {
   var expStore = {}
@@ -48,8 +49,11 @@ export default function Demo( { user } ) {
     </Head>
     <div>
       <Link href="/settings/account">
-      <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: "1em", padding: "1em" }} className="settingsoption link">
-        <h4 className="mg0">Account</h4>
+      <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: ".9em", padding: "1em" }} className="settingsoption link">
+        <div style={{display: "flex"}}>
+            <h4 className="mg0">Account</h4>
+            <Icon name="arrow" style={{marginLeft: "auto", color: "var(--text-color)"}}></Icon>
+        </div>
       </div>
       </Link>
       <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: ".8em", padding: "1em" }}>

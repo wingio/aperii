@@ -17,6 +17,8 @@ import Sun from './Sun'
 import Moon from './Moon'
 import Flask from './Flask'
 import Shapes from './Shapes'
+import Arrow from './Arrow'
+import Logout from './Logout'
 
 /**
  * 
@@ -81,6 +83,12 @@ export default function Icon(props) {
             break;
         case 'shapes':
             icon = Shapes
+            break;
+        case 'arrow':
+            icon = Arrow
+            break;
+        case 'logout':
+            icon = Logout
             break;
         default:
             icon = User

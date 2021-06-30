@@ -41,7 +41,7 @@ function ProfileDropdown(props) {
         <DropdownItem label="Settings" icon='gear' loc="/settings"></DropdownItem>
         {expiramentsEnabled || props.user.flags.admin ? <DropdownItem label="Experiments" icon='flask' click={() => {setOpened(true)}}></DropdownItem> : ''}
         {props.user.flags.admin ? <DropdownItem label="UI Playground" icon='shapes' click={() => {setPgOpened(true)}}></DropdownItem> : ''}
-        <DropdownItem label="Log Out" icon='gear' action="logout"></DropdownItem>
+        <DropdownItem label="Log Out" icon='logout' action="logout"></DropdownItem>
         {modalOpened ? <ExperimentsModal closeAction={close} exp={props.exp}></ExperimentsModal> : ''}
         {pgOpened ? <PlaygroundModal closeAction={pgclose}/> : ''}
       </Dropdown>
