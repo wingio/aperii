@@ -3,7 +3,7 @@ import Changelog from '../components/Changelog'
 import ExperimentsModal from '../components/ExperimentsModal'
 import Constants from '../constants'
 import * as info from '../info.json'
-import * as langfile from '../public/resc/lang.json'
+import langfile from './lang'
 
 export default function useLang() {
     const [lang, setLang] = useState("en-US")
