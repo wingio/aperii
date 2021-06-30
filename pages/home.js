@@ -49,8 +49,8 @@ export default function Demo( { posts, user } ) {
       window.location = '/'
     }
   }
-
-  return <Layout user={user} misc={expStore} page="home" title={lang.sidebar.home}>
+  console.log(lang)
+  return <Layout user={user} misc={expStore} page="home" title="Home">
     <Head>
       <title>Home - Aperii</title>
       
