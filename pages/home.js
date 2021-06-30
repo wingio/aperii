@@ -11,6 +11,7 @@ import MakePostModal from '../components/MakePostModal'
 import Changelog from '../components/Changelog'
 import * as info from '../info.json'
 import consts from '../constants'
+import useLang from '../providers/useLang'
 const c = new consts()
 
 export default function Demo( { posts, user } ) {
@@ -25,6 +26,7 @@ export default function Demo( { posts, user } ) {
       showChangelog = false
     }
   }
+  var lang = useLang()
 
 
   if (typeof window !== "undefined") {
@@ -48,7 +50,7 @@ export default function Demo( { posts, user } ) {
     }
   }
 
-  return <Layout user={user} misc={expStore} page="home" title="Home">
+  return <Layout user={user} misc={expStore} page="home" title={lang.sidebar.home}>
     <Head>
       <title>Home - Aperii</title>
       
