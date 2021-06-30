@@ -6,10 +6,10 @@ import * as info from '../info.json'
 import langfile from './lang'
 
 export default function useLang() {
-    const [lang, setLang] = useState("en-US")
+    var lang = "en-US"
     if(typeof window != "undefined"){
         var locale = localStorage.getItem("language") ? localStorage.getItem("language") : "en-US"
-        setLang(locale)
+        lang = locale
     }
     console.log(lang)
     var selection = langfile[lang]
