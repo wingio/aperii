@@ -16,6 +16,7 @@ import Button from '../../components/Button'
 import VerifiedBadge from '../../components/VerifiedBadge'
 import {useState} from 'react'
 import PostBody from '../../components/PostBody'
+import useLang from '../../providers/useLang'
 const c = new consts()
 
 export default function User({profile, posts, user}) {
