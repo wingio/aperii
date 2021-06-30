@@ -1,5 +1,5 @@
-module.exports = {
-    "en-US": {
+class Lang {
+        "en-US" = {
         "displayName": "Display Name",
         "username": "Username",
         "email": "Email",
@@ -47,8 +47,9 @@ module.exports = {
             "account": "Account",
             "account_info": "Account Information"
         }
-    },
-    "en-UWU": {
+    }
+
+    "en-UWU" = {
         "displayName": "Dispway Name",
         "username": "Uwusername",
         "email": "Emaiw",
@@ -96,8 +97,9 @@ module.exports = {
             "account": "Account",
             "account_info": "Account Information"
         }
-    },
-    "es": {
+    }
+
+    "es" = {
         "displayName": "Nombre para mostrar",
         "username": "Nombre de usuario",
         "email": "Correo electrónico",
@@ -147,3 +149,5 @@ module.exports = {
         }
     }
 }
+
+module.exports = Lang

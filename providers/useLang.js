@@ -12,6 +12,7 @@ export default function useLang() {
         lang = locale
     }
     console.log(lang)
+    
     var selection = langfile[lang]
     return selection
 }
