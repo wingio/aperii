@@ -7,6 +7,7 @@ import * as langfile from '../public/resc/lang.json'
 
 export default function useLang() {
     var lang = langfile["en-US"]
+    console.log(lang)
     if(typeof window != "undefined"){
         var locale = localStorage.getItem("language") ? localStorage.getItem("language") : "en-US"
         lang = langfile[locale]
