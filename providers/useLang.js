@@ -7,12 +7,10 @@ import * as langfile from '../public/resc/lang.json'
 
 export default function useLang() {
     const [lang, setLang] = useState("en-US")
-    useEffect(() => {
-        if(typeof window != "undefined"){
-            var locale = localStorage.getItem("language") ? localStorage.getItem("language") : "en-US"
-            setLang(locale)
-        }
-    })
+    if(typeof window != "undefined"){
+        var locale = localStorage.getItem("language") ? localStorage.getItem("language") : "en-US"
+        setLang(locale)
+    }
     console.log(lang)
     var selection = langfile[lang]
     return selection
