@@ -6,12 +6,14 @@ import * as info from '../info.json'
 import * as langfile from '../public/resc/lang.json'
 
 export default function useLang() {
-    var lang = langfile["en-US"]
+    const [lang, setLang] = useState("en-US")
+    useEffect(() => {
+        if(typeof window != "undefined"){
+            var locale = localStorage.getItem("language") ? localStorage.getItem("language") : "en-US"
+            setLang(locale)
+        }
+    }, [window])
     console.log(lang)
-    if(typeof window != "undefined"){
-        var locale = localStorage.getItem("language") ? localStorage.getItem("language") : "en-US"
-        lang = langfile[locale]
-        console.log(lang)
-    }
-    return lang
+    var selection = langfile[lang]
+    return selection
 }
