@@ -5,7 +5,7 @@ import ModalForm from './ModalForm'
 import styles from '../styles/EditProfileModal.module.css'
 import { useRouter } from 'next/router'
 import useLang from '../providers/useLang'
-export default function MakePostModal({ user, closeAction, showVanish, lang }) {
+export default function MakePostModal({ user, closeAction, showVanish }) {
     const [hasChanges, setHasChanges] = useState(false)
     const [User, setUser] = useState(user)
     const [changes, setChanges] = useState({})
