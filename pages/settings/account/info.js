@@ -48,19 +48,19 @@ export default function Demo( { user} ) {
       <meta property="og:image" content="/logo_circle.png"/>
     </Head>
     <div>
-      <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: "1em", padding: "1em" }}>
+      <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: ".9em", padding: "1em" }}>
         <h4 className="mg0">Username</h4>
         <p className="mg0">@{user.username}</p>
       </div>
-      <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: "1em", padding: "1em" }}>
+      <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: ".9em", padding: "1em" }}>
         <h4 className="mg0">Email</h4>
         <p className="mg0">{user.email}</p>
       </div>
-      <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: "1em", padding: "1em" }}>
+      <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: ".9em", padding: "1em" }}>
         <h4 className="mg0">Verified</h4>
         <p className="mg0">{user.flags.verified ? "Yes" : "No"}</p>
       </div>
-      <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: "1em", padding: "1em" }}>
+      <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: ".9em", padding: "1em" }}>
         <h4 className="mg0">Joined</h4>
         <p className="mg0">{moment(user.joinedTimestamp).format("dddd, MMMM Do YYYY, h:mma")}</p>
       </div>

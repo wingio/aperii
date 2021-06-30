@@ -50,7 +50,7 @@ export default function Demo( { user } ) {
     <div>
       <Link href="/settings/account">
       <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: ".9em", padding: "1em" }} className="settingsoption link">
-        <div style={{display: "flex"}}>
+        <div style={{display: "flex", alignContent: "center"}}>
             <h4 className="mg0">Account</h4>
             <Icon name="arrow" height="20px" style={{marginLeft: "auto", color: "var(--text-color)"}}></Icon>
         </div>

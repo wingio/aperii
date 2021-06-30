@@ -465,6 +465,7 @@ img.emoji {
 
 .settingsoption.link {
   cursor: pointer;
+  transition: background ease-in .2s;
 }
 
 .settingsoption.link:hover {
