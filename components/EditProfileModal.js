@@ -69,16 +69,16 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
     }
 
     return (
-        <Modal title={text.profile.edit} buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Save', btnstyle: 'primary', form: "modal-postform", onClick: post, loading: isLoading}]} showVanish={showVanish}>
+        <Modal title={text.profile.edit} buttons={[{label: text.buttons.dismiss, btnstyle: 'secondary', onClick: close}, {label: text.buttons.save, btnstyle: 'primary', form: "modal-postform", onClick: post, loading: isLoading}]} showVanish={showVanish}>
             <ModalForm onSubmit={post} id="modal-postform" style={{display:"flex", flexDirection: "column", alignItems: "center"}}>
                 <label className={styles.avSelect}>
                     <input type="file" accept=".png, .jpg, .jpeg, .gif" multiple={false} onChange={updatePreview} style={{display: "hidden"}}/>
                     Select Image
                 </label>
                 <img src={source} width="100px" height="100px" style={{borderRadius: "50%"}}></img>
-                <TextBox label="Display Name" style={{marginBottom: "10px"}} placeholder={user.displayName} onChange={(e) => { var chngs = changes; chngs.displayname = e.target.value; setChanges(chngs)}}></TextBox>
-                <TextBox label="Username" placeholder={user.username} onChange={(e) => { var ch = changes; ch.username = e.target.value; setChanges(ch)}}></TextBox>
-                <TextBox label="Bio" placeholder={user.bio} onChange={(e) => { var ch = changes; ch.bio = e.target.value; setChanges(ch)}}></TextBox>
+                <TextBox label={text.displayName} style={{marginBottom: "10px"}} placeholder={user.displayName} onChange={(e) => { var chngs = changes; chngs.displayname = e.target.value; setChanges(chngs)}}></TextBox>
+                <TextBox label={text.username} placeholder={user.username} onChange={(e) => { var ch = changes; ch.username = e.target.value; setChanges(ch)}}></TextBox>
+                <TextBox label={text.profile.bio} placeholder={user.bio} onChange={(e) => { var ch = changes; ch.bio = e.target.value; setChanges(ch)}}></TextBox>
             </ModalForm>
             {error.error ? <p className="errorText" style={{color: "var(--text-color)"}}>{error.error}</p> : ''}
         </Modal>

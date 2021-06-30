@@ -10,7 +10,11 @@ module.exports = {
             "text": "Verified",
             "description": "This account is verified because it belongs to a company, influential figure, or is an official Aperii account."
         },
-        "dismiss": "Dismiss",
+        "buttons": {
+            "dismiss": "Dismiss",
+            "save": "Save",
+            "ok": "OK"  
+        },
         "dropdown": {
             "bug_report": "Report a bug",
             "theme_toggle": "Toggle theme",
@@ -55,7 +59,11 @@ module.exports = {
             "text": "Vewified",
             "description": "This account is vewified becawse it bewongs to a company, infwuentiaw figuwe, ow is an owfical Aperii account."
         },
-        "dismiss": "Dismiss",
+        "buttons": {
+            "dismiss": "Dismiss",
+            "save": "Save",
+            "ok": "OK"  
+        },
         "dropdown": {
             "bug_report": "Report a bug",
             "theme_toggle": "Toggle theme",
@@ -100,7 +108,11 @@ module.exports = {
             "text": "Verificado",
             "description": "Esta cuenta está verificada porque pertenece a una empresa, figura influyente o es una cuenta oficial de Aperii."
         },
-        "dismiss": "Cerrar",
+        "buttons": {
+            "dismiss": "Descartar",
+            "save": "Guardar",
+            "ok": "OK"  
+        },
         "dropdown": {
             "bug_report": "Reportar un error",
             "theme_toggle": "Alternar tema",
