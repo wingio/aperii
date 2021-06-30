@@ -44,6 +44,9 @@ export default function User({profile, posts, user}) {
     setpOpened(true)
   }
 
+  const lang = useLang()
+  const [text, setText] = useState(lang)
+
   posts = !user.suspended ? posts : [c.getSuspendedPost(user)]
   
   return (
@@ -68,7 +71,7 @@ export default function User({profile, posts, user}) {
           <p className={styles.username}>@{profile.username}</p>
         </div>
         <div className={styles.bio}><PostBody text={profile.bio} useTwemoji={expStore["use_twemoji_06_26_21"] == 1}></PostBody></div>
-        {profile.username == user.username ? <Button label="Edit Profile" btnstyle="primary" onClick={openProfile} style={{marginLeft: "1em"}} /> : ''}
+        {profile.username == user.username ? <Button label={text.profile.edit} btnstyle="primary" onClick={openProfile} style={{marginLeft: "1em"}} /> : ''}
         <div className={styles.miscInfo}>
           {profile.flags.staff || profile.flags.admin ? <Icon name="logo" width=".9rem" color="var(--border-grey)" className={styles.joinDateIcon}/> : ''}
           <p style={{color: "#888"}} className={styles.joinDate}>{profile.flags.early_supporter ? <Icon name="star" width=".9rem" style={{color: "#e2ec56"}} fill="#e2ec56" className={styles.joinDateIcon}/> : ''} <Calender width=".9rem" fill="#888" className={styles.joinDateIcon}></Calender> Joined {moment(profile.joinedTimestamp).format('MMMM YYYY')}</p>
