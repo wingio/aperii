@@ -9,7 +9,8 @@ function idgen(type) {
     var types = {
         user: 1,
         post: 2,
-        noti: 3
+        noti: 3,
+        app: 4
     }
     var typeint = types[type].toString(2)
     while(typeint.length < 5){

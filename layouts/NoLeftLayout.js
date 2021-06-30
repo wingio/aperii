@@ -18,10 +18,10 @@ function NoLeftLayout(props) {
       <div className={`ui`} style={{gridTemplateColumns: width > 965 + 60 ? '640px 325px' : '640px 50px'}}>
 
         <div className={`feed`} style={{height: "100%!important"}}>
-          <Search mobile={false}  title={props.title} showBadge={props.showBadge} showPosts={props.showCount} postCount={props.postCount}></Search>
+          <Search mobile={false}  title={props.title} showBadge={props.showBadge} showPosts={props.showCount} postCount={props.postCount} lang={props.lang}></Search>
           {props.children}
-          <MobilePostBtn user={user} />
-          <BottomTabBar currentPage={page} username={user.username} misc={misc} />
+          <MobilePostBtn user={user} lang={props.lang}/>
+          <BottomTabBar currentPage={page} username={user.username} misc={misc} lang={props.lang}/>
         </div>
 
         <div className={`sticky right`}>
@@ -29,7 +29,7 @@ function NoLeftLayout(props) {
             <img className={`av`} src={user ? user.avatar ? user.avatar : '/av.png' : '/av.png' }
               onClick={toggleDropdown}></img>
             {open ?
-            <ProfileDropdown user={user} exp={misc} /> : ''}
+            <ProfileDropdown user={user} exp={misc} lang={props.lang}/> : ''}
           </div>
         </div>
       </div>

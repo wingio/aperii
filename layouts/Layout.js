@@ -6,6 +6,12 @@ import Splash from './Splash'
 import KeyboardShortcutProvider from '../providers/KeyboardShortcutProvider';
 function Layout(props) {
     const {width, height} = useWindowSize()
+    if(typeof window != "undefined"){
+      var html = document.querySelector("html")
+      var lang = localStorage.getItem("language") ? localStorage.getItem("language") : "en-US"
+      html.lang = lang
+      props.lang = lang
+    }
     if(typeof width == 'undefined'){
       return(
         <Splash />

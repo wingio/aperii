@@ -100,6 +100,16 @@ class Constants {
             ]
         }
     }
+
+    getLang(){
+        var tfile = require('./public/resc/lang.json')
+        if(typeof window != "undefined"){
+            var lang = localStorage.getItem("language") ? localStorage.getItem("language") : "en-US"
+            return tfile[lang]
+        } else {
+            return tfile["en-US"]
+        }
+    }
 }
 
 module.exports = Constants

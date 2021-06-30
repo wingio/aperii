@@ -17,17 +17,17 @@ function MobileLayout(props) {
       exp == true || exp == "true" ? expiramentsEnabled = true : expiramentsEnabled = false
     }
   }
-
+  
   return (
     <div className="container" style={{display:"revert"}}>
       <div className={`ui`} style={{gridTemplateColumns: width >= 640? '640px' : '100%'}}>
       <div className="header">
-            <Search mobile={true} title={props.title} showBadge={props.showBadge} showPosts={props.showCount} postCount={props.postCount}></Search>
+            <Search mobile={true} title={props.title} showBadge={props.showBadge} showPosts={props.showCount} postCount={props.postCount} lang={props.lang}></Search>
             <div className="av-container">
               <img className={`av mobile`} src={user ? user.avatar ? user.avatar
                 : '/av.png' : '/av.png' } onClick={()=> {setOpen(!open)}}></img>
               {open ?
-              <ProfileDropdown user={props.user} exp={expStore} /> : ''}
+              <ProfileDropdown user={props.user} exp={expStore} lang={props.lang}/> : ''}
             </div>
           </div>
         <div className={`feed`} className={styles.feed}>
@@ -35,8 +35,8 @@ function MobileLayout(props) {
           {props.children}
           
         </div>
-        <MobilePostBtn user={props.user} hasTabBar={true}/>
-        <BottomTabBar currentPage={page} username={user.username} misc={props.misc} fixed={true}></BottomTabBar>
+        <MobilePostBtn user={props.user} hasTabBar={true} lang={props.lang}/>
+        <BottomTabBar currentPage={page} username={user.username} misc={props.misc} fixed={true} lang={props.lang}></BottomTabBar>
       </div>
     </div>
   );

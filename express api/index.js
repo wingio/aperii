@@ -35,6 +35,8 @@ client.connect(function (err) {
     const cdn = db.collection('cdn');
     const relationships = db.collection('relationships')
     const noti = db.collection('notifications')
+    const apps = db.collection('applications')
+    const grants = db.collection('oauth')
 
     const express = require('express')
     const app = express()
@@ -90,14 +92,14 @@ client.connect(function (err) {
     app.use(cors(corsOpts))
     app.use(cookieparser())
 
-    async function genToken(chars, length) {
+    async function genRand(chars, length) {
         var token = ''
         for (let i = 0; i < length; i++) {
             var rn = Math.floor(Math.random() * chars.length)
             token += chars.slice(rn, rn + 1)
         }
-        var user = await users.findOne({
-            token: token
+        var user = await apps.findOne({
+            secret: token
         })
         if (user) {
             return genToken(chars, length)
@@ -934,6 +936,71 @@ client.connect(function (err) {
         } else {
             res.status(404).send('Not Found')
         }
+    })
+
+
+    //Applications
+    app.post('/users/:id/applications', auth, async ( req, res ) => {
+        const { id } = req.params
+        if(req.user.id != id && id != "@me"){
+            res.status(401).send({
+                status: 401,
+                error: "Unauthorized"
+            })
+        }
+        var ownerid = id == "@me" ? req.user.id : id
+        const { admin } = req.query
+        var me = constants.getFlagsFromBitfield(req.user.flags ? req.user.flags : 0)
+        var appCount = await (await apps.find({owner: ownerid}).toArray()).length
+        if(appCount >= 10){
+            res.status(402).send({
+                status: 402,
+                error: "You have exceeded the maximum amount of applications"
+            })
+            return
+        }
+        const { name } = req.body
+        var app = await apps.findOne({name: name})
+        if(!name){
+            res.status(400).send({
+                status: 400,
+                error: "Missing field: name"
+            })
+            return
+        }
+
+        if(name.length > 32){
+            res.status(400).send({
+                status: 400,
+                error: "Name must contain fewer than 32 characters"
+            })
+            return
+        }
+        if(app){
+            res.status(400).send({
+                status: 400,
+                error: "Name already in use"
+            })
+            return
+        }
+
+        var secret = await genRand("abcdefghiklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 22)
+
+        var newapp = {
+            id: idgen('app'),
+            name,
+            description: "",
+            secret,
+            urls: [],
+            owner: ownerid,
+            admin: false
+        }
+        if(me.admin && admin == "true"){
+            newapp.admin = true
+        }
+        apps.insertOne(newapp)
+        delete newapp["_id"]
+        res.send(newapp)
     })
 
 

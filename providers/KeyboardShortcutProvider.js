@@ -18,7 +18,7 @@ export default function KeyboardShortcutProvider(props) {
     }
 
     var expClose = () => {
-        setClVanished(true)
+        setExpVanished(true)
         setTimeout(() => {
             setShowExp(false)
         }, 25)
