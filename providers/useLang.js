@@ -3,16 +3,17 @@ import Changelog from '../components/Changelog'
 import ExperimentsModal from '../components/ExperimentsModal'
 import Constants from '../constants'
 import * as info from '../info.json'
-var c = new Constants()
+import * as langfile from '../public/resc/lang.json'
 
 export default function useLang() {
+    var lang = langfile["en-US"]
     useEffect(() => {
-        var tfile = require('..//public/resc/lang.json')
         if(typeof window != "undefined"){
-            var lang = localStorage.getItem("language") ? localStorage.getItem("language") : "en-US"
-            return tfile[lang]
+            var locale = localStorage.getItem("language") ? localStorage.getItem("language") : "en-US"
+            lang = langfile[locale]
         } else {
-            return tfile["en-US"]
+            lang = langfile["en-US"]
         }
     })
+    return lang
 }
