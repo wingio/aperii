@@ -14,6 +14,7 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
     var close = closeAction
     const router = useRouter()
     const lang = useLang()
+    const [text, setText] = useState(lang)
 
     var post = async (e) => {
         e.preventDefault()
@@ -68,7 +69,7 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
     }
 
     return (
-        <Modal title={lang.profile.edit} buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Save', btnstyle: 'primary', form: "modal-postform", onClick: post, loading: isLoading}]} showVanish={showVanish}>
+        <Modal title={text.profile.edit} buttons={[{label: 'Dismiss', btnstyle: 'secondary', onClick: close}, {label: 'Save', btnstyle: 'primary', form: "modal-postform", onClick: post, loading: isLoading}]} showVanish={showVanish}>
             <ModalForm onSubmit={post} id="modal-postform" style={{display:"flex", flexDirection: "column", alignItems: "center"}}>
                 <label className={styles.avSelect}>
                     <input type="file" accept=".png, .jpg, .jpeg, .gif" multiple={false} onChange={updatePreview} style={{display: "hidden"}}/>
