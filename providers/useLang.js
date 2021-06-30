@@ -10,8 +10,6 @@ export default function useLang() {
     if(typeof window != "undefined"){
         var locale = localStorage.getItem("language") ? localStorage.getItem("language") : "en-US"
         lang = langfile[locale]
-    } else {
-        lang = langfile["en-US"]
     }
     return lang
 }
