@@ -1,5 +1,5 @@
-class Lang {
-        "en-US" = {
+module.exports = {
+    "en-US": {
         "displayName": "Display Name",
         "username": "Username",
         "email": "Email",
@@ -47,9 +47,8 @@ class Lang {
             "account": "Account",
             "account_info": "Account Information"
         }
-    }
-
-    "en-UWU" = {
+    },
+    "en-UWU": {
         "displayName": "Dispway Name",
         "username": "Uwusername",
         "email": "Emaiw",
@@ -97,9 +96,8 @@ class Lang {
             "account": "Account",
             "account_info": "Account Information"
         }
-    }
-
-    "es" = {
+    },
+    "es": {
         "displayName": "Nombre para mostrar",
         "username": "Nombre de usuario",
         "email": "Correo electrónico",
@@ -149,5 +147,3 @@ class Lang {
         }
     }
 }
-
-module.exports = Lang
