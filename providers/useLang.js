@@ -12,7 +12,7 @@ export default function useLang() {
             var locale = localStorage.getItem("language") ? localStorage.getItem("language") : "en-US"
             setLang(locale)
         }
-    }, [window])
+    })
     console.log(lang)
     var selection = langfile[lang]
     return selection
