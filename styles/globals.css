@@ -478,5 +478,5 @@ img.emoji {
 }
 
 .desktop-newpost:hover {
-  background: var(--secondary);
+  background: var(--secondary)!important;
 }
