@@ -5,6 +5,8 @@ const c = new consts()
 import {useRouter} from 'next/router'
 import Link from 'next/link'
 import moment from 'moment'
+import useLang from '../../../providers/useLang'
+import { useState } from 'react'
 
 export default function Demo( { user} ) {
   var expStore = {}
@@ -34,10 +36,10 @@ export default function Demo( { user} ) {
     } else {
       window.location = '/'
     }
-
-
-
   }
+
+  const lang = useLang()
+  const [text, setText] = useState(lang)
 
   return (
   <Layout user={user} misc={expStore} page="settings" title="Settings">
@@ -49,19 +51,19 @@ export default function Demo( { user} ) {
     </Head>
     <div>
       <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: ".9em", padding: "1em" }}>
-        <h4 className="mg0">Username</h4>
+        <h4 className="mg0">{text.username}</h4>
         <p className="mg0">@{user.username}</p>
       </div>
       <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: ".9em", padding: "1em" }}>
-        <h4 className="mg0">Email</h4>
+        <h4 className="mg0">{text.email}</h4>
         <p className="mg0">{user.email}</p>
       </div>
       <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: ".9em", padding: "1em" }}>
-        <h4 className="mg0">Verified</h4>
+        <h4 className="mg0">{text.verified.text}</h4>
         <p className="mg0">{user.flags.verified ? "Yes" : "No"}</p>
       </div>
       <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: ".9em", padding: "1em" }}>
-        <h4 className="mg0">Joined</h4>
+        <h4 className="mg0">{text.profile.joined}</h4>
         <p className="mg0">{moment(user.joinedTimestamp).format("dddd, MMMM Do YYYY, h:mma")}</p>
       </div>
     </div>
