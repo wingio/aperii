@@ -53,6 +53,7 @@
     margin-left: .2rem;
     margin-bottom: -.1rem;
     transition: box-shadow .5s;
+    color: var(--badge-color);
 }
 
 .miscInfo {
