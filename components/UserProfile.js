@@ -1,5 +1,7 @@
 import React from 'react'
 import styles from '../styles/UserProfile.module.css'
+import PostBody from './PostBody'
+import VerifiedBadge from './VerifiedBadge'
 export default function UserProfile({ user }) {
     return (
         <div className={styles.user}>
