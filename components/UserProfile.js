@@ -5,7 +5,6 @@ export default function UserProfile({ user }) {
         <div className={styles.user}>
         <div className={styles.banner}>
         </div>
-        {pOpened ? <EditProfileModal user={user} closeAction={closeProfile} showVanish={vanished}/> : ''}
         <img className={styles.avatar} src={user.avatar ? user.avatar : '/av.png'}></img>
         <div className={styles.userinfo}>
           <p>{user.displayName}{user.verified ? <VerifiedBadge className={styles.badge} /> : ''}</p>
