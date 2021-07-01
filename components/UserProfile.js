@@ -12,7 +12,7 @@ export default function UserProfile({ user }) {
           <p>{user.displayName}{user.verified ? <VerifiedBadge className={styles.badge} /> : ''}</p>
           <p className={styles.username}>@{user.username}</p>
         </div>
-        <div className={styles.bio}><PostBody text={user.bio} useTwemoji={expStore["use_twemoji_06_26_21"] == 1}></PostBody></div>
+        <div className={styles.bio}><PostBody text={user.bio} ></PostBody></div>
       </div>
     )
 }
