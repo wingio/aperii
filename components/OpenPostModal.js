@@ -13,8 +13,8 @@ export default function MobilePostBtn({user, hasTabBar}) {
     return (
         <>
         {modalOpened ? <MakePostModal user={user} closeAction={close} showVanish={vanish}></MakePostModal> : ''}
-        <button onClick={() => {setOpened(true); setVanished(false)}} style={{border: "none", padding: "10px", borderRadius: "10px", background: "var(--primary)", width:"100%", color: "white"}}>
-            <PostIcon width="1rem" style={{margin: "auto"}}/>
+        <button className="desktop-newpost" onClick={() => {setOpened(true); setVanished(false)}} style={{border: "none", padding: "10px", borderRadius: "10px", background: "var(--primary)", width:"100%", color: "white"}}>
+            <PostIcon width="1.5rem" style={{margin: "auto"}}/>
         </button>
         </>
     )

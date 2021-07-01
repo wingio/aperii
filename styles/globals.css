@@ -471,3 +471,12 @@ img.emoji {
 .settingsoption.link:hover {
   background: var(--settings-hl);
 }
+
+.desktop-newpost {
+  cursor: pointer;
+  transition: background ease-in .3s;
+}
+
+.desktop-newpost:hover {
+  background: var(--secondary);
+}
