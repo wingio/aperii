@@ -1,10 +1,10 @@
 import React, { Component, useState } from 'react';
-import Search from '../components/Search'
-import ProfileDropdown from '../components/ProfileDropdown'
-import SidebarFeedOption from '../components/SidebarFeedOption'
-import RichTextbox from '../components/RichTextbox'
+import Search from '../components/Search';
+import ProfileDropdown from '../components/ProfileDropdown';
+import SidebarFeedOption from '../components/SidebarFeedOption';
 import useLang from '../providers/useLang';
 import UserProfile from '../components/UserProfile';
+import OpenPostModal from '../components/OpenPostModal';
 
 function FullLayout(props) {
   const [open, setOpen] = useState(false)
@@ -100,6 +100,7 @@ function FullLayout(props) {
     <div className="sidebar-profile">
       <div className="profile"></div>
       <UserProfile user={user}/>
+      <OpenPostModal />
     </div>
   </div>  
 </div>
