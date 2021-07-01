@@ -112,7 +112,7 @@ a {
 .search-container {
   padding: 1em 0;
   background: var(--primary-bg);
-  z-index: 11;
+  z-index: 0;
   border-bottom: 1px solid var(--border-grey);
 }
 
