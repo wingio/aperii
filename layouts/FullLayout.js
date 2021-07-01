@@ -3,12 +3,15 @@ import Search from '../components/Search'
 import ProfileDropdown from '../components/ProfileDropdown'
 import SidebarFeedOption from '../components/SidebarFeedOption'
 import RichTextbox from '../components/RichTextbox'
+import useLang from '../providers/useLang';
 
 function FullLayout(props) {
   const [open, setOpen] = useState(false)
   const [imgstuff, setBase] = useState('')
   const user = props.user
   const expStore = props.misc
+  const lang = useLang()
+  const [text, setText] = useState(lang)
   function toggleDropdown(e) {
     setOpen(!open)
     e.target.className = `av ${open ? '' : 'clicked'}`
@@ -77,10 +80,10 @@ function FullLayout(props) {
     <div className={`ui full`}>
   <div className={`sticky left`}>
     <a href="/home"><span className={`logo`}></span></a>
-    <SidebarFeedOption name="Home" current={props.page == "home"} icon="home" goto="/home"></SidebarFeedOption>
-    <SidebarFeedOption name="Discover" icon="compass"></SidebarFeedOption>
-    {expStore["noti_tab_06_05_21"] == 1 ? <SidebarFeedOption name="Notifications" current={props.page == "notis"} icon="bell" goto="/notifications"></SidebarFeedOption> : ''}
-    <SidebarFeedOption name="Profile" current={props.page == "profile"} icon="user" goto={`/p/${user.username}`}></SidebarFeedOption>
+    <SidebarFeedOption name={text.sidebar.home} current={props.page == "home"} icon="home" goto="/home"></SidebarFeedOption>
+    <SidebarFeedOption name={text.sidebar.discover} icon="compass"></SidebarFeedOption>
+    {expStore["noti_tab_06_05_21"] == 1 ? <SidebarFeedOption name={text.sidebar.notifications} current={props.page == "notis"} icon="bell" goto="/notifications"></SidebarFeedOption> : ''}
+    <SidebarFeedOption name={text.sidebar.profile} current={props.page == "profile"} icon="user" goto={`/p/${user.username}`}></SidebarFeedOption>
   </div>
   <div className={`feed`} style={{height: "100vh"}}>
     <Search title={props.title} showBadge={props.showBadge} showPosts={props.showCount} postCount={props.postCount}></Search>

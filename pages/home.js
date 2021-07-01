@@ -26,7 +26,8 @@ export default function Demo( { posts, user } ) {
       showChangelog = false
     }
   }
-  var lang = useLang()
+  const lang = useLang()
+  const [text, setText] = useState(lang)
 
 
   if (typeof window !== "undefined") {
@@ -49,8 +50,7 @@ export default function Demo( { posts, user } ) {
       window.location = '/'
     }
   }
-  console.log(lang)
-  return <Layout user={user} misc={expStore} page="home" title="Home">
+  return <Layout user={user} misc={expStore} page="home" title={text.sidebar.home}>
     <Head>
       <title>Home - Aperii</title>
       
