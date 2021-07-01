@@ -1,7 +1,9 @@
 .user {
-    --primary: #9D4D4D;
-    border-bottom: 1px solid var(--border-grey);
+    --primary: #9d4d4d;
+    border: 1px solid var(--border-grey);
     margin-bottom: -1px;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .av {
@@ -14,7 +16,7 @@
 
 .banner {
     width: 100%;
-    height: 150px;
+    height: 90px;
     background-color: var(--primary);
 }
 
@@ -38,11 +40,11 @@
 
 .userinfo p {
     margin: 0;
-    font-size: 1.25rem;
+    font-size: 1rem;
 }
 
 .username {
-    font-size: 1rem!important;
+    font-size: .9rem!important;
     color: #688888;
     font-weight: 600;
 }
@@ -75,7 +77,7 @@
 
 .bio {
     margin-left: 13px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     color: var(--text-color);
 }
 

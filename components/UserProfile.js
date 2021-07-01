@@ -1,4 +1,5 @@
 import React from 'react'
+import Icon from '../icons/Icon'
 import styles from '../styles/UserProfile.module.css'
 import PostBody from './PostBody'
 import VerifiedBadge from './VerifiedBadge'
@@ -9,7 +10,7 @@ export default function UserProfile({ user }) {
         </div>
         <img className={styles.avatar} src={user.avatar ? user.avatar : '/av.png'}></img>
         <div className={styles.userinfo}>
-          <p>{user.displayName}{user.verified ? <VerifiedBadge className={styles.badge} /> : ''}</p>
+          <p>{user.displayName}{user.verified ? <Icon name="badge" className={styles.badge} width="1rem"/> : ''}</p>
           <p className={styles.username}>@{user.username}</p>
         </div>
         <div className={styles.bio}><PostBody text={user.bio} ></PostBody></div>
