@@ -100,7 +100,7 @@ function FullLayout(props) {
     <div className="sidebar-profile">
       <div className="profile"></div>
       <UserProfile user={user}/>
-      <OpenPostModal />
+      <OpenPostModal user={user} />
     </div>
   </div>  
 </div>
