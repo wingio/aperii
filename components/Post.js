@@ -28,7 +28,8 @@ const data = ({data, embed, useTwemoji}) => {
             <a href={`/p/${data.author.username}`}><span className={postStyle.displayName}>{data.author.displayName}</span></a>
             {data.author.verified ? <Badge className={postStyle.badge} width="15px" style={{color: "var(--badge-color)"}}></Badge> : ''}
             <span className={postStyle.username}>@{data.author.username}</span>
-            <span className={postStyle.username}>• {moment(data.createdTimestamp).fromNow()}</span>
+
+            <span className={postStyle.timestamp}>• {(Date.now() - data.createdTimestamp > 1000 * 60 * 60 * 24) ? moment(data.createdTimestamp).format("MM/dd/YYYY h:mma") : moment(data.createdTimestamp).fromNow()}</span>
         </div>
             <p className={postStyle.content}><PostBody text={data.body} useTwemoji={useTwemoji}></PostBody></p>
         </div>

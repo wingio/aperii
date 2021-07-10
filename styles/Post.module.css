@@ -67,6 +67,13 @@
     margin-left: 4px;
 }
 
+.timestamp {
+    font-weight: normal;
+    align-self: baseline;
+    color: rgb(136, 136, 136);
+    margin-left: 4px;
+}
+
 .content {
     margin-left: var(--post-gap);
     padding: 0;
