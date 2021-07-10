@@ -4,6 +4,7 @@ import {useState} from 'react'
 import PostBody from './PostBody'
 import Badge from '../icons/Badge'
 import ContextMenu from './ContextMenu'
+import moment from 'moment'
 
 const data = ({data, embed, useTwemoji}) => {
     const [visible, setVisible] = useState(false)
@@ -27,6 +28,7 @@ const data = ({data, embed, useTwemoji}) => {
             <a href={`/p/${data.author.username}`}><span className={postStyle.displayName}>{data.author.displayName}</span></a>
             {data.author.verified ? <Badge className={postStyle.badge} width="15px" style={{color: "var(--badge-color)"}}></Badge> : ''}
             <span className={postStyle.username}>@{data.author.username}</span>
+            <span className={postStyle.username}>• {moment(data.createdTimestamp).fromNow()}</span>
         </div>
             <p className={postStyle.content}><PostBody text={data.body} useTwemoji={useTwemoji}></PostBody></p>
         </div>
