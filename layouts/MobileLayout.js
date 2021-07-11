@@ -31,9 +31,7 @@ function MobileLayout(props) {
             </div>
           </div>
         <div className={`feed`} className={styles.feed}>
-          
           {props.children}
-          
         </div>
         <MobilePostBtn user={props.user} hasTabBar={true} lang={props.lang}/>
         <BottomTabBar currentPage={page} username={user.username} misc={props.misc} fixed={true} lang={props.lang}></BottomTabBar>
