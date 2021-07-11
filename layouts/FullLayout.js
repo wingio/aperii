@@ -88,7 +88,7 @@ function FullLayout(props) {
   </div>
   <div className={`feed`} style={{height: "100vh"}}>
     <Search title={props.title} showBadge={props.showBadge} showPosts={props.showCount} postCount={props.postCount}></Search>
-    <div className="content">
+    <div className="content" style={{height: "100%"}}>
       {props.children}
     </div>
   </div>
