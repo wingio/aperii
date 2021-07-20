@@ -587,6 +587,26 @@ client.connect(function (err) {
         })
     })
 
+    app.get('/posts/:id', softAuth, async (req, res) => {
+        var post = await posts.findOne({id: req.params.id})
+        if(!post) {
+            res.status(404).send({status: 404, error: "Post not found"})
+            return
+        }
+        var author = await users.findOne({id: post.author})
+        delete author._id
+        delete author.token
+        delete author.email
+        delete author.verifiedEmail
+        delete author.password
+        delete post._id
+
+        post.author = author
+
+        res.send(post)
+
+    })
+
     // app.patch('/users/:id/username', auth, async (req, res) => {
     //     const { username } = req.body
     //     if(!username){
