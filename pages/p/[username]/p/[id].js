@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Layout from '../../../../layouts/Layout'
-import consts from '../../../constants'
+import consts from '../../../../constants'
 import {useState} from 'react'
 import useLang from '../../../../providers/useLang'
 import Post from '../../../../components/Post'
