@@ -59,14 +59,6 @@ export async function getServerSideProps(context) {
     }
   })
   var post = await res.json()
-
-  if (profile.status) {
-    profile = {
-      displayName: 'User not found',
-      username: '404',
-      joinedTimestamp: Date.now()
-    }
-  }
   var userres;
   if (context.req.cookies.token) {
      userres = await fetch('https://aperii.com/api/v1/me', {
