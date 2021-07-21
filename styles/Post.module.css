@@ -18,6 +18,22 @@
     border-bottom: 1px solid var(--border-grey);
 }
 
+.bigpost {
+    --post-gap: 10px;
+    margin-bottom: -1px;
+    color: var(--text-color);
+    width: 100%;
+    max-height: 500px;
+    padding: 20px 1em;
+    display: grid;
+    grid-column-gap: 0;
+    grid-row-gap: 0;
+    border-top: 1px solid var(--border-grey);
+    border-bottom: 1px solid var(--border-grey);
+    grid-template-areas: "author author" 
+                         "content content";
+}
+
 .embed {
     border: 1px solid var(--border-grey);
     border-radius: 5px;
@@ -99,4 +115,23 @@
 
 .content {
     overflow-wrap: anywhere;
+}
+
+.bigauthor {
+    font-size: 14px;
+    font-weight: 700;
+    align-self: baseline;
+    margin: 0;
+    position: relative;
+    top: 2px;
+    left: var(--post-gap);
+    grid-area: author;
+}
+
+.bigcontent {
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 23px;
+    grid-area: content;
 }

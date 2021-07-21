@@ -47,7 +47,7 @@ export default function User({post, user}) {
         <meta content="article" property="og:type" data-rh="true"></meta>
       </Head>
     <Layout user={user} misc={expStore} page="home" title="Post">
-      <Post data={post}></Post>
+      <Post data={post} big={true}></Post>
     </Layout>
     </>
   )

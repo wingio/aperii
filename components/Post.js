@@ -6,7 +6,7 @@ import Badge from '../icons/Badge'
 import ContextMenu from './ContextMenu'
 import moment from 'moment'
 
-const data = ({data, embed, useTwemoji}) => {
+const data = ({data, embed, useTwemoji, big=false}) => {
     const [visible, setVisible] = useState(false)
     const [coords, setCoords] = useState({x: 0, y: 0})
 
@@ -18,6 +18,24 @@ const data = ({data, embed, useTwemoji}) => {
     }
 
     var umentionRegex = /@[a-zA-Z0-9_]+/g
+
+    if(big) {
+        return (<div className={postStyle.bigpost + ` ${embed ? postStyle.embed : ''}`} >
+        <div className={postStyle.bodycontainer}>
+        <div className={postStyle.bigauthor}>
+            <div className={postStyle.avcontainer}>
+                <img className={postStyle.av} src={data.author.avatar ? data.author.avatar : '/av.png'}></img>
+            </div>
+            <div>
+            <a href={`/p/${data.author.username}`}><span className={postStyle.displayName}>{data.author.displayName} {data.author.verified ? <Badge className={postStyle.badge} width="15px" style={{color: "var(--badge-color)"}}></Badge> : ''}</span></a>
+            <span className={postStyle.username}>@{data.author.username}</span>
+            </div>
+        </div>
+            <p className={postStyle.bigcontent}><PostBody text={data.body} useTwemoji={useTwemoji}></PostBody></p>
+        </div>
+        {visible ? <ContextMenu {...coords}></ContextMenu> : ''}
+    </div>)
+    } else {
 
     return (<div className={postStyle.post + ` ${embed ? postStyle.embed : ''}`} >
         <div className={postStyle.avcontainer}>
@@ -35,6 +53,7 @@ const data = ({data, embed, useTwemoji}) => {
         </div>
         {visible ? <ContextMenu {...coords}></ContextMenu> : ''}
     </div>)
+    }
 }
 
 export default data;
