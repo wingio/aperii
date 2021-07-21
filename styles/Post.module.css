@@ -132,7 +132,6 @@
     left: var(--post-gap);
     grid-area: author;
     display: flex;
-    margin-left: 4px;
 }
 
 .bigcontent {
