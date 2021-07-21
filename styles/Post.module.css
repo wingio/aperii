@@ -85,7 +85,7 @@
 .username {
     font-weight: 600;
     align-self: baseline;
-    color: rgb(136, 136, 136);
+    color: rgb(148, 146, 146);
     margin-left: 4px;
 }
 
@@ -132,6 +132,7 @@
     left: var(--post-gap);
     grid-area: author;
     display: flex;
+    margin-left: 4px;
 }
 
 .bigcontent {
