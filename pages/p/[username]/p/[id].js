@@ -22,6 +22,7 @@ export default function User({post, user}) {
   const [text, setText] = useState(lang)
 
   const router = useRouter()
+  if(typeof window != "undefined") {
   const {username} = router.query
   if(post.error){
     router.push('/home')
@@ -30,6 +31,7 @@ export default function User({post, user}) {
   if(post.author.username != username){
     router.replace('/p/[username]/p/[id]', `/p/${post.author.username}/p/${post.id}`)
   }
+}
 
   var profile = post.author
   
