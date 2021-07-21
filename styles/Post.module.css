@@ -70,7 +70,7 @@
 
 .badge {
     margin-bottom: -1.5px;
-    margin-left: 3px;
+    margin-left: -2px;
     display: inline-block;
     transition: box-shadow .5s;
     border-radius: 50%;
@@ -140,7 +140,7 @@
     line-height: 21px;
     margin-top: 10px;
 }
-.bigcontent img.emoji{
+.bigcontent div img.emoji{
     margin-bottom: 0!important;
 }
 
