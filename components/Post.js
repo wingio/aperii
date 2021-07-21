@@ -32,7 +32,7 @@ const data = ({data, embed, useTwemoji, big=false}) => {
             </div>
         </div>
         <p className={postStyle.bigcontent}><PostBody text={data.body} useTwemoji={useTwemoji}></PostBody></p>
-        <span style={{color: "#888", fontSize: ".9em"}}>{moment(data.createdTimestamp).format("DD/MM/YY h:mma")}</span>
+        <span style={{color: "#888", fontSize: ".9em", marginTop: "20px"}}>{moment(data.createdTimestamp).format("MM/DD/YY h:mma")}</span>
         {visible ? <ContextMenu {...coords}></ContextMenu> : ''}
     </div>)
     }
