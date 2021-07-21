@@ -27,7 +27,7 @@ const data = ({data, embed, useTwemoji, big=false}) => {
                 <img className={postStyle.avbig} src={data.author.avatar ? data.author.avatar : '/av.png'}></img>
             </div>
             <div style={{display: "flex", flexDirection: "column"}}>
-            <a style={{marginLeft: "4px"}} href={`/p/${data.author.username}`}><span className={postStyle.displayName}>{data.author.displayName}</span>{data.author.verified ? <Badge className={postStyle.badge + ' ' + postStyle.big} width="15px" style={{color: "var(--badge-color)"}}></Badge> : ''}</a>
+            <a style={{marginLeft: "4px"}} href={`/p/${data.author.username}`}><span className={postStyle.displayName}>{data.author.displayName}</span>{data.author.verified ? <Badge className={postStyle.badge} width="15px" style={{color: "var(--badge-color)"}}></Badge> : ''}</a>
             <span className={postStyle.username}>@{data.author.username}</span>
             </div>
         </div>
