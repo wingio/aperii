@@ -16,6 +16,8 @@
     grid-row-gap: 0;
     border-top: 1px solid var(--border-grey);
     border-bottom: 1px solid var(--border-grey);
+    transition: background 0.3s ease;
+    cursor: pointer;
 }
 
 .bigpost {
@@ -70,10 +72,14 @@
 
 .badge {
     margin-bottom: -1.5px;
-    margin-left: -2px;
+    margin-left: 3px;
     display: inline-block;
     transition: box-shadow .5s;
     border-radius: 50%;
+}
+
+.badge.big {
+    margin-left: -2px;
 }
 
 .username {
@@ -149,4 +155,8 @@
     height: 38px;
     border-radius: 50%;
     align-self: flex-start;
+}
+
+.post:hover {
+    background: var(--settings-hl);
 }

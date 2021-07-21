@@ -5,6 +5,7 @@ import PostBody from './PostBody'
 import Badge from '../icons/Badge'
 import ContextMenu from './ContextMenu'
 import moment from 'moment'
+import {useRouter} from 'next/router'
 
 const data = ({data, embed, useTwemoji, big=false}) => {
     const [visible, setVisible] = useState(false)
@@ -26,16 +27,16 @@ const data = ({data, embed, useTwemoji, big=false}) => {
                 <img className={postStyle.avbig} src={data.author.avatar ? data.author.avatar : '/av.png'}></img>
             </div>
             <div style={{display: "flex", flexDirection: "column"}}>
-            <a style={{marginLeft: "4px"}} href={`/p/${data.author.username}`}><span className={postStyle.displayName}>{data.author.displayName} {data.author.verified ? <Badge className={postStyle.badge} width="15px" style={{color: "var(--badge-color)"}}></Badge> : ''}</span></a>
+            <a style={{marginLeft: "4px"}} href={`/p/${data.author.username}`}><span className={postStyle.displayName}>{data.author.displayName} {data.author.verified ? <Badge className={postStyle.badge + ' ' + postStyle.big} width="15px" style={{color: "var(--badge-color)"}}></Badge> : ''}</span></a>
             <span className={postStyle.username}>@{data.author.username}</span>
             </div>
         </div>
         <p className={postStyle.bigcontent}><PostBody text={data.body} useTwemoji={useTwemoji}></PostBody></p>
         {visible ? <ContextMenu {...coords}></ContextMenu> : ''}
     </div>)
-    } else {
-
-    return (<div className={postStyle.post + ` ${embed ? postStyle.embed : ''}`} >
+    }
+    const router = useRouter()
+    return (<div className={postStyle.post + ` ${embed ? postStyle.embed : ''}`} onClick={() => {router.push('/p/[username]/p/[id]', `/p/${data.author.username}/p/${data.id}`)}}>
         <div className={postStyle.avcontainer}>
             <img className={postStyle.av} src={data.author.avatar ? data.author.avatar : '/av.png'}></img>
         </div>
@@ -51,7 +52,6 @@ const data = ({data, embed, useTwemoji, big=false}) => {
         </div>
         {visible ? <ContextMenu {...coords}></ContextMenu> : ''}
     </div>)
-    }
 }
 
 export default data;
