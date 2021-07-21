@@ -122,10 +122,10 @@
     font-weight: 700;
     align-self: baseline;
     margin: 0;
-    position: relative;
     top: 2px;
     left: var(--post-gap);
     grid-area: author;
+    display: flex;
 }
 
 .bigcontent {
