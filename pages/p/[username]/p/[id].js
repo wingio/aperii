@@ -38,11 +38,13 @@ export default function User({post, user}) {
   return (
     <>
     <Head>
+        
         <title>{`${profile.displayName} (@${profile.username})`} - Aperii</title>
-        <meta property="og:title" content={`Post by ${profile.displayName} (@${profile.username})`}  key="title"/>
+        <meta property="og:title" content={`${profile.displayName} (@${profile.username})`}  key="title"/>
         <meta property="og:url" content={"https://aperii.com/p/" + profile.username + '/p/' + post.id}  key="url"/>
         <meta property="og:description" content={post.body} key="desc"/>
         <meta property="og:image" content={profile.avatar ? profile.avatar : '/av.png'} key="image"/>
+        <meta content="article" property="og:type" data-rh="true"></meta>
       </Head>
     <Layout user={user} misc={expStore} page="home" title="Post">
       <Post data={post}></Post>
