@@ -588,6 +588,21 @@ client.connect(function (err) {
     })
 
     app.get('/posts/:id', softAuth, async (req, res) => {
+        if (req.params.id == "all") {
+            var allPosts = await posts.find().toArray()
+            var allUsers = await users.find().toArray()
+            var postlist = []
+            allPosts.map(p => {
+                var user = allUsers.filter(u => u.id == p.author)[0]
+                p.author = user
+                delete p.author.token
+                delete p.author.password
+                delete p.author.email
+                delete p.author['_id']
+                delete p["_id"]
+            })
+            res.send(allPosts.filter(p => p.author.suspended != true))
+        } else {
         var post = await posts.findOne({id: req.params.id})
         if(!post) {
             res.status(404).send({status: 404, error: "Post not found"})
@@ -604,7 +619,7 @@ client.connect(function (err) {
         post.author = author
 
         res.send(post)
-
+    }
     })
 
     // app.patch('/users/:id/username', auth, async (req, res) => {
@@ -703,22 +718,6 @@ client.connect(function (err) {
         }
         return postArray
     }
-
-    app.get('/posts/all', auth, async (req, res) => {
-        var allPosts = await posts.find().toArray()
-        var allUsers = await users.find().toArray()
-        var postlist = []
-        allPosts.map(p => {
-            var user = allUsers.filter(u => u.id == p.author)[0]
-            p.author = user
-            delete p.author.token
-            delete p.author.password
-            delete p.author.email
-            delete p.author['_id']
-            delete p["_id"]
-        })
-        res.send(allPosts.filter(p => p.author.suspended != true))
-    })
 
     //Relationships
 
