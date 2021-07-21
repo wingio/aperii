@@ -136,6 +136,14 @@
     grid-area: content;
 }
 
+.bigcontent {
+    line-height: 21px;
+    margin-top: 10px;
+}
+.bigcontent img.emoji{
+    margin-bottom: 0!important;
+}
+
 .avbig {
     width: 38px;
     height: 38px;
