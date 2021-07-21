@@ -107,7 +107,7 @@
     margin: 0
 }
 
-.content a {
+.content a, .bigcontent a {
     color: #4eafff;
 }
 
