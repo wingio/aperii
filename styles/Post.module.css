@@ -135,3 +135,10 @@
     font-size: 23px;
     grid-area: content;
 }
+
+.avbig {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    align-self: flex-start;
+}

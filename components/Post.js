@@ -21,18 +21,16 @@ const data = ({data, embed, useTwemoji, big=false}) => {
 
     if(big) {
         return (<div className={postStyle.bigpost + ` ${embed ? postStyle.embed : ''}`} >
-        <div className={postStyle.bodycontainer}>
         <div className={postStyle.bigauthor}>
             <div className={postStyle.avcontainer}>
-                <img className={postStyle.av} src={data.author.avatar ? data.author.avatar : '/av.png'}></img>
+                <img className={postStyle.avbig} src={data.author.avatar ? data.author.avatar : '/av.png'}></img>
             </div>
-            <div>
-            <a href={`/p/${data.author.username}`}><span className={postStyle.displayName}>{data.author.displayName} {data.author.verified ? <Badge className={postStyle.badge} width="15px" style={{color: "var(--badge-color)"}}></Badge> : ''}</span></a>
+            <div style={{display: "flex", flexDirection: "column"}}>
+            <a style={{marginLeft: "4px"}} href={`/p/${data.author.username}`}><span className={postStyle.displayName}>{data.author.displayName} {data.author.verified ? <Badge className={postStyle.badge} width="15px" style={{color: "var(--badge-color)"}}></Badge> : ''}</span></a>
             <span className={postStyle.username}>@{data.author.username}</span>
             </div>
         </div>
-            <p className={postStyle.bigcontent}><PostBody text={data.body} useTwemoji={useTwemoji}></PostBody></p>
-        </div>
+        <p className={postStyle.bigcontent}><PostBody text={data.body} useTwemoji={useTwemoji}></PostBody></p>
         {visible ? <ContextMenu {...coords}></ContextMenu> : ''}
     </div>)
     } else {
