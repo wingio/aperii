@@ -626,7 +626,22 @@ client.connect(function (err) {
         delete author.verifiedEmail
         delete author.password
         delete post._id
-
+        if (post.in_reply_to) {
+            var reply = await posts.findOne({
+                id: post.in_reply_to
+            })
+            var replyAuthor = await users.findOne({
+                id: reply.author
+            })
+            delete replyAuthor._id
+            delete replyAuthor.token
+            delete replyAuthor.email
+            delete replyAuthor.verifiedEmail
+            delete replyAuthor.password
+            delete reply._id
+            reply.author = replyAuthor
+            post.in_reply_to = reply
+        }
         post.author = author
 
         res.send(post)
