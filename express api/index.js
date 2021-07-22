@@ -364,6 +364,7 @@ client.connect(function (err) {
     app.post('/users/:id/posts', auth, async (req, res) => {
         const { body, imageBuffer } = req.body
         const { id } = req.params
+        const { replyto } = req.query
         if(!body){
             if(id != req.user.id) {
                 res.status(400).send({
@@ -399,6 +400,14 @@ client.connect(function (err) {
         }
         var postID = await genId('post', req.user.id)
         var toks = tokenizer(body)
+        const replied = await posts.findOne({id: replyto})
+        if(!replied && replyto) {
+            res.status(404).send({
+                status: 404,
+                error: "Post not found"
+            })
+            return
+        }
         if(toks.filter(t => t.type == 1).length > 0){
             toks.filter(t => t.type == 1).forEach(async tok => {
                 var user = await users.findOne({username: tok.value.toLowerCase().slice(1)})
@@ -417,11 +426,13 @@ client.connect(function (err) {
                 }
             })
         }
+
         posts.insertOne({
             id: postID,
             createdTimestamp: Date.now(),
             author: req.user.id,
             body,
+            in_reply_to: replyto ? replyto : undefined,
             media: [imageBuffer]
         }, (err, result) => {
             res.status(200).send(result.ops)
@@ -601,7 +612,7 @@ client.connect(function (err) {
                 delete p.author['_id']
                 delete p["_id"]
             })
-            res.send(allPosts.filter(p => p.author.suspended != true))
+            res.send(allPosts.filter(p => p.author.suspended != true || !p.in_reply_to))
         } else {
         var post = await posts.findOne({id: req.params.id})
         if(!post) {
@@ -620,6 +631,42 @@ client.connect(function (err) {
 
         res.send(post)
     }
+    })
+
+    app.get('/posts/:id/replies', softAuth,  async (req, res) => {
+        const {id} = req.params
+        const replies = await posts.find({'in_reply_to': id}, {projection:{
+            _id: 0
+        }}).toArray()
+        var post = await posts.findOne({id})
+        if(!post) {
+            res.status(404).send({status: 404, error: "Post not found"})
+            return
+        }
+        var author = await users.findOne({id: post.author})
+        delete author._id
+        delete author.token
+        delete author.email
+        delete author.verifiedEmail
+        delete author.password
+        delete post._id
+
+        post.author = author
+        var authors = replies.map(r => r.author)
+        const replyAuthors = await users.find({id: {$in: authors}}, {projection: {
+            id: 1,
+            joinedTimestamp: 1,
+            _id: 0,
+            username: 1,
+            displayName: 1,
+            suspended: 1,
+            verified: 1,
+            bio: 1,
+            banner: 1,
+            flags: 1
+        }}).toArray()
+        replies.map(r => {r.author = replyAuthors.filter(a => a.id == r.author)[0]; r.in_reply_to = post; return r})
+        res.send(replies)
     })
 
     // app.patch('/users/:id/username', auth, async (req, res) => {
