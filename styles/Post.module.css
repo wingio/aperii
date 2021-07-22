@@ -143,8 +143,8 @@
 }
 
 .bigcontent {
-    line-height: 21px;
-    margin-top: 10px;
+    line-height: 1em;
+    margin-top: 20px;
 }
 .bigcontent div img.emoji{
     margin-bottom: 0!important;
