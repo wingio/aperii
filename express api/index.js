@@ -426,15 +426,15 @@ client.connect(function (err) {
                 }
             })
         }
-
-        posts.insertOne({
+        var pta = {
             id: postID,
             createdTimestamp: Date.now(),
             author: req.user.id,
             body,
-            in_reply_to: replyto ? replyto : undefined,
             media: [imageBuffer]
-        }, (err, result) => {
+        }
+        if(replyto) pta.in_reply_to = replyto
+        posts.insertOne(pta, (err, result) => {
             res.status(200).send(result.ops)
         })
     })
@@ -612,7 +612,7 @@ client.connect(function (err) {
                 delete p.author['_id']
                 delete p["_id"]
             })
-            res.send(allPosts.filter(p => p.author.suspended != true || !p.in_reply_to))
+            res.send(allPosts.filter(p => p.author.suspended == false && !p.in_reply_to))
         } else {
         var post = await posts.findOne({id: req.params.id})
         if(!post) {
