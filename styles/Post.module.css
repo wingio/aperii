@@ -144,8 +144,9 @@
 
 .bigcontent {
     line-height: 1em;
-    margin-top: 20px;
+    margin-top: 10px;
 }
+
 .bigcontent div img.emoji{
     margin-bottom: 0!important;
 }
@@ -176,7 +177,7 @@
     padding-bottom: 1em;
 }
 
-.post.reply {
+.bigpost.reply {
     border-top: none;
     padding-top: 1em;
 }

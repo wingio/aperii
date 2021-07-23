@@ -31,8 +31,8 @@ const data = ({data, embed, useTwemoji, big=false, isreply=false, issubject=fals
                 <span className={postStyle.username} style={{marginLeft: 0}}>@{data.author.username}</span>
             </div>
         </div>
-        <div style={{gridArea: "content"}}>
-            {isreply ? <span style={{color: "#888", fontSize: ".9em", marginTop: "10px"}}>Replying to <a href={`/p/${data.in_reply_to.author.username}`} style={{color: "#4eafff"}}>{`@${data.in_reply_to.author.username}`}</a></span> : ''}
+        <div style={{gridArea: "content", marginTop: "10px"}}>
+            {isreply ? <span style={{color: "#888", fontSize: ".9em"}}>Replying to <a href={`/p/${data.in_reply_to.author.username}`} style={{color: "#4eafff"}}>{`@${data.in_reply_to.author.username}`}</a></span> : ''}
             <p className={postStyle.bigcontent}><PostBody text={data.body} useTwemoji={useTwemoji}></PostBody></p>
         </div>
         <span style={{color: "#888", fontSize: ".9em", marginTop: "20px"}}>{moment(data.createdTimestamp).format("MM/DD/YY h:mma")}</span>
