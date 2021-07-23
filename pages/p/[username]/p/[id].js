@@ -47,6 +47,7 @@ export default function User({post, user, replies}) {
         <meta content="article" property="og:type" data-rh="true"></meta>
       </Head>
     <Layout user={user} misc={expStore} page="home" title="Post">
+      {post.in_reply_to ? <Post data={post.in_reply_to}></Post> : ''}
       <Post data={post} big={true}></Post>
       <PostFeed posts={replies}></PostFeed>
     </Layout>
