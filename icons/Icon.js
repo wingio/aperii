@@ -19,6 +19,7 @@ import Flask from './Flask'
 import Shapes from './Shapes'
 import Arrow from './Arrow'
 import Logout from './Logout'
+import Reply from './Reply'
 
 /**
  * 
@@ -89,6 +90,9 @@ export default function Icon(props) {
             break;
         case 'logout':
             icon = Logout
+            break;
+        case 'reply':
+            icon = Reply
             break;
         default:
             icon = User
