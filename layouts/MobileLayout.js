@@ -10,7 +10,7 @@ function MobileLayout(props) {
   const [open, setOpen] = useState(false)
   var expiramentsEnabled = false
   const expStore = props.misc
-  const {user, page} = props
+  const {user, page, post} = props
   if (typeof window !== "undefined") {
     var exp = localStorage.getItem('enableExperiments')
     if(exp){
@@ -33,7 +33,7 @@ function MobileLayout(props) {
         <div className={`feed`} className={styles.feed}>
           {props.children}
         </div>
-        <MobilePostBtn user={props.user} hasTabBar={true} lang={props.lang}/>
+        <MobilePostBtn user={props.user} hasTabBar={true} lang={props.lang} post={post}/>
         <BottomTabBar currentPage={page} username={user.username} misc={props.misc} fixed={true} lang={props.lang}></BottomTabBar>
       </div>
     </div>
