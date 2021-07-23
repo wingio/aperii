@@ -6,6 +6,7 @@ import styles from '../styles/Changelog.module.css'
 export default function Changelog({closeAction, vanished}) {
     const [opened, setOpen] = useState(true)
     var close = closeAction ? closeAction : () => {
+        localStorage.setItem("currentVersion", info.version)
         setOpen(false)
     }
     
