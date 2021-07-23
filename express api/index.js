@@ -678,7 +678,8 @@ client.connect(function (err) {
             verified: 1,
             bio: 1,
             banner: 1,
-            flags: 1
+            flags: 1,
+            avatar: 1
         }}).toArray()
         replies.map(r => {r.author = replyAuthors.filter(a => a.id == r.author)[0]; r.in_reply_to = post; return r})
         res.send(replies)

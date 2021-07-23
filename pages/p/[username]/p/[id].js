@@ -39,7 +39,6 @@ export default function User({post, user, replies}) {
   return (
     <>
     <Head>
-        
         <title>{`${profile.displayName} (@${profile.username})`} - Aperii</title>
         <meta property="og:title" content={`${profile.displayName} (@${profile.username})`}  key="title"/>
         <meta property="og:url" content={"https://aperii.com/p/" + profile.username + '/p/' + post.id}  key="url"/>
