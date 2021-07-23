@@ -180,3 +180,7 @@
     border-top: none;
     padding-top: 1em;
 }
+
+.reply .bigcontent {
+    margin-top: "10px";
+}

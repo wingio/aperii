@@ -31,9 +31,11 @@ const data = ({data, embed, useTwemoji, big=false, isreply=false, issubject=fals
                 <span className={postStyle.username} style={{marginLeft: 0}}>@{data.author.username}</span>
             </div>
         </div>
-        {isreply ? <span style={{color: "#888", fontSize: ".9em", marginTop: "10px"}}>Replying to <a href={`/p/${data.in_reply_to.author.username}`} style={{color: "#4eafff"}}>{`@${data.in_reply_to.author.username}`}</a></span> : ''}
-        <p className={postStyle.bigcontent}><PostBody text={data.body} useTwemoji={useTwemoji}></PostBody></p>
-        <span style={{color: "#888", fontSize: ".9em", marginTop: isreply ? "10px" : "20px"}}>{moment(data.createdTimestamp).format("MM/DD/YY h:mma")}</span>
+        <div style={{gridArea: "content"}}>
+            {isreply ? <span style={{color: "#888", fontSize: ".9em", marginTop: "10px"}}>Replying to <a href={`/p/${data.in_reply_to.author.username}`} style={{color: "#4eafff"}}>{`@${data.in_reply_to.author.username}`}</a></span> : ''}
+            <p className={postStyle.bigcontent}><PostBody text={data.body} useTwemoji={useTwemoji}></PostBody></p>
+        </div>
+        <span style={{color: "#888", fontSize: ".9em", marginTop: "20px"}}>{moment(data.createdTimestamp).format("MM/DD/YY h:mma")}</span>
         {visible ? <ContextMenu {...coords}></ContextMenu> : ''}
     </div>)
     }
