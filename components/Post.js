@@ -7,7 +7,7 @@ import ContextMenu from './ContextMenu'
 import moment from 'moment'
 import {useRouter} from 'next/router'
 
-const data = ({data, embed, useTwemoji, big=false}) => {
+const data = ({data, embed, useTwemoji, big=false, isreply=false, issubject=false}) => {
     const [visible, setVisible] = useState(false)
     const [coords, setCoords] = useState({x: 0, y: 0})
 
@@ -21,7 +21,7 @@ const data = ({data, embed, useTwemoji, big=false}) => {
     var umentionRegex = /@[a-zA-Z0-9_]+/g
 
     if(big) {
-        return (<div className={postStyle.bigpost + ` ${embed ? postStyle.embed : ''}`} >
+        return (<div className={postStyle.bigpost + ` ${embed ? postStyle.embed : isreply ? postStyle.reply : ''}`} >
         <div className={postStyle.bigauthor}>
             <div className={postStyle.avcontainer}>
                 <img className={postStyle.avbig} src={data.author.avatar ? data.author.avatar : '/av.png'}></img>
@@ -31,13 +31,14 @@ const data = ({data, embed, useTwemoji, big=false}) => {
                 <span className={postStyle.username} style={{marginLeft: 0}}>@{data.author.username}</span>
             </div>
         </div>
+        {isreply ? <span style={{color: "#888", fontSize: ".9em", marginTop: "10px"}}>Replying to <a href={`/p/${data.in_reply_to.author.username}`} style={{color: "#4eafff"}}>{`@${data.in_reply_to.author.username}`}</a></span> : ''}
         <p className={postStyle.bigcontent}><PostBody text={data.body} useTwemoji={useTwemoji}></PostBody></p>
-        <span style={{color: "#888", fontSize: ".9em", marginTop: "20px"}}>{moment(data.createdTimestamp).format("MM/DD/YY h:mma")}</span>
+        <span style={{color: "#888", fontSize: ".9em", marginTop: isreply ? "10px" : "20px"}}>{moment(data.createdTimestamp).format("MM/DD/YY h:mma")}</span>
         {visible ? <ContextMenu {...coords}></ContextMenu> : ''}
     </div>)
     }
     const router = useRouter()
-    return (<div className={postStyle.post + ` ${embed ? postStyle.embed : ''}`} onClick={() => {router.push('/p/[username]/p/[id]', `/p/${data.author.username}/p/${data.id}`)}}>
+    return (<div className={postStyle.post + ` ${embed ? postStyle.embed : issubject ? postStyle.subj : ''}`} onClick={() => {router.push('/p/[username]/p/[id]', `/p/${data.author.username}/p/${data.id}`)}}>
         <div className={postStyle.avcontainer}>
             <img className={postStyle.av} src={data.author.avatar ? data.author.avatar : '/av.png'}></img>
         </div>

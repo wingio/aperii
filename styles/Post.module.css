@@ -160,3 +160,23 @@
 .post:hover {
     background: var(--settings-hl);
 }
+
+.subj .av {
+    width: 38px;
+    height: 38px;
+}
+
+.subj .bodycontainer {
+    margin-top: -3px;
+}
+
+.post.subj {
+    border-bottom: none;
+    grid-template-columns: 38px auto;
+    padding-bottom: 1em;
+}
+
+.post.reply {
+    border-top: none;
+    padding-top: 1em;
+}
