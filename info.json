@@ -1,11 +1,12 @@
 {
-    "version": "ALPHA 0.6.62",
+    "version": "ALPHA 0.8.36",
     "apiVersion": 1,
     "changelog": {
+        "image": "/replies.png",
         "sections":[
             {
-                "name": "Need eye strain?",
-                "value": "Added an option to the dropdown menu to toggle between a light and dark mode."
+                "name": "Replies are finally here!",
+                "value": "You can now reply to a post by clicking the reply button while on a particular post's page"
             }
         ]
     }
