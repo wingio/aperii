@@ -11,6 +11,7 @@ function FullLayout(props) {
   const [imgstuff, setBase] = useState('')
   const user = props.user
   const expStore = props.misc
+  const post = props.post
   const lang = useLang()
   const [text, setText] = useState(lang)
   function toggleDropdown(e) {
@@ -100,7 +101,7 @@ function FullLayout(props) {
     <div className="sidebar-profile">
       <div className="profile"></div>
       <UserProfile user={user}/>
-      <OpenPostModal user={user} />
+      <OpenPostModal user={user} post={post}/>
     </div>
   </div>  
 </div>

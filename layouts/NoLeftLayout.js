@@ -8,7 +8,7 @@ import styles from '../styles/NoLeftLayout.module.css'
 function NoLeftLayout(props) {
   const {width, height} = useWindowSize()
   const [open, setOpen] = useState(false)
-  const { user, misc, page } = props
+  const { user, misc, page, post } = props
   function toggleDropdown(e) {
     setOpen(!open)
     e.target.className = `av ${open ? '' : 'clicked'}`
@@ -20,7 +20,7 @@ function NoLeftLayout(props) {
         <div className={`feed`} style={{height: "100%!important"}}>
           <Search mobile={false}  title={props.title} showBadge={props.showBadge} showPosts={props.showCount} postCount={props.postCount} lang={props.lang}></Search>
           {props.children}
-          <MobilePostBtn user={user} lang={props.lang}/>
+          <MobilePostBtn user={user} lang={props.lang} post={post}/>
           <BottomTabBar currentPage={page} username={user.username} misc={misc} lang={props.lang}/>
         </div>
 
