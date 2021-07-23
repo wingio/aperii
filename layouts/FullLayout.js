@@ -101,7 +101,9 @@ function FullLayout(props) {
     <div className="sidebar-profile">
       <div className="profile"></div>
       <UserProfile user={user}/>
-      <OpenPostModal user={user} post={post}/>
+      <div style={{display: "flex"}}>
+        <OpenPostModal user={user} post={post}/>
+      </div>
     </div>
   </div>  
 </div>

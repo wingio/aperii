@@ -23,10 +23,10 @@ export default function MobilePostBtn({user, hasTabBar, post}) {
         <>
         {modalOpened ? <MakePostModal user={user} closeAction={close} showVanish={vanish}></MakePostModal> : ''}
         {replyModalOpened ? <MakePostModal user={user} closeAction={closeReply} showVanish={Rvanish} post={post}></MakePostModal> : ''}
-        <button className="desktop-newpost" onClick={() => {setOpened(true); setVanished(false)}} style={{border: "none", padding: "10px", borderRadius: "10px", background: "var(--primary)", width:"100%", color: "white"}}>
+        <button className="desktop-newpost" onClick={() => {setOpened(true); setVanished(false)}} style={{border: "none", padding: "10px", borderRadius: "10px", background: "var(--primary)", width:"100%", color: "white", marginRight: post ? "5px" : 0}}>
             <PostIcon width="1.5rem" style={{margin: "auto"}}/>
         </button>
-        {post ? <button className="desktop-newpost" onClick={() => {setROpened(true); setRVanished(false)}} style={{border: "none", padding: "10px", borderRadius: "10px", background: "var(--primary)", width:"100%", color: "white", marginTop: "10px"}}>
+        {post ? <button className="desktop-newpost" onClick={() => {setROpened(true); setRVanished(false)}} style={{border: "none", padding: "10px", borderRadius: "10px", background: "var(--primary)", width:"100%", color: "white", marginLeft: "5px"}}>
             <Icon name="reply" width="1.5rem" style={{margin: "auto"}}/>
         </button> : ''}
         
