@@ -1,5 +1,6 @@
 import React, {useState, useRef} from 'react'
 import PostIcon from '../icons/CreatePost'
+import Icon from '../icons/Icon'
 import MakePostModal from './MakePostModal'
 export default function MobilePostBtn({user, hasTabBar, post}) {
     const [modalOpened, setOpened] = useState(false)
@@ -25,7 +26,7 @@ export default function MobilePostBtn({user, hasTabBar, post}) {
         <button className="desktop-newpost" onClick={() => {setOpened(true); setVanished(false)}} style={{border: "none", padding: "10px", borderRadius: "10px", background: "var(--primary)", width:"100%", color: "white"}}>
             <PostIcon width="1.5rem" style={{margin: "auto"}}/>
         </button>
-        {post ? <button className="desktop-newpost" onClick={() => {setROpened(true); setRVanished(false)}} style={{border: "none", padding: "10px", borderRadius: "10px", background: "var(--primary)", width:"100%", color: "white"}}>
+        {post ? <button className="desktop-newpost" onClick={() => {setROpened(true); setRVanished(false)}} style={{border: "none", padding: "10px", borderRadius: "10px", background: "var(--primary)", width:"100%", color: "white", marginTop: "10px"}}>
             <Icon name="reply" width="1.5rem" style={{margin: "auto"}}/>
         </button> : ''}
         
