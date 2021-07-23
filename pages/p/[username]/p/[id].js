@@ -5,9 +5,10 @@ import {useState} from 'react'
 import useLang from '../../../../providers/useLang'
 import Post from '../../../../components/Post'
 import {useRouter} from 'next/router'
+import PostFeed from '../../../../components/PostFeed'
 const c = new consts()
 
-export default function User({post, user}) {
+export default function User({post, user, replies}) {
   var expStore = {}
   var expiramentsEnabled = false
   if (typeof window !== "undefined") {
@@ -48,6 +49,7 @@ export default function User({post, user}) {
       </Head>
     <Layout user={user} misc={expStore} page="home" title="Post">
       <Post data={post} big={true}></Post>
+      <PostFeed posts={replies}></PostFeed>
     </Layout>
     </>
   )
@@ -78,11 +80,22 @@ export async function getServerSideProps(context) {
     username: '404',
   }
 
+  var replies = []
+  var repres = await fetch('https://aperii.com/api/v1/posts/' + context.params.id + '/replies', {
+    method: 'GET',
+    headers: {
+      'content-type': 'application/json',
+      authorization: context.req.cookies.token
+    }
+  })
+  var rep = await repres.json()
+  replies = rep.error ? [] : rep
   
   user.flags = user.flags ? c.getFlagsFromBitfield(user.flags) : c.getFlagsFromBitfield(0)
   return {
     props: {
       post: post,
+      replies,
       user: user.status ? {
         displayName: 'User not found',
         username: '404',
