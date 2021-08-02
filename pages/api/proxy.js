@@ -15,8 +15,11 @@ export default (req, res) => {
         var text = await resp.text()
         res.setHeader('Content-Length', resp.headers.get("content-length"))
         res.setHeader('Content-Type', resp.headers.get("content-type"))
+        res.setHeader('User-agent', "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36")
         if(resp.headers.get("content-type").startsWith('image/')){
-            var img = await resp.blob()
+            var blb = await resp.blob()
+            var buf = await blb.arrayBuffer()
+            var img = Buffer.from(buf)
             res.send(img)
         } else {
             res.send(text)
