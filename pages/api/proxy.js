@@ -13,8 +13,8 @@ export default (req, res) => {
     if(options.method != "GET" && req.body) options.body = req.body
     fetch(req.query.url, options).then(async (resp) => {
         var text = await resp.text()
-        res.setHeader('Content-Length', text.length)
-        res.setHeader('Content-Type', res.getHeader("content-type"))
+        res.setHeader('Content-Length', resp.headers.get("content-type"))
+        res.setHeader('Content-Type', resp.headers.get("content-type"))
         res.send(text)
     })
 }
