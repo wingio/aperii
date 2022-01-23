@@ -1,0 +1,27 @@
+{
+	"exclude": ["node_modules"],
+	"include": ["src/**/*.ts"],
+	"compilerOptions": {
+		"incremental": true,
+		"target": "ESNext",
+		"module": "commonjs",
+		"lib": ["ES2021"],
+		"allowJs": true,
+		"checkJs": true,
+		"declaration": true,
+		"declarationMap": false,
+		"sourceMap": true,
+		"outDir": "./dist/",
+		"rootDir": "./src/",
+		"types": ["node"],
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"experimentalDecorators": true
+	},
+  "plugins": [
+    {
+      "transform": "@zerollup/ts-transform-paths"
+    }
+  ]
+}
