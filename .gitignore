@@ -47,3 +47,5 @@ public/emoji
 public/resc/mutant.json
 api/node_modules/
 api/dist
+api/src/Config.ts
+.env
