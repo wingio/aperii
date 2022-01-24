@@ -10,7 +10,9 @@ import Logger from "../utils/Logger";
 let noAuth = [
     //authentication
     "/v2/auth/signup",
-    "/v2/auth/login"
+    "/v2/auth/login",
+
+    "hello"
 ];
 
 declare global {
