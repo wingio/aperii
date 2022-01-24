@@ -7,12 +7,17 @@ import MeUser from "../models/user/MeUser";
 import { collections } from "../services/database.service";
 import Logger from "../utils/Logger";
 
-let noAuth = [
+let noAuth: (string|RegExp)[] = [
     //authentication
     "/v2/auth/signup",
     "/v2/auth/login",
 
-    "/v2/hello"
+    //hello
+    "/v2/hello",
+
+    //posts
+    "/v2/posts/",
+    "/v2/profiles/"
 ];
 
 declare global {
@@ -25,7 +30,11 @@ declare global {
 
 export default function Authentication() {
     return (req: Request, res: Response, next: NextFunction) => {
-        if(noAuth.includes(req.path)) return next();
+        let bypass = noAuth.some((x) => {
+			if (typeof x === "string") return req.url.startsWith(x);
+			return x.test(req.url);
+		})
+        if (bypass) return next();
         const token = req.headers.authorization;
         if(!token) throw new HttpError(401, "Unauthorized");
         verify(token, Config.JWT_SECRET, async (err, decoded) => {
