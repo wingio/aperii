@@ -12,7 +12,7 @@ let noAuth = [
     "/v2/auth/signup",
     "/v2/auth/login",
 
-    "hello"
+    "/v2/hello"
 ];
 
 declare global {
