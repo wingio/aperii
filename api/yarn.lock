@@ -1598,6 +1598,11 @@
   dependencies:
     "path-type" "^4.0.0"
 
+"dotenv@^14.2.0":
+  "integrity" "sha512-05POuPJyPpO6jqzTNweQFfAyMSD4qa4lvsMOWyTRTdpHKy6nnnN+IYWaXF+lHivhBH/ufDKlR4IWCAN3oPnHuw=="
+  "resolved" "https://registry.npmjs.org/dotenv/-/dotenv-14.2.0.tgz"
+  "version" "14.2.0"
+
 "dree@^3.3.0":
   "integrity" "sha512-q62HVbyTYjqNeVSTSG466tFWzCNxNExc0E1+WLTenVTZfazxWf/1uBMK3q12yhOJnQaZjQT5EbjXLUa/MWgCWA=="
   "resolved" "https://registry.npmjs.org/dree/-/dree-3.3.3.tgz"
