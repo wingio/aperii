@@ -14,7 +14,7 @@ export default function MakePostModal({ user, closeAction, showVanish, post }) {
         setLoading(true)
         var body = e.type == "click" ? e.target.form[0].value : e.target[0].value
 
-        fetch(`https://aperii.com/api/v1/users/${user.id}/posts${post ? `?replyto=${post.id}` : ''}`, {
+        fetch(`https://api.aperii.com/v2/users/${user.id}/posts${post ? `?replyto=${post.id}` : ''}`, {
             body: JSON.stringify({
                 body
             }),

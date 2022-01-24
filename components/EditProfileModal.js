@@ -31,7 +31,7 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
 
         //var base64 = await toBase64(body[0].files[0])
         //console.log(base64)
-        fetch(`https://aperii.com/api/v1/users/${user.id}`, {
+        fetch(`https://api.aperii.com/v2/users/${user.id}`, {
             body: JSON.stringify(changes),
             headers: {
                 'content-type': 'application/json',

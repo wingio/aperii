@@ -10,7 +10,7 @@ export default function Home() {
   if (typeof window !== "undefined") {
   var token = localStorage.getItem('token')
   if (token && prod == true) {
-    fetch('https://aperii.com/api/v1/auth/validate', {
+    fetch('https://api.aperii.com/v2/auth/validate', {
       method: 'POST',
       headers: {
         authorization: token
@@ -38,7 +38,7 @@ export default function Home() {
       password: e.target[1].value
     }
     e.target[2].disabled = true
-    var res = await fetch('https://aperii.com/api/v1/auth/login', {
+    var res = await fetch('https://api.aperii.com/v2/auth/login', {
       method: 'POST',
       headers: {
         "content-type": 'application/json'

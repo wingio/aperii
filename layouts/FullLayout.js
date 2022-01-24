@@ -35,7 +35,7 @@ function FullLayout(props) {
 
     if(expStore['textbox_newline_05_17_21'] == 1){
       console.log(e.target.children[0].children[0].innerText)
-      fetch(`https://aperii.com/api/v1/users/${user.id}/posts`, {
+      fetch(`https://api.aperii.com/v2/users/${user.id}/posts`, {
         body: JSON.stringify({
           body: e.target.children[0].children[0].innerText
         }),
@@ -63,7 +63,7 @@ function FullLayout(props) {
 
     //reader.readAsArrayBuffer(e.target[1].files[0]);
     e.target[2].disabled = true
-    fetch(`https://aperii.com/api/v1/users/${user.id}/posts`, {
+    fetch(`https://api.aperii.com/v2/users/${user.id}/posts`, {
       body: JSON.stringify({
         body: e.target[0].value
       }),

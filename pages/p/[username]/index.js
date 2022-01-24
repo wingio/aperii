@@ -81,7 +81,7 @@ export default function User({profile, posts, user}) {
 
 
 export async function getServerSideProps(context) {
-  var res = await fetch('https://aperii.com/api/v1/profiles/' + context.params.username, {
+  var res = await fetch('https://api.aperii.com/v2/profiles/' + context.params.username, {
     method: 'GET',
     headers: {
       'content-type': 'application/json',
@@ -99,7 +99,7 @@ export async function getServerSideProps(context) {
   }
   var userres;
   if (context.req.cookies.token) {
-     userres = await fetch('https://aperii.com/api/v1/me', {
+     userres = await fetch('https://api.aperii.com/v2/users/@me', {
       method: 'GET',
       headers: {
         authorization: context.req.cookies.token

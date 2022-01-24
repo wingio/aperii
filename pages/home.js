@@ -33,7 +33,7 @@ export default function Demo( { posts, user } ) {
   if (typeof window !== "undefined") {
     var token = localStorage.getItem('token')
     if (token) {
-      fetch('https://aperii.com/api/v1/auth/validate', {
+      fetch('https://api.aperii.com/v2/auth/validate', {
         method: 'POST',
         headers: {
           authorization: token
@@ -68,14 +68,14 @@ export async function getServerSideProps(context) {
   var res;
   var userres;
 
-  res = await fetch('https://aperii.com/api/v1/posts/all', {
+  res = await fetch('https://api.aperii.com/v2/posts/all', {
     method: 'GET',
     headers: {
       authorization: context.req.cookies.token
     }
   })
 
-  userres = await fetch('https://aperii.com/api/v1/me', {
+  userres = await fetch('https://api.aperii.com/v2/users/@me', {
     method: 'GET',
     headers: {
       authorization: context.req.cookies.token

@@ -9,7 +9,7 @@ export default function Home() {
   if (typeof window !== "undefined") {
     var token = localStorage.getItem('token')
     if (token && prod) {
-      fetch('https://aperii.com/api/v1/auth/validate', {
+      fetch('https://api.aperii.com/v2/auth/validate', {
         method: 'POST',
         headers: {
           authorization: token

@@ -18,7 +18,7 @@ export default function Demo( { user } ) {
     if(expStore['settings_page_06_20_21'] != 1) router.push('/home')
     var token = localStorage.getItem('token')
     if (token) {
-      fetch('https://aperii.com/api/v1/auth/validate', {
+      fetch('https://api.aperii.com/v2/auth/validate', {
         method: 'POST',
         headers: {
           authorization: token
@@ -71,7 +71,7 @@ export async function getServerSideProps(context) {
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
   var userres;
 
-  userres = await fetch('https://aperii.com/api/v1/me', {
+  userres = await fetch('https://api.aperii.com/v2/users/@me', {
     method: 'GET',
     headers: {
       authorization: context.req.cookies.token
