@@ -54,7 +54,7 @@ export default function User({profile, posts, user}) {
         <meta property="og:description" content={profile.bio ? profile.bio : 'This user has no bio'} key="desc"/>
         <meta property="og:image" content={profile.avatar ? profile.avatar : '/av.png'} key="image"/>
       </Head>
-    <Layout user={user} misc={expStore} page={profile.username == user.username ? 'profile' : 'home'} title={profile.displayName} showBadge={profile.verified} showCount={true} postCount={posts.length}>
+    <Layout user={user} misc={expStore} page={profile.username == user.username ? 'profile' : 'home'} title={profile.displayName} showBadge={profile.flags.verified} showCount={true} postCount={posts.length}>
       
       <div className={styles.user}>
         <div className={styles.banner}>
@@ -63,7 +63,7 @@ export default function User({profile, posts, user}) {
         {pOpened ? <EditProfileModal user={user} closeAction={closeProfile} showVanish={vanished}/> : ''}
         <img className={styles.avatar} src={profile.avatar ? profile.avatar : '/av.png'}></img>
         <div className={styles.userinfo}>
-          <p>{profile.displayName}{profile.verified ? <VerifiedBadge className={styles.badge} /> : ''}</p>
+          <p>{profile.displayName}{profile.flags.verified ? <VerifiedBadge className={styles.badge} /> : ''}</p>
           <p className={styles.username}>@{profile.username}</p>
         </div>
         <div className={styles.bio}><PostBody text={profile.bio} useTwemoji={expStore["use_twemoji_06_26_21"] == 1}></PostBody></div>
@@ -117,6 +117,7 @@ export async function getServerSideProps(context) {
   var suspendedArr = []
   suspendedArr.push(c.getSuspendedPost(profile))
   profile.posts = profile.suspended ? suspendedArr : profile.posts
+  if(profile.posts) profile.posts.map(post => post.author.flags = c.getFlagsFromBitfield(post.author.flags))
   user.flags = user.flags ? c.getFlagsFromBitfield(user.flags) : c.getFlagsFromBitfield(0)
   return {
     props: {
