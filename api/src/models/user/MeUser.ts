@@ -1,4 +1,5 @@
 import User from "./User";
+import UserFlags from "./UserFlags";
 
 export default class MeUser extends User {
     constructor(
@@ -8,7 +9,7 @@ export default class MeUser extends User {
         public verifiedEmail: boolean,
         public displayName: string, 
         public username: string, 
-        public flags: number, 
+        public flags: UserFlags, 
         public suspended: boolean, 
         public bio: string, 
         public banner: string, 

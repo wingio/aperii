@@ -91,7 +91,7 @@ export async function getServerSideProps(context) {
   var rep = await repres.json()
   replies = rep.error ? [] : rep
   
-  user.flags = user.flags ? c.getFlagsFromBitfield(user.flags) : c.getFlagsFromBitfield(0)
+  
   return {
     props: {
       post: post,

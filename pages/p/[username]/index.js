@@ -112,13 +112,13 @@ export async function getServerSideProps(context) {
     username: '404',
   }
 
-  profile.flags = profile.flags ? c.getFlagsFromBitfield(profile.flags) : c.getFlagsFromBitfield(0)
+ 
   profile.avatar = profile.suspended ? '/av.png' : profile.avatar
   var suspendedArr = []
   suspendedArr.push(c.getSuspendedPost(profile))
   profile.posts = profile.suspended ? suspendedArr : profile.posts
-  if(profile.posts) profile.posts.map(post => post.author.flags = c.getFlagsFromBitfield(post.author.flags))
-  user.flags = user.flags ? c.getFlagsFromBitfield(user.flags) : c.getFlagsFromBitfield(0)
+  
+  
   return {
     props: {
       profile,

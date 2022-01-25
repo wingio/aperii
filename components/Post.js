@@ -27,7 +27,7 @@ const data = ({data, embed, useTwemoji, big=false, isreply=false, issubject=fals
                 <img className={postStyle.avbig} src={data.author.avatar ? data.author.avatar : '/av.png'}></img>
             </div>
             <div style={{display: "flex", flexDirection: "column", marginLeft: "8px"}}>
-                <a href={`/p/${data.author.username}`}><span className={postStyle.displayName}>{data.author.displayName}</span>{data.author.verified ? <Badge className={postStyle.badge} width="15px" style={{color: "var(--badge-color)"}}></Badge> : ''}</a>
+                <a href={`/p/${data.author.username}`}><span className={postStyle.displayName}>{data.author.displayName}</span>{data.author.flags.verified ? <Badge className={postStyle.badge} width="15px" style={{color: "var(--badge-color)"}}></Badge> : ''}</a>
                 <span className={postStyle.username} style={{marginLeft: 0}}>@{data.author.username}</span>
             </div>
         </div>
@@ -47,7 +47,7 @@ const data = ({data, embed, useTwemoji, big=false, isreply=false, issubject=fals
         <div className={postStyle.bodycontainer}>
         <div className={postStyle.author}>
             <a href={`/p/${data.author.username}`}><span className={postStyle.displayName}>{data.author.displayName}</span></a>
-            {data.author.verified ? <Badge className={postStyle.badge} width="15px" style={{color: "var(--badge-color)"}}></Badge> : ''}
+            {data.author.flags.verified ? <Badge className={postStyle.badge} width="15px" style={{color: "var(--badge-color)"}}></Badge> : ''}
             <span className={postStyle.username}>@{data.author.username}</span>
 
             <span className={postStyle.timestamp}>• {(Date.now() - data.createdTimestamp > 1000 * 60 * 60 * 24 * 2) ? moment(data.createdTimestamp).format("DD MMM") : moment(data.createdTimestamp).fromNow()}</span>

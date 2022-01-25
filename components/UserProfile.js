@@ -10,7 +10,7 @@ export default function UserProfile({ user }) {
         </div>
         <img className={styles.avatar} src={user.avatar ? user.avatar : '/av.png'}></img>
         <div className={styles.userinfo}>
-          <p>{user.displayName}{user.verified ? <Icon name="badge" className={styles.badge} width="1rem"/> : ''}</p>
+          <p>{user.displayName}{user.flags.verified ? <Icon name="badge" className={styles.badge} width="1rem"/> : ''}</p>
           <p className={styles.username}>@{user.username}</p>
         </div>
         <div className={styles.bio}><PostBody text={user.bio} ></PostBody></div>

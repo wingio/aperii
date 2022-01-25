@@ -73,7 +73,7 @@ export async function getServerSideProps(context) {
   })
 
   var user = await userres.json()
-  user.flags = user.flags ? c.getFlagsFromBitfield(user.flags) : c.getFlagsFromBitfield(0)
+  
   return user.error ? {
     redirect: {
       destination: '/',

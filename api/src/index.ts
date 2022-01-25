@@ -5,6 +5,7 @@ import Log from './middleware/Log';
 import Authentication from './middleware/Authentication';
 import Errors from './middleware/Errors';
 import { v2Router } from './routes/v2';
+import UserFlags from './models/user/UserFlags';
 
 connectToDatabase().then(() => {
     console.log("Connected to database");
