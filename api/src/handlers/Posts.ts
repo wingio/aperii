@@ -10,5 +10,6 @@ export async function getPost(id: string): Promise<Post> {
     if(postAuthor) modelPost.author = postAuthor;
     let replyTo = await getPost(modelPost.in_reply_to as string);
     if(replyTo) modelPost.in_reply_to = replyTo;
+    if(modelPost.in_reply_to == null) delete modelPost.in_reply_to;
     return modelPost;
 }
