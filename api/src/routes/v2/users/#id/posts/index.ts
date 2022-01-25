@@ -39,7 +39,7 @@ router.post("/", async (req: Request, res: Response) => {
         return;
     }
     let post: PostBody = req.body;
-    let {replyTo} = req.query;
+    let {replyto} = req.query;
     if(!post.body) {
         sendError(res, 400, "Missing body");
         return;
@@ -53,8 +53,8 @@ router.post("/", async (req: Request, res: Response) => {
         return;
     }
     let postId = Snowflake.generate();
-    let hasReplyTo = !!replyTo;
-    let replyToPost = hasReplyTo ? await getPost(replyTo as string) : null;
+    let hasReplyTo = !!replyto;
+    let replyToPost = hasReplyTo ? await getPost(replyto as string) : null;
     if(hasReplyTo && !replyToPost) {
         sendError(res, 400, "Reply to post not found");
         return;
@@ -64,7 +64,7 @@ router.post("/", async (req: Request, res: Response) => {
         createdTimestamp: Snowflake.deconstruct(postId).timestamp,
         author: u.id,
         body: post.body,
-        replyTo: hasReplyTo ? replyToPost.id : null
+        in_reply_to: hasReplyTo ? replyToPost.id : null
     };
     await collections.posts.insertOne(postData);
     res.send(postData);
