@@ -10,7 +10,7 @@ import PostFeed from '../components/PostFeed'
 import MakePostModal from '../components/MakePostModal'
 import Changelog from '../components/Changelog'
 import * as info from '../info.json'
-import consts from '../constants'
+import { Constants as consts, API_BASE_URL } from '../constants'
 import useLang from '../providers/useLang'
 const c = new consts()
 
@@ -33,7 +33,7 @@ export default function Demo( { posts, user } ) {
   if (typeof window !== "undefined") {
     var token = localStorage.getItem('token')
     if (token) {
-      fetch('https://api.aperii.com/v2/auth/validate', {
+      fetch(`${API_BASE_URL}/auth/validate`, {
         method: 'POST',
         headers: {
           authorization: token
@@ -68,14 +68,14 @@ export async function getServerSideProps(context) {
   var res;
   var userres;
 
-  res = await fetch('https://api.aperii.com/v2/posts/all', {
+  res = await fetch(`${API_BASE_URL}/posts/all`, {
     method: 'GET',
     headers: {
       authorization: context.req.cookies.token
     }
   })
 
-  userres = await fetch('https://api.aperii.com/v2/users/@me', {
+  userres = await fetch(`${API_BASE_URL}/users/@me`, {
     method: 'GET',
     headers: {
       authorization: context.req.cookies.token

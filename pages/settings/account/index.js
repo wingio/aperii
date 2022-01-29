@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Layout from '../../../layouts/Layout'
-import consts from '../../../constants'
+import { Constants as consts, API_BASE_URL } from '../../../constants'
 const c = new consts()
 import {useRouter} from 'next/router'
 import Link from 'next/link'
@@ -18,7 +18,7 @@ export default function Demo( { user } ) {
     if(expStore['settings_page_06_20_21'] != 1) router.push('/home')
     var token = localStorage.getItem('token')
     if (token) {
-      fetch('https://api.aperii.com/v2/auth/validate', {
+      fetch(`${API_BASE_URL}/auth/validate`, {
         method: 'POST',
         headers: {
           authorization: token
@@ -65,7 +65,7 @@ export async function getServerSideProps(context) {
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
   var userres;
 
-  userres = await fetch('https://api.aperii.com/v2/users/@me', {
+  userres = await fetch(`${API_BASE_URL}/users/@me`, {
     method: 'GET',
     headers: {
       authorization: context.req.cookies.token

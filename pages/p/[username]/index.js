@@ -4,7 +4,7 @@ import Layout from '../../../layouts/Layout'
 import PostFeed from '../../../components/PostFeed'
 import Calender from '../../../icons/Calender'
 import moment from 'moment'
-import consts from '../../../constants'
+import { Constants as consts, API_BASE_URL } from '../../../constants'
 import Icon from '../../../icons/Icon'
 import EditProfileModal from '../../../components/EditProfileModal'
 import Button from '../../../components/Button'
@@ -70,7 +70,7 @@ export default function User({profile, posts, user}) {
         {profile.username == user.username ? <Button label={text.profile.edit} btnstyle="primary" onClick={openProfile} style={{marginLeft: "1em"}} /> : ''}
         <div className={styles.miscInfo}>
           {profile.flags.staff || profile.flags.admin ? <Icon name="logo" width=".9rem" color="#888" className={styles.joinDateIcon}/> : ''}
-          <p style={{color: "#888"}} className={styles.joinDate}>{profile.flags.early_supporter ? <Icon name="star" width=".9rem" style={{color: "#e2ec56"}} fill="#e2ec56" className={styles.joinDateIcon}/> : ''} <Calender width=".9rem" fill="#888" className={styles.joinDateIcon}></Calender> {text.profile.joined} {moment(profile.joinedTimestamp).format('MMMM YYYY')}</p>
+          <p style={{color: "#888"}} className={styles.joinDate}>{profile.flags.early_supporter ? <Icon name="star" width=".9rem" style={{color: "#e2ec56"}} fill="#e2ec56" className={styles.joinDateIcon}/> : ''} <Calender width=".9rem" fill="#888" className={styles.joinDateIcon}></Calender> {text.profile.joined} {moment(profile.joinedTimestamp).format('MMMM YYYY')} {profile.pronouns ? `• ${profile.pronouns}` : ''}</p>
         </div>
       </div>
       <PostFeed posts={posts} useTwemoji={expStore["use_twemoji_06_26_21"] == 1}></PostFeed>
@@ -81,7 +81,7 @@ export default function User({profile, posts, user}) {
 
 
 export async function getServerSideProps(context) {
-  var res = await fetch('https://api.aperii.com/v2/profiles/' + context.params.username, {
+  var res = await fetch(`${API_BASE_URL}/profiles/${context.params.username}`, {
     method: 'GET',
     headers: {
       'content-type': 'application/json',
@@ -90,16 +90,26 @@ export async function getServerSideProps(context) {
   })
   var profile = await res.json()
 
-  if (profile.status) {
+  if (profile.error) {
     profile = {
       displayName: 'User not found',
       username: '404',
-      joinedTimestamp: Date.now()
+      joinedTimestamp: Date.now(),
+      avatar: '/av.png',
+      suspended: false,
+      posts: [],
+      bio: "This user does not exist",
+      flags: {
+        verified: false,
+        admin: false,
+        staff: false,
+        early_supporter: false
+      }
     }
   }
   var userres;
   if (context.req.cookies.token) {
-     userres = await fetch('https://api.aperii.com/v2/users/@me', {
+     userres = await fetch(`${API_BASE_URL}/users/@me`, {
       method: 'GET',
       headers: {
         authorization: context.req.cookies.token

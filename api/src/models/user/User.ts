@@ -10,6 +10,7 @@ export default class User {
         public suspended: boolean, 
         public bio: string, 
         public banner: string, 
-        public avatar: string
+        public avatar: string,
+        public pronouns: string
     ) {}
 }

@@ -9,6 +9,7 @@ type EditUserBody = {
     bio?: string,
     avatar?: string,
     displayName?: string,
+    pronouns?: string
 };
 
 type EditUserError = {
@@ -48,6 +49,7 @@ router.patch("/", async (req: Request, res: Response) => {
     var usernameRegex = /^(?=.*[a-z])?(?=.*[A-Z])?(?=.*\d)?(?!.*[ ])[A-Za-z\d_]{4,32}$/g
     let bioRegex = /^[\d\D]{0,64}$/g
     let displayNameRegex = /^[\d\D]{4,32}$/g
+    let pronounRegex = /^[\d\D]{1,5}\/[\d\D]{1,5}$/g
     if(body.username) {
         if(!usernameRegex.test(body.username)) {
             errors.push({
@@ -85,6 +87,20 @@ router.patch("/", async (req: Request, res: Response) => {
     }
 
     if(body.avatar) {
+    }
+
+    if(body.pronouns) {
+        if(!pronounRegex.test(body.pronouns)) {
+            errors.push({
+                status: 400,
+                error: "Pronouns must be a valid format.",
+                field: "pronouns"
+            });
+        }
+        if(errors.filter(e => e.field === "pronouns").length == 0) {
+            collections.users.updateOne({id: u.id}, {$set: {pronouns: body.pronouns}});
+            u.pronouns = body.pronouns;
+        }
     }
 
     if(body.displayName) {

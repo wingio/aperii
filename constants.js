@@ -2,7 +2,11 @@ function dec2bin(dec) {
     return (dec >> 1).toString(2);
 }
 
-class Constants {
+export const PORT = 80;
+export const DEV = false
+export const API_BASE_URL = DEV ? `http://localhost:${PORT}/v2` : 'https://api.aperii.com/v2'
+
+export class Constants {
     constructor(){
         this.VALID_USER_PROPS = [
             'avatar',
@@ -90,7 +94,7 @@ class Constants {
                 "joinedTimestamp": Date.now(),
                 "displayName": user.displayName,
                 "username": user.username,
-                "verified": user.verified,
+                "verified": user.flags.verified,
                 "avatar": "https://aperii.com/av.png",
                 "flags": 0
             },
@@ -102,4 +106,3 @@ class Constants {
     }
 }
 
-module.exports = Constants

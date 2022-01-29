@@ -5,6 +5,7 @@ import ModalForm from './ModalForm'
 import styles from '../styles/EditProfileModal.module.css'
 import { useRouter } from 'next/router'
 import useLang from '../providers/useLang'
+import { API_BASE_URL } from '../constants'
 export default function MakePostModal({ user, closeAction, showVanish }) {
     const [hasChanges, setHasChanges] = useState(false)
     const [User, setUser] = useState(user)
@@ -28,10 +29,7 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
             reader.onerror = error => reject(error);
         });
 
-
-        //var base64 = await toBase64(body[0].files[0])
-        //console.log(base64)
-        fetch(`https://api.aperii.com/v2/users/${user.id}`, {
+        fetch(`${API_BASE_URL}/users/${user.id}`, {
             body: JSON.stringify(changes),
             headers: {
                 'content-type': 'application/json',
@@ -79,6 +77,7 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
                 <TextBox label={text.displayName} style={{marginBottom: "10px"}} placeholder={user.displayName} onChange={(e) => { var chngs = changes; chngs.displayname = e.target.value; setChanges(chngs)}}></TextBox>
                 <TextBox label={text.username} placeholder={user.username} onChange={(e) => { var ch = changes; ch.username = e.target.value; setChanges(ch)}}></TextBox>
                 <TextBox label={text.profile.bio} placeholder={user.bio} onChange={(e) => { var ch = changes; ch.bio = e.target.value; setChanges(ch)}}></TextBox>
+                <TextBox label={"Pronouns"} placeholder={user.pronouns || "Pronouns"} onChange={(e) => { var ch = changes; ch.pronouns = e.target.value; setChanges(ch)}}></TextBox>
             </ModalForm>
             {error.error ? <p className="errorText" style={{color: "var(--text-color)"}}>{error.error}</p> : ''}
         </Modal>

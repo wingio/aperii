@@ -35,7 +35,7 @@ const data = ({data, embed, useTwemoji, big=false, isreply=false, issubject=fals
             {isreply ? <span style={{color: "#888", fontSize: ".9em"}}>Replying to <a href={`/p/${data.in_reply_to.author.username}`} style={{color: "#4eafff"}}>{`@${data.in_reply_to.author.username}`}</a></span> : ''}
             <p className={postStyle.bigcontent}><PostBody text={data.body} useTwemoji={useTwemoji}></PostBody></p>
         </div>
-        <span style={{color: "#888", fontSize: ".9em", marginTop: "20px"}}>{moment(data.createdTimestamp).format("MM/DD/YY h:mma")}</span>
+        <span style={{color: "#888", fontSize: ".9em", marginTop: "20px"}}>{moment(data.createdTimestamp).format("MM/DD/YY h:mma")} {data.author.pronouns ? `• ${data.author.pronouns}` : ''}</span>
         {visible ? <ContextMenu {...coords}></ContextMenu> : ''}
     </div>)
     }
@@ -51,6 +51,7 @@ const data = ({data, embed, useTwemoji, big=false, isreply=false, issubject=fals
             <span className={postStyle.username}>@{data.author.username}</span>
 
             <span className={postStyle.timestamp}>• {(Date.now() - data.createdTimestamp > 1000 * 60 * 60 * 24 * 2) ? moment(data.createdTimestamp).format("DD MMM") : moment(data.createdTimestamp).fromNow()}</span>
+            <span className={postStyle.timestamp}>{data.author.pronouns ? `• ${data.author.pronouns}` : ''}</span>
         </div>
             <p className={postStyle.content}><PostBody text={data.body} useTwemoji={useTwemoji}></PostBody></p>
         </div>

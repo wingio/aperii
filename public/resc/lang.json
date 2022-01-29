@@ -30,7 +30,8 @@
         "profile": {
             "edit": "Edit Profile",
             "bio": "Bio",
-            "joined": "Joined"
+            "joined": "Joined",
+            "pronouns": "Pronouns"
         },
         "posts": {
             "singular": "Post",
@@ -75,7 +76,8 @@
         "profile": {
             "edit": "Edit Profile",
             "bio": "Bio",
-            "joined": "Joined"
+            "joined": "Joined",
+            "pronouns": "Pwonowns"
         },
         "posts": {
             "singular": "Post",
@@ -120,7 +122,8 @@
         "profile": {
             "edit": "Editar Perfil",
             "bio": "Bio",
-            "joined": "Registrado"
+            "joined": "Registrado",
+            "pronouns": "Pronombres"
         },
         "posts": {
             "singular": "Publicaciona",

@@ -4,12 +4,13 @@ import {useState} from 'react'
 import Link from 'next/link'
 import Navbar from '../components/Navbar'
 import HomeFooter from '../components/HomeFooter'
+import { API_BASE_URL } from '../constants'
 var prod = true
 export default function Home() {
   if (typeof window !== "undefined") {
     var token = localStorage.getItem('token')
     if (token && prod) {
-      fetch('https://api.aperii.com/v2/auth/validate', {
+      fetch(`${API_BASE_URL}/auth/validate`, {
         method: 'POST',
         headers: {
           authorization: token

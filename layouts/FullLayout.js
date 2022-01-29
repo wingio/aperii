@@ -5,6 +5,7 @@ import SidebarFeedOption from '../components/SidebarFeedOption';
 import useLang from '../providers/useLang';
 import UserProfile from '../components/UserProfile';
 import OpenPostModal from '../components/OpenPostModal';
+import { API_BASE_URL } from '../constants';
 
 function FullLayout(props) {
   const [open, setOpen] = useState(false)
@@ -35,7 +36,7 @@ function FullLayout(props) {
 
     if(expStore['textbox_newline_05_17_21'] == 1){
       console.log(e.target.children[0].children[0].innerText)
-      fetch(`https://api.aperii.com/v2/users/${user.id}/posts`, {
+      fetch(`${API_BASE_URL}/users/${user.id}/posts`, {
         body: JSON.stringify({
           body: e.target.children[0].children[0].innerText
         }),
@@ -63,7 +64,7 @@ function FullLayout(props) {
 
     //reader.readAsArrayBuffer(e.target[1].files[0]);
     e.target[2].disabled = true
-    fetch(`https://api.aperii.com/v2/users/${user.id}/posts`, {
+    fetch(`${API_BASE_URL}/users/${user.id}/posts`, {
       body: JSON.stringify({
         body: e.target[0].value
       }),

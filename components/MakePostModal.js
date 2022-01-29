@@ -3,6 +3,7 @@ import Modal from './Modal'
 import TextBox from './TextBox'
 import ModalForm from './ModalForm'
 import { useRouter } from 'next/router'
+import { API_BASE_URL } from '../constants'
 export default function MakePostModal({ user, closeAction, showVanish, post }) {
     const [opened, setOpen] = useState(true)
     const [loading, setLoading] = useState(false)
@@ -14,7 +15,7 @@ export default function MakePostModal({ user, closeAction, showVanish, post }) {
         setLoading(true)
         var body = e.type == "click" ? e.target.form[0].value : e.target[0].value
 
-        fetch(`https://api.aperii.com/v2/users/${user.id}/posts${post ? `?replyto=${post.id}` : ''}`, {
+        fetch(`${API_BASE_URL}/users/${user.id}/posts${post ? `?replyto=${post.id}` : ''}`, {
             body: JSON.stringify({
                 body
             }),

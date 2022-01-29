@@ -13,8 +13,9 @@ export default class MeUser extends User {
         public suspended: boolean, 
         public bio: string, 
         public banner: string, 
-        public avatar: string
+        public avatar: string,
+        public pronouns: string
     ) {
-        super(id, joinedTimestamp, displayName, username, flags, suspended, bio, banner, avatar);
+        super(id, joinedTimestamp, displayName, username, flags, suspended, bio, banner, avatar, pronouns);
     }
 }

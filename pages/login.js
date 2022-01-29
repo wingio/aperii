@@ -3,6 +3,7 @@ import styles from '../styles/Home.module.css'
 import {useState} from 'react'
 
 import lang from '../public/resc/lang.json'
+import { API_BASE_URL } from '../constants'
 const names = lang['en-US']
 
 var prod = true
@@ -10,7 +11,7 @@ export default function Home() {
   if (typeof window !== "undefined") {
   var token = localStorage.getItem('token')
   if (token && prod == true) {
-    fetch('https://api.aperii.com/v2/auth/validate', {
+    fetch(`${API_BASE_URL}/auth/validate`, {
       method: 'POST',
       headers: {
         authorization: token
@@ -38,7 +39,7 @@ export default function Home() {
       password: e.target[1].value
     }
     e.target[2].disabled = true
-    var res = await fetch('https://api.aperii.com/v2/auth/login', {
+    var res = await fetch(`${API_BASE_URL}/auth/login`, {
       method: 'POST',
       headers: {
         "content-type": 'application/json'
@@ -68,7 +69,7 @@ export default function Home() {
     return false
   }
 
-  
+  console.log(API_BASE_URL)
   
   return (
     <div className="form-container">

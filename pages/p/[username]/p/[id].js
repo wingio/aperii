@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Layout from '../../../../layouts/Layout'
-import consts from '../../../../constants'
+import { Constants as consts, API_BASE_URL } from '../../../../constants'
 import {useState} from 'react'
 import useLang from '../../../../providers/useLang'
 import Post from '../../../../components/Post'
@@ -57,7 +57,7 @@ export default function User({post, user, replies}) {
 
 
 export async function getServerSideProps(context) {
-  var res = await fetch('https://api.aperii.com/v2/posts/' + context.params.id, {
+  var res = await fetch(`${API_BASE_URL}/posts/` + context.params.id, {
     method: 'GET',
     headers: {
       'content-type': 'application/json',
@@ -67,7 +67,7 @@ export async function getServerSideProps(context) {
   var post = await res.json()
   var userres;
   if (context.req.cookies.token) {
-     userres = await fetch('https://api.aperii.com/v2/users/@me', {
+     userres = await fetch(`${API_BASE_URL}/users/@me`, {
       method: 'GET',
       headers: {
         authorization: context.req.cookies.token
@@ -81,7 +81,7 @@ export async function getServerSideProps(context) {
   }
 
   var replies = []
-  var repres = await fetch('https://api.aperii.com/v2/posts/' + context.params.id + '/replies', {
+  var repres = await fetch(`${API_BASE_URL}/posts/` + context.params.id + '/replies', {
     method: 'GET',
     headers: {
       'content-type': 'application/json',
