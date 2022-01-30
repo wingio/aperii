@@ -74,7 +74,7 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
                     Select Image
                 </label>
                 <img src={source} width="100px" height="100px" style={{borderRadius: "50%"}}></img>
-                <TextBox label={text.displayName} style={{marginBottom: "10px"}} placeholder={user.displayName} onChange={(e) => { var chngs = changes; chngs.displayname = e.target.value; setChanges(chngs)}}></TextBox>
+                <TextBox label={text.displayName} style={{marginBottom: "10px"}} placeholder={user.displayName} onChange={(e) => { var chngs = changes; chngs.displayName = e.target.value; setChanges(chngs)}}></TextBox>
                 <TextBox label={text.username} placeholder={user.username} onChange={(e) => { var ch = changes; ch.username = e.target.value; setChanges(ch)}}></TextBox>
                 <TextBox label={text.profile.bio} placeholder={user.bio} onChange={(e) => { var ch = changes; ch.bio = e.target.value; setChanges(ch)}}></TextBox>
                 <TextBox label={"Pronouns"} placeholder={user.pronouns || "Pronouns"} onChange={(e) => { var ch = changes; ch.pronouns = e.target.value; setChanges(ch)}}></TextBox>
