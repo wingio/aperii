@@ -31,7 +31,7 @@ declare global {
 export default function Authentication() {
     return (req: Request, res: Response, next: NextFunction) => {
         let bypass = noAuth.some((x) => {
-			if (typeof x === "string") return req.url.startsWith(x);
+			if (typeof x === "string") return req.originalUrl.startsWith(x);
 			return x.test(req.url);
 		})
         if (bypass) return next();
