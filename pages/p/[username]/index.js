@@ -4,7 +4,7 @@ import Layout from '../../../layouts/Layout'
 import PostFeed from '../../../components/PostFeed'
 import Calender from '../../../icons/Calender'
 import moment from 'moment'
-import { Constants as consts, API_BASE_URL } from '../../../constants'
+import { Constants as consts, API_BASE_URL, CDN_BASE_URL } from '../../../constants'
 import Icon from '../../../icons/Icon'
 import EditProfileModal from '../../../components/EditProfileModal'
 import Button from '../../../components/Button'
@@ -52,7 +52,7 @@ export default function User({profile, posts, user}) {
         <meta property="og:title" content={`${profile.displayName} (@${profile.username})`}  key="title"/>
         <meta property="og:url" content={"https://aperii.com/p/" + profile.username}  key="url"/>
         <meta property="og:description" content={profile.bio ? profile.bio : 'This user has no bio'} key="desc"/>
-        <meta property="og:image" content={profile.avatar ? profile.avatar : '/av.png'} key="image"/>
+        <meta property="og:image" content={profile.avatar ? `${CDN_BASE_URL}/avatars/${profile.avatar}` : '/av.png'} key="image"/>
       </Head>
     <Layout user={user} misc={expStore} page={profile.username == user.username ? 'profile' : 'home'} title={profile.displayName} showBadge={profile.flags.verified} showCount={true} postCount={posts.length}>
       
@@ -61,7 +61,7 @@ export default function User({profile, posts, user}) {
           
         </div>
         {pOpened ? <EditProfileModal user={user} closeAction={closeProfile} showVanish={vanished}/> : ''}
-        <img className={styles.avatar} src={profile.avatar ? profile.avatar : '/av.png'}></img>
+        <img className={styles.avatar} src={profile.avatar ? `${CDN_BASE_URL}/avatars/${profile.avatar}` : '/av.png'}></img>
         <div className={styles.userinfo}>
           <p>{profile.displayName}{profile.flags.verified ? <VerifiedBadge className={styles.badge} /> : ''}</p>
           <p className={styles.username}>@{profile.username}</p>
@@ -123,7 +123,7 @@ export async function getServerSideProps(context) {
   }
 
  
-  profile.avatar = profile.suspended ? '/av.png' : profile.avatar
+  profile.avatar = profile.suspended ? "" : profile.avatar
   var suspendedArr = []
   suspendedArr.push(c.getSuspendedPost(profile))
   profile.posts = profile.suspended ? suspendedArr : profile.posts

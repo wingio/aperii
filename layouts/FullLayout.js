@@ -5,7 +5,7 @@ import SidebarFeedOption from '../components/SidebarFeedOption';
 import useLang from '../providers/useLang';
 import UserProfile from '../components/UserProfile';
 import OpenPostModal from '../components/OpenPostModal';
-import { API_BASE_URL } from '../constants';
+import { API_BASE_URL, CDN_BASE_URL } from '../constants';
 
 function FullLayout(props) {
   const [open, setOpen] = useState(false)
@@ -96,7 +96,7 @@ function FullLayout(props) {
   </div>
   <div className={`sticky right`}>
     <div className="av-container">
-      <img className={`av`} src={user ? user.avatar ? user.avatar : '/av.png' : '/av.png'} onClick={toggleDropdown}></img>
+      <img className={`av`} src={user ? user.avatar ? `${CDN_BASE_URL}/avatars/${user.avatar}` : '/av.png' : '/av.png'} onClick={toggleDropdown}></img>
       {open ? <ProfileDropdown user={user} exp={expStore}/> : ''}
     </div>
     <div className="sidebar-profile">

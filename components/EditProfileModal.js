@@ -5,12 +5,12 @@ import ModalForm from './ModalForm'
 import styles from '../styles/EditProfileModal.module.css'
 import { useRouter } from 'next/router'
 import useLang from '../providers/useLang'
-import { API_BASE_URL } from '../constants'
+import { API_BASE_URL, CDN_BASE_URL } from '../constants'
 export default function MakePostModal({ user, closeAction, showVanish }) {
-    const [hasChanges, setHasChanges] = useState(false)
     const [User, setUser] = useState(user)
     const [changes, setChanges] = useState({})
     const [isLoading, setIsLoading] = useState(false)
+    const [avatar, setAvatar] = useState()
     const [error, setError] = useState({})
     var close = closeAction
     const router = useRouter()
@@ -28,11 +28,16 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
             reader.onload = () => resolve(reader.result);
             reader.onerror = error => reject(error);
         });
-
+        let fdata = new FormData()
+        if(avatar){
+            fdata.append('avatar', avatar)
+        }
+        for(var key in changes) {
+            fdata.append(key, changes[key])
+        }
         fetch(`${API_BASE_URL}/users/${user.id}`, {
-            body: JSON.stringify(changes),
+            body: fdata,
             headers: {
-                'content-type': 'application/json',
                 authorization: localStorage.getItem('token')
             },
             method: 'PATCH'
@@ -50,7 +55,7 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
         })
     }
 
-    const [source, setSource] = useState(User.avatar ? User.avatar : '/av.png')
+    const [source, setSource] = useState(User.avatar ? `${CDN_BASE_URL}/avatars/${User.avatar}` : '/av.png')
     async function updatePreview(e) {
         const toBase64 = file => new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -61,7 +66,7 @@ export default function MakePostModal({ user, closeAction, showVanish }) {
 
         setSource(await toBase64(e.target.files[0]))
         var ch = changes
-        ch.avatar = await toBase64(e.target.files[0])
+        setAvatar(e.target.files[0])
         ch.made = true
         setChanges(ch)
     }

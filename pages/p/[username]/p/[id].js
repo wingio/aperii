@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Layout from '../../../../layouts/Layout'
-import { Constants as consts, API_BASE_URL } from '../../../../constants'
+import { Constants as consts, API_BASE_URL, CDN_BASE_URL } from '../../../../constants'
 import {useState} from 'react'
 import useLang from '../../../../providers/useLang'
 import Post from '../../../../components/Post'
@@ -43,7 +43,7 @@ export default function User({post, user, replies}) {
         <meta property="og:title" content={`${profile.displayName} (@${profile.username})`}  key="title"/>
         <meta property="og:url" content={"https://aperii.com/p/" + profile.username + '/p/' + post.id}  key="url"/>
         <meta property="og:description" content={post.body} key="desc"/>
-        <meta property="og:image" content={profile.avatar ? profile.avatar : '/av.png'} key="image"/>
+        <meta property="og:image" content={profile.avatar ? `${CDN_BASE_URL}/avatars/${profile.avatar}` : '/av.png'} key="image"/>
         <meta content="article" property="og:type" data-rh="true"></meta>
       </Head>
     <Layout user={user} misc={expStore} page="home" title="Post" post={post}>

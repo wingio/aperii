@@ -3,8 +3,9 @@ function dec2bin(dec) {
 }
 
 export const PORT = 80;
-export const DEV = false
+export const DEV = true;
 export const API_BASE_URL = DEV ? `http://localhost:${PORT}/v2` : 'https://api.aperii.com/v2'
+export const CDN_BASE_URL = DEV ? `http://localhost:${PORT}/cdn` : 'https://api.aperii.com/cdn'
 
 export class Constants {
     constructor(){

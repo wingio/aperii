@@ -4,6 +4,7 @@ import MobilePostBtn from '../components/MobilePostBtn'
 import ProfileDropdown from'../components/ProfileDropdown'
 import BottomTabBar from '../components/MobileTabBar'
 import styles from '../styles/MobileLayout.module.css'
+import { API_BASE_URL, CDN_BASE_URL } from '../constants';
 
 function MobileLayout(props) {
   const {width, height} = useWindowSize()
@@ -24,7 +25,7 @@ function MobileLayout(props) {
       <div className="header">
             <Search mobile={true} title={props.title} showBadge={props.showBadge} showPosts={props.showCount} postCount={props.postCount} lang={props.lang}></Search>
             <div className="av-container">
-              <img className={`av mobile`} src={user ? user.avatar ? user.avatar
+              <img className={`av mobile`} src={user ? user.avatar ? `${CDN_BASE_URL}/avatars/${user.avatar}`
                 : '/av.png' : '/av.png' } onClick={()=> {setOpen(!open)}}></img>
               {open ?
               <ProfileDropdown user={props.user} exp={expStore} lang={props.lang}/> : ''}

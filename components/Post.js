@@ -6,6 +6,7 @@ import Badge from '../icons/Badge'
 import ContextMenu from './ContextMenu'
 import moment from 'moment'
 import {useRouter} from 'next/router'
+import { API_BASE_URL, CDN_BASE_URL } from '../constants'
 
 const data = ({data, embed, useTwemoji, big=false, isreply=false, issubject=false}) => {
     const [visible, setVisible] = useState(false)
@@ -24,7 +25,7 @@ const data = ({data, embed, useTwemoji, big=false, isreply=false, issubject=fals
         return (<div className={postStyle.bigpost + ` ${embed ? postStyle.embed : isreply ? postStyle.reply : ''}`} >
         <div className={postStyle.bigauthor}>
             <div className={postStyle.avcontainer}>
-                <img className={postStyle.avbig} src={data.author.avatar ? data.author.avatar : '/av.png'}></img>
+                <img className={postStyle.avbig} src={data.author.avatar ? `${CDN_BASE_URL}/avatars/${data.author.avatar}` : '/av.png'}></img>
             </div>
             <div style={{display: "flex", flexDirection: "column", marginLeft: "8px"}}>
                 <a href={`/p/${data.author.username}`}><span className={postStyle.displayName}>{data.author.displayName}</span>{data.author.flags.verified ? <Badge className={postStyle.badge} width="15px" style={{color: "var(--badge-color)"}}></Badge> : ''}</a>
@@ -42,7 +43,7 @@ const data = ({data, embed, useTwemoji, big=false, isreply=false, issubject=fals
     const router = useRouter()
     return (<div className={postStyle.post + ` ${embed ? postStyle.embed : issubject ? postStyle.subj : ''}`} onClick={() => {router.push('/p/[username]/p/[id]', `/p/${data.author.username}/p/${data.id}`)}}>
         <div className={postStyle.avcontainer}>
-            <img className={postStyle.av} src={data.author.avatar ? data.author.avatar : '/av.png'}></img>
+            <img className={postStyle.av} src={data.author.avatar ? `${CDN_BASE_URL}/avatars/${data.author.avatar}` : '/av.png'}></img>
         </div>
         <div className={postStyle.bodycontainer}>
         <div className={postStyle.author}>

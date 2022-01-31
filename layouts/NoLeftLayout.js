@@ -4,6 +4,7 @@ import ProfileDropdown from '../components/ProfileDropdown'
 import MobilePostBtn from '../components/MobilePostBtn'
 import BottomTabBar from '../components/MobileTabBar'
 import styles from '../styles/NoLeftLayout.module.css'
+import { API_BASE_URL, CDN_BASE_URL } from '../constants';
 
 function NoLeftLayout(props) {
   const {width, height} = useWindowSize()
@@ -26,7 +27,7 @@ function NoLeftLayout(props) {
 
         <div className={`sticky right`}>
           <div className="av-container">
-            <img className={`av`} src={user ? user.avatar ? user.avatar : '/av.png' : '/av.png' }
+            <img className={`av`} src={user ? user.avatar ? `${CDN_BASE_URL}/avatars/${user.avatar}` : '/av.png' : '/av.png' }
               onClick={toggleDropdown}></img>
             {open ?
             <ProfileDropdown user={user} exp={misc} lang={props.lang}/> : ''}

@@ -1,6 +1,10 @@
+import axios, { AxiosResponse } from "axios";
 import { Router, Request, Response } from "express";
+import FormData from "form-data";
+import Config from "../../../../Config";
 import { getUser, getUserByUsername } from "../../../../handlers/Users";
 import { collections } from "../../../../services/database.service";
+import Logger from "../../../../utils/Logger";
 import { sendError } from "../../../../utils/Utils";
 const router = Router();
 
@@ -86,7 +90,49 @@ router.patch("/", async (req: Request, res: Response) => {
         }
     }
 
-    if(body.avatar) {
+    if((req.files as Express.Multer.File[])?.find(f => f.fieldname == "avatar")) {
+        try {
+            let image = (req.files as Express.Multer.File[]).find(f => f.fieldname == "avatar");
+            if(image.mimetype !== "image/png" && image.mimetype !== "image/jpeg" && image.mimetype !== "image/jpg" && image.mimetype !== "image/gif") {
+                errors.push({
+                    status: 400,
+                    error: "Invalid file type.",
+                    field: "avatar"
+                });
+            }
+            if(errors.filter(e => e.field === "avatar").length == 0) {
+                let av = await collections.cdn.findOne({id: u.id, type: 0});
+                if(av) {
+                    collections.cdn.deleteOne({id: u.id, type: 0});
+                    let cfDelete = axios.delete(`https://api.cloudflare.com/client/v4/accounts/${Config.CF_ACCOUNT_ID}/images/v1/${av.image_id}`, {
+                        headers: {
+                            "authorization": `Bearer ${Config.CF_API_KEY}`}
+                        });
+                    await cfDelete;
+                }
+                let fdata = new FormData();
+                fdata.append("file", image.buffer);
+                let avData = (await axios.post(`https://api.cloudflare.com/client/v4/accounts/${Config.CF_ACCOUNT_ID}/images/v1`, fdata, {
+                headers: {
+                    "authorization": `Bearer ${Config.CF_API_KEY}`,
+                    ...fdata.getHeaders()
+                }})).data;
+                let imageData = await collections.cdn.insertOne({
+                    type: 0,
+                    image_id: avData.result.id,
+                    id: u.id
+                });
+                collections.users.updateOne({id: u.id}, {$set: {avatar: u.id}});
+                u.avatar = u.id;
+            }
+        } catch(e) {
+            new Logger("DEBUG").error("Error uploading avatar", e);
+            errors.push({
+                status: 400,
+                error: "Cloudflare API error.",
+                field: "avatar"
+            });
+        }
     }
 
     if(body.pronouns) {

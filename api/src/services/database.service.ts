@@ -2,7 +2,7 @@
 import mongodb, { MongoClient, Collection } from 'mongodb';
 import Config from '../Config';
 
-export const collections : {users?: Collection, posts?: Collection} = {};
+export const collections : {users?: Collection, posts?: Collection, cdn?: Collection} = {};
 
 export async function connectToDatabase() {
     const client: MongoClient = new MongoClient(Config.MONGO_URI);
@@ -13,9 +13,11 @@ export async function connectToDatabase() {
 
     const usersCollection: mongodb.Collection = db.collection("user");
     const postsCollection: mongodb.Collection = db.collection("posts");
+    const cdnCollection: mongodb.Collection = db.collection("cdn");
  
     collections.users = usersCollection;
     collections.posts = postsCollection;
+    collections.cdn = cdnCollection;
        
     console.log(`Successfully connected to database: ${db.databaseName}`);
 }
