@@ -50,15 +50,15 @@ router.patch("/", async (req: Request, res: Response) => {
     }
     let body: EditUserBody = req.body;
     let errors: EditUserError[] = [];
-    var usernameRegex = /^(?=.*[a-z])?(?=.*[A-Z])?(?=.*\d)?(?!.*[ ])[A-Za-z\d_]{4,32}$/g
+    var usernameRegex = /^(?=.*[a-z])?(?=.*[A-Z])?(?=.*\d)?(?!.*[ ])[A-Za-z\d_]{1,32}$/g
     let bioRegex = /^[\d\D]{0,64}$/g
-    let displayNameRegex = /^[\d\D]{4,32}$/g
+    let displayNameRegex = /^[\d\D]{1,32}$/g
     let pronounRegex = /^[\d\D]{1,5}\/[\d\D]{1,5}$/g
     if(body.username) {
         if(!usernameRegex.test(body.username)) {
             errors.push({
                 status: 400,
-                error: "Username must be at least 4 characters long and only contain letters, numbers, and underscores.",
+                error: "Username must only contain letters, numbers, underscores, and be at most 32 characters long.",
                 field: "username"
             });
         }
@@ -153,7 +153,7 @@ router.patch("/", async (req: Request, res: Response) => {
         if(!displayNameRegex.test(body.displayName)) {
             errors.push({
                 status: 400,
-                error: "Display name must be at least 4 characters long and only contain letters, numbers, and underscores.",
+                error: "Display name must be at most 32 characters.",
                 field: "displayName"
             });
         }
