@@ -13,6 +13,9 @@ declare global {
 export default function parseParams() {
     return (req: Request, res: Response, next: NextFunction) => {
         req.parameters = req.params || {};
+        Object.keys(req.parameters).forEach(key => {
+            req.parameters[key] = req.parameters[key].trim();
+        })
         return next();
     }
 }

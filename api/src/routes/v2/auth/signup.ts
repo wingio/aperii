@@ -33,17 +33,17 @@ router.post("/", async (req: Request, res: Response) => {
         return;
     }
 
-    var usernameRegex = /^(?=.*[a-z])?(?=.*[A-Z])?(?=.*\d)?(?!.*[ ])[A-Za-z\d_]{4,32}$/g
-    var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&-.]{8,64}$/g
+    var usernameRegex = /^(?=.*[a-z])?(?=.*[A-Z])?(?=.*\d)?(?!.*[ ])[A-Za-z\d_]{1,32}$/g
+    var passwordRegex = /^[\d\D]{8,512}$/g
     var emailRegex = /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/g
 
     if(!usernameRegex.test(body.username)) {
-        sendError(res, 400, "Username can only contain letters, numbers, and underscores and must be between 4 and 32 characters long");
+        sendError(res, 400, "Username can only contain letters, numbers, underscores, and must be at most 32 characters long");
         return;
     }
 
     if(!passwordRegex.test(body.password)) {
-        sendError(res, 400, "Password must contain at least one number, one uppercase letter, one lowercase letter, and one special character, and must be between 8 and 64 characters long");
+        sendError(res, 400, "Password must be between 8 and 512 characters long");
         return;
     }
 
