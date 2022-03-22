@@ -23,23 +23,15 @@ type EditUserError = {
 };
 
 router.get("/", async (req: Request, res: Response) => {
-    let id = req.parameters.id;
-    if(id === "@me" || id === req.me.id) {
-        res.send(req.me);
-        return;
-    }
-
-    let user = await getUser(id);
-    if(!user) {
+    if(!req.user) {
         sendError(res, 404, "User not found");
         return;
     }
-    res.send(user);
+    res.send(req.user);
 });
 
 router.patch("/", async (req: Request, res: Response) => {
-    let {id} = req.parameters;
-    let u = id == "@me" ? req.me : await getUser(id);
+    let u = req.user;
     if(!u) {
         sendError(res, 404, "User not found");
         return;

@@ -12,24 +12,21 @@ type PostBody = {
 }
 
 router.get("/", async (req: Request, res: Response) => {
-    const { id } = req.parameters;
-    var u = id == "@me" ? req.me : await getUser(id);
-    if(!u) {
+    if(!req.user) {
         sendError(res, 404, "User not found");
         return;
     }
-    let posts = await collections.posts.find({author: u.id}).toArray();
+    let posts = await collections.posts.find({author: req.user.id}).toArray();
     let modelPosts = [];
     for(let p of posts) {
         let modelPost = await getPost(p.id);
         modelPosts.push(modelPost);
     }
-    res.send(u.suspended? [] : modelPosts.sort((a, b) => b.createdTimestamp - a.createdTimestamp));
+    res.send(req.user.suspended? [] : modelPosts.sort((a, b) => b.createdTimestamp - a.createdTimestamp));
 });
 
 router.post("/", async (req: Request, res: Response) => {
-    const { id } = req.parameters;
-    var u = id == "@me" ? req.me : await getUser(id);
+    var u = req.user;
     if(!u) {
         sendError(res, 404, "User not found");
         return;
