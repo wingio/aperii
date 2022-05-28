@@ -23,7 +23,7 @@ export default function MobileTabBar({ currentPage, username, misc, fixed = true
             </div> : ''}
             
             <div className={`${styles.tab} ${currentPage=="profile" ? styles.active : ''}`}>
-                <a href={`/p/${username}`} style={{width: "100%"}}>
+                <a href={`/@${username}`} style={{width: "100%"}}>
                     <Icon name="user" className={styles.icon}></Icon>
                 </a>
             </div>

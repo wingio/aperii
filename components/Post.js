@@ -28,12 +28,12 @@ const data = ({data, embed, useTwemoji, big=false, isreply=false, issubject=fals
                 <img className={postStyle.avbig} src={data.author.avatar ? `${CDN_BASE_URL}/avatars/${data.author.avatar}` : '/av.png'}></img>
             </div>
             <div style={{display: "flex", flexDirection: "column", marginLeft: "8px"}}>
-                <a href={`/p/${data.author.username}`}><span className={postStyle.displayName}>{data.author.displayName}</span>{data.author.flags.verified ? <Badge className={postStyle.badge} width="15px" style={{color: "var(--badge-color)"}}></Badge> : ''}</a>
+                <a href={`/@${data.author.username}`}><span className={postStyle.displayName}>{data.author.displayName}</span>{data.author.flags.verified ? <Badge className={postStyle.badge} width="15px" style={{color: "var(--badge-color)"}}></Badge> : ''}</a>
                 <span className={postStyle.username} style={{marginLeft: 0}}>@{data.author.username}</span>
             </div>
         </div>
         <div style={{gridArea: "content", marginTop: "10px"}}>
-            {isreply ? <span style={{color: "#888", fontSize: ".9em"}}>Replying to <a href={`/p/${data.in_reply_to.author.username}`} style={{color: "#4eafff"}}>{`@${data.in_reply_to.author.username}`}</a></span> : ''}
+            {isreply ? <span style={{color: "#888", fontSize: ".9em"}}>Replying to <a href={`/@${data.in_reply_to.author.username}`} style={{color: "#4eafff"}}>{`@${data.in_reply_to.author.username}`}</a></span> : ''}
             <p className={postStyle.bigcontent}><PostBody text={data.body} useTwemoji={useTwemoji}></PostBody></p>
         </div>
         <span style={{color: "#888", fontSize: ".9em", marginTop: "20px"}}>{moment(data.createdTimestamp).format("MM/DD/YY h:mma")} {data.author.pronouns ? `• ${data.author.pronouns}` : ''}</span>
@@ -41,13 +41,13 @@ const data = ({data, embed, useTwemoji, big=false, isreply=false, issubject=fals
     </div>)
     }
     const router = useRouter()
-    return (<div className={postStyle.post + ` ${embed ? postStyle.embed : issubject ? postStyle.subj : ''}`} onClick={() => {router.push('/p/[username]/p/[id]', `/p/${data.author.username}/p/${data.id}`)}}>
+    return (<div className={postStyle.post + ` ${embed ? postStyle.embed : issubject ? postStyle.subj : ''}`} onClick={() => {router.push('/[username]/p/[id]', `/@${data.author.username}/p/${data.id}`)}}>
         <div className={postStyle.avcontainer}>
             <img className={postStyle.av} src={data.author.avatar ? `${CDN_BASE_URL}/avatars/${data.author.avatar}` : '/av.png'}></img>
         </div>
         <div className={postStyle.bodycontainer}>
         <div className={postStyle.author}>
-            <a href={`/p/${data.author.username}`}><span className={postStyle.displayName}>{data.author.displayName}</span></a>
+            <a href={`/@${data.author.username}`}><span className={postStyle.displayName}>{data.author.displayName}</span></a>
             {data.author.flags.verified ? <Badge className={postStyle.badge} width="15px" style={{color: "var(--badge-color)"}}></Badge> : ''}
             <span className={postStyle.username}>@{data.author.username}</span>
 

@@ -1,11 +1,11 @@
 import Head from 'next/head'
-import Layout from '../../../../layouts/Layout'
-import { Constants as consts, API_BASE_URL, CDN_BASE_URL } from '../../../../constants'
+import Layout from '../../../layouts/Layout'
+import { Constants as consts, API_BASE_URL, CDN_BASE_URL } from '../../../constants'
 import {useState} from 'react'
-import useLang from '../../../../providers/useLang'
-import Post from '../../../../components/Post'
+import useLang from '../../../providers/useLang'
+import Post from '../../../components/Post'
 import {useRouter} from 'next/router'
-import PostFeed from '../../../../components/PostFeed'
+import PostFeed from '../../../components/PostFeed'
 const c = new consts()
 
 export default function User({post, user, replies}) {
@@ -30,7 +30,7 @@ export default function User({post, user, replies}) {
   }
 
   if(post.author.username != username){
-    router.replace('/p/[username]/p/[id]', `/p/${post.author.username}/p/${post.id}`)
+    router.replace('/[username]/p/[id]', `/@${post.author.username}/p/${post.id}`)
   }
 }
 
@@ -41,7 +41,7 @@ export default function User({post, user, replies}) {
     <Head>
         <title>{`${profile.displayName} (@${profile.username})`} - Aperii</title>
         <meta property="og:title" content={`${profile.displayName} (@${profile.username})`}  key="title"/>
-        <meta property="og:url" content={"https://aperii.com/p/" + profile.username + '/p/' + post.id}  key="url"/>
+        <meta property="og:url" content={"https://aperii.com/@" + profile.username + '/p/' + post.id}  key="url"/>
         <meta property="og:description" content={post.body} key="desc"/>
         <meta property="og:image" content={profile.avatar ? `${CDN_BASE_URL}/avatars/${profile.avatar}` : '/av.png'} key="image"/>
         <meta content="article" property="og:type" data-rh="true"></meta>

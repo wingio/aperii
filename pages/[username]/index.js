@@ -1,17 +1,17 @@
 import Head from 'next/head'
-import styles from '../../../styles/User.module.css'
-import Layout from '../../../layouts/Layout'
-import PostFeed from '../../../components/PostFeed'
-import Calender from '../../../icons/Calender'
+import styles from '../../styles/User.module.css'
+import Layout from '../../layouts/Layout'
+import PostFeed from '../../components/PostFeed'
+import Calender from '../../icons/Calender'
 import moment from 'moment'
-import { Constants as consts, API_BASE_URL, CDN_BASE_URL } from '../../../constants'
-import Icon from '../../../icons/Icon'
-import EditProfileModal from '../../../components/EditProfileModal'
-import Button from '../../../components/Button'
-import VerifiedBadge from '../../../components/VerifiedBadge'
+import { Constants as consts, API_BASE_URL, CDN_BASE_URL } from '../../constants'
+import Icon from '../../icons/Icon'
+import EditProfileModal from '../../components/EditProfileModal'
+import Button from '../../components/Button'
+import VerifiedBadge from '../../components/VerifiedBadge'
 import {useState} from 'react'
-import PostBody from '../../../components/PostBody'
-import useLang from '../../../providers/useLang'
+import PostBody from '../../components/PostBody'
+import useLang from '../../providers/useLang'
 const c = new consts()
 
 export default function User({profile, posts, user}) {
@@ -50,7 +50,7 @@ export default function User({profile, posts, user}) {
     <Head>
         <title>{`${profile.displayName} (@${profile.username})`} - Aperii</title>
         <meta property="og:title" content={`${profile.displayName} (@${profile.username})`}  key="title"/>
-        <meta property="og:url" content={"https://aperii.com/p/" + profile.username}  key="url"/>
+        <meta property="og:url" content={"https://aperii.com/@" + profile.username}  key="url"/>
         <meta property="og:description" content={profile.bio ? profile.bio : 'This user has no bio'} key="desc"/>
         <meta property="og:image" content={profile.avatar ? `${CDN_BASE_URL}/avatars/${profile.avatar}` : '/av.png'} key="image"/>
       </Head>
@@ -81,7 +81,9 @@ export default function User({profile, posts, user}) {
 
 
 export async function getServerSideProps(context) {
-  var res = await fetch(`${API_BASE_URL}/profiles/${context.params.username}`, {
+  if(!context.params.username?.startsWith("@")) return { notFound: true }
+  var username = context.params.username?.replace(/^@/, '')
+  var res = await fetch(`${API_BASE_URL}/profiles/${username}`, {
     method: 'GET',
     headers: {
       'content-type': 'application/json',
