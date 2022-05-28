@@ -97,7 +97,7 @@ export async function getServerSideProps(context) {
       displayName: 'User not found',
       username: '404',
       joinedTimestamp: Date.now(),
-      avatar: '/av.png',
+      avatar: '',
       suspended: false,
       posts: [],
       bio: "This user does not exist",
