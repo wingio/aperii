@@ -1,0 +1,9 @@
+[{
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.aperii",
+      "sha256_cert_fingerprints":
+      ["F6:12:4A:2E:69:96:17:70:A5:E9:C9:32:7E:6A:E0:FA:5D:5A:72:51:39:14:2F:1D:05:02:AD:BC:14:69:BB:0F"]
+    }
+}]
