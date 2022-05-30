@@ -40,11 +40,11 @@ export default function User({post, user, replies}) {
     <>
     <Head>
         <title>{`${profile.displayName} (@${profile.username})`} - Aperii</title>
-        <meta property="og:title" content={`${profile.displayName} (@${profile.username})`}  key="title"/>
+        {/* <meta property="og:title" content={`${profile.displayName} (@${profile.username})`}  key="title"/>
         <meta property="og:url" content={"https://aperii.com/@" + profile.username + '/p/' + post.id}  key="url"/>
         <meta property="og:description" content={post.body} key="desc"/>
         <meta property="og:image" content={profile.avatar ? `${CDN_BASE_URL}/avatars/${profile.avatar}` : '/av.png'} key="image"/>
-        <meta content="article" property="og:type" data-rh="true"></meta>
+        <meta content="article" property="og:type" data-rh="true"></meta> */}
         <link rel="alternate" type="application/json+oembed" href={`${API_BASE_URL}/oembed?url=${encodeURI(`https://aperii.com/@${profile.username}/p/${post.id}`)}`} title={`${profile.displayName}'s post's oembed`} />
       </Head>
     <Layout user={user} misc={expStore} page="home" title="Post" post={post}>
