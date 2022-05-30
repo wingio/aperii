@@ -45,6 +45,7 @@ export default function User({post, user, replies}) {
         <meta property="og:description" content={post.body} key="desc"/>
         <meta property="og:image" content={profile.avatar ? `${CDN_BASE_URL}/avatars/${profile.avatar}` : '/av.png'} key="image"/>
         <meta content="article" property="og:type" data-rh="true"></meta>
+        <link rel="alternate" type="application/json+oembed" href={`${API_BASE_URL}/oembed?url=${encodeURI(`https://aperii.com/@${profile.username}/p/${post.id}`)}`} title={`${profile.displayName}'s post's oembed`} />
       </Head>
     <Layout user={user} misc={expStore} page="home" title="Post" post={post}>
       {post.in_reply_to ? <Post data={post.in_reply_to} issubject={true}></Post> : ''}

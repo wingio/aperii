@@ -17,7 +17,10 @@ let noAuth: (string|RegExp)[] = [
 
     //posts
     "/v2/posts/",
-    "/v2/profiles/"
+    "/v2/profiles/",
+    
+    //OEmbed
+    "/v2/oembed",
 ];
 
 declare global {
