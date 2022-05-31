@@ -2,7 +2,6 @@ import { Router } from "express";
 import { getPost } from "../../../handlers/Posts";
 import { getUserByUsername } from "../../../handlers/Users";
 import User from "../../../models/user/User";
-import Logger from "../../../utils/Logger";
 import { sendError } from "../../../utils/Utils";
 
 const router = Router()

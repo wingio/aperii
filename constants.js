@@ -96,7 +96,7 @@ export class Constants {
                 "displayName": user.displayName,
                 "username": user.username,
                 "verified": user.flags.verified,
-                "avatar": "https://aperii.com/av.png",
+                "avatar": "",
                 "flags": 0
             },
             "body": `This account has been suspended`,

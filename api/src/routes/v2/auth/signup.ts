@@ -5,6 +5,7 @@ import { hash } from "bcrypt"
 import { sign } from "jsonwebtoken"
 import { Snowflake } from "../../../utils/Snowflake";
 import Config from "../../../Config";
+import RateLimiters from "../../../utils/RateLimiters";
 const router = Router();
 
 type SignUpBody = {
@@ -14,7 +15,7 @@ type SignUpBody = {
     username: string;
 }
 
-router.post("/", async (req: Request, res: Response) => {
+router.post("/", RateLimiters.Auth, async (req: Request, res: Response) => {
     let body: SignUpBody = req.body;
     if(!body.email || !body.password || !body.displayName || !body.username) {
         sendError(res, 400, "Missing required fields");

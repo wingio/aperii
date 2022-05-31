@@ -4,6 +4,7 @@ import { sign } from "jsonwebtoken"
 import { collections } from "../../../services/database.service";
 import { sendError } from "../../../utils/Utils";
 import Config from "../../../Config";
+import RateLimiters from "../../../utils/RateLimiters";
 const router = Router();
 
 type LoginBody = {
@@ -11,7 +12,7 @@ type LoginBody = {
     password: string;
 }
 
-router.post("/", async (req: Request, res: Response) => {
+router.post("/", RateLimiters.Auth, async (req: Request, res: Response) => {
     let body: LoginBody = req.body;
     if(!body.password || !body.username) {
         sendError(res, 400, "Missing required fields");

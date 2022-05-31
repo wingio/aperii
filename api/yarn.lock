@@ -1785,7 +1785,12 @@
   dependencies:
     "homedir-polyfill" "^1.0.1"
 
-"express@^4.17.2":
+"express-rate-limit@^6.4.0":
+  "integrity" "sha512-lxQRZI4gi3qAWTf0/Uqsyugsz57h8bd7QyllXBgJvd6DJKokzW7C5DTaNvwzvAQzwHGFaItybfYGhC8gpu0V2A=="
+  "resolved" "https://registry.npmjs.org/express-rate-limit/-/express-rate-limit-6.4.0.tgz"
+  "version" "6.4.0"
+
+"express@^4 || ^5", "express@^4.17.2":
   "integrity" "sha512-oxlxJxcQlYwqPWKVJJtvQiwHgosH/LrLSPA+H4UxpyvSS6jC5aH+5MoHFM+KABgTOt0APue4w66Ha8jCUo9QGg=="
   "resolved" "https://registry.npmjs.org/express/-/express-4.17.2.tgz"
   "version" "4.17.2"
