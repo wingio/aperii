@@ -15,9 +15,6 @@ self.addEventListener('fetch', (event) => {
   console.log('Fetch intercepted for:', event.request.url);
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse && !event.request.url.includes('aperii.com/_next/')) {
-        return cachedResponse;
-      }
       return fetch(event.request);
     }),
   );
