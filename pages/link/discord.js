@@ -8,7 +8,7 @@ export default function Discord({ openOauth, successful }) {
         const params = new URL(window.location.href.replace("#", "?")).searchParams;
 
         if(!params.get("access_token")) {
-            router.push("https://discord.com/oauth2/authorize?client_id=832045938985140244&redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Flink%2Fdiscord&response_type=token&scope=identify")
+            router.push("https://discord.com/api/oauth2/authorize?client_id=832045938985140244&redirect_uri=https%3A%2F%2Faperii.com%2Flink%2Fdiscord&response_type=token&scope=identify")
             return null
         }
 
