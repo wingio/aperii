@@ -56,7 +56,7 @@ export default function Demo( { user} ) {
       </div>
       <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: ".9em", padding: "1em" }}>
         <h4 className="mg0">{text.email}</h4>
-        <p className="mg0">{user.email}</p>
+        <p className="mg0">{user.email} {user.verifiedEmail ? <></> : <a style={{color: "#4eafff", cursor: "pointer"}} onClick={(e) => requestVerifyEmail()}>Click to Verify</a>}</p>
       </div>
       <div style={{color: "var(--text-color)", borderBottom: "1px solid var(--border-grey)", fontSize: ".9em", padding: "1em" }}>
         <h4 className="mg0">{text.verified.text}</h4>
@@ -69,6 +69,20 @@ export default function Demo( { user} ) {
     </div>
   </Layout>
   )
+}
+
+async function requestVerifyEmail() {
+  if (typeof window !== "undefined") {
+    var token = localStorage.getItem('token')
+    if (token) {
+      fetch(`${API_BASE_URL}/users/@me/verify`, {
+        method: 'POST',
+        headers: {
+          authorization: token
+        }
+      }).then(res => res.json()).then(verifyResult => {}).catch(e => {})
+    }
+  }
 }
 
 export async function getServerSideProps(context) {

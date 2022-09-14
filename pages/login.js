@@ -4,6 +4,7 @@ import {useState} from 'react'
 
 import lang from '../public/resc/lang.json'
 import { API_BASE_URL } from '../constants'
+import { useRouter } from 'next/router'
 const names = lang['en-US']
 
 var prod = true
@@ -30,6 +31,7 @@ export default function Home() {
   const [hasError, setError] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [errorInput, setErrorInput] = useState('')
+  const router = useRouter()
 
   async function signup(e){
     e.preventDefault()
@@ -64,7 +66,7 @@ export default function Home() {
         }
         document.cookie = "token=" + result.token
       }
-      window.location = '/home'
+      window.location = router.query.redirect || '/home'
     }
     return false
   }
